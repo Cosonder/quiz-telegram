@@ -1,0 +1,4 @@
+/* Telegram 里：去掉顶部的大标题（Telegram 自己有标题栏），留出底部安全区 */
+html.in-telegram header .titles { display: none; }
+html.in-telegram .wrap { padding-top: 8px; padding-bottom: calc(16px + env(safe-area-inset-bottom, 0px)); }
+html.in-telegram .qf-back { display: none !important; }   /* 用 Telegram 自带的返回按钮 */
