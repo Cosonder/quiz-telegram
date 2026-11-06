@@ -420,3 +420,71 @@
 | léger | leger.jpg | [3010848](https://pixabay.com/photos/feather-ease-slightly-blue-airy-3010848/) | Sponchia |
 | lent | lent.jpg | [4345504](https://pixabay.com/photos/snail-shell-mollusk-gastropod-4345504/) | Ralphs_Fotos |
 | rapide | rapide.jpg | [8446249](https://pixabay.com/photos/train-high-speed-rail-bullet-train-8446249/) | Kanenori |
+
+
+## 新增 60 词（new60）
+
+这批图由 ChatGPT 按每个词的例句生成（原图在 Cosonder/quiz 的 `picgen/inbox/new60/`），裁成 3:2、缩到 720×480。
+
+| 单词 | 文件 |
+|---|---|
+| aspirateur | aspirateur.jpg |
+| oreiller | oreiller.jpg |
+| robinet | robinet.jpg |
+| patron | patron.jpg |
+| imprimante | imprimante.jpg |
+| stage | stage.jpg |
+| cartable | cartable.jpg |
+| craie | craie.jpg |
+| tricher | tricher.jpg |
+| pansement | pansement.jpg |
+| béquille | bequille.jpg |
+| éternuer | eternuer.jpg |
+| passeport | passeport.jpg |
+| boussole | boussole.jpg |
+| tente | tente.jpg |
+| arc-en-ciel | arc-en-ciel.jpg |
+| écureuil | ecureuil.jpg |
+| cascade | cascade.jpg |
+| foule | foule.jpg |
+| drapeau | drapeau.jpg |
+| urne | urne.jpg |
+| écouteurs | ecouteurs.jpg |
+| brancher | brancher.jpg |
+| zapper | zapper.jpg |
+| rougir | rougir.jpg |
+| pleurer | pleurer.jpg |
+| timide | timide.jpg |
+| pourtant | ex-pourtant.jpg |
+| dès que | ex-des-que.jpg |
+| à cause de | ex-a-cause-de.jpg |
+| tablier | tablier.jpg |
+| fouet | fouet.jpg |
+| saupoudrer | saupoudrer.jpg |
+| chariot | chariot.jpg |
+| soldes | soldes.jpg |
+| étiquette | etiquette.jpg |
+| cerf-volant | cerf-volant.jpg |
+| luge | luge.jpg |
+| plongée | plongee.jpg |
+| rideau | rideau.jpg |
+| pinceau | pinceau.jpg |
+| violon | violon.jpg |
+| berceau | berceau.jpg |
+| câlin | calin.jpg |
+| gronder | gronder.jpg |
+| lampadaire | lampadaire.jpg |
+| feu rouge | feu-rouge.jpg |
+| banc | banc.jpg |
+| menottes | menottes.jpg |
+| cambrioleur | cambrioleur.jpg |
+| extincteur | extincteur.jpg |
+| aimant | aimant.jpg |
+| loupe | loupe.jpg |
+| éprouvette | eprouvette.jpg |
+| chauve | chauve.jpg |
+| frisé | frise.jpg |
+| tatouage | tatouage.jpg |
+| pousser | pousser.jpg |
+| tirer | tirer.jpg |
+| glisser | glisser.jpg |

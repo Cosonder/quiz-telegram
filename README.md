@@ -19,7 +19,7 @@
 网站版发布新版本后：
 
 ```bash
-python3 tools/build.py <quiz 仓库路径>   # 重新生成根目录的 index.html 和 img/
+python3 tools/build.py <quiz 仓库路径>   # 重新生成根目录的 index.html、img/ 和 skins/
 git add -A && git commit -m "Update from website" && git push
 ```
 

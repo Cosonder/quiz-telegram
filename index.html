@@ -1028,6 +1028,31 @@ html[data-font="times"] body { font-size: 17px; }
 .book-toc > summary::-webkit-details-marker { display: none; }
 .book-toc > summary::before { content: "▸ "; } .book-toc[open] > summary::before { content: "▾ "; }
 .book-toc .toc { padding: 0 0 8px; max-height: none; }
+
+/* ---------- 失声的巴黎（原型） ---------- */
+.lsp-card { display: flex; flex-direction: column; gap: 10px; }
+.lsp-head { display: flex; flex-wrap: wrap; align-items: baseline; gap: 4px 12px; }
+.lsp-sub { color: var(--muted, #888); font-size: .85em; }
+.lsp-hud { display: flex; flex-wrap: wrap; gap: 6px 10px; font-size: .85em; align-items: center; }
+.lsp-ab { display: inline-flex; align-items: center; gap: 5px; padding: 2px 8px; border-radius: 999px; border: 1px solid var(--line, #ccc); opacity: .45; }
+.lsp-ab i { width: 10px; height: 10px; border-radius: 2px; background: var(--c); }
+.lsp-ab.on { opacity: 1; border-color: var(--c); }
+.lsp-inv { margin-left: auto; color: var(--muted, #888); }
+.lsp-cv { width: 100%; max-width: 640px; align-self: center; image-rendering: pixelated; image-rendering: crisp-edges; border-radius: 6px; transition: filter .8s; }
+.lsp-dlg { min-height: 64px; padding: 10px 12px; border-radius: 8px; background: var(--soft, rgba(127,127,127,.08)); }
+.lsp-dlg:empty { display: none; }
+.lsp-text, .lsp-fr, .lsp-hint, .lsp-msg { margin: 0 0 8px; white-space: pre-line; }
+.lsp-fr { font-style: italic; font-size: 1.05em; }
+.lsp-hint { color: var(--muted, #888); font-size: .9em; }
+.lsp-msg { color: #c0392b; }
+.lsp-choices { display: flex; flex-wrap: wrap; gap: 6px; }
+.lsp-choices.col { flex-direction: column; align-items: stretch; }
+.lsp-in { padding: 6px 10px; font-size: 1em; width: 8em; }
+.lsp-thumb { display: block; width: 120px; height: 80px; object-fit: cover; border-radius: 6px; margin-bottom: 8px; }
+.lsp-pad { display: grid; grid-template-columns: repeat(3, 56px); grid-template-rows: repeat(3, 44px); gap: 4px; justify-content: center; }
+.lsp-btn { font-size: 1.1em; border-radius: 8px; border: 1px solid var(--line, #ccc); background: var(--card, #fff); color: inherit; touch-action: manipulation; }
+.lsp-u { grid-area: 1 / 2; } .lsp-l { grid-area: 2 / 1; } .lsp-a { grid-area: 2 / 2; font-size: .85em; } .lsp-r { grid-area: 2 / 3; } .lsp-d { grid-area: 3 / 2; }
+.lsp-reset { align-self: flex-end; font-size: .8em; }
 /* 外观商品（游戏模式里的商店购买）：由 quiz-common/cosmetics/build.py 生成，别手改 */
 :root[data-coin="tower"] .coin, :root .cos-prev .coin.cs-tower { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cg transform='translate%28.35 .45%29' fill='%23fff6cf' fill-opacity='.7'%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z'/%3E%3C/g%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z' fill='url%28%23s%29'/%3E%3CclipPath id='sp'%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z'/%3E%3C/clipPath%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z' fill='%23c98a12' fill-opacity='.8'/%3E%3Cpath d='M3.45 25L11.45 18.5M11.45 25L3.45 18.5M4.40 25L12.40 18.5M12.40 25L4.40 18.5M5.35 25L13.35 18.5M13.35 25L5.35 18.5M6.30 25L14.30 18.5M14.30 25L6.30 18.5M7.25 25L15.25 18.5M15.25 25L7.25 18.5M8.20 25L16.20 18.5M16.20 25L8.20 18.5M9.15 25L17.15 18.5M17.15 25L9.15 18.5M10.10 25L18.10 18.5M18.10 25L10.10 18.5M11.05 25L19.05 18.5M19.05 25L11.05 18.5M12.00 25L20.00 18.5M20.00 25L12.00 18.5M12.95 25L20.95 18.5M20.95 25L12.95 18.5M13.90 25L21.90 18.5M21.90 25L13.90 18.5M14.85 25L22.85 18.5M22.85 25L14.85 18.5M15.80 25L23.80 18.5M23.80 25L15.80 18.5M16.75 25L24.75 18.5M24.75 25L16.75 18.5M17.70 25L25.70 18.5M25.70 25L17.70 18.5M18.65 25L26.65 18.5M26.65 25L18.65 18.5M19.60 25L27.60 18.5M27.60 25L19.60 18.5M20.55 25L28.55 18.5M28.55 25L20.55 18.5' stroke='%237e4b00' stroke-opacity='.55' stroke-width='.16' clip-path='url%28%23sp%29'/%3E%3Cpath d='M9.40 24.80L13.22 23.35M12.30 24.80L10.52 23.35M10.52 23.35L13.22 23.35M10.52 23.35L13.88 22.05M13.22 23.35L11.35 22.05M11.35 22.05L13.88 22.05M11.35 22.05L14.40 20.81M13.88 22.05L12.03 20.81M12.03 20.81L14.40 20.81M12.03 20.81L14.80 19.60M14.40 20.81L12.60 19.60M12.60 19.60L14.80 19.60M12.80 18.70L15.76 17.50M15.55 18.70L13.51 17.50M13.51 17.50L15.76 17.50M13.51 17.50L15.82 16.43M15.76 17.50L14.01 16.43M14.01 16.43L15.82 16.43M14.01 16.43L15.78 15.40M15.82 16.43L14.40 15.40M14.40 15.40L15.78 15.40M22.60 24.80L18.78 23.35M19.70 24.80L21.48 23.35M21.48 23.35L18.78 23.35M21.48 23.35L18.12 22.05M18.78 23.35L20.65 22.05M20.65 22.05L18.12 22.05M20.65 22.05L17.60 20.81M18.12 22.05L19.97 20.81M19.97 20.81L17.60 20.81M19.97 20.81L17.20 19.60M17.60 20.81L19.40 19.60M19.40 19.60L17.20 19.60M19.20 18.70L16.24 17.50M16.45 18.70L18.49 17.50M18.49 17.50L16.24 17.50M18.49 17.50L16.18 16.43M16.24 17.50L17.99 16.43M17.99 16.43L16.18 16.43M17.99 16.43L16.22 15.40M16.18 16.43L17.60 15.40M17.60 15.40L16.22 15.40M14.55 14.60L17.14 13.16M17.45 14.60L14.86 13.16M14.86 13.16L17.14 13.16M14.86 13.16L16.95 12.09M17.14 13.16L15.05 12.09M15.05 12.09L16.95 12.09M15.05 12.09L16.81 11.13M16.95 12.09L15.19 11.13M15.19 11.13L16.81 11.13M15.19 11.13L16.69 10.23M16.81 11.13L15.31 10.23M15.31 10.23L16.69 10.23M15.31 10.23L16.60 9.38M16.69 10.23L15.40 9.38M15.40 9.38L16.60 9.38M15.40 9.38L16.52 8.56M16.60 9.38L15.48 8.56M15.48 8.56L16.52 8.56M15.48 8.56L16.46 7.77M16.52 8.56L15.54 7.77M15.54 7.77L16.46 7.77M15.54 7.77L16.40 7.00M16.46 7.77L15.60 7.00M15.60 7.00L16.40 7.00M12.83 24.05L13.75 24.08M13.47 23.44L13.75 24.08M14.10 22.96L14.75 23.44M14.73 22.62L14.75 23.44M15.37 22.42L15.75 23.16M16.00 22.35L15.75 23.16M16.63 22.42L16.75 23.25M17.27 22.62L16.75 23.25M17.90 22.96L17.75 23.71M18.53 23.44L17.75 23.71M19.17 24.05L18.75 24.54' fill='none' stroke='%23f8d873' stroke-opacity='.75' stroke-width='.17' stroke-linecap='round'/%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60M12.30 24.80L13.22 23.35L13.88 22.05L14.40 20.81L14.80 19.60M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40M15.55 18.70L15.76 17.50L15.82 16.43L15.78 15.40M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60M19.70 24.80L18.78 23.35L18.12 22.05L17.60 20.81L17.20 19.60M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40M16.45 18.70L16.24 17.50L16.18 16.43L16.22 15.40M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00M17.45 14.60L17.14 13.16L16.95 12.09L16.81 11.13L16.69 10.23L16.60 9.38L16.52 8.56L16.46 7.77L16.40 7.00' fill='none' stroke='%236e4000' stroke-width='.22'/%3E%3Cpath d='M11.80 18.7H20.20M13.95 14.6H18.05' stroke='%23ffe9a8' stroke-width='.28'/%3E%3Cpath d='M12.00 19.18H20.00M14.15 15.02H17.85' stroke='%23f8d873' stroke-opacity='.8' stroke-width='.15' stroke-dasharray='.22 .22'/%3E%3Cpath d='M11.98 19.6A.42 .42 0 0 1 12.82 19.6M12.88 19.6A.42 .42 0 0 1 13.72 19.6M13.78 19.6A.42 .42 0 0 1 14.62 19.6M14.68 19.6A.42 .42 0 0 1 15.52 19.6M15.58 19.6A.42 .42 0 0 1 16.42 19.6M16.48 19.6A.42 .42 0 0 1 17.32 19.6M17.38 19.6A.42 .42 0 0 1 18.22 19.6M18.28 19.6A.42 .42 0 0 1 19.12 19.6M19.18 19.6A.42 .42 0 0 1 20.02 19.6' fill='none' stroke='%23f8d873' stroke-opacity='.85' stroke-width='.16'/%3E%3Cpath d='M16 6.4V4.1' stroke='%237a4700' stroke-width='.32' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='4.0' r='.28' fill='%23ffe08a'/%3E%3Cpath d='M9.1 24.85H12.5M19.5 24.85H22.9' stroke='%236e4000' stroke-width='.4' stroke-linecap='round'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
 :root[data-coin="arc"] .coin, :root .cos-prev .coin.cs-arc { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='%23fff8d6' fill-opacity='.8' transform='translate%28.45 .55%29' fill-rule='evenodd'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='url%28%23s%29' fill-rule='evenodd'/%3E%3Cpath d='M9.4 13.4H22.6M10.6 15.2V21.6M21.4 15.2V21.6M12.2 11.4H19.8' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.35'/%3E%3Cpath d='M13.1 17.6A2.9 2.9 0 0 1 18.9 17.6' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.3'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
@@ -1206,6 +1231,20 @@ html[data-font="times"] body { font-size: 17px; }
 @keyframes bgSpin { to { transform: rotate(360deg); } }
 @keyframes bgBeam { 0% { transform: rotate(-8deg) scaleX(1); } 25% { transform: rotate(-8deg) scaleX(0); } 25.01% { transform: rotate(188deg) scaleX(0); } 50% { transform: rotate(188deg) scaleX(1); } 75% { transform: rotate(188deg) scaleX(0); } 75.01% { transform: rotate(-8deg) scaleX(0); } 100% { transform: rotate(-8deg) scaleX(1); } }
 @keyframes bgGlow { from { opacity: .45; transform: scale(.9); } to { opacity: 1; transform: scale(1.15); } }
+
+/* Greenlight Portal — generated artwork with readable learning cards. */
+:root[data-skin="c137"], .sk-c137 { --bg:#030f30; --card:#101f3b; --fg:#eef8ee; --muted:#adbed0; --line:#365468; --accent:#b6f64a; --accent-soft:#243c29; --good:#80df9c; --good-soft:#163a2b; --bad:#ff929f; --bad-soft:#452733; color-scheme:dark; }
+:root[data-skin="c137"] body { background:var(--bg); padding-bottom:120px; }
+:root[data-skin="c137"] body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; background:#030f30 url("skins/c137-portal.webp") left bottom / cover no-repeat; }
+:root[data-skin="c137"] .card, :root[data-skin="c137"] .tabs, :root[data-skin="c137"] .shop-fold { border:3px solid #537c39; border-radius:2px; box-shadow:0 0 0 1px #152b29,inset 0 0 0 1px #91c953; background:var(--card); }
+:root[data-skin="c137"] .heat-card { --h0:#162b3a; --h1:#315942; --h2:#51864b; --h3:#85b83d; --h4:#b6f64a; }
+:root[data-skin="c137"] .chest-box { background:#243c29; color:#e5ffb1; border-color:#779b45; }
+.sk-swatch.sk-c137 { background:#030f30 url("skins/c137-portal.webp") center / cover no-repeat; padding:8px 8px 8px 48px; border:1px solid #779b45; }
+.sk-c137 .sk-card { border:1px solid #91c953; background:#101f3be8; }
+@media (max-width:600px) { :root[data-skin="c137"] body::before { background-size:auto 70%; background-position:left bottom; } }
+/* 商店分区的像素边框与点缀：小传送门 + 荧光绿液滴 */
+:root[data-skin="c137"] .shop-fold { border: 6px solid transparent; border-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='9' height='9' viewBox='0 0 9 9' shape-rendering='crispEdges'%3E%3Crect x='2' y='0' width='5' height='1' fill='%23152e1c'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='2' y='1' width='5' height='1' fill='%23b6f64a'/%3E%3Crect x='7' y='1' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23b6f64a'/%3E%3Crect x='7' y='2' width='1' height='1' fill='%235f9a2a'/%3E%3Crect x='8' y='2' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23b6f64a'/%3E%3Crect x='7' y='3' width='1' height='1' fill='%235f9a2a'/%3E%3Crect x='8' y='3' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23b6f64a'/%3E%3Crect x='7' y='4' width='1' height='1' fill='%235f9a2a'/%3E%3Crect x='8' y='4' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%23b6f64a'/%3E%3Crect x='7' y='5' width='1' height='1' fill='%235f9a2a'/%3E%3Crect x='8' y='5' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%23b6f64a'/%3E%3Crect x='7' y='6' width='1' height='1' fill='%235f9a2a'/%3E%3Crect x='8' y='6' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='2' y='7' width='5' height='1' fill='%235f9a2a'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23152e1c'/%3E%3Crect x='2' y='8' width='5' height='1' fill='%23152e1c'/%3E%3C/svg%3E") 3 / 6px round; border-radius: 0; background-clip: padding-box; }
+:root[data-skin="c137"] .shop-fold { position: relative; box-shadow: none; } :root[data-skin="c137"] .shop-fold::before, :root[data-skin="c137"] .shop-fold::after { content: ""; position: absolute; pointer-events: none; background: no-repeat 0 0 / 100% 100%; image-rendering: pixelated; z-index: 1; } :root[data-skin="c137"] .shop-fold::after { right: 16px; top: -26px; width: 39px; height: 45px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='13' height='15' viewBox='0 0 13 15' shape-rendering='crispEdges'%3E%3Cpath fill='%232f6a16' d='M4 1h1v1h-1zM8 1h1v1h-1zM3 2h1v1h-1zM9 2h1v1h-1zM2 3h1v1h-1zM10 3h1v1h-1zM2 11h1v1h-1zM10 11h1v1h-1zM3 12h1v1h-1zM9 12h1v1h-1zM1 4h1v1h-1zM11 4h1v1h-1zM1 5h1v1h-1zM11 5h1v1h-1zM1 6h1v1h-1zM11 6h1v1h-1zM1 7h1v1h-1zM11 7h1v1h-1zM1 8h1v1h-1zM11 8h1v1h-1zM1 9h1v1h-1zM11 9h1v1h-1zM1 10h1v1h-1zM11 10h1v1h-1zM4 13h1v1h-1zM5 13h1v1h-1zM6 13h1v1h-1zM7 13h1v1h-1zM8 13h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM8 0h1v1h-1z'/%3E%3Cpath fill='%237fd12a' d='M5 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM4 2h1v1h-1zM5 2h1v1h-1zM6 2h1v1h-1zM7 2h1v1h-1zM8 2h1v1h-1zM3 3h1v1h-1zM4 3h1v1h-1zM5 3h1v1h-1zM6 3h1v1h-1zM7 3h1v1h-1zM8 3h1v1h-1zM9 3h1v1h-1zM3 11h1v1h-1zM4 11h1v1h-1zM5 11h1v1h-1zM6 11h1v1h-1zM7 11h1v1h-1zM8 11h1v1h-1zM9 11h1v1h-1zM4 12h1v1h-1zM5 12h1v1h-1zM6 12h1v1h-1zM7 12h1v1h-1zM8 12h1v1h-1zM2 4h1v1h-1zM3 4h1v1h-1zM4 4h1v1h-1zM8 4h1v1h-1zM9 4h1v1h-1zM10 4h1v1h-1zM2 5h1v1h-1zM3 5h1v1h-1zM4 5h1v1h-1zM5 5h1v1h-1zM6 5h1v1h-1zM7 5h1v1h-1zM9 5h1v1h-1zM10 5h1v1h-1zM2 6h1v1h-1zM3 6h1v1h-1zM7 6h1v1h-1zM9 6h1v1h-1zM10 6h1v1h-1zM2 7h1v1h-1zM3 7h1v1h-1zM5 7h1v1h-1zM7 7h1v1h-1zM9 7h1v1h-1zM10 7h1v1h-1zM2 8h1v1h-1zM3 8h1v1h-1zM5 8h1v1h-1zM6 8h1v1h-1zM8 8h1v1h-1zM9 8h1v1h-1zM10 8h1v1h-1zM2 9h1v1h-1zM3 9h1v1h-1zM4 9h1v1h-1zM7 9h1v1h-1zM8 9h1v1h-1zM9 9h1v1h-1zM10 9h1v1h-1zM2 10h1v1h-1zM3 10h1v1h-1zM4 10h1v1h-1zM5 10h1v1h-1zM6 10h1v1h-1zM8 10h1v1h-1zM9 10h1v1h-1zM10 10h1v1h-1z'/%3E%3Cpath fill='%23c9ff57' d='M5 4h1v1h-1zM6 4h1v1h-1zM7 4h1v1h-1zM8 5h1v1h-1zM8 6h1v1h-1zM8 7h1v1h-1zM7 8h1v1h-1zM4 6h1v1h-1zM4 7h1v1h-1zM4 8h1v1h-1zM5 9h1v1h-1zM6 9h1v1h-1zM7 10h1v1h-1z'/%3E%3Cpath fill='%23f6ffd0' d='M6 7h1v1h-1zM6 6h1v1h-1zM5 6h1v1h-1z'/%3E%3Cpath fill='%23b6f64a' d='M12 2h1v1h-1zM0 12h1v1h-1zM12 10h1v1h-1zM11 0h1v1h-1z'/%3E%3C/svg%3E"); filter: drop-shadow(0 0 4px #b6f64a88); } :root[data-skin="c137"] .shop-fold::before { left: 14px; bottom: -18px; width: 42px; height: 21px; background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='14' height='7' viewBox='0 0 14 7' shape-rendering='crispEdges'%3E%3Cpath fill='%236fbf2a' d='M0 0h1v1h-1zM1 0h1v1h-1zM2 0h1v1h-1zM3 0h1v1h-1zM4 0h1v1h-1zM5 0h1v1h-1zM6 0h1v1h-1zM7 0h1v1h-1zM8 0h1v1h-1zM9 0h1v1h-1zM10 0h1v1h-1zM11 0h1v1h-1zM12 0h1v1h-1zM13 0h1v1h-1zM1 1h1v1h-1zM2 1h1v1h-1zM3 1h1v1h-1zM6 1h1v1h-1zM7 1h1v1h-1zM10 1h1v1h-1zM11 1h1v1h-1zM2 2h1v1h-1zM7 2h1v1h-1zM11 2h1v1h-1zM7 3h1v1h-1z'/%3E%3Cpath fill='%23c9ff57' d='M2 3h1v1h-1zM7 4h1v1h-1zM11 3h1v1h-1z'/%3E%3Cpath fill='%23e6ffb0' d='M4 5h1v1h-1zM9 6h1v1h-1zM12 5h1v1h-1z'/%3E%3C/svg%3E"); }
 
 /* ---------- 做题全屏：一屏放下一道题，页面不能上下滚动；右上角返回 / 退出 ---------- */
 html.qf, html.qf body { overflow: hidden; height: 100%; overscroll-behavior: none; }
@@ -17986,6 +18025,8 @@ if (UI_LANG === "en") i18nLoad({
 "例句填空": "Fill the sentence",
 "字母拼写": "Spell it",
 "三个游戏用金币解锁，第一个 ${MODE_PRICES[0]}、第二个 ${MODE_PRICES[1]}、第三个 ${MODE_PRICES[2]} 金币；也可以在“商店”里解锁。已经玩过的模式不用再买。": "The three games are unlocked with coins: ${MODE_PRICES[0]} for the first, ${MODE_PRICES[1]} for the second, ${MODE_PRICES[2]} for the third. You can also unlock them under \"the Shop\". Modes you've already played don't need to be bought.",
+"绿光传送门": "Greenlight Portal",
+"异星像素冒险：荧光绿流体旋涡、气泡边缘与漂浮光滴，远处是幽暗夜空和紫色岩原，搭配深蓝卡片与绿色边框。": "An alien pixel adventure: a luminous green liquid vortex with bubbly edges and floating droplets, beneath a dark sky above purple plains, with navy cards and green borders.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -19888,6 +19929,7 @@ const COS_PX = {"fx_confetti": "<svg xmlns='http://www.w3.org/2000/svg' width='1
 // 买：记成 buy 记录（和道具一样扣金币）；换上 / 卸下：记成 equip 记录（slot + item，item 为空就是默认）。
 // 都跟着账号同步。游戏模式关掉时一律显示默认外观（默认金币是五角星）。
 const COSMETICS = [
+  { id: "c137", slot: "skin", name: "绿光传送门", price: 1500, desc: "异星像素冒险：荧光绿流体旋涡、气泡边缘与漂浮光滴，远处是幽暗夜空和紫色岩原，搭配深蓝卡片与绿色边框。" },
   { id: "tower", slot: "coin", name: "埃菲尔铁塔金币", price: 800, desc: "金币中间换成带桁架细节的埃菲尔铁塔。" },
   { id: "arc", slot: "coin", name: "凯旋门金币", price: 600, desc: "金币中间换成凯旋门。" },
   { id: "croissant", slot: "coin", name: "可颂金币", price: 600, desc: "金币中间换成一只可颂。" },
@@ -19913,13 +19955,53 @@ function cosEquipped() {
     .forEach(g => { eq[g.slot] = g.item && owned.has(g.item) ? g.item : null; });
   return eq;
 }
+// 试用只保存在内存里；不写入购买、装备或同步记录。
+var cosTrialSkin = null, cosTrialObserver = null;
+function cosTrialAllowed() {
+  return typeof view !== "undefined" && (view === "shop" || (typeof renderShop !== "function" && view === "book"));
+}
+function cosTrialRefresh() {
+  document.querySelectorAll("[data-skin-trial]").forEach(btn => {
+    const active = btn.dataset.skinTrial === cosTrialSkin;
+    btn.textContent = active ? "结束试用" : "试用";
+    btn.setAttribute("aria-pressed", String(active));
+  });
+  document.querySelectorAll(".cos-trial-note").forEach(n => {
+    const it = COSMETICS.find(c => c.id === cosTrialSkin);
+    n.textContent = it ? "正在试用「" + it.name + "」· 仅在商店生效，离开后恢复原皮肤。" : "皮肤可免费试用，仅在商店生效，不扣金币。";
+  });
+}
+function cosTrialEnd() {
+  cosTrialSkin = null;
+  if (cosTrialObserver) { cosTrialObserver.disconnect(); cosTrialObserver = null; }
+}
+function cosTrialToggle(id) {
+  if (!cosTrialAllowed() || !gameOn() || !COSMETICS.some(c => c.id === id && c.slot === "skin") || cosOwned().has(id)) return;
+  if (cosTrialSkin === id) cosTrialEnd();
+  else {
+    cosTrialSkin = id;
+    if (!cosTrialObserver) {
+      cosTrialObserver = new MutationObserver(() => {
+        if (cosTrialSkin && (!cosTrialAllowed() || !document.querySelector(".cos-shop"))) {
+          cosTrialEnd(); cosApply();
+        }
+      });
+      cosTrialObserver.observe(document.body, { childList: true, subtree: true });
+    }
+  }
+  cosApply();
+}
+
 var cosReady = false;   // game.js 加载时就会调用 cosApply，那时这里的常量还没定义好
 function cosApply() {
   if (!cosReady) return;
   const root = document.documentElement, on = typeof gameOn === "function" && gameOn();
   const eq = on ? cosEquipped() : {};
+  if (cosTrialSkin && (!on || !cosTrialAllowed() || cosOwned().has(cosTrialSkin))) cosTrialEnd();
+  if (on && cosTrialSkin) eq.skin = cosTrialSkin;
   COS_SLOTS.forEach(([slot]) => { const v = eq[slot]; if (v) root.dataset[COS_ATTR[slot]] = v; else delete root.dataset[COS_ATTR[slot]]; });
   cosRevealSync();
+  cosTrialRefresh();
 }
 // 背景全貌：换上主题配色后，在页面最上面和最下面各多留一屏透明的空间（背景是固定在后面的）。
 // 在内容的顶端或底端继续往外拉会出现提示，再往外拉内容就滑走了，只剩背景；拉到头只显示一个小按钮，点了回到内容。
@@ -20033,6 +20115,7 @@ function cosBuy(id) {
   return "";
 }
 function cosEquip(slot, id) {
+  if (slot === "skin") cosTrialEnd();
   gameAdd({ kind: "equip", slot, item: id || null, at: new Date().toISOString() });
   cosApply();
 }
@@ -20149,6 +20232,12 @@ function cosShop(note) {
   const ownN = COSMETICS.filter(c => led.owned.has(c.id)).length;
   const wrap = foldSec("cos", "商店 · 外观", `金币皮肤、主题配色、连对特效、称号框 · 已拥有 ${ownN} / ${COSMETICS.length}`);
   wrap.classList.add("cos-shop");
+  if (cosTrialAllowed()) {
+    const hint = el("p", "shop-note cos-trial-note"); hint.setAttribute("role", "status");
+    wrap.append(hint);
+    queueMicrotask(cosTrialRefresh);
+  }
+  wrap.addEventListener("toggle", () => { if (!wrap.open && cosTrialSkin) { cosTrialEnd(); cosApply(); } });
   COS_SLOTS.forEach(([slot, label]) => {
     const items = COSMETICS.filter(c => c.slot === slot);
     wrap.append(el("div", "cos-sec", label));
@@ -20174,6 +20263,13 @@ function cosShop(note) {
         btn.addEventListener("click", () => { cosEquip(slot, on ? null : it.id); shopRedraw(); });
       }
       card.append(btn);
+      if (it.slot === "skin" && !own && cosTrialAllowed()) {
+        const trial = el("button", "btn ghost", cosTrialSkin === it.id ? "结束试用" : "试用");
+        trial.type = "button"; trial.dataset.skinTrial = it.id;
+        trial.setAttribute("aria-pressed", String(cosTrialSkin === it.id));
+        trial.addEventListener("click", () => cosTrialToggle(it.id));
+        card.append(trial);
+      }
       grid.append(card);
     });
     wrap.append(grid);
@@ -21082,6 +21178,12 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "5.7", d: "2026-11-06", p: "fr", items: [
+    "商店皮肤「C-137 传送门」改为原创的「绿光传送门」：新背景是荧光绿的流体旋涡、异星夜空和紫色岩原，图片从 1.6MB 压到 73KB；已经买过的不受影响。"] },
+  { v: "5.6", d: "2026-11-06", p: "fr", items: [
+    "游戏里新增《失声的巴黎》原型：一个像素街区解谜。三块石碑各考 5 道语法题（冠词、复合过去时、简单将来时），答对 4 题得到能力、打开新区域；六道知识锁要读懂法语线索（门牌、密码年份、看图拿东西、钥匙位置、将来时齿轮、鬼魂留言）才能解开，每道锁有两级提示。通关一次 50 金币。"] },
+  { v: "5.5", d: "2026-11-06", p: "fr", items: [
+    "背单词新增 60 个 B1–B2 词（20 个主题各 3 个，如 aspirateur、boussole、arc-en-ciel、dès que），每个词配一张按例句画的图，排进第 41–46 关；词库扩到 460 个词。"] },
   { v: "5.4", d: "2026-11-05", p: "fr", items: [
     "学习进度页不再有最上方的目录；错题的筛选（按标签 / 书籍章节）放进了错题本卡片里，可以折叠。"] },
   { v: "5.3", d: "2026-11-05", p: "fr", items: [
@@ -22005,6 +22107,7 @@ const BOARDS = {
   game: [
     { id: "levels", t: "单词闯关", d: "一关 10 个词，各主题混合，按星星解锁下一关。", n: () => `${V_LEVELS.length} 关` },
     { id: "tour", t: "环法之旅", d: "像素法国地图，52 站从 A1 到 C1，答题集明信片。", n: () => "52 站", game: true },
+    { id: "lsp", t: "失声的巴黎", d: "原型：像素街区解谜。学会语法得到能力、打开新区域；读懂法语线索才能解开谜题。", n: () => "原型" },
     { id: "spire", t: "巴黎塔尖", d: "肉鸽模式：选路线登塔，战斗、商人、事件和三层 Boss。", n: () => typeof spRun !== "undefined" && spRun ? "进行中" : "肉鸽" },
   ],
 };
@@ -22027,12 +22130,13 @@ function curMod() {
   if (view === "book") return "book";
   if (view === "shop") return "shop";
   if (view === "settings") return "settings";
-  if (view === "tour" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "game";
+  if (view === "tour" || view === "lsp" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "game";
   if (view === "vocab" && vIsGame()) return "game";
   return "practice";
 }
 function curBoard() {
   if (view === "home" || view === "book" || view === "settings" || view === "shop") return null;
+  if (view === "lsp") return "lsp";
   if (view === "tour" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "tour";
   if (view === "vocab") return vIsGame() ? (vTheme === "spire" || (vSess && vSess.spire) ? "spire" : "levels") : "vocab";
   if (view === "quiz") return qBoard;
@@ -22208,6 +22312,7 @@ startSet = function (key, fresh) {
 
 function switchView(v, setKey) {
   view = v;
+  if (typeof cosTrialSkin !== "undefined" && cosTrialSkin && !cosTrialAllowed()) { cosTrialEnd(); cosApply(); }
   if (typeof spHud === "function") spHud();   // 巴黎塔尖的状态条只在背单词里显示
   planRefresh();
   navSync();
@@ -22220,6 +22325,7 @@ function switchView(v, setKey) {
   if (v === "conj") { renderConj(); return; }
   if (v === "settings") { renderSettings(); return; }
   if (v === "tour") { renderTour(); return; }
+  if (v === "lsp") { renderLsp(); return; }
   if (v === "book") { renderBook(); return; }
   if (setKey) { startSet(setKey); navSync(); return; }
   renderToc();
@@ -23189,124 +23295,125 @@ const VOCAB = [
     ["lessive", "nf", "laundry"], ["facture", "nf", "bill, invoice"], ["chauffage", "nm", "heating"], ["clé", "nf", "key"],
     ["couverture", "nf", "blanket"], ["quotidien", "adj", "daily, everyday", "quotidienne"], ["ranger", "v", "to tidy up, put away"],
     ["emprunter", "v", "to borrow", "emprunter qch à qn"], ["prêter", "v", "to lend", "prêter qch à qn"],
-    ["s'habituer", "v", "to get used to", "s'habituer à"], ["se dépêcher", "v", "to hurry"], ["voisin", "nm", "neighbour"]] },
+    ["s'habituer", "v", "to get used to", "s'habituer à"], ["se dépêcher", "v", "to hurry"], ["voisin", "nm", "neighbour"], ["aspirateur", "nm", "vacuum cleaner"], ["oreiller", "nm", "pillow"], ["robinet", "nm", "tap, faucet", "ouvrir / fermer le robinet"]] },
   { id: "travail", t: "工作与金钱", w: [
     ["emploi", "nm", "job, employment"], ["chômage", "nm", "unemployment"], ["salaire", "nm", "salary"], ["entreprise", "nf", "company, firm"],
     ["entretien", "nm", "(job) interview"], ["candidature", "nf", "application"], ["embaucher", "v", "to hire"], ["licencier", "v", "to lay off, dismiss"],
     ["démissionner", "v", "to resign"], ["réunion", "nf", "meeting"], ["tâche", "nf", "task"], ["délai", "nm", "deadline, time limit"],
     ["dépense", "nf", "expense"], ["économiser", "v", "to save (money)"], ["compte", "nm", "(bank) account"], ["prêt", "nm", "loan"],
-    ["grève", "nf", "strike"], ["syndicat", "nm", "trade union"], ["carrière", "nf", "career"], ["rentable", "adj", "profitable", "rentable"]] },
+    ["grève", "nf", "strike"], ["syndicat", "nm", "trade union"], ["carrière", "nf", "career"], ["rentable", "adj", "profitable", "rentable"], ["patron", "nm", "boss", "阴性 patronne"], ["imprimante", "nf", "printer"], ["stage", "nm", "internship", "faire un stage"]] },
   { id: "etudes", t: "学习与教育", w: [
     ["diplôme", "nm", "degree, diploma"], ["formation", "nf", "training"], ["connaissance", "nf", "knowledge"], ["apprentissage", "nm", "learning"],
     ["exposé", "nm", "presentation, talk"], ["mémoire", "nm", "dissertation, thesis"], ["bourse", "nf", "scholarship"], ["note", "nf", "grade, mark"],
     ["échouer", "v", "to fail", "échouer à un examen"], ["réussir", "v", "to succeed, to pass", "réussir un examen"], ["rédiger", "v", "to write, draft"], ["réviser", "v", "to revise, review"],
     ["emploi du temps", "nm", "timetable"], ["bibliothèque", "nf", "library"], ["matière", "nf", "(school) subject"], ["inscription", "nf", "registration, enrolment"],
-    ["enseignement", "nm", "teaching, education"], ["devoir", "nm", "homework, assignment"], ["épreuve", "nf", "test, exam paper"], ["doué", "adj", "gifted, talented", "douée"]] },
+    ["enseignement", "nm", "teaching, education"], ["devoir", "nm", "homework, assignment"], ["épreuve", "nf", "test, exam paper"], ["doué", "adj", "gifted, talented", "douée"], ["cartable", "nm", "school bag"], ["craie", "nf", "chalk"], ["tricher", "v", "to cheat", "tricher à un examen"]] },
   { id: "sante", t: "健康与身体", w: [
     ["douleur", "nf", "pain"], ["ordonnance", "nf", "prescription"], ["médicament", "nm", "medicine, drug"], ["rhume", "nm", "cold"],
     ["grippe", "nf", "flu"], ["blessure", "nf", "injury, wound"], ["se blesser", "v", "to hurt oneself"], ["guérir", "v", "to heal, recover"],
     ["tousser", "v", "to cough"], ["fièvre", "nf", "fever"], ["poumon", "nm", "lung"], ["cœur", "nm", "heart"],
     ["foie", "nm", "liver"], ["genou", "nm", "knee"], ["épaule", "nf", "shoulder"], ["urgences", "nfpl", "A&E, emergency room"],
-    ["piqûre", "nf", "injection, sting"], ["enceinte", "adj", "pregnant", "enceinte"], ["épuisé", "adj", "exhausted", "épuisée"], ["sain", "adj", "healthy", "saine"]] },
+    ["piqûre", "nf", "injection, sting"], ["enceinte", "adj", "pregnant", "enceinte"], ["épuisé", "adj", "exhausted", "épuisée"], ["sain", "adj", "healthy", "saine"], ["pansement", "nm", "plaster, bandage"], ["béquille", "nf", "crutch", "marcher avec des béquilles"], ["éternuer", "v", "to sneeze"]] },
   { id: "voyage", t: "旅行与交通", w: [
     ["billet", "nm", "ticket"], ["quai", "nm", "platform"], ["retard", "nm", "delay"], ["correspondance", "nf", "connection (train, flight)"],
     ["bagage", "nm", "piece of luggage"], ["valise", "nf", "suitcase"], ["embouteillage", "nm", "traffic jam"], ["permis de conduire", "nm", "driving licence"],
     ["carrefour", "nm", "crossroads"], ["trottoir", "nm", "pavement, sidewalk"], ["auberge", "nf", "inn"], ["séjour", "nm", "stay"],
     ["douane", "nf", "customs"], ["frontière", "nf", "border"], ["atterrir", "v", "to land"], ["décoller", "v", "to take off"],
-    ["louer", "v", "to rent"], ["rater", "v", "to miss (a train)"], ["itinéraire", "nm", "route, itinerary"], ["dépaysement", "nm", "change of scenery"]] },
+    ["louer", "v", "to rent"], ["rater", "v", "to miss (a train)"], ["itinéraire", "nm", "route, itinerary"], ["dépaysement", "nm", "change of scenery"], ["passeport", "nm", "passport"], ["boussole", "nf", "compass"], ["tente", "nf", "tent", "planter la tente"]] },
   { id: "nature", t: "自然与环境", w: [
     ["environnement", "nm", "environment"], ["déchet", "nm", "waste, rubbish"], ["réchauffement", "nm", "warming"], ["sécheresse", "nf", "drought"],
     ["inondation", "nf", "flood"], ["forêt", "nf", "forest"], ["paysage", "nm", "landscape"], ["espèce", "nf", "species"],
     ["ressource", "nf", "resource"], ["renouvelable", "adj", "renewable", "renouvelable"], ["gaspiller", "v", "to waste"], ["recycler", "v", "to recycle"],
     ["protéger", "v", "to protect"], ["menacer", "v", "to threaten"], ["tempête", "nf", "storm"], ["falaise", "nf", "cliff"],
-    ["marée", "nf", "tide"], ["colline", "nf", "hill"], ["nuage", "nm", "cloud"], ["ciel", "nm", "sky"]] },
+    ["marée", "nf", "tide"], ["colline", "nf", "hill"], ["nuage", "nm", "cloud"], ["ciel", "nm", "sky"], ["arc-en-ciel", "nm", "rainbow"], ["écureuil", "nm", "squirrel"], ["cascade", "nf", "waterfall"]] },
   { id: "societe", t: "社会与时事", w: [
     ["loi", "nf", "law"], ["élection", "nf", "election"], ["gouvernement", "nm", "government"], ["citoyenneté", "nf", "citizenship"],
     ["droit", "nm", "right (legal)"], ["manifestation", "nf", "demonstration, protest"], ["débat", "nm", "debate"], ["inégalité", "nf", "inequality"],
     ["pauvreté", "nf", "poverty"], ["accueil", "nm", "welcome, reception"], ["bénévolat", "nm", "volunteering"], ["voter", "v", "to vote"],
     ["interdire", "v", "to ban, forbid", "interdire à qn de faire"], ["exiger", "v", "to demand, require"], ["soutenir", "v", "to support"], ["lutter", "v", "to fight, struggle", "lutter contre"],
-    ["mairie", "nf", "town hall"], ["impôt", "nm", "tax"], ["sondage", "nm", "opinion poll"], ["société", "nf", "society"]] },
+    ["mairie", "nf", "town hall"], ["impôt", "nm", "tax"], ["sondage", "nm", "opinion poll"], ["société", "nf", "society"], ["foule", "nf", "crowd", "une foule de"], ["drapeau", "nm", "flag"], ["urne", "nf", "ballot box", "aller aux urnes"]] },
   { id: "medias", t: "媒体与科技", w: [
     ["écran", "nm", "screen"], ["clavier", "nm", "keyboard"], ["souris", "nf", "mouse"], ["logiciel", "nm", "software"],
     ["mot de passe", "nm", "password"], ["fichier", "nm", "file"], ["réseau", "nm", "network"], ["appareil", "nm", "device, appliance"],
     ["télécharger", "v", "to download"], ["enregistrer", "v", "to save, record"], ["supprimer", "v", "to delete"], ["recherche", "nf", "research, search"],
     ["journal", "nm", "newspaper"], ["émission", "nf", "(TV, radio) programme"], ["chaîne", "nf", "channel"], ["rubrique", "nf", "section, column"],
-    ["abonnement", "nm", "subscription"], ["publicité", "nf", "advertising, advert"], ["en ligne", "loc", "online"], ["numérique", "adj", "digital", "numérique"]] },
+    ["abonnement", "nm", "subscription"], ["publicité", "nf", "advertising, advert"], ["en ligne", "loc", "online"], ["numérique", "adj", "digital", "numérique"], ["écouteurs", "nmpl", "headphones, earphones"], ["brancher", "v", "to plug in", "débrancher 拔掉"], ["zapper", "v", "to channel-hop"]] },
   { id: "sentiments", t: "情感与性格", w: [
     ["colère", "nf", "anger"], ["honte", "nf", "shame"], ["fierté", "nf", "pride"], ["jalousie", "nf", "jealousy"],
     ["inquiétude", "nf", "worry"], ["soulagement", "nm", "relief"], ["ennui", "nm", "boredom"], ["bonheur", "nm", "happiness"],
     ["malheur", "nm", "misfortune"], ["espoir", "nm", "hope"], ["sensible", "adj", "sensitive", "sensible"], ["bavard", "adj", "talkative", "bavarde"],
     ["têtu", "adj", "stubborn", "têtue"], ["paresseux", "adj", "lazy", "paresseuse"], ["fier", "adj", "proud", "fière"], ["gêné", "adj", "embarrassed", "gênée"],
-    ["se plaindre", "v", "to complain", "se plaindre de"], ["se fâcher", "v", "to get angry"], ["regretter", "v", "to regret; to miss"], ["éprouver", "v", "to feel (an emotion)"]] },
+    ["se plaindre", "v", "to complain", "se plaindre de"], ["se fâcher", "v", "to get angry"], ["regretter", "v", "to regret; to miss"], ["éprouver", "v", "to feel (an emotion)"], ["rougir", "v", "to blush", "rougir de"], ["pleurer", "v", "to cry"], ["timide", "adj", "shy", "timide"]] },
   { id: "liens", t: "常用连接与抽象词", w: [
     ["cependant", "adv", "however"], ["d'ailleurs", "adv", "besides, moreover"], ["autrement dit", "loc", "in other words"], ["en revanche", "loc", "on the other hand"],
     ["davantage", "adv", "more"], ["désormais", "adv", "from now on"], ["auparavant", "adv", "previously, before"], ["aussitôt", "adv", "immediately"],
     ["peu à peu", "loc", "little by little"], ["environ", "adv", "about, approximately"], ["grâce à", "prep", "thanks to"], ["au lieu de", "prep", "instead of"],
     ["malgré", "prep", "despite"], ["lors de", "prep", "during, at the time of"], ["à condition que", "conj", "provided that", "+ 虚拟式"], ["tandis que", "conj", "whereas"],
-    ["bien que", "conj", "although", "+ 虚拟式"], ["afin de", "prep", "in order to"], ["quant à", "prep", "as for"], ["parmi", "prep", "among"]] },
+    ["bien que", "conj", "although", "+ 虚拟式"], ["afin de", "prep", "in order to"], ["quant à", "prep", "as for"], ["parmi", "prep", "among"], ["pourtant", "adv", "yet, however"], ["dès que", "conj", "as soon as"], ["à cause de", "prep", "because of"]] },
   { id: "cuisine", t: "饮食与烹饪", w: [
     ["recette", "nf", "recipe"], ["casserole", "nf", "saucepan"], ["four", "nm", "oven"], ["poêle", "nf", "frying pan"],
     ["épicerie", "nf", "grocery shop"], ["repas", "nm", "meal"], ["goût", "nm", "taste"], ["épice", "nf", "spice"],
     ["plat", "nm", "dish"], ["cuire", "v", "to cook"], ["éplucher", "v", "to peel"], ["mélanger", "v", "to mix"],
     ["goûter", "v", "to taste"], ["bouillir", "v", "to boil"], ["frais", "adj", "fresh", "fraîche"], ["épicé", "adj", "spicy", "épicée"],
-    ["sucré", "adj", "sweet", "sucrée"], ["faim", "nf", "hunger"], ["boulangerie", "nf", "bakery"], ["serveur", "nm", "waiter"]] },
+    ["sucré", "adj", "sweet", "sucrée"], ["faim", "nf", "hunger"], ["boulangerie", "nf", "bakery"], ["serveur", "nm", "waiter"], ["tablier", "nm", "apron"], ["fouet", "nm", "whisk"], ["saupoudrer", "v", "to sprinkle", "saupoudrer de sucre"]] },
   { id: "achats", t: "购物与消费", w: [
     ["caisse", "nf", "checkout, till"], ["reçu", "nm", "receipt"], ["rayon", "nm", "aisle, department"], ["panier", "nm", "basket"],
     ["marque", "nf", "brand"], ["taille", "nf", "size"], ["prix", "nm", "price"], ["remise", "nf", "discount"],
     ["vendeur", "nm", "shop assistant"], ["client", "nm", "customer"], ["vitrine", "nf", "shop window"], ["échanger", "v", "to exchange"],
     ["rembourser", "v", "to refund, pay back"], ["essayer", "v", "to try (on)"], ["livrer", "v", "to deliver"], ["commander", "v", "to order"],
-    ["cher", "adj", "expensive", "chère"], ["gratuit", "adj", "free (of charge)", "gratuite"], ["colis", "nm", "parcel"], ["dépenser", "v", "to spend (money)"]] },
+    ["cher", "adj", "expensive", "chère"], ["gratuit", "adj", "free (of charge)", "gratuite"], ["colis", "nm", "parcel"], ["dépenser", "v", "to spend (money)"], ["chariot", "nm", "shopping trolley"], ["soldes", "nmpl", "sales", "les soldes"], ["étiquette", "nf", "label, price tag"]] },
   { id: "loisirs", t: "运动与休闲", w: [
     ["entraînement", "nm", "training, practice"], ["équipe", "nf", "team"], ["stade", "nm", "stadium"], ["ballon", "nm", "ball"],
     ["natation", "nf", "swimming"], ["randonnée", "nf", "hike"], ["course", "nf", "race; running"], ["spectateur", "nm", "spectator"],
     ["joueur", "nm", "player"], ["gagner", "v", "to win; to earn"], ["marquer", "v", "to score"], ["s'entraîner", "v", "to train"],
     ["se détendre", "v", "to relax"], ["nager", "v", "to swim"], ["courir", "v", "to run"], ["sportif", "adj", "sporty, athletic", "sportive"],
-    ["vélo", "nm", "bike"], ["jeu", "nm", "game"], ["pêche", "nf", "fishing"], ["vacances", "nfpl", "holidays"]] },
+    ["vélo", "nm", "bike"], ["jeu", "nm", "game"], ["pêche", "nf", "fishing"], ["vacances", "nfpl", "holidays"], ["cerf-volant", "nm", "kite"], ["luge", "nf", "sledge", "faire de la luge"], ["plongée", "nf", "diving", "faire de la plongée"]] },
   { id: "culture", t: "文化与艺术", w: [
     ["tableau", "nm", "painting"], ["peintre", "nm", "painter"], ["musée", "nm", "museum"], ["exposition", "nf", "exhibition"],
     ["roman", "nm", "novel"], ["auteur", "nm", "author"], ["scène", "nf", "stage; scene"], ["pièce", "nf", "play; room; coin"],
     ["concert", "nm", "concert"], ["orchestre", "nm", "orchestra"], ["chanson", "nf", "song"], ["danse", "nf", "dance"],
     ["sous-titre", "nm", "subtitle"], ["critique", "nf", "review, criticism"], ["chef-d'œuvre", "nm", "masterpiece"], ["applaudir", "v", "to applaud"],
-    ["dessiner", "v", "to draw"], ["célèbre", "adj", "famous", "célèbre"], ["sculpture", "nf", "sculpture"], ["public", "nm", "audience, public"]] },
+    ["dessiner", "v", "to draw"], ["célèbre", "adj", "famous", "célèbre"], ["sculpture", "nf", "sculpture"], ["public", "nm", "audience, public"], ["rideau", "nm", "curtain"], ["pinceau", "nm", "paintbrush"], ["violon", "nm", "violin", "jouer du violon"]] },
   { id: "famille", t: "家庭与人际", w: [
     ["mariage", "nm", "wedding; marriage"], ["couple", "nm", "couple"], ["naissance", "nf", "birth"], ["enfance", "nf", "childhood"],
     ["jumeau", "nm", "twin"], ["neveu", "nm", "nephew"], ["copain", "nm", "friend, boyfriend"], ["dispute", "nf", "argument, quarrel"],
     ["rencontre", "nf", "meeting, encounter"], ["anniversaire", "nm", "birthday; anniversary"], ["souvenir", "nm", "memory; souvenir"], ["se marier", "v", "to get married", "se marier avec"],
     ["divorcer", "v", "to divorce"], ["élever", "v", "to bring up, raise"], ["se disputer", "v", "to argue"], ["fidèle", "adj", "faithful, loyal", "fidèle"],
-    ["amical", "adj", "friendly", "amicale"], ["célibataire", "adj", "single", "célibataire"], ["confiance", "nf", "trust, confidence"], ["petit-enfant", "nm", "grandchild"]] },
+    ["amical", "adj", "friendly", "amicale"], ["célibataire", "adj", "single", "célibataire"], ["confiance", "nf", "trust, confidence"], ["petit-enfant", "nm", "grandchild"], ["berceau", "nm", "cradle"], ["câlin", "nm", "hug, cuddle", "faire un câlin"], ["gronder", "v", "to scold"]] },
   { id: "ville", t: "城市与建筑", w: [
     ["immeuble", "nm", "block of flats"], ["banlieue", "nf", "suburbs"], ["pont", "nm", "bridge"], ["place", "nf", "square; seat; space"],
     ["fontaine", "nf", "fountain"], ["gratte-ciel", "nm", "skyscraper"], ["chantier", "nm", "building site"], ["ascenseur", "nm", "lift, elevator"],
     ["escalier", "nm", "stairs"], ["toit", "nm", "roof"], ["balcon", "nm", "balcony"], ["habitant", "nm", "inhabitant, resident"],
     ["piéton", "nm", "pedestrian"], ["bruyant", "adj", "noisy", "bruyante"], ["propre", "adj", "clean; own", "propre"], ["sale", "adj", "dirty", "sale"],
-    ["construire", "v", "to build"], ["traverser", "v", "to cross"], ["se promener", "v", "to go for a walk"], ["panneau", "nm", "sign, road sign"]] },
+    ["construire", "v", "to build"], ["traverser", "v", "to cross"], ["se promener", "v", "to go for a walk"], ["panneau", "nm", "sign, road sign"], ["lampadaire", "nm", "street lamp"], ["feu rouge", "nm", "red light", "le feu vert 绿灯"], ["banc", "nm", "bench"]] },
   { id: "securite", t: "法律与安全", w: [
     ["vol", "nm", "theft; flight"], ["voleur", "nm", "thief"], ["policier", "nm", "police officer"], ["enquête", "nf", "investigation; survey"],
     ["témoin", "nm", "witness"], ["preuve", "nf", "proof, evidence"], ["juge", "nm", "judge"], ["tribunal", "nm", "court"],
     ["avocat", "nm", "lawyer"], ["prison", "nf", "prison"], ["amende", "nf", "fine"], ["arrêter", "v", "to arrest; to stop"],
     ["voler", "v", "to steal; to fly"], ["coupable", "adj", "guilty", "coupable"], ["innocent", "adj", "innocent", "innocente"], ["incendie", "nm", "fire (blaze)"],
-    ["pompier", "nm", "firefighter"], ["sécurité", "nf", "safety, security"], ["danger", "nm", "danger"], ["accident", "nm", "accident"]] },
+    ["pompier", "nm", "firefighter"], ["sécurité", "nf", "safety, security"], ["danger", "nm", "danger"], ["accident", "nm", "accident"], ["menottes", "nfpl", "handcuffs"], ["cambrioleur", "nm", "burglar"], ["extincteur", "nm", "fire extinguisher"]] },
   { id: "science", t: "科学与技术", w: [
     ["expérience", "nf", "experiment; experience"], ["laboratoire", "nm", "laboratory"], ["chercheur", "nm", "researcher"], ["découverte", "nf", "discovery"],
     ["inventer", "v", "to invent"], ["outil", "nm", "tool"], ["machine", "nf", "machine"], ["robot", "nm", "robot"],
     ["énergie", "nf", "energy"], ["électricité", "nf", "electricity"], ["batterie", "nf", "battery"], ["planète", "nf", "planet"],
     ["étoile", "nf", "star"], ["lune", "nf", "moon"], ["mesurer", "v", "to measure"], ["calculer", "v", "to calculate"],
-    ["chiffre", "nm", "figure, digit"], ["scientifique", "adj", "scientific", "scientifique"], ["microscope", "nm", "microscope"], ["fusée", "nf", "rocket"]] },
+    ["chiffre", "nm", "figure, digit"], ["scientifique", "adj", "scientific", "scientifique"], ["microscope", "nm", "microscope"], ["fusée", "nf", "rocket"], ["aimant", "nm", "magnet"], ["loupe", "nf", "magnifying glass", "regarder à la loupe 仔细查看"], ["éprouvette", "nf", "test tube"]] },
   { id: "apparence", t: "外貌与穿着", w: [
     ["visage", "nm", "face"], ["peau", "nf", "skin"], ["joue", "nf", "cheek"], ["menton", "nm", "chin"],
     ["barbe", "nf", "beard"], ["lunettes", "nfpl", "glasses"], ["manteau", "nm", "coat"], ["écharpe", "nf", "scarf"],
     ["gant", "nm", "glove"], ["chaussette", "nf", "sock"], ["ceinture", "nf", "belt"], ["bague", "nf", "ring"],
     ["maquillage", "nm", "make-up"], ["mode", "nf", "fashion"], ["s'habiller", "v", "to get dressed"], ["porter", "v", "to wear; to carry"],
-    ["mince", "adj", "slim, thin", "mince"], ["élégant", "adj", "elegant", "élégante"], ["ressembler", "v", "to look like", "ressembler à"], ["ride", "nf", "wrinkle"]] },
+    ["mince", "adj", "slim, thin", "mince"], ["élégant", "adj", "elegant", "élégante"], ["ressembler", "v", "to look like", "ressembler à"], ["ride", "nf", "wrinkle"], ["chauve", "adj", "bald", "chauve"], ["frisé", "adj", "curly", "frisée"], ["tatouage", "nm", "tattoo"]] },
   { id: "verbes", t: "常用动词与形容词", w: [
     ["oublier", "v", "to forget"], ["se souvenir", "v", "to remember", "se souvenir de"], ["expliquer", "v", "to explain"], ["partager", "v", "to share"],
     ["attendre", "v", "to wait (for)"], ["remplir", "v", "to fill (in)"], ["éviter", "v", "to avoid"], ["réfléchir", "v", "to think (about)", "réfléchir à"],
     ["décider", "v", "to decide", "décider de"], ["empêcher", "v", "to prevent", "empêcher qn de"], ["profiter", "v", "to make the most of", "profiter de"], ["se tromper", "v", "to make a mistake"],
     ["prévenir", "v", "to warn; to let know"], ["atteindre", "v", "to reach"], ["vide", "adj", "empty", "vide"], ["plein", "adj", "full", "pleine"],
-    ["lourd", "adj", "heavy", "lourde"], ["léger", "adj", "light", "légère"], ["lent", "adj", "slow", "lente"], ["rapide", "adj", "fast, quick", "rapide"]] },
+    ["lourd", "adj", "heavy", "lourde"], ["léger", "adj", "light", "légère"], ["lent", "adj", "slow", "lente"], ["rapide", "adj", "fast, quick", "rapide"], ["pousser", "v", "to push"], ["tirer", "v", "to pull"], ["glisser", "v", "to slip, to slide"]] },
 ];
 // 中文意思，显示在英文意思后面
 const V_ZH = {
+ "aspirateur": "吸尘器", "oreiller": "枕头", "robinet": "水龙头", "patron": "老板", "imprimante": "打印机", "stage": "实习", "cartable": "书包", "craie": "粉笔", "tricher": "作弊", "pansement": "创可贴；绷带", "béquille": "拐杖", "éternuer": "打喷嚏", "passeport": "护照", "boussole": "指南针", "tente": "帐篷", "arc-en-ciel": "彩虹", "écureuil": "松鼠", "cascade": "瀑布", "foule": "人群", "drapeau": "旗帜", "urne": "投票箱", "écouteurs": "耳机", "brancher": "插上电源", "zapper": "不停换台", "rougir": "脸红", "pleurer": "哭", "timide": "害羞的", "pourtant": "然而；可是", "dès que": "一……就", "à cause de": "因为（坏的原因）", "tablier": "围裙", "fouet": "打蛋器", "saupoudrer": "撒（粉）", "chariot": "购物车", "soldes": "打折季", "étiquette": "标签；价签", "cerf-volant": "风筝", "luge": "雪橇", "plongée": "潜水", "rideau": "幕布；窗帘", "pinceau": "画笔", "violon": "小提琴", "berceau": "摇篮", "câlin": "拥抱", "gronder": "责备；训斥", "lampadaire": "路灯", "feu rouge": "红灯", "banc": "长椅", "menottes": "手铐", "cambrioleur": "入室盗贼", "extincteur": "灭火器", "aimant": "磁铁", "loupe": "放大镜", "éprouvette": "试管", "chauve": "秃头的", "frisé": "卷发的", "tatouage": "文身", "pousser": "推", "tirer": "拉", "glisser": "滑；滑倒",
   "loyer": "房租", "quartier": "街区，社区", "déménagement": "搬家", "étagère": "架子，书架", "tiroir": "抽屉", "évier": "洗碗池", "poubelle": "垃圾桶", "ménage": "家务", "lessive": "洗衣；洗衣粉", "facture": "账单，发票", "chauffage": "暖气，供暖", "clé": "钥匙", "couverture": "毯子，被子", "quotidien": "日常的，每天的", "ranger": "整理，收拾", "emprunter": "借（入）", "prêter": "借（出）", "s'habituer": "习惯于", "se dépêcher": "赶紧，抓紧", "voisin": "邻居",
   "emploi": "工作，职业", "chômage": "失业", "salaire": "工资", "entreprise": "公司，企业", "entretien": "面试", "candidature": "申请，求职", "embaucher": "雇用，招聘", "licencier": "解雇，裁员", "démissionner": "辞职", "réunion": "会议", "tâche": "任务", "délai": "期限", "dépense": "开支，花费", "économiser": "省钱，存钱", "compte": "（银行）账户", "prêt": "贷款", "grève": "罢工", "syndicat": "工会", "carrière": "职业生涯", "rentable": "有利可图的",
   "diplôme": "文凭，学位", "formation": "培训", "connaissance": "知识", "apprentissage": "学习", "exposé": "报告，演讲", "mémoire": "（学位）论文", "bourse": "奖学金", "note": "分数，成绩", "échouer": "失败，不及格", "réussir": "成功，通过", "rédiger": "撰写，起草", "réviser": "复习", "emploi du temps": "时间表，课程表", "bibliothèque": "图书馆", "matière": "科目，课程", "inscription": "注册，报名", "enseignement": "教学，教育", "devoir": "作业", "épreuve": "考试，试卷", "doué": "有天赋的",
@@ -23363,6 +23470,7 @@ const V_TYPES = ["看词选义", "看义选词", "听音选义", "拼写", "例�
 // 图片：Pixabay 照片，存在 img/ 目录下（img/<名字>.jpg，来源见 img/CREDITS.md）；
 // 抽象词（尤其是连接词）没有合适的图，就不出“看词选图”
 const V_IMG = {
+  "aspirateur": "aspirateur", "oreiller": "oreiller", "robinet": "robinet", "patron": "patron", "imprimante": "imprimante", "stage": "stage", "cartable": "cartable", "craie": "craie", "tricher": "tricher", "pansement": "pansement", "béquille": "bequille", "éternuer": "eternuer", "passeport": "passeport", "boussole": "boussole", "tente": "tente", "arc-en-ciel": "arc-en-ciel", "écureuil": "ecureuil", "cascade": "cascade", "foule": "foule", "drapeau": "drapeau", "urne": "urne", "écouteurs": "ecouteurs", "brancher": "brancher", "zapper": "zapper", "rougir": "rougir", "pleurer": "pleurer", "timide": "timide", "pourtant": "ex-pourtant", "dès que": "ex-des-que", "à cause de": "ex-a-cause-de", "tablier": "tablier", "fouet": "fouet", "saupoudrer": "saupoudrer", "chariot": "chariot", "soldes": "soldes", "étiquette": "etiquette", "cerf-volant": "cerf-volant", "luge": "luge", "plongée": "plongee", "rideau": "rideau", "pinceau": "pinceau", "violon": "violon", "berceau": "berceau", "câlin": "calin", "gronder": "gronder", "lampadaire": "lampadaire", "feu rouge": "feu-rouge", "banc": "banc", "menottes": "menottes", "cambrioleur": "cambrioleur", "extincteur": "extincteur", "aimant": "aimant", "loupe": "loupe", "éprouvette": "eprouvette", "chauve": "chauve", "frisé": "frise", "tatouage": "tatouage", "pousser": "pousser", "tirer": "tirer", "glisser": "glisser",
   "loyer": "loyer", "quartier": "quartier", "déménagement": "demenagement", "étagère": "etagere", "tiroir": "tiroir", "évier": "evier", "poubelle": "poubelle", "ménage": "menage",
   "lessive": "lessive", "facture": "facture", "chauffage": "chauffage", "clé": "cle", "couverture": "couverture", "quotidien": "quotidien", "se dépêcher": "se-depecher", "voisin": "voisin",
   "emploi": "emploi", "chômage": "chomage", "salaire": "salaire", "entreprise": "entreprise", "entretien": "entretien", "candidature": "candidature", "embaucher": "embaucher", "licencier": "licencier",
@@ -23440,6 +23548,66 @@ const vBare = s => vNorm(s).normalize("NFD").replace(/[̀-ͯ]/g, "");
 function vShuffle(a) { a = a.slice(); for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
 // 例句：方括号里是要填的词形，后面是英文翻译
 const V_EX = {
+  "aspirateur": ["Le chat se promène sur l'[aspirateur] comme sur un petit train.", "The cat rides on the vacuum cleaner like a little train."],
+  "oreiller": ["Les deux enfants se battent avec des [oreillers] pleins de plumes.", "The two children are fighting with pillows full of feathers."],
+  "robinet": ["Le petit garçon ferme le [robinet] pour ne pas gaspiller l'eau.", "The little boy turns off the tap so as not to waste water."],
+  "patron": ["Le [patron] offre un gâteau à toute l'équipe pour fêter le contrat.", "The boss offers a cake to the whole team to celebrate the contract."],
+  "imprimante": ["L'[imprimante] crache des feuilles partout dans le bureau !", "The printer is spitting sheets of paper all over the office!"],
+  "stage": ["Pour son premier jour de [stage], Léa porte une pile de dossiers plus haute qu'elle.", "On the first day of her internship, Léa carries a pile of files taller than herself."],
+  "cartable": ["Le petit écolier a un [cartable] presque aussi grand que lui.", "The little schoolboy has a schoolbag almost as big as he is."],
+  "craie": ["La maîtresse dessine un énorme dinosaure à la [craie] sur le tableau.", "The teacher draws a huge dinosaur in chalk on the blackboard."],
+  "tricher": ["Pendant l'examen, Hugo [triche] en regardant les réponses écrites sur sa main.", "During the exam, Hugo cheats by looking at the answers written on his hand."],
+  "pansement": ["Maman met un [pansement] sur le genou de sa fille qui est tombée du vélo.", "Mum puts a plaster on her daughter's knee after she fell off her bike."],
+  "béquille": ["Avec ses [béquilles], le footballeur regarde le match depuis le banc.", "On his crutches, the footballer watches the match from the bench."],
+  "éternuer": ["L'éléphant [éternue] si fort que tous les ballons s'envolent.", "The elephant sneezes so hard that all the balloons fly away."],
+  "passeport": ["À l'aéroport, le chien tend son [passeport] au douanier avec fierté.", "At the airport, the dog proudly hands his passport to the customs officer."],
+  "boussole": ["Perdu dans la forêt, le randonneur suit sa [boussole] vers le nord.", "Lost in the forest, the hiker follows his compass towards the north."],
+  "tente": ["Le vent emporte la [tente], et les campeurs se réveillent à la belle étoile.", "The wind blows the tent away, and the campers wake up under the open sky."],
+  "arc-en-ciel": ["Après l'orage, un [arc-en-ciel] apparaît au-dessus du village.", "After the storm, a rainbow appears above the village."],
+  "écureuil": ["L'[écureuil] cache des noisettes dans le chapeau du jardinier.", "The squirrel is hiding hazelnuts in the gardener's hat."],
+  "cascade": ["Des touristes en imperméable prennent une photo devant la [cascade].", "Tourists in raincoats are taking a photo in front of the waterfall."],
+  "foule": ["Une [foule] immense attend l'arrivée du Tour de France.", "A huge crowd is waiting for the Tour de France to arrive."],
+  "drapeau": ["Sur la mairie, le [drapeau] bleu, blanc, rouge flotte au vent.", "On the town hall, the blue, white and red flag is flying in the wind."],
+  "urne": ["Une vieille dame glisse son bulletin dans l'[urne] avec un grand sourire.", "An old lady slips her ballot into the ballot box with a big smile."],
+  "écouteurs": ["Avec ses [écouteurs], Paul n'entend pas le chien qui aboie.", "With his headphones on, Paul doesn't hear the dog barking."],
+  "brancher": ["Le robot [branche] son câble pour recharger sa batterie.", "The robot plugs in its cable to recharge its battery."],
+  "zapper": ["Avec la télécommande, papi [zappe] d'une chaîne à l'autre.", "With the remote control, Grandpa flicks from one channel to another."],
+  "rougir": ["Quand Tom lui offre des fleurs, Julie [rougit] jusqu'aux oreilles.", "When Tom gives her flowers, Julie blushes right up to her ears."],
+  "pleurer": ["En épluchant les oignons, le cuisinier [pleure] à chaudes larmes.", "Peeling the onions, the cook is crying his eyes out."],
+  "timide": ["La petite fille [timide] se cache derrière la jambe de son papa.", "The shy little girl hides behind her dad's leg."],
+  "pourtant": ["Il fait beau, et [pourtant] Marc sort avec un énorme parapluie.", "It's sunny, and yet Marc goes out with a huge umbrella."],
+  "dès que": ["[Dès que] la cloche sonne, les élèves courent dans la cour.", "As soon as the bell rings, the pupils run into the playground."],
+  "à cause de": ["[À cause de] la neige, le bus est bloqué au milieu de la route.", "Because of the snow, the bus is stuck in the middle of the road."],
+  "tablier": ["Le petit chef porte un [tablier] couvert de farine.", "The little chef is wearing an apron covered in flour."],
+  "fouet": ["Mamie bat les œufs avec un [fouet] à toute vitesse.", "Granny is beating the eggs with a whisk at top speed."],
+  "saupoudrer": ["Le pâtissier [saupoudre] du sucre glace sur les gaufres comme de la neige.", "The pastry chef sprinkles icing sugar over the waffles like snow."],
+  "chariot": ["Le bébé est assis dans le [chariot] au milieu des légumes.", "The baby is sitting in the shopping trolley among the vegetables."],
+  "soldes": ["Pendant les [soldes], les clients se précipitent dans le magasin dès l'ouverture.", "During the sales, customers rush into the shop as soon as it opens."],
+  "étiquette": ["Sur l'[étiquette] de la robe, l'ancien prix est barré en rouge.", "On the dress's price tag, the old price is crossed out in red."],
+  "cerf-volant": ["Le grand-père et son petit-fils font voler un [cerf-volant] en forme de dragon.", "The grandfather and his grandson are flying a dragon-shaped kite."],
+  "luge": ["Toute la famille descend la colline sur une seule [luge].", "The whole family slides down the hill on one single sledge."],
+  "plongée": ["Pendant sa [plongée], Emma rencontre une tortue de mer.", "During her dive, Emma meets a sea turtle."],
+  "rideau": ["À la fin du spectacle, le [rideau] rouge tombe sous les applaudissements.", "At the end of the show, the red curtain falls to applause."],
+  "pinceau": ["Le peintre tient son [pinceau] entre les dents pour se gratter la tête.", "The painter holds his paintbrush between his teeth to scratch his head."],
+  "violon": ["Sur le pont, un musicien joue du [violon] pour les passants.", "On the bridge, a musician plays the violin for passers-by."],
+  "berceau": ["Le chat ronronne à côté du [berceau] où dort le bébé.", "The cat purrs next to the cradle where the baby is sleeping."],
+  "câlin": ["Après un an d'absence, le grand frère fait un gros [câlin] à sa petite sœur.", "After a year away, the big brother gives his little sister a big hug."],
+  "gronder": ["La mère [gronde] le chien qui a mangé ses chaussures.", "The mother scolds the dog that ate her shoes."],
+  "lampadaire": ["Le soir, les [lampadaires] s'allument un par un le long de la rue.", "In the evening, the street lamps light up one by one along the street."],
+  "feu rouge": ["Le canard et ses petits attendent sagement au [feu rouge].", "The duck and her ducklings wait patiently at the red light."],
+  "banc": ["Deux vieux amis jouent aux échecs sur un [banc] du parc.", "Two old friends are playing chess on a park bench."],
+  "menottes": ["Le policier met les [menottes] au voleur de croissants.", "The police officer puts handcuffs on the croissant thief."],
+  "cambrioleur": ["Le [cambrioleur] entre par la fenêtre, mais le chien l'attend.", "The burglar climbs in through the window, but the dog is waiting for him."],
+  "extincteur": ["Le cuisinier éteint le feu de la poêle avec un [extincteur].", "The cook puts out the fire in the frying pan with an extinguisher."],
+  "aimant": ["Avec un énorme [aimant], le savant attire toutes les cuillères de la cuisine.", "With a huge magnet, the scientist attracts all the spoons in the kitchen."],
+  "loupe": ["Le détective observe une empreinte avec sa [loupe].", "The detective examines a footprint with his magnifying glass."],
+  "éprouvette": ["La chimiste verse un liquide vert dans une [éprouvette], et une fumée violette sort.", "The chemist pours a green liquid into a test tube, and purple smoke comes out."],
+  "chauve": ["Le monsieur [chauve] se regarde dans le miroir avec une perruque à la main.", "The bald man looks at himself in the mirror with a wig in his hand."],
+  "frisé": ["La petite fille aux cheveux [frisés] ressemble à un petit mouton.", "The little girl with curly hair looks like a little sheep."],
+  "tatouage": ["Le marin montre fièrement le [tatouage] d'ancre sur son bras.", "The sailor proudly shows the anchor tattoo on his arm."],
+  "pousser": ["Trois amis [poussent] la vieille voiture en panne.", "Three friends are pushing the old car that has broken down."],
+  "tirer": ["Le petit chien [tire] son maître vers le parc.", "The little dog pulls its owner towards the park."],
+  "glisser": ["Le serveur [glisse] sur une peau de banane avec son plateau.", "The waiter slips on a banana skin with his tray."],
   "loyer": ["Le [loyer] de cet appartement est trop élevé.", "The rent for this flat is too high."],
   "quartier": ["J'habite dans un [quartier] très calme.", "I live in a very quiet neighbourhood."],
   "déménagement": ["Mes amis m'ont aidé pour le [déménagement].", "My friends helped me with the move."],
@@ -24253,6 +24421,66 @@ const V_PICEX = {
   "fusée": ["La [fusée] décolle dans un énorme nuage de fumée blanche.", "火箭在一大团白烟中升空。"],
   "ride": ["Cette vieille femme au foulard vert a le visage couvert de [rides].", "这位戴绿色头巾的老妇人满脸皱纹。"],
   "rapide": ["Ce train blanc très [rapide] traverse un pont au-dessus de la rivière.", "这列非常快的白色火车正驶过河上的一座桥。"],
+  "aspirateur": ["Le chat se promène sur l'[aspirateur] comme sur un petit train.", "猫咪坐在吸尘器上，像坐小火车一样。"],
+  "oreiller": ["Les deux enfants se battent avec des [oreillers] pleins de plumes.", "两个孩子拿着装满羽毛的枕头打枕头仗。"],
+  "robinet": ["Le petit garçon ferme le [robinet] pour ne pas gaspiller l'eau.", "小男孩关上水龙头，不浪费水。"],
+  "patron": ["Le [patron] offre un gâteau à toute l'équipe pour fêter le contrat.", "老板请全队吃蛋糕，庆祝签下合同。"],
+  "imprimante": ["L'[imprimante] crache des feuilles partout dans le bureau !", "打印机把纸吐得满办公室都是！"],
+  "stage": ["Pour son premier jour de [stage], Léa porte une pile de dossiers plus haute qu'elle.", "实习第一天，莱娅抱着一摞比她还高的文件。"],
+  "cartable": ["Le petit écolier a un [cartable] presque aussi grand que lui.", "小学生背着一个几乎和他一样大的书包。"],
+  "craie": ["La maîtresse dessine un énorme dinosaure à la [craie] sur le tableau.", "老师用粉笔在黑板上画了一只巨大的恐龙。"],
+  "tricher": ["Pendant l'examen, Hugo [triche] en regardant les réponses écrites sur sa main.", "考试时，雨果偷看写在手上的答案作弊。"],
+  "pansement": ["Maman met un [pansement] sur le genou de sa fille qui est tombée du vélo.", "妈妈给从自行车上摔下来的女儿膝盖贴上创可贴。"],
+  "béquille": ["Avec ses [béquilles], le footballeur regarde le match depuis le banc.", "那名足球运动员拄着拐杖，在替补席上看比赛。"],
+  "éternuer": ["L'éléphant [éternue] si fort que tous les ballons s'envolent.", "大象打了一个超大的喷嚏，所有气球都飞走了。"],
+  "passeport": ["À l'aéroport, le chien tend son [passeport] au douanier avec fierté.", "在机场，小狗得意地把护照递给海关人员。"],
+  "boussole": ["Perdu dans la forêt, le randonneur suit sa [boussole] vers le nord.", "在森林里迷了路，徒步者跟着指南针往北走。"],
+  "tente": ["Le vent emporte la [tente], et les campeurs se réveillent à la belle étoile.", "风把帐篷吹走了，露营的人醒来时头顶是满天星星。"],
+  "arc-en-ciel": ["Après l'orage, un [arc-en-ciel] apparaît au-dessus du village.", "暴风雨过后，村庄上空出现了一道彩虹。"],
+  "écureuil": ["L'[écureuil] cache des noisettes dans le chapeau du jardinier.", "松鼠把榛子藏进园丁的帽子里。"],
+  "cascade": ["Des touristes en imperméable prennent une photo devant la [cascade].", "穿着雨衣的游客在瀑布前拍照。"],
+  "foule": ["Une [foule] immense attend l'arrivée du Tour de France.", "一大群人在等环法自行车赛的选手到来。"],
+  "drapeau": ["Sur la mairie, le [drapeau] bleu, blanc, rouge flotte au vent.", "市政厅上，蓝白红三色旗迎风飘扬。"],
+  "urne": ["Une vieille dame glisse son bulletin dans l'[urne] avec un grand sourire.", "一位老奶奶笑眯眯地把选票投进投票箱。"],
+  "écouteurs": ["Avec ses [écouteurs], Paul n'entend pas le chien qui aboie.", "保罗戴着耳机，听不见狗在叫。"],
+  "brancher": ["Le robot [branche] son câble pour recharger sa batterie.", "机器人插上电线给电池充电。"],
+  "zapper": ["Avec la télécommande, papi [zappe] d'une chaîne à l'autre.", "爷爷拿着遥控器不停地换台。"],
+  "rougir": ["Quand Tom lui offre des fleurs, Julie [rougit] jusqu'aux oreilles.", "汤姆送花给朱莉时，她脸红到了耳根。"],
+  "pleurer": ["En épluchant les oignons, le cuisinier [pleure] à chaudes larmes.", "厨师切洋葱，眼泪哗哗地流。"],
+  "timide": ["La petite fille [timide] se cache derrière la jambe de son papa.", "害羞的小女孩躲在爸爸腿后面。"],
+  "pourtant": ["Il fait beau, et [pourtant] Marc sort avec un énorme parapluie.", "天气很好，可是马克还是撑着一把大伞出门。"],
+  "dès que": ["[Dès que] la cloche sonne, les élèves courent dans la cour.", "铃声一响，学生们就冲进操场。"],
+  "à cause de": ["[À cause de] la neige, le bus est bloqué au milieu de la route.", "因为下雪，公交车被困在路中间。"],
+  "tablier": ["Le petit chef porte un [tablier] couvert de farine.", "小厨师穿着一条沾满面粉的围裙。"],
+  "fouet": ["Mamie bat les œufs avec un [fouet] à toute vitesse.", "奶奶飞快地用打蛋器打鸡蛋。"],
+  "saupoudrer": ["Le pâtissier [saupoudre] du sucre glace sur les gaufres comme de la neige.", "糕点师把糖粉撒在华夫饼上，像下雪一样。"],
+  "chariot": ["Le bébé est assis dans le [chariot] au milieu des légumes.", "宝宝坐在购物车里，周围都是蔬菜。"],
+  "soldes": ["Pendant les [soldes], les clients se précipitent dans le magasin dès l'ouverture.", "打折季期间，商店一开门顾客就蜂拥而入。"],
+  "étiquette": ["Sur l'[étiquette] de la robe, l'ancien prix est barré en rouge.", "裙子的价签上，原价被红笔划掉了。"],
+  "cerf-volant": ["Le grand-père et son petit-fils font voler un [cerf-volant] en forme de dragon.", "爷爷和孙子在放一只龙形风筝。"],
+  "luge": ["Toute la famille descend la colline sur une seule [luge].", "一家人挤在一个雪橇上滑下山坡。"],
+  "plongée": ["Pendant sa [plongée], Emma rencontre une tortue de mer.", "潜水时，艾玛遇到了一只海龟。"],
+  "rideau": ["À la fin du spectacle, le [rideau] rouge tombe sous les applaudissements.", "演出结束，红色的幕布在掌声中落下。"],
+  "pinceau": ["Le peintre tient son [pinceau] entre les dents pour se gratter la tête.", "画家把画笔叼在嘴里，腾出手来挠头。"],
+  "violon": ["Sur le pont, un musicien joue du [violon] pour les passants.", "桥上，一位乐手为路人拉小提琴。"],
+  "berceau": ["Le chat ronronne à côté du [berceau] où dort le bébé.", "猫咪在宝宝睡觉的摇篮旁边打呼噜。"],
+  "câlin": ["Après un an d'absence, le grand frère fait un gros [câlin] à sa petite sœur.", "离家一年后，哥哥给了妹妹一个大大的拥抱。"],
+  "gronder": ["La mère [gronde] le chien qui a mangé ses chaussures.", "妈妈在训那只啃了她鞋子的狗。"],
+  "lampadaire": ["Le soir, les [lampadaires] s'allument un par un le long de la rue.", "傍晚，街边的路灯一盏接一盏亮起来。"],
+  "feu rouge": ["Le canard et ses petits attendent sagement au [feu rouge].", "鸭妈妈带着小鸭子们乖乖地等红灯。"],
+  "banc": ["Deux vieux amis jouent aux échecs sur un [banc] du parc.", "两位老朋友坐在公园长椅上下棋。"],
+  "menottes": ["Le policier met les [menottes] au voleur de croissants.", "警察给偷可颂的小偷戴上手铐。"],
+  "cambrioleur": ["Le [cambrioleur] entre par la fenêtre, mais le chien l'attend.", "盗贼从窗户爬进来，可狗正等着他呢。"],
+  "extincteur": ["Le cuisinier éteint le feu de la poêle avec un [extincteur].", "厨师用灭火器扑灭了平底锅里的火。"],
+  "aimant": ["Avec un énorme [aimant], le savant attire toutes les cuillères de la cuisine.", "科学家用一块巨大的磁铁，把厨房里的勺子全吸了过来。"],
+  "loupe": ["Le détective observe une empreinte avec sa [loupe].", "侦探拿放大镜观察一个脚印。"],
+  "éprouvette": ["La chimiste verse un liquide vert dans une [éprouvette], et une fumée violette sort.", "化学家把绿色液体倒进试管，冒出了紫色的烟。"],
+  "chauve": ["Le monsieur [chauve] se regarde dans le miroir avec une perruque à la main.", "秃顶的先生手里拿着假发照镜子。"],
+  "frisé": ["La petite fille aux cheveux [frisés] ressemble à un petit mouton.", "那个卷头发的小女孩像一只小绵羊。"],
+  "tatouage": ["Le marin montre fièrement le [tatouage] d'ancre sur son bras.", "水手得意地展示手臂上的船锚文身。"],
+  "pousser": ["Trois amis [poussent] la vieille voiture en panne.", "三个朋友在推那辆抛锚的旧车。"],
+  "tirer": ["Le petit chien [tire] son maître vers le parc.", "小狗拉着主人往公园跑。"],
+  "glisser": ["Le serveur [glisse] sur une peau de banane avec son plateau.", "服务员端着托盘踩到香蕉皮滑倒了。"],
 };
 // 易混词名单：意思、用法容易弄混的词放一组（拼写不一定像）。困难模式下优先拿同组的词当干扰项，答完显示这组的辨析。
 // 一个词可以在几组里；组里的词都必须在词表（VOCAB）里。
@@ -24446,6 +24674,12 @@ const V_LEVELS = [
   ["achats:vendeur", "science:machine", "travail:chômage", "securite:danger", "medias:supprimer", "etudes:réussir", "ville:immeuble", "sentiments:paresseux", "cuisine:four", "verbes:lent"],
   ["securite:incendie", "loisirs:joueur", "societe:voter", "cuisine:épicé", "apparence:lunettes", "famille:neveu", "travail:rentable", "voyage:correspondance", "science:étoile", "nature:gaspiller"],
   ["sante:épuisé", "ville:banlieue", "achats:échanger", "maison:quartier", "verbes:réfléchir", "sentiments:regretter", "liens:lors de", "medias:télécharger", "etudes:bourse", "culture:peintre"],
+  ["ville:lampadaire", "medias:brancher", "loisirs:plongée", "sentiments:timide", "etudes:tricher", "sante:pansement", "securite:cambrioleur", "voyage:passeport", "achats:chariot", "travail:imprimante"],
+  ["liens:pourtant", "culture:pinceau", "nature:arc-en-ciel", "cuisine:fouet", "science:loupe", "famille:câlin", "societe:urne", "verbes:tirer", "maison:oreiller", "apparence:chauve"],
+  ["science:éprouvette", "medias:zapper", "ville:feu rouge", "loisirs:cerf-volant", "nature:cascade", "famille:berceau", "maison:robinet", "cuisine:saupoudrer", "travail:patron", "liens:dès que"],
+  ["voyage:tente", "securite:menottes", "achats:soldes", "societe:foule", "sentiments:pleurer", "culture:rideau", "verbes:glisser", "apparence:frisé", "etudes:cartable", "sante:éternuer"],
+  ["loisirs:luge", "sentiments:rougir", "famille:gronder", "sante:béquille", "culture:violon", "etudes:craie", "science:aimant", "nature:écureuil", "verbes:pousser", "medias:écouteurs"],
+  ["voyage:boussole", "societe:drapeau", "travail:stage", "achats:étiquette", "liens:à cause de", "maison:aspirateur", "cuisine:tablier", "apparence:tatouage", "securite:extincteur", "ville:banc"],
 ];
 // ---------- 记录：每个词每种题型最近一次是否答对 ----------
 const V_T = [7, 1, 2, 3, 4, 5];   // 题型顺序：初见题是“例句识图”（读描述图片的例句，从四张图里选），再做其他题
@@ -26370,6 +26604,322 @@ function spEnd(win, quit, ending) {
   stage.append(card);
 }
 function spDie(quit) { spEnd(false, quit === true); }
+// ---------- 失声的巴黎（原型）：能力锁 + 知识锁的像素解谜 ----------
+// 一个街区里，人们“失去了语法”。三块语法石碑各考 5 题，答对 4 题得到一项能力（能力锁）：
+//   冠词 → 能修好门牌；复合过去时 → 能看见“过去”（鬼魂的桥、鬼魂留下的字）；简单将来时 → 能转动刻着将来时的齿轮。
+// 另外有六道知识锁：读懂法语线索 / 用对法语形式才能过，答案就是学习目标本身。每道锁有两级提示（关键词 → 中文翻译）。
+// 进度存在本机（fq-lsp）；通关一次给 50 金币（游戏模式开着时）。
+
+const LSP_MAP = [
+  "####################",
+  "#HHH#....T....T....#",
+  "#HHH#.b..FF..b..3..#",
+  "#.G.#....FFb.......#",
+  "#......b......n....#",
+  "#.T..............T.#",
+  "~~~~~~~~~pp~~~~~~~~~",
+  "~~~~~~~~~pp~~~~~~~~~",
+  "#WWWWW.........WWWW#",
+  "#WWWWW.....T...#2.i#",
+  "#WWDWW.........X..i#",
+  "#.....1........#i.i#",
+  "#..T......S....#####",
+  "####################",
+];
+const LSP_W = 20, LSP_H = 14, LSP_T = 16;
+const LSP_AB = {
+  art: { name: "冠词之力", tag: "冠词", re: /冠词/, stone: "1", color: "#f2c14e", hint: "能修好消失的门牌" },
+  past: { name: "回望过去", tag: "复合过去时", re: /^(复合过去时|助动词|§9\.2\.\d 过去分词|过去分词)/, stone: "2", color: "#b48cff", hint: "能看见过去：鬼魂的桥、鬼魂留下的字" },
+  fut: { name: "预见将来", tag: "简单将来时", re: /^简单将来时/, stone: "3", color: "#5fd3c6", hint: "能转动刻着将来时的齿轮" },
+};
+// 花园里的四件东西（用背单词的配图）；面包师要的是 fouet 和 tablier
+const LSP_ITEMS = [[18, 9, "fouet"], [18, 10, "aspirateur"], [16, 11, "tablier"], [18, 11, "violon"]];
+const LSP_KEY_BENCH = [11, 3];   // “à côté de la fontaine” 的那张长椅
+let lsp = null, lspDlg = null, lspImgs = {}, lspKeysBound = false;
+
+function lspNew() { return { x: 10, y: 12, ab: {}, f: {}, inv: [], picked: [] }; }
+function lspLoad() { try { lsp = JSON.parse(localStorage.getItem("fq-lsp") || "null"); } catch (e) { lsp = null; } if (!lsp || !lsp.f) lsp = lspNew(); }
+function lspSave() { try { localStorage.setItem("fq-lsp", JSON.stringify(lsp)); } catch (e) {} }
+const lspTile = (x, y) => (LSP_MAP[y] || "")[x] || "#";
+
+// 能不能走
+function lspWalk(x, y) {
+  const t = lspTile(x, y);
+  if (t === "p") return !!lsp.ab.past;
+  if (t === "X") return !!lsp.f.code;
+  if (t === "D") return false;
+  if (t === "i") return lsp.picked.includes(x + "," + y);
+  return t === "." || t === "S";
+}
+
+// ---------- 画面 ----------
+function lspDraw() {
+  const cv = document.getElementById("lspCv"); if (!cv) return;
+  const c = cv.getContext("2d"), T = LSP_T;
+  const px = (x, y, w, h, col) => { c.fillStyle = col; c.fillRect(x, y, w, h); };
+  for (let y = 0; y < LSP_H; y++) for (let x = 0; x < LSP_W; x++) {
+    const t = lspTile(x, y), X = x * T, Y = y * T;
+    px(X, Y, T, T, "#6fa84f"); if ((x * 7 + y * 3) % 5 === 0) px(X + 4, Y + 9, 2, 2, "#5d9441");   // 草地
+    if (t === "#") { px(X, Y, T, T, "#5f6474"); px(X, Y + 7, T, 1, "#4b4f5d"); px(X + (y % 2 ? 4 : 11), Y, 1, 7, "#4b4f5d"); px(X + (y % 2 ? 11 : 4), Y + 8, 1, 8, "#4b4f5d"); }
+    else if (t === "W") { px(X, Y, T, T, "#d9a066"); px(X, Y + 12, T, 4, "#b97a45"); if (y === 8) px(X, Y, T, 5, "#a8432f"); }
+    else if (t === "D") {
+      px(X, Y, T, T, "#d9a066"); px(X + 4, Y + 5, 8, 11, lsp.f.sign ? "#6b3d1f" : "#3d2a1d");
+      px(X + 2, Y, 12, 4, lsp.f.sign ? "#fff3c4" : "#8b8b8b");   // 门牌：修好后亮起
+      if (lsp.f.sign) { px(X + 5, Y + 1, 6, 2, "#c98b2a"); }
+    }
+    else if (t === "H") { px(X, Y, T, T, "#7d728f"); px(X, Y + 14, T, 2, "#5f566e"); if (x === 2 && y === 1) { px(X + 3, Y + 3, 10, 10, "#f4ecd8"); px(X + 7, Y + 4, 2, 5, "#333"); px(X + 8, Y + 7, 4, 2, "#333"); } }
+    else if (t === "G") { px(X, Y, T, T, lsp.f.gear ? "#3a3347" : "#7d728f"); if (!lsp.f.gear) { px(X + 4, Y + 4, 8, 8, "#c9a227"); px(X + 6, Y + 6, 4, 4, "#7d728f"); px(X + 7, Y + 2, 2, 12, "#c9a227"); px(X + 2, Y + 7, 12, 2, "#c9a227"); } }
+    else if (t === "X") { if (!lsp.f.code) { px(X, Y, T, T, "#5f6474"); for (let k = 2; k < 16; k += 4) px(X + k, Y, 2, T, "#2c2f38"); px(X + 6, Y + 6, 4, 4, "#c9a227"); } }
+    else if (t === "~" || t === "p") {
+      px(X, Y, T, T, "#3f7fc4"); px(X + ((x + y) % 3) * 4, Y + 5, 5, 1, "#79b2ea"); px(X + ((x + 2 * y) % 3) * 4 + 2, Y + 11, 5, 1, "#79b2ea");
+      if (t === "p" && lsp.ab.past) { c.globalAlpha = .75; px(X, Y, T, T, "#cdbbff"); for (let k = 1; k < 16; k += 4) px(X, Y + k, T, 1, "#9b85e0"); c.globalAlpha = 1; }
+    }
+    else if (t === "F") { px(X, Y, T, T, "#9aa3b5"); px(X + 1, Y + 1, T - 2, T - 2, "#6cb6f0"); if ((x + y) % 2) px(X + 6, Y + 4, 3, 3, "#e8f6ff"); }
+    else if (t === "b") { px(X + 2, Y + 6, 12, 3, "#8a5a2b"); px(X + 2, Y + 3, 12, 2, "#a8743e"); px(X + 3, Y + 9, 2, 4, "#5b3a1b"); px(X + 11, Y + 9, 2, 4, "#5b3a1b"); }
+    else if (t === "T") { px(X + 6, Y + 10, 4, 6, "#6b4423"); px(X + 2, Y + 1, 12, 10, "#2f7a3a"); px(X + 4, Y + 3, 4, 3, "#46a356"); }
+    else if (t === "1" || t === "2" || t === "3") {
+      const ab = Object.values(LSP_AB).find(a => a.stone === t), got = lsp.ab[Object.keys(LSP_AB).find(k => LSP_AB[k].stone === t)];
+      px(X + 4, Y + 2, 8, 13, "#9aa0ad"); px(X + 5, Y + 3, 6, 11, got ? "#c3c7d0" : ab.color); px(X + 3, Y + 14, 10, 2, "#6b707c");
+      if (!got) { c.globalAlpha = .35 + .25 * Math.sin(Date.now() / 300); px(X + 2, Y, 12, 16, ab.color); c.globalAlpha = 1; }
+    }
+    else if (t === "i" && !lsp.picked.includes(x + "," + y)) {
+      const it = LSP_ITEMS.find(v => v[0] === x && v[1] === y), im = it && lspImgs[it[2]];
+      px(X + 1, Y + 1, 14, 14, "#fffbe8");
+      if (im && im.complete && im.naturalWidth) c.drawImage(im, X + 2, Y + 3, 12, 8 * 1.0); else px(X + 4, Y + 4, 8, 8, "#c9a227");
+    }
+    else if (t === "n") { lspPerson(c, X, Y, "#4a6fa5", "#d8d0c0", true); }
+    // 过去的字：鬼魂写在钟楼墙上
+    if (lsp.ab.past && x === 1 && y === 3) { c.globalAlpha = .8; px(X + 2, Y + 4, 12, 1, "#cdbbff"); px(X + 2, Y + 8, 9, 1, "#cdbbff"); c.globalAlpha = 1; }
+  }
+  lspPerson(c, lsp.x * T, lsp.y * T, "#d64545", "#f1c27d", false);
+  // 颜色：能力越多，城市越鲜艳；修好后全彩
+  const n = Object.keys(lsp.ab).length;
+  cv.style.filter = lsp.f.done ? "none" : `saturate(${[.25, .5, .75, .9][n]}) brightness(${[.85, .92, .97, 1][n]})`;
+}
+function lspPerson(c, X, Y, coat, skin, old) {
+  const px = (x, y, w, h, col) => { c.fillStyle = col; c.fillRect(X + x, Y + y, w, h); };
+  px(5, 2, 6, 5, skin); px(5, 1, 6, 2, old ? "#ddd" : "#3b2a20"); px(4, 7, 8, 6, coat); px(5, 13, 2, 3, "#2d2d3a"); px(9, 13, 2, 3, "#2d2d3a");
+  px(6, 4, 1, 1, "#222"); px(9, 4, 1, 1, "#222"); if (old) px(12, 6, 1, 9, "#7a5230");
+}
+
+// ---------- 页面 ----------
+function renderLsp() {
+  lspLoad();
+  LSP_ITEMS.forEach(([, , w]) => { if (!lspImgs[w]) { const im = new Image(); im.src = "img/" + (typeof V_IMG !== "undefined" && V_IMG[w] || w) + ".jpg"; im.onload = lspDraw; lspImgs[w] = im; } });
+  stage.innerHTML = "";
+  const card = el("section", "card lsp-card");
+  const head = el("div", "lsp-head");
+  head.append(el("b", null, "失声的巴黎 · 原型"), el("span", "lsp-sub", "方向键 / 下方按钮移动，靠近东西按“调查”。"));
+  const hud = el("div", "lsp-hud"); hud.id = "lspHud";
+  const cv = el("canvas", "lsp-cv"); cv.id = "lspCv"; cv.width = LSP_W * LSP_T; cv.height = LSP_H * LSP_T;
+  const box = el("div", "lsp-dlg"); box.id = "lspDlg";
+  const pad = el("div", "lsp-pad");
+  [["↑", 0, -1, "u"], ["←", -1, 0, "l"], ["调查", 0, 0, "a"], ["→", 1, 0, "r"], ["↓", 0, 1, "d"]].forEach(([t, dx, dy, k]) => {
+    const b = el("button", "lsp-btn lsp-" + k, t); b.type = "button";
+    b.addEventListener("click", () => k === "a" ? lspAct() : lspMove(dx, dy));
+    pad.append(b);
+  });
+  const reset = el("button", "btn ghost lsp-reset", "重新开始"); reset.type = "button";
+  let sure = false; reset.addEventListener("click", () => { if (!sure) { sure = true; reset.textContent = "确定重新开始？"; return; } lsp = lspNew(); lspSave(); renderLsp(); });
+  card.append(head, hud, cv, box, pad, reset);
+  stage.append(card);
+  if (!lspKeysBound) {
+    lspKeysBound = true;
+    document.addEventListener("keydown", e => {
+      if (view !== "lsp" || e.target.tagName === "INPUT") return;
+      const m = { ArrowUp: [0, -1], ArrowDown: [0, 1], ArrowLeft: [-1, 0], ArrowRight: [1, 0], w: [0, -1], s: [0, 1], a: [-1, 0], d: [1, 0] }[e.key];
+      if (m) { e.preventDefault(); if (!lspDlg || !lspDlg.lock) lspMove(...m); }
+      else if (e.key === " " || e.key === "Enter") { if (!lspDlg || !lspDlg.lock) { e.preventDefault(); lspAct(); } }
+    });
+    setInterval(() => { if (view === "lsp") lspDraw(); }, 120);   // 石碑的光一闪一闪
+  }
+  lspHud(); lspDraw();
+  if (!lsp.f.intro) lspSay("一夜之间，这个街区的人们说话缺了语法：门牌上的冠词掉了，钟楼停在了现在时。三块发光的石碑里藏着三种语法的力量——先去最近的那块看看。", [["出发", () => { lsp.f.intro = 1; lspSave(); lspClose(); }]], true);
+  else lspSay(lsp.f.done ? "街区已经恢复了声音。你可以随便逛逛，或者点“重新开始”再玩一遍。" : "继续探索：靠近发光的石碑、门、长椅、齿轮，按“调查”。");
+}
+function lspHud() {
+  const h = document.getElementById("lspHud"); if (!h) return;
+  h.textContent = "";
+  Object.entries(LSP_AB).forEach(([k, a]) => { const s = el("span", "lsp-ab" + (lsp.ab[k] ? " on" : "")); s.style.setProperty("--c", a.color); s.title = a.hint; s.append(el("i"), document.createTextNode(a.name)); h.append(s); });
+  const inv = lsp.inv.map(w => w === "clé" ? "钥匙" : w).join("、");
+  h.append(el("span", "lsp-inv", inv ? "背包：" + inv : "背包：空"));
+}
+function lspMove(dx, dy) {
+  if (lspDlg && lspDlg.lock) return;
+  const x = lsp.x + dx, y = lsp.y + dy;
+  lsp.face = [dx, dy];   // 面朝的方向：调查时先看面前那格
+  if (lspWalk(x, y)) { lsp.x = x; lsp.y = y; lspSave(); lspDraw(); }
+  // 走到鬼魂的桥边：没有“过去”就提示
+  if (!lsp.ab.past && lspTile(x, y) === "p" && !lsp.f.bridgeHint) { lsp.f.bridgeHint = 1; lspSay("河水湍急，过不去。传说这里以前有一座桥……要是能看见过去就好了。"); }
+}
+// 周围（上下左右和脚下）有什么能调查的
+function lspNear() {
+  for (const [dx, dy] of [[0, 0], lsp.face || [0, -1], [0, -1], [1, 0], [0, 1], [-1, 0]]) {
+    const x = lsp.x + dx, y = lsp.y + dy, t = lspTile(x, y);
+    if ("123DXGHbni".includes(t)) { if (t === "i" && lsp.picked.includes(x + "," + y)) continue; return { t, x, y }; }
+  }
+  return null;
+}
+
+// ---------- 对话框 ----------
+function lspSay(text, buttons, lock) {
+  const box = document.getElementById("lspDlg"); if (!box) return;
+  box.textContent = "";
+  box.append(el("p", "lsp-text", text));
+  if (buttons && buttons.length) {
+    const row = el("div", "lsp-choices");
+    buttons.forEach(([t, fn, cls]) => { const b = el("button", "btn" + (cls ? " " + cls : " ghost"), t); b.type = "button"; b.addEventListener("click", fn); row.append(b); });
+    box.append(row);
+  }
+  lspDlg = { lock: !!lock };
+}
+const lspClose = () => { lspDlg = null; lspSay("……"); const b = document.getElementById("lspDlg"); if (b) b.textContent = ""; };
+// 知识锁：一句法语线索 + 问题 + 选项；两级提示
+function lspLock({ fr, q, opts, ok, hints, done, input }) {
+  let hint = 0;
+  const show = (msg) => {
+    const box = document.getElementById("lspDlg"); box.textContent = "";
+    if (fr) box.append(el("p", "lsp-fr", fr));
+    box.append(el("p", "lsp-text", q));
+    if (hint) box.append(el("p", "lsp-hint", hints.slice(0, hint).join("　")));
+    if (msg) box.append(el("p", "lsp-msg", msg));
+    const row = el("div", "lsp-choices");
+    if (input) {
+      const inp = el("input", "lsp-in"); inp.type = "text"; inp.inputMode = "numeric"; inp.placeholder = "输入密码";
+      const go = el("button", "btn", "开门"); go.type = "button";
+      go.addEventListener("click", () => inp.value.trim() === ok ? (lspDlg = null, done()) : show("不对，门纹丝不动。"));
+      inp.addEventListener("keydown", e => { if (e.key === "Enter") go.click(); });
+      row.append(inp, go); setTimeout(() => inp.focus(), 50);
+    } else opts.forEach(o => { const b = el("button", "btn ghost", o); b.type = "button"; b.addEventListener("click", () => o === ok ? (lspDlg = null, done()) : show("不对。再读一遍线索。")); row.append(b); });
+    if (hint < hints.length) { const h = el("button", "btn ghost lsp-hbtn", hint ? "再给一点提示" : "提示"); h.type = "button"; h.addEventListener("click", () => { hint++; show(); }); row.append(h); }
+    const x = el("button", "btn ghost", "先离开"); x.type = "button"; x.addEventListener("click", lspClose); row.append(x);
+    box.append(row);
+    lspDlg = { lock: true };
+  };
+  show();
+}
+
+// ---------- 石碑：5 题答对 4 题得到能力 ----------
+function lspTrial(k) {
+  const a = LSP_AB[k];
+  const pool = BANK.filter(q => !isListen(q) && !q.title && !q.quote && a.re.test(q.cat || "") && q.opts && q.opts.length <= 6);
+  const qs = vShuffle(pool).slice(0, 5);
+  let i = 0, right = 0;
+  const one = () => {
+    const box = document.getElementById("lspDlg"); box.textContent = "";
+    if (i >= qs.length) {
+      if (right >= 4) {
+        lsp.ab[k] = 1; lspSave(); lspHud(); lspDraw();
+        lspSay(`石碑亮了起来——你得到了「${a.name}」！（${right}/5）${a.hint}。`, [["好", lspClose, ""]], true);
+      } else lspSay(`石碑闪了一下又暗了（${right}/5，要答对 4 题）。看看解析，再来一次吧。`, [["再试一次", () => lspTrial(k), ""], ["先离开", lspClose]], true);
+      return;
+    }
+    const q = qs[i];
+    box.append(el("p", "lsp-text", `「${a.tag}」试炼 · 第 ${i + 1} / 5 题`), el("p", "lsp-fr", q.q));
+    const row = el("div", "lsp-choices col");
+    q.opts.forEach((o, n) => {
+      const b = el("button", "btn ghost", o); b.type = "button";
+      b.addEventListener("click", () => {
+        const ok = n === q.a; if (ok) right++;
+        try { record(q, n, ok); } catch (e) {}
+        box.textContent = "";
+        box.append(el("p", "lsp-text", ok ? "✓ 答对了。" : `✗ 正确答案是：${q.opts[q.a]}`), el("p", "lsp-hint", q.exp || ""));
+        const nx = el("button", "btn", "继续"); nx.type = "button"; nx.addEventListener("click", () => { i++; one(); });
+        box.append(nx); nx.focus({ preventScroll: true });
+      });
+      row.append(b);
+    });
+    box.append(row);
+    lspDlg = { lock: true };
+  };
+  lspSay(`石碑上刻着：「${a.tag}」。答对 5 题中的 4 题，就能得到「${a.name}」——${a.hint}。`, [["开始试炼", one, ""], ["先离开", lspClose]], true);
+}
+
+// ---------- 调查 ----------
+function lspAct() {
+  if (lspDlg && lspDlg.lock) return;
+  const n = lspNear();
+  if (!n) { lspSay("这里什么也没有。"); return; }
+  const { t, x, y } = n;
+  if (t === "1" || t === "2" || t === "3") {
+    const k = Object.keys(LSP_AB).find(k => LSP_AB[k].stone === t);
+    if (lsp.ab[k]) lspSay(`石碑已经暗了。你已经有「${LSP_AB[k].name}」。`); else lspTrial(k);
+    return;
+  }
+  if (t === "D") {   // 面包店：门牌上的冠词掉了（能力锁：冠词；知识锁：选对冠词）
+    if (!lsp.f.sign) {
+      if (!lsp.ab.art) { lspSay("门牌上只剩一个词：« ___ boulangerie »。少了什么……你现在还修不好它。（需要「冠词之力」）"); return; }
+      lspLock({ fr: "« ___ boulangerie »", q: "门牌上缺一个冠词，填哪个？", opts: ["le", "la", "les", "l'"], ok: "la", hints: ["boulangerie（面包店）以 -erie 结尾。", "-erie 结尾的名词是阴性：la boulangerie。"],
+        done: () => { lsp.f.sign = 1; lspSave(); lspDraw(); lspAct(); } });
+      return;
+    }
+    if (!lsp.f.quest) {
+      lsp.f.quest = 1; lspSave();
+      lspSay("面包师：« Merci ! Apporte-moi un fouet et un tablier, s'il te plaît. Ils sont dans le jardin. Le code du jardin ? C'est l'année de naissance de mon grand-père : mille neuf cent quatre-vingt-dix-sept. »", [["记下了", lspClose, ""]], true);
+      return;
+    }
+    if (!lsp.f.delivered) {
+      const need = ["fouet", "tablier"], has = need.every(w => lsp.inv.includes(w)), wrong = lsp.inv.filter(w => !need.includes(w) && w !== "clé");
+      if (has && !wrong.length) {
+        lsp.f.delivered = 1; lsp.inv = lsp.inv.filter(w => !need.includes(w)); lspSave(); lspHud();
+        lspSay("面包师：« Parfait ! Pour traverser le canal, il faut se souvenir d'hier... La pierre du jardin peut t'aider. »（要过河，得“记得昨天”……花园里的石碑能帮你。）", [["谢谢", lspClose, ""]], true);
+      } else if (wrong.length) {
+        lspSay(`面包师：« Non, je n'ai pas besoin de ${wrong.map(w => (V_WORDS.find(v => v.fr === w) ? vLabel(V_WORDS.find(v => v.fr === w)) : w)).join(", ")}. » 她把不需要的东西还给你。`, [["好", () => { lsp.inv = lsp.inv.filter(w => !wrong.includes(w)); lsp.picked = lsp.picked.filter(p => { const it = LSP_ITEMS.find(v => v[0] + "," + v[1] === p); return !it || !wrong.includes(it[2]); }); lspSave(); lspHud(); lspDraw(); lspClose(); }, ""]], true);
+      } else lspSay("面包师：« Un fouet et un tablier, s'il te plaît ! »（她还在等这两样东西。）");
+      return;
+    }
+    lspSay("面包店里飘着可颂的香味。面包师冲你点点头。");
+    return;
+  }
+  if (t === "X") {   // 花园的门：密码是一个用法语说的年份
+    if (lsp.f.code) return;
+    if (!lsp.f.quest) { lspSay("铁门上有一个四位数的密码锁。也许有人知道密码。"); return; }
+    lspLock({ fr: "« mille neuf cent quatre-vingt-dix-sept »", q: "面包师说的年份，就是花园门的密码。", input: true, ok: "1997",
+      hints: ["mille = 1000，neuf cent = 900。", "quatre-vingt-dix-sept = 4×20 + 17 = 97。"], done: () => { lsp.f.code = 1; lspSave(); lspDraw(); lspSay("咔哒一声，花园的门开了。"); } });
+    return;
+  }
+  if (t === "i") {   // 花园里的东西：看图认词
+    const it = LSP_ITEMS.find(v => v[0] === x && v[1] === y);
+    const w = V_WORDS.find(v => v.fr === it[2]);
+    lspSay(`这里有一件东西（看图认一认）。要拿走吗？`, [["拿走", () => { lsp.inv.push(it[2]); lsp.picked.push(x + "," + y); lspSave(); lspHud(); lspDraw(); lspSay(`你拿起了 ${w ? vLabel(w) : it[2]}。`); }, ""], ["不要", lspClose]], true);
+    const box = document.getElementById("lspDlg"), im = el("img", "lsp-thumb"); im.src = "img/" + (V_IMG[it[2]] || it[2]) + ".jpg"; im.alt = ""; box.prepend(im);
+    return;
+  }
+  if (t === "n") {   // 老人：线索里藏着钥匙的位置（知识锁）
+    lspSay("老人：« J'ai perdu la clé de la tour. Je l'ai cachée sous le banc, à côté de la fontaine. »", [["好的", lspClose, ""], ["提示", () => lspSay("关键词：la clé 钥匙 · sous 在……下面 · le banc 长椅 · à côté de 在……旁边 · la fontaine 喷泉。", [["好", lspClose, ""], ["再给一点提示", () => lspSay("“我把塔楼的钥匙藏在了喷泉旁边的长椅下面。”", [["好", lspClose, ""]], true)]], true)]], true);
+    return;
+  }
+  if (t === "b") {   // 长椅：只有喷泉旁边那张下面有钥匙
+    if (x === LSP_KEY_BENCH[0] && y === LSP_KEY_BENCH[1]) {
+      if (lsp.inv.includes("clé") || lsp.f.gear) { lspSay("长椅下面已经空了。"); return; }
+      lsp.inv.push("clé"); lspSave(); lspHud(); lspSay("你在长椅下面摸到了一把旧钥匙！");
+    } else lspSay("长椅下面什么也没有。");
+    return;
+  }
+  if (t === "G") {   // 钟楼的门：钥匙 + 齿轮（能力锁：将来时；知识锁：选对将来时形式）
+    if (lsp.f.gear) { lspAct2Tower(); return; }
+    if (!lsp.inv.includes("clé")) { lspSay("钟楼的门锁着。门上还有一个大齿轮。"); return; }
+    if (!lsp.ab.fut) { lspSay("钥匙插进去了，可齿轮卡住了——齿轮上刻的句子都是将来时，你还转不动它。（需要「预见将来」）"); return; }
+    lspLock({ fr: "« Demain, nous ___ la réparation de l'horloge. »（finir）", q: "把齿轮转到正确的形式：", opts: ["finissons", "finirons", "avons fini", "finirions"], ok: "finirons",
+      hints: ["demain（明天）→ 简单将来时。", "简单将来时 = 不定式 + -ons：finir → nous finirons。"], done: () => { lsp.f.gear = 1; lsp.inv = lsp.inv.filter(w => w !== "clé"); lspSave(); lspHud(); lspDraw(); lspSay("齿轮转动起来，钟楼的门开了。"); } });
+    return;
+  }
+  if (t === "H") { lspAct2Tower(); return; }
+}
+// 钟楼里：鬼魂的字（只有“回望过去”看得见）→ 读懂才能找到钟
+function lspAct2Tower() {
+  if (!lsp.f.gear) { lspSay("钟楼的门还锁着。"); return; }
+  if (lsp.f.done) { lspSay("钟声在街区上空回荡，大家又能好好说话了。"); return; }
+  if (!lsp.ab.past) { lspSay("钟楼里空荡荡的，墙上好像有什么，可你看不见。（需要「回望过去」）"); return; }
+  lspLock({ fr: "鬼魂在墙上留下一行字：« Hier, le gardien a caché la cloche derrière la grande horloge. »", q: "钟藏在哪里？", opts: ["在大钟后面", "在喷泉下面", "在桥上", "在面包店里"], ok: "在大钟后面",
+    hints: ["la cloche 钟（敲的那种）· derrière 在……后面 · l'horloge 大钟（钟表）。", "“昨天，看守把钟藏在了大钟后面。”"],
+    done: () => {
+      lsp.f.done = 1; lspSave(); lspDraw();
+      let coins = "";
+      if (typeof gameOn === "function" && gameOn() && typeof gameAdd === "function" && !gameRaw.some(g => g.kind === "earn" && g.key === "lsp:proto")) { gameAdd({ kind: "earn", key: "lsp:proto", coins: 50, why: "失声的巴黎（原型）通关", at: new Date().toISOString() }); coins = "获得 50 金币。"; }
+      lspSay(`你在大钟后面找到了那口钟。钟声一响，整个街区重新有了颜色，人们又能好好说话了！${coins}\n\n原型到这里结束。觉得好玩的话，下一步可以做更多街区、更多语法能力。`, [["好", lspClose, ""]], true);
+    } });
+}
 // 动词变位表（由 french-quiz/tools/conj_build.py 用 verbecc 生成，不要手改）
 // 每个时态是 6 个人称（je tu il nous vous ils）的动词部分；阴阳性不同时是 [阳性, 阴性] 两组；命令式只有 tu nous vous
 const CJ_TENSES = [["pres", "直陈式现在时"], ["pc", "复合过去时"], ["imp", "未完成过去时"], ["fut", "简单将来时"], ["cond", "条件式现在时"], ["subj", "虚拟式现在时"], ["pqp", "愈过去时"], ["fa", "先将来时"], ["condp", "条件式过去时"], ["ps", "简单过去时"], ["impe", "命令式"]];
