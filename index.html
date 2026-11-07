@@ -1359,6 +1359,20 @@ html.qf .sp-hud-act { white-space: nowrap; }
 /* 答对后再点正确答案进入下一题：让点击穿过已经 disabled 的正确选项（见 focus.js） */
 .opt.correct:disabled, .v-pic.correct:disabled { pointer-events: none; }
 :is(.q-card, .v-card, .cj-card, .sp-boss, .sp-mini) :is(.opt, .v-pic).correct:disabled { cursor: pointer; }
+/* 手机全屏背单词：把空白放到题目区（上方），选项和“下一题”压到屏幕下半部分，拇指好点；
+   答完后的说明区固定高度，答完前后选项都不动 */
+@media (max-width: 600px) {
+  html.qf #stage > section.v-card > .v-q { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  html.qf #stage > section.v-card > .v-q.v-stack { align-content: start; }
+  html.qf #stage > section.v-card > .v-q.v-stack > .v-layer { justify-content: flex-start; }
+  html.qf #stage > section.v-card > .explain { flex: none !important; height: clamp(3rem, 8vh, 5.2rem) !important; }
+}
+@media (max-width: 600px) and (max-height: 700px) {
+  html.qf #stage .v-rv-img { width: 72px; }
+  html.qf #stage .v-rv-word { font-size: 1.25rem; }
+  html.qf #stage .v-rv-sent { font-size: .92rem; line-height: 1.4; }
+  html.qf #stage .v-rv-tr { font-size: .82rem; line-height: 1.35; }
+}
 </style>
 
 <div class="wrap">
@@ -18140,9 +18154,10 @@ if (UI_LANG === "en") i18nLoad({
 "${r.cards} 张": "${r.cards} cards",
 "橱窗还是空的。": "The showcase is empty.",
 "新增“好友”页：登录账号后，可以在排行榜上按等级、金币、明信片数和其他同学比一比（只显示昵称，不显示邮箱；不想上榜可以关掉）；还能从自己的明信片里挑最多 6 张摆进橱窗，点别人那一行就能看 TA 的橱窗。": "New \"Friends\" page: once logged in, compare your level, coins and postcard count with other learners on the leaderboard (only nicknames are shown, never emails; you can opt out), and pick up to 6 of your postcards for your showcase. Tap someone's row to see theirs.",
-" 单词和例句在上面。": " The word and example are shown above.",
-" 正确答案是 ${vLabel(w)}，单词和例句在上面。": " The correct answer is ${vLabel(w)}; the word and example are shown above.",
 "背单词答题时，题目上方先留好位置：答完（对错都一样）单词、意思、例句和翻译直接显示在原来题目的地方，下面的选项不再跳动，视线不用移开就能看到例句。": "In vocabulary practice, space above the options is reserved: after you answer (right or wrong), the word, meaning, example sentence and translation appear right where the question was, so the options no longer jump and you can read the example without looking away.",
+" 例句在上面。": " The example is shown above.",
+" 正确答案是 ${vLabel(w)}。": " The correct answer is ${vLabel(w)}.",
+"手机上全屏背单词时，选项和“下一题”挪到屏幕下半部分，拇指更好点；题目和解析在上方，答完选项依然不动。": "In full-screen vocabulary practice on phones, the options and \"Next\" button sit in the lower half of the screen for easier thumb reach; the question and explanation stay on top, and the options still don't move after you answer.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21297,6 +21312,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "6.2", d: "2026-11-07", p: "fr", items: [
+    "手机上全屏背单词时，选项和“下一题”挪到屏幕下半部分，拇指更好点；题目和解析在上方，答完选项依然不动。"] },
   { v: "6.1", d: "2026-11-07", p: "fr", items: [
     "背单词答题时，题目上方先留好位置：答完（对错都一样）单词、意思、例句和翻译直接显示在原来题目的地方，下面的选项不再跳动，视线不用移开就能看到例句。"] },
   { v: "6.0", d: "2026-11-07", p: "fr", items: [
@@ -25420,7 +25437,7 @@ function vQuestion() {
     vLvSave(S, S.i + 1);   // 答完这题就算过了：下次从下一题开始
     exp.classList.remove("pending"); exp.textContent = "";
     // 单词、意思、例句和翻译都显示在题目上方预留好的位置（vStack），视线不用往下找；下面只说对错
-    exp.append(el("b", ok ? "ok" : "no", ok ? "答对了！" : "答错了。"), document.createTextNode(ok ? " 单词和例句在上面。" : ` 正确答案是 ${vLabel(w)}，单词和例句在上面。`));
+    exp.append(el("b", ok ? "ok" : "no", ok ? "答对了！" : "答错了。"), document.createTextNode(ok ? " 例句在上面。" : ` 正确答案是 ${vLabel(w)}。`));
     if (w.extra && w.pos !== "adj") exp.append(el("span", "v-tip", w.extra));
     if (vSet.hard) vConfuseGroups(w).forEach(g => exp.append(el("span", "v-tip", "易混辨析：" + g.tip)));
     next.disabled = false;
