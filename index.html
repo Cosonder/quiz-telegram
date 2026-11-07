@@ -686,13 +686,21 @@ html.qf #stage .cj-fb { overflow-y: auto; }
 .sync-row input:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px var(--accent-soft); }
 .btn.ghost.danger { color: var(--bad); border-color: var(--bad); }
 /* 背单词：做对后在题目位置复习；设置项 */
-.v-q.v-review { justify-content: center; gap: 6px; }
+/* 背单词题目区：题目层和解析层叠在同一格里，按高的那层留空间；答完换层，选项不动 */
+.v-q.v-stack { display: grid; }
+.v-stack > .v-layer { grid-area: 1 / 1; display: flex; flex-direction: column; gap: 8px; justify-content: center; min-width: 0; }
+.v-stack.listen > .v-layer { gap: 10px; }
+.v-stack > .v-rvlayer { visibility: hidden; gap: 6px; font-family: var(--body); justify-content: flex-start; }
+.v-stack.v-done > .v-qlayer { visibility: hidden; }
+.v-stack.v-done > .v-rvlayer { visibility: visible; }
 .v-rv-top { display: flex; gap: 12px; align-items: center; }
 .v-rv-img { width: 96px; aspect-ratio: 3 / 2; object-fit: cover; border-radius: 8px; flex: none; background: var(--line); }
 .v-rv-txt { display: flex; flex-direction: column; gap: 2px; min-width: 0; }
+.v-rv-wline { display: flex; align-items: center; gap: 8px; flex-wrap: wrap; }
 .v-rv-word { font-family: var(--display); font-size: 1.5rem; color: var(--good); line-height: 1.2; }
-.v-rv-mean { font-family: inherit; font-size: .95rem; font-weight: 500; color: var(--fg); }
-.v-rv-sent { font-family: inherit; font-size: .95rem; font-weight: 500; color: var(--muted); line-height: 1.5; }
+.v-rv-mean { font-size: .95rem; font-weight: 500; color: var(--fg); }
+.v-rv-sent { font-size: 1rem; font-weight: 500; color: var(--fg); line-height: 1.5; }
+.v-rv-tr { font-size: .9rem; font-weight: 400; color: var(--muted); line-height: 1.45; }
 .v-set-row { display: flex; flex-wrap: wrap; gap: 6px 10px; align-items: center; font-size: .88rem; }
 .v-set-name { flex: none; min-width: 5.5em; color: var(--muted); font-weight: 600; }
 .v-set-row select { font: inherit; color: var(--fg); background: var(--card); border: 1px solid var(--line); border-radius: 6px; padding: 2px 6px; }
@@ -18132,6 +18140,9 @@ if (UI_LANG === "en") i18nLoad({
 "${r.cards} 张": "${r.cards} cards",
 "橱窗还是空的。": "The showcase is empty.",
 "新增“好友”页：登录账号后，可以在排行榜上按等级、金币、明信片数和其他同学比一比（只显示昵称，不显示邮箱；不想上榜可以关掉）；还能从自己的明信片里挑最多 6 张摆进橱窗，点别人那一行就能看 TA 的橱窗。": "New \"Friends\" page: once logged in, compare your level, coins and postcard count with other learners on the leaderboard (only nicknames are shown, never emails; you can opt out), and pick up to 6 of your postcards for your showcase. Tap someone's row to see theirs.",
+" 单词和例句在上面。": " The word and example are shown above.",
+" 正确答案是 ${vLabel(w)}，单词和例句在上面。": " The correct answer is ${vLabel(w)}; the word and example are shown above.",
+"背单词答题时，题目上方先留好位置：答完（对错都一样）单词、意思、例句和翻译直接显示在原来题目的地方，下面的选项不再跳动，视线不用移开就能看到例句。": "In vocabulary practice, space above the options is reserved: after you answer (right or wrong), the word, meaning, example sentence and translation appear right where the question was, so the options no longer jump and you can read the example without looking away.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21286,6 +21297,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "6.1", d: "2026-11-07", p: "fr", items: [
+    "背单词答题时，题目上方先留好位置：答完（对错都一样）单词、意思、例句和翻译直接显示在原来题目的地方，下面的选项不再跳动，视线不用移开就能看到例句。"] },
   { v: "6.0", d: "2026-11-07", p: "fr", items: [
     "新增“好友”页：登录账号后，可以在排行榜上按等级、金币、明信片数和其他同学比一比（只显示昵称，不显示邮箱；不想上榜可以关掉）；还能从自己的明信片里挑最多 6 张摆进橱窗，点别人那一行就能看 TA 的橱窗。"] },
   { v: "5.9", d: "2026-11-07", p: "fr", items: [
@@ -25406,20 +25419,12 @@ function vQuestion() {
     S.maxCombo = Math.max(S.maxCombo || 0, S.combo);
     vLvSave(S, S.i + 1);   // 答完这题就算过了：下次从下一题开始
     exp.classList.remove("pending"); exp.textContent = "";
-    exp.append(el("b", ok ? "ok" : "no", ok ? "答对了！" : "答错了。"), document.createTextNode(" "));
-    const word = el("span", "transcript");
-    if (vPic(w)) word.append(vImg(w, "v-thumb"));
-    word.append(document.createTextNode(vLabel(w) + " "), vSpeakBtn(w, "▶ 读音"));
-    exp.append(word, document.createTextNode(`${V_POS[w.pos]} · ${vMean(w)}` + (w.extra && w.pos !== "adj" ? ` · ${w.extra}` : "")));
+    // 单词、意思、例句和翻译都显示在题目上方预留好的位置（vStack），视线不用往下找；下面只说对错
+    exp.append(el("b", ok ? "ok" : "no", ok ? "答对了！" : "答错了。"), document.createTextNode(ok ? " 单词和例句在上面。" : ` 正确答案是 ${vLabel(w)}，单词和例句在上面。`));
+    if (w.extra && w.pos !== "adj") exp.append(el("span", "v-tip", w.extra));
     if (vSet.hard) vConfuseGroups(w).forEach(g => exp.append(el("span", "v-tip", "易混辨析：" + g.tip)));
-    const shown = q.type === 7 ? vPicEx(w) : ex;
-    if (shown) {
-      const line = el("span", "v-exline");
-      line.append(document.createTextNode(shown.before), el("b", null, shown.form), document.createTextNode(shown.after + " "), vSpeakBtn(w, "▶ 例句", shown.full));
-      exp.append(line, el("span", "v-tr", shown.tr));
-    }
     next.disabled = false;
-    if (ok) vReview(head, w, q.type, shown);
+    head.classList.add("v-done");
     if (ok && !first) {
       next.textContent = S.i === S.qs.length - 1 ? "查看成绩" : "下一题 →";
       // 停留够设置的时间、并且读完单词，再进入下一题（朗读最多等 3 秒）
@@ -25545,6 +25550,7 @@ function vQuestion() {
       });
       ans.classList.add("v-ans7");
       ans.append(grid);
+      vStack(head, w, q.type, pe);
       card.append(head, ans);
       actions.append(next);
       card.append(exp, actions);
@@ -25570,6 +25576,7 @@ function vQuestion() {
         return b;
       });
       ans.append(grid);
+      vStack(head, w, q.type, ex);
       card.append(head, ans);
       say(vArt(w));
       actions.append(next);
@@ -25625,26 +25632,34 @@ function vQuestion() {
     ans.append(box);
     card.append(head, ans);
   }
+  vStack(head, w, q.type, q.type === 7 ? vPicEx(w) : ex);
   actions.append(next);
   card.append(exp, actions);
   stage.append(card, vSetLink());
 }
-// 做对后：把这个词的复习内容放在题目的位置（视线所在），停留一会儿再进入下一题
-function vReview(head, w, type, shown) {
-  head.textContent = "";
-  head.className = "q v-q v-review";
+// 题目区分两层叠在一起：题目层和答完后的解析层（单词、意思、例句、翻译）。两层一样占位，
+// 所以题目区一开始就按两者里高的那个留好空间，答完只是换一层显示，下面的选项不会跳。
+function vStack(head, w, type, shown) {
+  const qa = el("div", "v-layer v-qlayer");
+  while (head.firstChild) qa.append(head.firstChild);
+  const rv = el("div", "v-layer v-rvlayer");
+  rv.setAttribute("aria-live", "polite");
   const top = el("div", "v-rv-top");
-  if (vPic(w) && type !== 7) top.append(vImg(w, "v-rv-img"));
+  if (vPic(w) && type !== 7 && type !== 6) top.append(vImg(w, "v-rv-img"));
   const t = el("div", "v-rv-txt");
-  t.append(el("b", "v-rv-word", vLabel(w)), el("span", "v-rv-mean", `${V_POS_ABBR[w.pos] || ""} ${vMean(w)}`));
+  const wl = el("span", "v-rv-wline"); wl.append(el("b", "v-rv-word", vLabel(w)), vSpeakBtn(w, "▶"));
+  t.append(wl, el("span", "v-rv-mean", `${V_POS_ABBR[w.pos] || ""} ${vMean(w)}`));
   top.append(t);
-  head.append(top);
-  if (shown && (type === 5 || type === 7)) {
-    const s = el("span", "v-rv-sent");
-    s.append(document.createTextNode(shown.before), el("b", "v-hl", shown.form), document.createTextNode(shown.after));
-    head.append(s);
+  rv.append(top);
+  if (shown) {
+    const sline = el("span", "v-rv-sent");
+    sline.append(document.createTextNode(shown.before), el("b", "v-hl", shown.form), document.createTextNode(shown.after + " "), vSpeakBtn(w, "▶ 例句", shown.full));
+    rv.append(sline, el("span", "v-rv-tr", shown.tr));
   }
+  head.classList.add("v-stack");
+  head.append(qa, rv);
 }
+// 做对后：把这个词的复习内容放在题目的位置（视线所在），停留一会儿再进入下一题
 // 背单词的练习设置（放在“设置”页）：难度、题型、做对后停留
 function vSetBrief() { return `${vSet.hard ? "困难（形近词）" : "普通难度"} · ${vSet.types.length} 种题型 · 做对停 ${vSet.pause / 1000} 秒 · 朗读${vSet.read ? "开" : "关"}`; }
 function vSetRows() {
