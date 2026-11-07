@@ -1340,6 +1340,21 @@ html[data-font="times"] body { font-size: 17px; }
 .sk-odyssey .sk-card { border-color:var(--accent); }
 @media (max-width:600px) { :root[data-skin="odyssey"] body::before { background-size:auto 70%; background-position:left bottom; } }
 
+/* Asteroid & Rose: original celestial scene, dark-to-bright heatmap. */
+:root[data-skin="asteroid-rose"], .sk-asteroid-rose { --bg:#0e172a;--card:#17243a;--fg:#f5eddf;--muted:#b7c2d4;--line:#56617d;--accent:#f1ca86;--accent-soft:#394054;--good:#90dfbd;--good-soft:#173e35;--bad:#ff9ea6;--bad-soft:#492738; color-scheme:dark; }
+:root[data-skin="asteroid-rose"] body { background:#0e172a; padding-bottom:120px; }
+:root[data-skin="asteroid-rose"] body::before { content:""; position:fixed; inset:0; z-index:-1; pointer-events:none; background:#0e172a url("skins/rose-bg.webp") left bottom / cover no-repeat; }
+:root[data-skin="asteroid-rose"] .card, :root[data-skin="asteroid-rose"] .tabs, .sk-asteroid-rose .sk-card { background:var(--card); border:2px solid var(--line); border-radius:6px; }
+:root[data-skin="asteroid-rose"] .heat-card { --h0:#26334b;--h1:#495a7e;--h2:#9a7586;--h3:#d5a879;--h4:#ffe2a2; }
+:root[data-skin="asteroid-rose"] .shop-fold { position:relative; background:var(--card); border:10px solid transparent; border-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2716%27%20height%3D%2716%27%20viewBox%3D%270%200%2016%2016%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20fill%3D%27%23293751%27%20fill-rule%3D%27evenodd%27%20d%3D%27M0%200h16v16H0zM5%205v6h6V5z%27%2F%3E%3Cpath%20fill%3D%27%23bf956c%27%20d%3D%27M0%200h16v1H0zM0%2015h16v1H0zM0%200h1v16H0zM15%200h1v16h-1z%27%2F%3E%3Cpath%20fill%3D%27%23f1ca86%27%20d%3D%27M2%202h2v2H2zM12%202h2v2h-2zM2%2012h2v2H2zM12%2012h2v2h-2zM7%201h2v2H7zM7%2013h2v2H7zM1%207h2v2H1zM13%207h2v2h-2z%27%2F%3E%3C%2Fsvg%3E") 5 / 10px round; border-radius:0; background-clip:padding-box; box-shadow:none; margin-top:20px; margin-bottom:18px; }
+:root[data-skin="asteroid-rose"] .shop-fold::before, :root[data-skin="asteroid-rose"] .shop-fold::after { content:""; position:absolute; pointer-events:none; background:no-repeat center / 100% 100%; image-rendering:pixelated; z-index:1; }
+:root[data-skin="asteroid-rose"] .shop-fold::after { right:14px; top:-23px; width:34px; height:34px; background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2716%27%20height%3D%2716%27%20viewBox%3D%270%200%2016%2016%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20fill%3D%27%23152238%27%20d%3D%27M3%200h9v2h2v6h-3v2H8v6H4v-4H1V9h3V8H2V2h1z%27%2F%3E%3Cpath%20fill%3D%27%236b9985%27%20d%3D%27M6%208h2v8H6zM2%2010h3v1h1v2H4v-1H2zM9%2011h4v2h-3v1H8v-2h1z%27%2F%3E%3Cpath%20fill%3D%27%23ad4d6a%27%20d%3D%27M4%201h7v1h2v5h-2v2H5V8H3V3h1z%27%2F%3E%3Cpath%20fill%3D%27%23e48d99%27%20d%3D%27M5%201h5v1H5zM3%203h2v4H3zM6%203h4v1H6z%27%2F%3E%3Cpath%20fill%3D%27%23d7657f%27%20d%3D%27M5%204h2v2h4v1H5z%27%2F%3E%3Cpath%20fill%3D%27%23f3b7b0%27%20d%3D%27M8%204h2v1H8z%27%2F%3E%3C%2Fsvg%3E"); }
+:root[data-skin="asteroid-rose"] .shop-fold::before { left:14px; bottom:-19px; width:36px; height:30px; background-image:url("data:image/svg+xml,%3Csvg%20xmlns%3D%27http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%27%20width%3D%2716%27%20height%3D%2714%27%20viewBox%3D%270%200%2016%2014%27%20shape-rendering%3D%27crispEdges%27%3E%3Cpath%20fill%3D%27%23152238%27%20d%3D%27M0%208h4V6h4V4h3V1h4v3h-1v2h-3v2H8v2H6v3H2v-1H0z%27%2F%3E%3Cpath%20fill%3D%27%23ad865c%27%20d%3D%27M3%209h3V7h3V5h3V3h3v1h-2v2h-3v2H7v2H4z%27%2F%3E%3Cpath%20fill%3D%27%23f1ca86%27%20d%3D%27M2%208h2v1h2v2H4v2H2v-2H0V9h2z%27%2F%3E%3Cpath%20fill%3D%27%23fff0c2%27%20d%3D%27M2%209h2v2H2zM11%201h1v1h-1z%27%2F%3E%3C%2Fsvg%3E"); }
+:root[data-skin="asteroid-rose"] .chest-box { background:var(--accent-soft); color:var(--fg); border-color:var(--accent); }
+.sk-swatch.sk-asteroid-rose { background:#0e172a url("skins/rose-bg.webp") left bottom / cover no-repeat; padding:8px 8px 8px 48px; border:1px solid var(--accent); }
+.sk-asteroid-rose .sk-card { border-color:var(--accent); }
+@media (max-width:600px) { :root[data-skin="asteroid-rose"] body::before { background-size:auto 70%; background-position:left bottom; -webkit-mask-image:linear-gradient(to bottom, transparent 30%, #000 calc(30% + 48px)); mask-image:linear-gradient(to bottom, transparent 30%, #000 calc(30% + 48px)); } }
+
 /* ---------- 做题全屏：一屏放下一道题，页面不能上下滚动；右上角返回 / 退出 ---------- */
 html.qf, html.qf body { overflow: hidden; height: 100%; overscroll-behavior: none; }
 html.qf header, html.qf .boards, html.qf .tocwrap, html.qf #progress, html.qf .keys-note, html.qf #saveNote, html.qf .plan-slot, html.qf .skin-reveal { display: none !important; }
@@ -18200,6 +18215,9 @@ if (UI_LANG === "en") i18nLoad({
 "这道题的考点已经显示了": "This question's test points are already shown",
 "巴黎塔尖修复与调整：Boss 题上方的考点标签（语法 · …、变位 · …）只在 A1、A2 难度显示，B1 起隐藏，新增药水“马鞭草茶”可以看当前这道题的考点；遗物在状态条里单独一排，放不下可以左右拖动，不会超出屏幕；全屏答题时（尤其开着背景皮肤）答题后的解析区可以正常上下滑动了。": "Paris Spire fixes: the test-point tags above boss questions (grammar · …, tense · …) now only show at A1 and A2; from B1 they're hidden, and a new potion, \"Verbena tea\", reveals them for the current question. Relics get their own row in the status bar and can be dragged sideways, so it no longer runs off the screen. In full-screen mode (especially with a background skin) the explanation box after answering scrolls properly again.",
 "巴黎塔尖：两个事件按歌词修正了标题——「本是浪人」改为「我本浪人」，「千亿晚，亿天」改为「千忆晚，千忆天」，事件描述也跟着调整。": "Paris Spire: two event titles were corrected to match the lyrics they quote, \"A Wanderer at Heart\" and \"A Thousand Nights, a Thousand Days to Remember\", with their descriptions adjusted to match.",
+"小行星与玫瑰": "Asteroid & Rose",
+"深夜蓝星空下，玫瑰从紫色岩面生长，远处铺开暖金沙丘与环形星球；搭配星光日历、像素玫瑰和流星边框。": "Under a midnight-blue sky, a rose grows from violet rock beside warm golden dunes and a distant ringed planet, with a starlight activity calendar, pixel rose and shooting-star borders.",
+"商店新增皮肤「小行星与玫瑰」（星空、小行星上的一朵玫瑰、沙丘和流星，1500 金币）；巴黎塔尖新增事件「女皇的新衣」：巴黎的服装店，买件新外套换一面护盾，或者校对法语吊牌赚金币。": "New skin in the shop: \"Asteroid & Rose\" (a starry sky, a single rose on a small asteroid, dunes and shooting stars, 1500 coins). New Paris Spire event: a Paris boutique where you can buy a new coat for a shield, or proofread French clothing tags for coins.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -18941,7 +18959,18 @@ if (UI_LANG === "en") i18nLoad({
 "按书籍章节": "By book & chapter",
 "按书籍章节看进度；点一行：有到期的题就复习，没有就接着学这一章里还没掌握的题。": "Progress by book and chapter; tap a row to review its due questions, or keep learning what you haven't mastered in that chapter.",
 "废柴联盟": "Community",
-"筛选错题：按标签 / 书籍章节": "Filter mistakes: by tag / book & chapter"
+"筛选错题：按标签 / 书籍章节": "Filter mistakes: by tag / book & chapter",
+"女皇的新衣": "The Empress’s New Clothes",
+"你拎着行李，刚飞抵巴黎，便被一家服装店的见习课程吸引。店主递来一张写着“飞到巴黎受训”的小卡片：“先挑件合身的外套，再帮我校对法语吊牌吧。”橱窗旁的课程名是：女皇的新衣。": "Suitcase in hand, you have just flown into Paris when a boutique’s training course catches your eye. The shopkeeper hands you a card reading “Fly to Paris for training”: “First, choose a well-fitting coat, then help me proofread the French clothing tags.” The course is called The Empress’s New Clothes.",
+"挑一件新外套（30 金币）": "Choose a new coat (30 coins)",
+"得到一面护盾（下次答错不扣心；已有护盾时不能购买）": "Gain one shield (the next wrong answer costs no heart; unavailable if you already have a shield)",
+"新衣，新的底气": "New clothes, new confidence",
+"参加法语吊牌校对训练": "Train in French clothing-tag proofreading",
+"2 道单词题：全对得 25 金币": "2 vocabulary questions: earn 25 coins if both are correct",
+"巴黎受训，顺利结业": "Paris training successfully completed",
+"店主把吊牌收回去改了改": "The shopkeeper takes the tags back for corrections",
+"继续穿自己喜欢的衣服": "Keep wearing what you like",
+"不花金币，继续上路": "Spend no coins and continue"
 });
 i18nStart();
 // ---------- 答题记录存储（错题本、学习进度、经验值都从这里算） ----------
@@ -20102,6 +20131,7 @@ const COS_PX = {"fx_confetti": "<svg xmlns='http://www.w3.org/2000/svg' width='1
 // 买：记成 buy 记录（和道具一样扣金币）；换上 / 卸下：记成 equip 记录（slot + item，item 为空就是默认）。
 // 都跟着账号同步。游戏模式关掉时一律显示默认外观（默认金币是五角星）。
 const COSMETICS = [
+  { id: "asteroid-rose", slot: "skin", name: "小行星与玫瑰", price: 1500, desc: "深夜蓝星空下，玫瑰从紫色岩面生长，远处铺开暖金沙丘与环形星球；搭配星光日历、像素玫瑰和流星边框。" },
   { id: "college", slot: "skin", name: "社区学院", price: 1000, desc: "暖灯下的自习桌、课本与毯子堡垒，搭配学院绿、软木像素边框和咖啡杯点缀。" },
   { id: "odyssey", slot: "skin", name: "奥德赛", price: 1500, desc: "酒红色海面上的古希腊帆船与玫瑰色晨曦，搭配陶土回纹边框、帆船和橄榄枝点缀。" },
   { id: "c137", slot: "skin", name: "绿光传送门", price: 1500, desc: "异星像素冒险：荧光绿流体旋涡、气泡边缘与漂浮光滴，远处是幽暗夜空和紫色岩原，搭配深蓝卡片与绿色边框。" },
@@ -21355,6 +21385,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "6.8", d: "2026-11-07", p: "fr", items: [
+    "商店新增皮肤「小行星与玫瑰」（星空、小行星上的一朵玫瑰、沙丘和流星，1500 金币）；巴黎塔尖新增事件「女皇的新衣」：巴黎的服装店，买件新外套换一面护盾，或者校对法语吊牌赚金币。"] },
   { v: "6.7", d: "2026-11-07", p: "fr", items: [
     "巴黎塔尖：两个事件按歌词修正了标题——「本是浪人」改为「我本浪人」，「千亿晚，亿天」改为「千忆晚，千忆天」，事件描述也跟着调整。"] },
   { v: "6.6", d: "2026-11-07", p: "fr", items: [
@@ -26827,6 +26859,23 @@ SP_EVENTS.push(
     ["坐电梯，直接去塔尖", "跳过这一层剩下的路，马上开始 Boss 战", () => { const r = spRun; r.row = SP_ROWS - 1; spSave(); spToast("电梯门打开了：塔尖到了"); spBoss(); }],
     ["还是一步一步爬上去", "继续走这一层的地图", spDone]] },
 );
+// 时装店彩蛋：王菲《女皇的新衣》的巴黎时装意象，借用短歌名与“飞到巴黎受训”的短句。
+SP_EVENTS.push({
+  t: "女皇的新衣", img: "skins/spire/ev-wardrobe.webp", act: [0, 1], weight: 1,
+  d: "你拎着行李，刚飞抵巴黎，便被一家服装店的见习课程吸引。店主递来一张写着“飞到巴黎受训”的小卡片：“先挑件合身的外套，再帮我校对法语吊牌吧。”橱窗旁的课程名是：女皇的新衣。",
+  c: () => [
+    ["挑一件新外套（30 金币）", "得到一面护盾（下次答错不扣心；已有护盾时不能购买）", () => {
+      if (spRun.gold < 30 || spRun.shield) return;
+      spRun.gold -= 30; spRun.shield = 1; spSave(); spHud();
+      spReward("新衣，新的底气", ["一面护盾"]);
+    }, spRun.gold < 30 || !!spRun.shield],
+    ["参加法语吊牌校对训练", "2 道单词题：全对得 25 金币", () => spMini(spWords(2), "女皇的新衣", (ok, n) => {
+      if (ok === n) spRun.gold += 25;
+      spSave(); spReward(ok === n ? "巴黎受训，顺利结业" : "店主把吊牌收回去改了改", [ok === n ? "25 金币" : "什么也没得到"]);
+    })],
+    ["继续穿自己喜欢的衣服", "不花金币，继续上路", spDone]
+  ]
+});
 function spEvent() {
   const act = spRun.act, pool = SP_EVENTS.filter(e => !e.act || e.act.includes(act));
   let roll = Math.random() * pool.reduce((a, e) => a + (e.weight || 1), 0);
