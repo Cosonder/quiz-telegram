@@ -1059,6 +1059,32 @@ html[data-font="times"] body { font-size: 17px; }
 .v-resumed { margin: 6px 0 0; font-size: .85rem; color: var(--muted); display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; }
 .v-restart { border: 1px solid var(--line); border-radius: 999px; background: none; color: var(--accent); font: inherit; padding: 1px 10px; cursor: pointer; }
 .v-restart:hover { border-color: var(--accent); }
+
+/* 好友：我的资料、橱窗、排行榜 */
+.soc-row { display: flex; flex-wrap: wrap; align-items: center; gap: 8px; margin: 8px 0; }
+.soc-lab { color: var(--muted); font-size: .9rem; }
+.soc-nick { padding: 6px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--fg); font: inherit; width: 11em; }
+.soc-msg { color: var(--muted); font-size: .85rem; }
+.soc-hide { display: flex; align-items: center; gap: 6px; font-size: .9rem; color: var(--muted); }
+.soc-h4 { margin: 14px 0 6px; font-size: .95rem; }
+.soc-shelf { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 10px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); }
+.soc-shelf.small { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); margin: 0 0 8px; }
+.soc-slot, .soc-card { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--fg); font: inherit; min-width: 0; }
+.soc-slot.empty { border-style: dashed; background: none; min-height: 64px; }
+.soc-slot .pc-art, .soc-card .pc-art { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 4px; }
+.soc-slot .pc-art svg, .soc-card .pc-art svg { width: 100%; height: 100%; display: block; }
+.soc-city { font-size: .72rem; color: var(--muted); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; max-width: 100%; }
+.soc-pick { display: grid; grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); gap: 8px; margin-top: 10px; }
+.soc-card { cursor: pointer; opacity: .75; }
+.soc-card.on { opacity: 1; border-color: var(--accent); box-shadow: 0 0 0 2px var(--accent-soft); }
+.soc-list { display: flex; flex-direction: column; gap: 4px; margin-top: 6px; }
+.soc-r { display: grid; grid-template-columns: 2.4em 1fr auto; align-items: center; gap: 8px; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--fg); font: inherit; text-align: left; cursor: pointer; }
+.soc-r.me { border-color: var(--accent); background: var(--accent-soft); }
+.soc-rank { text-align: center; font-weight: 700; color: var(--muted); }
+.soc-name { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.soc-nums { display: flex; gap: 10px; font-size: .85rem; color: var(--muted); white-space: nowrap; }
+.soc-nums .hl { color: var(--fg); font-weight: 700; }
+@media (max-width: 600px) { .soc-shelf { grid-template-columns: repeat(3, 1fr); } .soc-nums span:not(.hl) { display: none; } .soc-nums b:not(.hl) { display: none; } }
 /* 外观商品（游戏模式里的商店购买）：由 quiz-common/cosmetics/build.py 生成，别手改 */
 :root[data-coin="tower"] .coin, :root .cos-prev .coin.cs-tower { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cg transform='translate%28.35 .45%29' fill='%23fff6cf' fill-opacity='.7'%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z'/%3E%3C/g%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z' fill='url%28%23s%29'/%3E%3CclipPath id='sp'%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z'/%3E%3C/clipPath%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z' fill='%23c98a12' fill-opacity='.8'/%3E%3Cpath d='M3.45 25L11.45 18.5M11.45 25L3.45 18.5M4.40 25L12.40 18.5M12.40 25L4.40 18.5M5.35 25L13.35 18.5M13.35 25L5.35 18.5M6.30 25L14.30 18.5M14.30 25L6.30 18.5M7.25 25L15.25 18.5M15.25 25L7.25 18.5M8.20 25L16.20 18.5M16.20 25L8.20 18.5M9.15 25L17.15 18.5M17.15 25L9.15 18.5M10.10 25L18.10 18.5M18.10 25L10.10 18.5M11.05 25L19.05 18.5M19.05 25L11.05 18.5M12.00 25L20.00 18.5M20.00 25L12.00 18.5M12.95 25L20.95 18.5M20.95 25L12.95 18.5M13.90 25L21.90 18.5M21.90 25L13.90 18.5M14.85 25L22.85 18.5M22.85 25L14.85 18.5M15.80 25L23.80 18.5M23.80 25L15.80 18.5M16.75 25L24.75 18.5M24.75 25L16.75 18.5M17.70 25L25.70 18.5M25.70 25L17.70 18.5M18.65 25L26.65 18.5M26.65 25L18.65 18.5M19.60 25L27.60 18.5M27.60 25L19.60 18.5M20.55 25L28.55 18.5M28.55 25L20.55 18.5' stroke='%237e4b00' stroke-opacity='.55' stroke-width='.16' clip-path='url%28%23sp%29'/%3E%3Cpath d='M9.40 24.80L13.22 23.35M12.30 24.80L10.52 23.35M10.52 23.35L13.22 23.35M10.52 23.35L13.88 22.05M13.22 23.35L11.35 22.05M11.35 22.05L13.88 22.05M11.35 22.05L14.40 20.81M13.88 22.05L12.03 20.81M12.03 20.81L14.40 20.81M12.03 20.81L14.80 19.60M14.40 20.81L12.60 19.60M12.60 19.60L14.80 19.60M12.80 18.70L15.76 17.50M15.55 18.70L13.51 17.50M13.51 17.50L15.76 17.50M13.51 17.50L15.82 16.43M15.76 17.50L14.01 16.43M14.01 16.43L15.82 16.43M14.01 16.43L15.78 15.40M15.82 16.43L14.40 15.40M14.40 15.40L15.78 15.40M22.60 24.80L18.78 23.35M19.70 24.80L21.48 23.35M21.48 23.35L18.78 23.35M21.48 23.35L18.12 22.05M18.78 23.35L20.65 22.05M20.65 22.05L18.12 22.05M20.65 22.05L17.60 20.81M18.12 22.05L19.97 20.81M19.97 20.81L17.60 20.81M19.97 20.81L17.20 19.60M17.60 20.81L19.40 19.60M19.40 19.60L17.20 19.60M19.20 18.70L16.24 17.50M16.45 18.70L18.49 17.50M18.49 17.50L16.24 17.50M18.49 17.50L16.18 16.43M16.24 17.50L17.99 16.43M17.99 16.43L16.18 16.43M17.99 16.43L16.22 15.40M16.18 16.43L17.60 15.40M17.60 15.40L16.22 15.40M14.55 14.60L17.14 13.16M17.45 14.60L14.86 13.16M14.86 13.16L17.14 13.16M14.86 13.16L16.95 12.09M17.14 13.16L15.05 12.09M15.05 12.09L16.95 12.09M15.05 12.09L16.81 11.13M16.95 12.09L15.19 11.13M15.19 11.13L16.81 11.13M15.19 11.13L16.69 10.23M16.81 11.13L15.31 10.23M15.31 10.23L16.69 10.23M15.31 10.23L16.60 9.38M16.69 10.23L15.40 9.38M15.40 9.38L16.60 9.38M15.40 9.38L16.52 8.56M16.60 9.38L15.48 8.56M15.48 8.56L16.52 8.56M15.48 8.56L16.46 7.77M16.52 8.56L15.54 7.77M15.54 7.77L16.46 7.77M15.54 7.77L16.40 7.00M16.46 7.77L15.60 7.00M15.60 7.00L16.40 7.00M12.83 24.05L13.75 24.08M13.47 23.44L13.75 24.08M14.10 22.96L14.75 23.44M14.73 22.62L14.75 23.44M15.37 22.42L15.75 23.16M16.00 22.35L15.75 23.16M16.63 22.42L16.75 23.25M17.27 22.62L16.75 23.25M17.90 22.96L17.75 23.71M18.53 23.44L17.75 23.71M19.17 24.05L18.75 24.54' fill='none' stroke='%23f8d873' stroke-opacity='.75' stroke-width='.17' stroke-linecap='round'/%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60M12.30 24.80L13.22 23.35L13.88 22.05L14.40 20.81L14.80 19.60M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40M15.55 18.70L15.76 17.50L15.82 16.43L15.78 15.40M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60M19.70 24.80L18.78 23.35L18.12 22.05L17.60 20.81L17.20 19.60M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40M16.45 18.70L16.24 17.50L16.18 16.43L16.22 15.40M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00M17.45 14.60L17.14 13.16L16.95 12.09L16.81 11.13L16.69 10.23L16.60 9.38L16.52 8.56L16.46 7.77L16.40 7.00' fill='none' stroke='%236e4000' stroke-width='.22'/%3E%3Cpath d='M11.80 18.7H20.20M13.95 14.6H18.05' stroke='%23ffe9a8' stroke-width='.28'/%3E%3Cpath d='M12.00 19.18H20.00M14.15 15.02H17.85' stroke='%23f8d873' stroke-opacity='.8' stroke-width='.15' stroke-dasharray='.22 .22'/%3E%3Cpath d='M11.98 19.6A.42 .42 0 0 1 12.82 19.6M12.88 19.6A.42 .42 0 0 1 13.72 19.6M13.78 19.6A.42 .42 0 0 1 14.62 19.6M14.68 19.6A.42 .42 0 0 1 15.52 19.6M15.58 19.6A.42 .42 0 0 1 16.42 19.6M16.48 19.6A.42 .42 0 0 1 17.32 19.6M17.38 19.6A.42 .42 0 0 1 18.22 19.6M18.28 19.6A.42 .42 0 0 1 19.12 19.6M19.18 19.6A.42 .42 0 0 1 20.02 19.6' fill='none' stroke='%23f8d873' stroke-opacity='.85' stroke-width='.16'/%3E%3Cpath d='M16 6.4V4.1' stroke='%237a4700' stroke-width='.32' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='4.0' r='.28' fill='%23ffe08a'/%3E%3Cpath d='M9.1 24.85H12.5M19.5 24.85H22.9' stroke='%236e4000' stroke-width='.4' stroke-linecap='round'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
 :root[data-coin="arc"] .coin, :root .cos-prev .coin.cs-arc { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='%23fff8d6' fill-opacity='.8' transform='translate%28.45 .55%29' fill-rule='evenodd'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='url%28%23s%29' fill-rule='evenodd'/%3E%3Cpath d='M9.4 13.4H22.6M10.6 15.2V21.6M21.4 15.2V21.6M12.2 11.4H19.8' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.35'/%3E%3Cpath d='M13.1 17.6A2.9 2.9 0 0 1 18.9 17.6' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.3'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
@@ -1338,6 +1364,7 @@ html.qf .sp-hud-act { white-space: nowrap; }
       <button type="button" class="tab" role="tab" id="tabGame" aria-selected="false">游戏</button>
       <button type="button" class="tab" role="tab" id="tabShop" aria-selected="false">商店</button>
       <button type="button" class="tab" role="tab" id="tabBook" aria-selected="false">学习进度</button>
+      <button type="button" class="tab" role="tab" id="tabFriends" aria-selected="false">好友</button>
       <button type="button" class="tab" role="tab" id="tabSet" aria-selected="false">设置</button>
     </div>
   </header>
@@ -14558,7 +14585,7 @@ const typeset = () => {};   // 法语页没有公式，不用排版（随机分�
 const $ = id => document.getElementById(id);
 const stage = $("stage"), toc = $("toc"), tocwrap = $("tocwrap"), tocTitle = $("tocTitle");
 const pSet = $("pSet"), pText = $("pText"), pBar = $("pBar"), pScore = $("pScore"), progressEl = $("progress");
-const tabPractice = $("tabPractice"), tabGame = $("tabGame"), tabShop = $("tabShop"), tabBook = $("tabBook"), tabSet = $("tabSet"), boardBar = $("boardBar"), saveNote = $("saveNote");
+const tabPractice = $("tabPractice"), tabGame = $("tabGame"), tabShop = $("tabShop"), tabBook = $("tabBook"), tabFriends = $("tabFriends"), tabSet = $("tabSet"), boardBar = $("boardBar"), saveNote = $("saveNote");
 const layoutEl = document.querySelector(".layout");
 
 // 一段话由几块拼成时，每块各放一个文字节点（英文界面逐块翻译）
@@ -18074,6 +18101,37 @@ if (UI_LANG === "en") i18nLoad({
 "丢掉上次的进度，重新预览、重新开始这一关": "Discard the saved progress and start this level over from the preview",
 "接着上次的进度：前 ${S.i} 题已经做完。": "Picking up where you left off: the first ${S.i} questions are done.",
 "单词闯关会自动保存进度：一关做到一半退出（换板块、关掉页面都行），下次点这一关就从上次那题接着做；关卡地图上会显示做到第几题，题目上方可以“从头开始本关”。": "Word levels now save your progress: if you leave a level halfway (switching sections or closing the page), tapping it again picks up at the question where you stopped. The level map shows how far you got, and you can \"Restart this level\" above the question.",
+"好友": "Friends",
+"排行榜和橱窗要用账号：请在公开网站 cosonder.github.io/quiz 上登录后使用。": "The leaderboard and showcase need an account: log in on the public site cosonder.github.io/quiz to use them.",
+"登录账号后，可以和其他同学比等级、金币和明信片，还能在橱窗里摆出自己的明信片。": "Log in to compare levels, coins and postcards with other learners, and show off your postcards in your showcase.",
+"去登录": "Log in",
+"排行榜还没开通（数据库里还没有 profiles 表）。": "The leaderboard isn't set up yet (the profiles table doesn't exist in the database).",
+"登录已过期，请到“设置”里重新登录。": "Your login has expired. Please log in again in \"Settings\".",
+"排行榜暂时读不到（可能是网络问题），稍后再试。": "Couldn't load the leaderboard (maybe a network problem). Please try again later.",
+"我的资料": "My profile",
+"Lv ${s.level} · ${s.coins} 金币 · ${s.cards} 张明信片": "Lv ${s.level} · ${s.coins} coins · ${s.cards} postcards",
+"保存昵称": "Save nickname",
+"昵称不能为空。": "The nickname can't be empty.",
+"保存中…": "Saving…",
+"已保存。": "Saved.",
+"没保存成功，稍后再试。": "Couldn't save. Please try again later.",
+"昵称": "Nickname",
+" 在排行榜上显示我（只显示昵称和数字，不显示邮箱）": " Show me on the leaderboard (only your nickname and numbers, never your email)",
+"我的橱窗（最多 ${SOC_SHOW} 张，点明信片放进去或拿出来）": "My showcase (up to ${SOC_SHOW}; tap a postcard to add or remove it)",
+"还没有明信片。明信片在“环法之旅”里获得：第一次抵达一站就会寄来那一站的明信片。": "No postcards yet. You get them in \"Tour de France\": the first time you reach a stop, its postcard is sent to you.",
+"排行榜": "Leaderboard",
+"等级": "Level",
+"金币": "Coins",
+"明信片": "Postcards",
+"正在读取…": "Loading…",
+"所有登录过、愿意显示的同学。点一行看 TA 的橱窗。": "Everyone who has logged in and chosen to be shown. Tap a row to see their showcase.",
+"还没有人上榜。": "Nobody on the leaderboard yet.",
+"（我）": " (me)",
+" · 已隐藏": " · hidden",
+"${r.coins} 金币": "${r.coins} coins",
+"${r.cards} 张": "${r.cards} cards",
+"橱窗还是空的。": "The showcase is empty.",
+"新增“好友”页：登录账号后，可以在排行榜上按等级、金币、明信片数和其他同学比一比（只显示昵称，不显示邮箱；不想上榜可以关掉）；还能从自己的明信片里挑最多 6 张摆进橱窗，点别人那一行就能看 TA 的橱窗。": "New \"Friends\" page: once logged in, compare your level, coins and postcard count with other learners on the leaderboard (only nicknames are shown, never emails; you can opt out), and pick up to 6 of your postcards for your showcase. Tap someone's row to see theirs.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21050,6 +21108,7 @@ async function syncNow(force) {
     syncState.last = Date.now(); syncState.err = "";
     syncState.lastUp = up.length; syncState.lastDown = added;
     if (added) await syncReload();
+    if (typeof socPushSoon === "function") socPushSoon();   // 好友排行榜上的资料跟着更新（只有法语页有）
   } catch (e) {
     syncState.err = e.code === "auth" ? "登录已过期，请重新登录" : "同步没成功（可能是网络问题），稍后会自动再试";
     if (e.code === "auth") syncSaveAuth(null);
@@ -21227,6 +21286,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "6.0", d: "2026-11-07", p: "fr", items: [
+    "新增“好友”页：登录账号后，可以在排行榜上按等级、金币、明信片数和其他同学比一比（只显示昵称，不显示邮箱；不想上榜可以关掉）；还能从自己的明信片里挑最多 6 张摆进橱窗，点别人那一行就能看 TA 的橱窗。"] },
   { v: "5.9", d: "2026-11-07", p: "fr", items: [
     "单词闯关会自动保存进度：一关做到一半退出（换板块、关掉页面都行），下次点这一关就从上次那题接着做；关卡地图上会显示做到第几题，题目上方可以“从头开始本关”。"] },
   { v: "5.8", d: "2026-11-06", p: "fr", items: [
@@ -22184,12 +22245,13 @@ function curMod() {
   if (view === "book") return "book";
   if (view === "shop") return "shop";
   if (view === "settings") return "settings";
+  if (view === "friends") return "friends";
   if (view === "tour" || view === "lsp" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "game";
   if (view === "vocab" && vIsGame()) return "game";
   return "practice";
 }
 function curBoard() {
-  if (view === "home" || view === "book" || view === "settings" || view === "shop") return null;
+  if (view === "home" || view === "book" || view === "settings" || view === "shop" || view === "friends") return null;
   if (view === "lsp") return "lsp";
   if (view === "tour" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "tour";
   if (view === "vocab") return vIsGame() ? (vTheme === "spire" || (vSess && vSess.spire) ? "spire" : "levels") : "vocab";
@@ -22203,12 +22265,13 @@ function navSync() {
   tabGame.setAttribute("aria-selected", String(m === "game"));
   tabBook.setAttribute("aria-selected", String(m === "book"));
   tabShop.setAttribute("aria-selected", String(m === "shop"));
+  tabFriends.setAttribute("aria-selected", String(m === "friends"));
   // 锁着的模块：标签上加一把小锁（游戏模式没买或关着 → 游戏；还没做完第一次今日计划 → 商店）
   tabGame.classList.toggle("locked", !gameOn());
   tabShop.classList.toggle("locked", typeof shopOpen === "function" && !shopOpen());
   tabSet.setAttribute("aria-selected", String(m === "settings"));
   if (view !== "book" && toc.parentElement !== tocwrap) tocwrap.append(toc);   // 目录从错题本里放回原处
-  const solo = ["home", "exam", "settings", "tour", "shop", "book"].includes(view) || (view === "vocab" && vIsGame()) || m === "game";
+  const solo = ["home", "exam", "settings", "tour", "shop", "book", "friends"].includes(view) || (view === "vocab" && vIsGame()) || m === "game";
   layoutEl.classList.toggle("solo", solo);
   const kn = document.querySelector(".keys-note"); if (kn) kn.hidden = view !== "quiz";
   boardBar.hidden = !b;
@@ -22381,6 +22444,7 @@ function switchView(v, setKey) {
   if (v === "tour") { renderTour(); return; }
   if (v === "lsp") { renderLsp(); return; }
   if (v === "book") { renderBook(); return; }
+  if (v === "friends") { renderFriends(); return; }
   if (setKey) { startSet(setKey); navSync(); return; }
   renderToc();
   if (qIntro || !set) { renderBoardIntro(); return; }
@@ -22395,6 +22459,7 @@ tabGame.addEventListener("click", () => goHome("game"));
 tabBook.addEventListener("click", () => { bookCache = null; switchView("book"); });
 tabSet.addEventListener("click", () => { if (view !== "settings") switchView("settings"); });
 tabShop.addEventListener("click", () => switchView("shop"));
+tabFriends.addEventListener("click", () => switchView("friends"));
 // ---------- 商店：单独一个模块 ----------
 // 1. 完成第一次今日计划之前商店锁着（答对得的金币照常在后台积累）。
 // 2. 商店开放后只卖一件东西：游戏模式（100 金币）。买了才有每日任务、宝箱、道具、外观、游戏模块等。
@@ -22564,6 +22629,148 @@ function featShop(note) {
   });
   wrap.append(grid, el("p", "shop-note", "买一次永久拥有，跟着答题记录同步。"));
   return wrap;
+}
+// ---------- 好友：排行榜 + 橱窗（只在公开网站、登录后可用；数据在 Supabase 的 profiles 表，见 quiz-site/supabase/schema.sql） ----------
+// 每个登录用户上传一行公开资料：昵称、等级、经验、金币、明信片数、橱窗里摆的明信片（最多 6 张）。不上传邮箱。
+// 本机设置（昵称、是否隐藏、橱窗）存在 fq-social；资料在同步完成、打开好友页、改设置时上传。
+const SOC_SHOW = 6;
+let socSort = "xp", socRows = null, socErr = "", socOpen = null, socPushT = 0;
+function socMe() {
+  let x = null; try { x = JSON.parse(localStorage.getItem("fq-social") || "null"); } catch (e) {}
+  x = x || {};
+  const a = typeof syncAuth === "function" ? syncAuth() : null;
+  if (!x.nick) x.nick = "同学 " + (a && a.uid ? a.uid.slice(0, 4).toUpperCase() : "");
+  if (!Array.isArray(x.showcase)) x.showcase = [];
+  return x;
+}
+function socSave(x) { try { localStorage.setItem("fq-social", JSON.stringify(x)); } catch (e) {} }
+// 我现在的数字（和页面上显示的一样）
+function socStats() {
+  const led = gameLedger(), ok = progEnsure();
+  const xp = ok ? prog.xp : 0;
+  const cards = [...led.cards].filter(id => albumCardOf(id));
+  return { level: xpLevel(xp).lv, xp, coins: Math.max(0, led.coins), cards: cards.length, owned: new Set(cards) };
+}
+async function socPush() {
+  if (!SYNC_ON || !syncAuth() || !navigator.onLine) return;
+  const me = socMe(), s = socStats();
+  const showcase = me.showcase.filter(id => s.owned.has(id)).slice(0, SOC_SHOW);
+  const a = syncAuth();
+  await syncFetch("/rest/v1/profiles?on_conflict=user_id", {
+    method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" },
+    body: JSON.stringify({ user_id: a.uid, nick: me.nick.slice(0, 16), level: s.level, xp: s.xp, coins: s.coins, cards: s.cards, showcase, hidden: !!me.hidden, updated_at: new Date().toISOString() }),
+  });
+}
+// 同步完成后顺手更新一次（攒一下，免得连续触发）
+function socPushSoon() { clearTimeout(socPushT); socPushT = setTimeout(() => socPush().catch(() => {}), 2000); }
+async function socLoad() {
+  const order = { xp: "xp.desc", coins: "coins.desc", cards: "cards.desc" }[socSort];
+  socRows = await syncFetch(`/rest/v1/profiles?select=user_id,nick,level,xp,coins,cards,showcase,hidden&order=${order},updated_at.asc&limit=100`);
+}
+
+function renderFriends() {
+  stage.innerHTML = "";
+  if (!SYNC_ON) {
+    const c = el("section", "card"); c.append(el("h3", null, "好友"), el("p", "sub", "排行榜和橱窗要用账号：请在公开网站 cosonder.github.io/quiz 上登录后使用。")); stage.append(c); return;
+  }
+  if (!syncAuth()) {
+    const c = el("section", "card"); c.append(el("h3", null, "好友"), el("p", "sub", "登录账号后，可以和其他同学比等级、金币和明信片，还能在橱窗里摆出自己的明信片。"));
+    const go = el("button", "btn", "去登录"); go.type = "button"; go.addEventListener("click", () => switchView("settings"));
+    const row = el("div", "actions"); row.append(go); c.append(row); stage.append(c); return;
+  }
+  stage.append(socMyCard(), socBoardCard());
+  socPush().catch(() => {}).then(() => socLoad()).then(() => { socErr = ""; socDrawBoard(); }).catch(e => {
+    socErr = e.status === 404 || /profiles/.test(e.message) ? "排行榜还没开通（数据库里还没有 profiles 表）。" : e.code === "auth" ? "登录已过期，请到“设置”里重新登录。" : "排行榜暂时读不到（可能是网络问题），稍后再试。";
+    socDrawBoard();
+  });
+}
+// 我的资料：昵称、是否显示、橱窗
+function socMyCard() {
+  const me = socMe(), s = socStats();
+  const card = el("section", "card soc-me");
+  const head = el("div", "plan-head"); head.append(el("h3", null, "我的资料"), el("span", "tag plain", `Lv ${s.level} · ${s.coins} 金币 · ${s.cards} 张明信片`));
+  card.append(head);
+  const row = el("div", "soc-row");
+  const nick = el("input", "soc-nick"); nick.type = "text"; nick.maxLength = 16; nick.value = me.nick; nick.id = "socNick"; nick.setAttribute("aria-label", "昵称");
+  const save = el("button", "btn ghost", "保存昵称"); save.type = "button"; save.id = "socNickSave";
+  const msg = el("span", "soc-msg");
+  save.addEventListener("click", async () => {
+    const v = nick.value.trim().slice(0, 16); if (!v) { msg.textContent = "昵称不能为空。"; return; }
+    const x = socMe(); x.nick = v; socSave(x); msg.textContent = "保存中…";
+    try { await socPush(); msg.textContent = "已保存。"; await socLoad(); socDrawBoard(); } catch (e) { msg.textContent = "没保存成功，稍后再试。"; }
+  });
+  row.append(el("label", "soc-lab", "昵称"), nick, save, msg);
+  const hide = el("label", "soc-hide"); const cb = el("input"); cb.type = "checkbox"; cb.checked = !me.hidden; cb.id = "socShow";
+  cb.addEventListener("change", async () => { const x = socMe(); x.hidden = !cb.checked; socSave(x); try { await socPush(); await socLoad(); socDrawBoard(); } catch (e) {} });
+  hide.append(cb, document.createTextNode(" 在排行榜上显示我（只显示昵称和数字，不显示邮箱）"));
+  card.append(row, hide);
+  // 橱窗：从自己的明信片里选最多 6 张
+  card.append(el("h4", "soc-h4", `我的橱窗（最多 ${SOC_SHOW} 张，点明信片放进去或拿出来）`));
+  const shelf = el("div", "soc-shelf"); shelf.id = "socShelf";
+  const pick = el("div", "soc-pick");
+  const draw = () => {
+    const x = socMe(), sel = x.showcase.filter(id => s.owned.has(id));
+    shelf.textContent = "";
+    for (let i = 0; i < SOC_SHOW; i++) {
+      const id = sel[i], slot = el("div", "soc-slot" + (id ? "" : " empty"));
+      if (id) { const c = albumCardOf(id); slot.append(albumArt(c, "pc-art"), el("span", "soc-city", c.city)); slot.title = c.city + " · " + c.zh; }
+      shelf.append(slot);
+    }
+    pick.textContent = "";
+    if (!s.cards) { pick.append(el("p", "sub", "还没有明信片。明信片在“环法之旅”里获得：第一次抵达一站就会寄来那一站的明信片。")); return; }
+    [...s.owned].forEach(id => {
+      const c = albumCardOf(id), on = sel.includes(id);
+      const b = el("button", "soc-card" + (on ? " on" : "")); b.type = "button"; b.title = c.city + " · " + c.zh; b.setAttribute("aria-pressed", String(on));
+      b.append(albumArt(c, "pc-art"), el("span", "soc-city", c.city));
+      b.addEventListener("click", () => {
+        const y = socMe(); let list = y.showcase.filter(v => s.owned.has(v));
+        if (list.includes(id)) list = list.filter(v => v !== id); else if (list.length < SOC_SHOW) list.push(id); else return;
+        y.showcase = list; socSave(y); draw(); socPushSoon();
+      });
+      pick.append(b);
+    });
+  };
+  draw();
+  card.append(shelf, pick);
+  return card;
+}
+function socBoardCard() {
+  const card = el("section", "card soc-board");
+  const head = el("div", "plan-head"); head.append(el("h3", null, "排行榜"));
+  const sw = el("div", "tag-mode soc-sort");
+  [["xp", "等级"], ["coins", "金币"], ["cards", "明信片"]].forEach(([k, t]) => {
+    const b = el("button", null, t); b.type = "button"; b.setAttribute("aria-pressed", String(socSort === k));
+    b.addEventListener("click", async () => { socSort = k; sw.querySelectorAll("button").forEach(x => x.setAttribute("aria-pressed", String(x === b))); try { await socLoad(); } catch (e) {} socDrawBoard(); });
+    sw.append(b);
+  });
+  head.append(sw);
+  const list = el("div", "soc-list"); list.id = "socList"; list.append(el("p", "sub", "正在读取…"));
+  card.append(head, el("p", "sub", "所有登录过、愿意显示的同学。点一行看 TA 的橱窗。"), list);
+  return card;
+}
+function socDrawBoard() {
+  const list = document.getElementById("socList"); if (!list) return;
+  list.textContent = "";
+  if (socErr) { list.append(el("p", "sub", socErr)); return; }
+  if (!socRows || !socRows.length) { list.append(el("p", "sub", "还没有人上榜。")); return; }
+  const me = syncAuth() && syncAuth().uid;
+  socRows.forEach((r, i) => {
+    const row = el("button", "soc-r" + (r.user_id === me ? " me" : "") + (socOpen === r.user_id ? " open" : "")); row.type = "button";
+    const rank = el("span", "soc-rank", i < 3 ? ["🥇", "🥈", "🥉"][i] : String(i + 1));
+    const name = el("span", "soc-name", r.nick + (r.user_id === me ? "（我）" : "") + (r.hidden ? " · 已隐藏" : ""));
+    const nums = el("span", "soc-nums");
+    nums.append(el("b", socSort === "xp" ? "hl" : null, `Lv ${r.level}`), el("span", socSort === "coins" ? "hl" : null, `${r.coins} 金币`), el("span", socSort === "cards" ? "hl" : null, `${r.cards} 张`));
+    row.append(rank, name, nums);
+    row.addEventListener("click", () => { socOpen = socOpen === r.user_id ? null : r.user_id; socDrawBoard(); });
+    list.append(row);
+    if (socOpen === r.user_id) {
+      const sh = el("div", "soc-shelf small");
+      const ids = (r.showcase || []).filter(id => albumCardOf(id));
+      if (!ids.length) sh.append(el("p", "sub", "橱窗还是空的。"));
+      ids.forEach(id => { const c = albumCardOf(id); const b = el("button", "soc-slot"); b.type = "button"; b.title = c.city + " · " + c.zh; b.append(albumArt(c, "pc-art"), el("span", "soc-city", c.city)); b.addEventListener("click", () => albumView(c)); sh.append(b); });
+      list.append(sh);
+    }
+  });
 }
 // ---------- 做题全屏：出现题目卡片时进入（答题、背单词、变位、巴黎塔尖的战斗和 Boss），一屏放下，页面不能上下滚动 ----------
 // 右上角的小图标：返回上一级（答题 / 变位回到带目录的页面，背单词回到词表或关卡地图），战斗里是退出战斗（回到地图，战斗保留）。
