@@ -18199,6 +18199,7 @@ if (UI_LANG === "en") i18nLoad({
 "这个难度本来就显示考点": "Test points are already shown at this difficulty",
 "这道题的考点已经显示了": "This question's test points are already shown",
 "巴黎塔尖修复与调整：Boss 题上方的考点标签（语法 · …、变位 · …）只在 A1、A2 难度显示，B1 起隐藏，新增药水“马鞭草茶”可以看当前这道题的考点；遗物在状态条里单独一排，放不下可以左右拖动，不会超出屏幕；全屏答题时（尤其开着背景皮肤）答题后的解析区可以正常上下滑动了。": "Paris Spire fixes: the test-point tags above boss questions (grammar · …, tense · …) now only show at A1 and A2; from B1 they're hidden, and a new potion, \"Verbena tea\", reveals them for the current question. Relics get their own row in the status bar and can be dragged sideways, so it no longer runs off the screen. In full-screen mode (especially with a background skin) the explanation box after answering scrolls properly again.",
+"巴黎塔尖：两个事件按歌词修正了标题——「本是浪人」改为「我本浪人」，「千亿晚，亿天」改为「千忆晚，千忆天」，事件描述也跟着调整。": "Paris Spire: two event titles were corrected to match the lyrics they quote, \"A Wanderer at Heart\" and \"A Thousand Nights, a Thousand Days to Remember\", with their descriptions adjusted to match.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -18492,8 +18493,8 @@ if (UI_LANG === "en") i18nLoad({
 "交出：${SP_RELICS[out].name}": "Gave: ${SP_RELICS[out].name}",
 "换来：${g}": "Got: ${g}",
 "不换": "No trade",
-"本是浪人": "Born a Wanderer",
-"你想起自己走过的那些城市——你本来是个浪人，在每座城市只停一晚。现在还记得多少路牌上的词？": "You think of all the cities you've passed through — you were a wanderer, staying just one night in each. How many words from the street signs do you still remember?",
+"我本浪人": "A Wanderer at Heart",
+"你想起自己走遍的那些城市——你说你本是浪人，在每座城市只停一晚。现在还记得多少路牌上的词？": "You think of all the cities you've wandered through — a wanderer at heart, you said, staying just one night in each. How many words from the street signs do you still remember?",
 "回想一下": "Think back",
 "2 道单词题：全对得 30 金币并回 1 颗心": "2 word questions: all correct earns 30 coins and restores 1 heart",
 "30 金币": "30 coins",
@@ -18528,8 +18529,8 @@ if (UI_LANG === "en") i18nLoad({
 "火光一闪": "A flash of flame",
 "心的上限 -1": "Max hearts -1",
 "让火继续烧着": "Let the fire keep burning",
-"千亿晚，亿天": "Countless Nights and Days",
-"从前像风声一样漂泊，现在只想停下来。塔尖下的小咖啡馆还亮着灯，老板说：今晚和明天，都可以留下。": "You used to drift like the sound of the wind; now you just want to stop. The little café beneath the spire still has its lights on, and the owner says: tonight and tomorrow, you're welcome to stay.",
+"千忆晚，千忆天": "A Thousand Nights, a Thousand Days to Remember",
+"从前像风声一样飘泊，现在只想停下来，把每一晚、每一天都记住。塔尖下的小咖啡馆还亮着灯，老板说：今晚和明天，都可以留下。": "You used to drift like the sound of the wind; now you just want to stop and remember every night and every day. The little café beneath the spire still has its lights on, and the owner says: tonight and tomorrow, you're welcome to stay.",
 "留下来": "Stay",
 "心回满，但身上的金币全部花光": "Hearts fully restored, but you spend all your coins",
 "今夜，明天": "Tonight, tomorrow",
@@ -21354,6 +21355,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "6.7", d: "2026-11-07", p: "fr", items: [
+    "巴黎塔尖：两个事件按歌词修正了标题——「本是浪人」改为「我本浪人」，「千亿晚，亿天」改为「千忆晚，千忆天」，事件描述也跟着调整。"] },
   { v: "6.6", d: "2026-11-07", p: "fr", items: [
     "巴黎塔尖修复与调整：Boss 题上方的考点标签（语法 · …、变位 · …）只在 A1、A2 难度显示，B1 起隐藏，新增药水“马鞭草茶”可以看当前这道题的考点；遗物在状态条里单独一排，放不下可以左右拖动，不会超出屏幕；全屏答题时（尤其开着背景皮肤）答题后的解析区可以正常上下滑动了。"] },
   { v: "6.5", d: "2026-11-07", p: "fr", items: [
@@ -26799,10 +26802,10 @@ SP_EVENTS.push(
     ["不换", "", spDone]] },
 );
 // 只在某几层出现的事件：act 是层的下标（0 起），weight 越大越容易遇到。
-// 王菲《巴黎塔尖》里的意象做成的事件：浪人、风中诗、无意的相遇、无需语言、灵魂如火、千亿晚，以及第三层的“不必攀登巴黎塔尖”
+// 王菲《巴黎塔尖》里的意象做成的事件：我本浪人、风中诗、无意的相遇、完全无需语言、灵魂如火、千忆晚，以及第三层的“不必攀登巴黎塔尖”
 SP_EVENTS.push(
-  { t: "本是浪人", img: "skins/spire/ev-wanderer.webp", act: [0], weight: 2, d: "你想起自己走过的那些城市——你本来是个浪人，在每座城市只停一晚。现在还记得多少路牌上的词？", c: () => [
-    ["回想一下", "2 道单词题：全对得 30 金币并回 1 颗心", () => spMini(spWords(2), "本是浪人", (ok, n) => {
+  { t: "我本浪人", img: "skins/spire/ev-wanderer.webp", act: [0], weight: 2, d: "你想起自己走遍的那些城市——你说你本是浪人，在每座城市只停一晚。现在还记得多少路牌上的词？", c: () => [
+    ["回想一下", "2 道单词题：全对得 30 金币并回 1 颗心", () => spMini(spWords(2), "我本浪人", (ok, n) => {
       const got = ok === n ? (spRun.gold += 30, ["30 金币", `回了 ${spHeal(1)} 颗心`]) : ["那些城市的名字，有点模糊了……"]; spSave(); spReward(ok === n ? "一座座城市都想起来了" : "记忆随风散了", got); })],
     ["不回头，往上走", "", spDone]] },
   { t: "风中诗", img: "skins/spire/ev-poem.webp", act: [0, 1], weight: 2, d: "一阵风从塞纳河上吹来，卷起一页写着诗的纸，停在你脚边。上面有一个词你好像认得。", c: () => [
@@ -26817,7 +26820,7 @@ SP_EVENTS.push(
   { t: "灵魂如火", img: "skins/spire/ev-fire.webp", act: [1, 2], weight: 1, d: "塔上的风很冷，心里却像有一团火在烧。要不要把这团火交出去，换一件东西？", c: () => [
     ["燃烧 1 颗心", "失去 1 颗心的上限，换一件随机遗物", () => { const r = spRun; r.max--; r.hp = Math.min(r.hp, r.max); const g = spGain(spPick(spFreeRelics())); spSave(); spReward("火光一闪", ["心的上限 -1", "遗物：" + g]); }, spRun.max <= 2],
     ["让火继续烧着", "", spDone]] },
-  { t: "千亿晚，亿天", img: "skins/spire/ev-nights.webp", act: [2], weight: 1, d: "从前像风声一样漂泊，现在只想停下来。塔尖下的小咖啡馆还亮着灯，老板说：今晚和明天，都可以留下。", c: () => [
+  { t: "千忆晚，千忆天", img: "skins/spire/ev-nights.webp", act: [2], weight: 1, d: "从前像风声一样飘泊，现在只想停下来，把每一晚、每一天都记住。塔尖下的小咖啡馆还亮着灯，老板说：今晚和明天，都可以留下。", c: () => [
     ["留下来", "心回满，但身上的金币全部花光", () => { const r = spRun, n = spHeal(r.max), g = r.gold; r.gold = 0; spSave(); spHud(); spReward("今夜，明天", [`回了 ${n} 颗心`, `花掉 ${g} 金币`]); }],
     ["道一声晚安，继续上路", "", spDone]] },
   { t: "不必攀登巴黎塔尖", img: "skins/spire/ev-elevator.webp", act: [2], weight: 3, d: "风很大，台阶还很长。有人在楼梯拐角对你说：不必攀登巴黎塔尖，诗一般的风光已经在眼前了——要是想去，电梯就在旁边，可以直接到塔尖去见守护者。只是这一路上的宝箱、商人和咖啡馆，就都错过了。", c: () => [
