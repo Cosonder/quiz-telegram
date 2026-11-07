@@ -1367,6 +1367,11 @@ html.qf .sp-hud-act { white-space: nowrap; }
   html.qf #stage > section.v-card > .v-q.v-stack > .v-layer { justify-content: flex-start; }
   html.qf #stage > section.v-card > .explain { flex: none !important; height: clamp(3rem, 8vh, 5.2rem) !important; }
 }
+/* 手机全屏语法题：同样把空白放到题目上方，选项挪到屏幕下半部分；解析区固定高度（内容长就在里面滚动），答完选项不动 */
+@media (max-width: 600px) {
+  html.qf #stage > section.q-card > .q { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+  html.qf #stage > section.q-card > .explain { flex: none !important; height: clamp(6.5rem, 24vh, 12rem) !important; }
+}
 @media (max-width: 600px) and (max-height: 700px) {
   html.qf #stage .v-rv-img { width: 72px; }
   html.qf #stage .v-rv-word { font-size: 1.25rem; }
@@ -18158,6 +18163,7 @@ if (UI_LANG === "en") i18nLoad({
 " 例句在上面。": " The example is shown above.",
 " 正确答案是 ${vLabel(w)}。": " The correct answer is ${vLabel(w)}.",
 "手机上全屏背单词时，选项和“下一题”挪到屏幕下半部分，拇指更好点；题目和解析在上方，答完选项依然不动。": "In full-screen vocabulary practice on phones, the options and \"Next\" button sit in the lower half of the screen for easier thumb reach; the question and explanation stay on top, and the options still don't move after you answer.",
+"手机上全屏做语法题（和听力题）时，选项也挪到屏幕下半部分；解析区固定高度，答完选项不动，解析长了在框里滚动。": "In full-screen grammar (and listening) questions on phones, the options now also sit in the lower half of the screen; the explanation box has a fixed height (long explanations scroll inside it), so the options don't move after you answer.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21312,6 +21318,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "6.3", d: "2026-11-07", p: "fr", items: [
+    "手机上全屏做语法题（和听力题）时，选项也挪到屏幕下半部分；解析区固定高度，答完选项不动，解析长了在框里滚动。"] },
   { v: "6.2", d: "2026-11-07", p: "fr", items: [
     "手机上全屏背单词时，选项和“下一题”挪到屏幕下半部分，拇指更好点；题目和解析在上方，答完选项依然不动。"] },
   { v: "6.1", d: "2026-11-07", p: "fr", items: [
