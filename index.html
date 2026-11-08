@@ -618,6 +618,13 @@ h1 { font-family: var(--display); font-weight: 900; font-size: 1.6rem; line-heig
 .cj-q { min-height: 0; display: flex; flex-wrap: wrap; align-items: baseline; gap: 0 .3em; }
 .cj-q .cj-blank { color: var(--accent); }
 .cj-q .cj-who { flex-basis: 100%; font-family: inherit; font-size: .8rem; font-weight: 400; color: var(--muted); }
+.cj-q .cj-inf { font-weight: 900; }
+.cj-q .cj-tail { white-space: nowrap; }
+/* 箭头上写时态：avoir —直陈式现在时→ il ___ */
+.cj-arrow { display: inline-flex; flex-direction: column; align-items: stretch; vertical-align: middle; margin: 0 .25em; min-width: 3em; align-self: center; }
+.cj-arrow-t { font-family: var(--body); font-size: .62em; font-weight: 700; color: var(--accent); text-align: center; padding: 0 .5em; white-space: nowrap; line-height: 1.2; }
+.cj-arrow-line { position: relative; height: 2px; background: currentColor; margin: 2px 6px 0 0; opacity: .75; }
+.cj-arrow-line::after { content: ""; position: absolute; right: -6px; top: -4px; border: 5px solid transparent; border-left: 7px solid currentColor; border-right: 0; }
 .cj-card .opts { height: auto; }
 .cj-type { display: flex; gap: 8px; }
 .cj-type input { flex: 1; min-width: 0; font: inherit; font-size: 1.15rem; color: var(--fg); background: var(--card); border: 1.5px solid var(--line); border-radius: 10px; padding: 8px 12px; }
@@ -1405,18 +1412,21 @@ html.qf .sp-hud-act { white-space: nowrap; }
 /* 答对后再点正确答案进入下一题：让点击穿过已经 disabled 的正确选项（见 focus.js） */
 .opt.correct:disabled, .v-pic.correct:disabled { pointer-events: none; }
 :is(.q-card, .v-card, .cj-card, .sp-boss, .sp-mini) :is(.opt, .v-pic).correct:disabled { cursor: pointer; }
-/* 手机全屏背单词：把空白放到题目区（上方），选项和“下一题”压到屏幕下半部分，拇指好点；
-   答完后的说明区固定高度，答完前后选项都不动 */
+/* 全屏做题（手机、iPad、电脑）：题目放在选项上方的空白里，上下左右居中；选项、解析和“下一题”在下面。
+   解析区固定高度（内容长就在里面滚动），答完前后选项不动 */
+html.qf #stage > section.v-card > .v-q { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
+html.qf #stage > section.v-card > .v-q.v-stack { align-content: safe center; }
+html.qf #stage > section.v-card > .v-q.v-stack > .v-layer { justify-content: center; }
+html.qf #stage > section.q-card > .q, html.qf #stage > section.cj-card > .q { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain;
+  display: flex; flex-direction: column; justify-content: safe center; align-items: center; text-align: center; }
+html.qf #stage > section.cj-card > .q.cj-q { flex-direction: row; flex-wrap: wrap; align-content: safe center; justify-content: center; align-items: baseline; }
+html.qf #stage > section.v-card > .explain { flex: none !important; height: clamp(4.5rem, 14vh, 8rem) !important; }
+html.qf #stage > section.cj-card > .explain { flex: none !important; height: clamp(6rem, 20vh, 11rem) !important; }
+html.qf #stage > section.q-card > .explain { flex: none !important; height: clamp(8rem, 28vh, 16rem) !important; }
 @media (max-width: 600px) {
-  html.qf #stage > section.v-card > .v-q { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
-  html.qf #stage > section.v-card > .v-q.v-stack { align-content: start; }
-  html.qf #stage > section.v-card > .v-q.v-stack > .v-layer { justify-content: flex-start; }
-  html.qf #stage > section.v-card > .explain { flex: none !important; height: clamp(3rem, 8vh, 5.2rem) !important; }
-}
-/* 手机全屏语法题：同样把空白放到题目上方，选项挪到屏幕下半部分；解析区固定高度（内容长就在里面滚动），答完选项不动 */
-@media (max-width: 600px) {
-  html.qf #stage > section.q-card > .q { flex: 1 1 auto; min-height: 0; overflow-y: auto; overscroll-behavior: contain; }
-  html.qf #stage > section.q-card > .explain { flex: none !important; height: clamp(6.5rem, 24vh, 12rem) !important; }
+  html.qf #stage > section.v-card > .explain { height: clamp(3rem, 8vh, 5.2rem) !important; }
+  html.qf #stage > section.cj-card > .explain { height: clamp(5rem, 16vh, 9rem) !important; }
+  html.qf #stage > section.q-card > .explain { height: clamp(6.5rem, 24vh, 12rem) !important; }
 }
 @media (max-width: 600px) and (max-height: 700px) {
   html.qf #stage .v-rv-img { width: 72px; }
@@ -18228,6 +18238,7 @@ if (UI_LANG === "en") i18nLoad({
 "${x.text}，${x.v}/${x.target}，去做": "${x.text}, ${x.v}/${x.target}, go",
 "每日任务的每一行都可以点了：没做完的任务旁边有“去做 →”，点一下直接跳到对应的练习（答题类任务先做今日计划，复习任务去复习到期的题，变位、背单词任务去对应的板块）。": "Every daily quest row is now tappable: unfinished quests show \"Go →\" and take you straight to the right practice (answer-count quests start today's plan, the review quest opens due reviews, and conjugation / vocabulary quests open those sections).",
 "好友页的昵称、“在排行榜上显示我”和橱窗里的明信片现在跟着账号同步：换一台设备登录，资料都还在；在任意一台设备上修改，其他设备同步后也会更新。": "Your Friends-page nickname, the \"show me on the leaderboard\" setting and your showcase postcards now sync with your account: log in on another device and they're all there, and changes on any device show up on the others after syncing.",
+"全屏做题时（手机、iPad、电脑），题目放在选项上方的空白里上下左右居中，不再贴着顶部；动词变位题改成“不定式 →时态→ 主语 ___”的写法，比如 avoir 箭头上写着“直陈式现在时”，后面是 il ___。": "In full-screen practice (phone, iPad, computer), the question now sits centred in the space above the options instead of stuck to the top. Conjugation questions now read \"infinitive —tense→ subject ___\", e.g. avoir with \"present indicative\" written on the arrow, followed by il ___.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21410,6 +21421,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "7.2", d: "2026-11-08", p: "fr", items: [
+    "全屏做题时（手机、iPad、电脑），题目放在选项上方的空白里上下左右居中，不再贴着顶部；动词变位题改成“不定式 →时态→ 主语 ___”的写法，比如 avoir 箭头上写着“直陈式现在时”，后面是 il ___。"] },
   { v: "7.1", d: "2026-11-08", p: "fr", items: [
     "好友页的昵称、“在排行榜上显示我”和橱窗里的明信片现在跟着账号同步：换一台设备登录，资料都还在；在任意一台设备上修改，其他设备同步后也会更新。"] },
   { v: "7.0", d: "2026-11-08", items: [
@@ -27857,21 +27870,23 @@ function cjQuestion() {
   cjSess.q = q; cjSess.answered = false; cjSess.cursor = -1;
   const card = el("section", "card cj-card");
   const tags = el("div", "tagrow");
-  tags.append(el("span", "tag", CJ_TZH[q.t]), el("span", "tag plain", CJ_GROUPS.find(g => g[0] === q.v.g)[1]),
+  tags.append(el("span", "tag", CJ_GROUPS.find(g => g[0] === q.v.g)[1]),
     el("span", "tag plain", `第 ${cjSess.k + 1}${cjN ? "/" + cjN : ""} 题 · 对 ${cjSess.right}`));
   const m = memOf(cjId(q.v.v, q.t));
   if (m.last) tags.append(el("span", "tag plain", `记忆 ${m.lv} 级`));
   tags.append(comboBadge("conj"));
   card.append(tags);
-  const verb = el("div", "cj-verb");
-  verb.append(el("b", null, q.v.v), el("span", null, UI_LANG === "en" ? "" : q.v.zh));   // 动词只有中文释义：英文界面不显示
-  card.append(verb);
+  // 题目写成“不定式 —时态→ 主语 ___”：avoir —直陈式现在时→ il ___（时态写在箭头上，像 \xrightarrow）
   const prompt = el("h2", "q cj-q");
   const full = cjFull(q.t, q.i, q.fem, "\u0001");
   const [pre, post] = full.split("\u0001");
-  prompt.append(document.createTextNode(pre.replace(/j'$/, "je ")), el("span", "cj-blank", "___"), document.createTextNode(post));
+  const arrow = el("span", "cj-arrow"); arrow.append(el("span", "cj-arrow-t", CJ_TZH[q.t]), el("span", "cj-arrow-line"));
+  arrow.setAttribute("aria-label", "变成" + CJ_TZH[q.t]);
+  const tail = el("span", "cj-tail"); tail.append(document.createTextNode(pre.replace(/j'$/, "je ")), el("span", "cj-blank", "___"), document.createTextNode(post));
+  prompt.append(el("span", "cj-inf", q.v.v), arrow, tail);
   const who = q.t === "impe" ? `命令式 · 对 ${["", "tu", "", "nous", "vous"][q.i]} 说` : q.fem && ![2, 5].includes(q.i) ? "主语是女性" : "";
   if (who) prompt.append(el("small", "cj-who", who));
+  if (UI_LANG !== "en" && q.v.zh) prompt.append(el("small", "cj-who cj-mean", q.v.zh));   // 动词只有中文释义：英文界面不显示
   card.append(prompt);
   const fb = el("div", "explain pending cj-fb", cjCfg.mode === "pick" ? "选出正确的变位形式" : "输入动词部分（不用写主语），回车提交");
   if (cjCfg.mode === "pick") {
