@@ -18227,6 +18227,7 @@ if (UI_LANG === "en") i18nLoad({
 "去做这个任务": "Do this quest",
 "${x.text}，${x.v}/${x.target}，去做": "${x.text}, ${x.v}/${x.target}, go",
 "每日任务的每一行都可以点了：没做完的任务旁边有“去做 →”，点一下直接跳到对应的练习（答题类任务先做今日计划，复习任务去复习到期的题，变位、背单词任务去对应的板块）。": "Every daily quest row is now tappable: unfinished quests show \"Go →\" and take you straight to the right practice (answer-count quests start today's plan, the review quest opens due reviews, and conjugation / vocabulary quests open those sections).",
+"好友页的昵称、“在排行榜上显示我”和橱窗里的明信片现在跟着账号同步：换一台设备登录，资料都还在；在任意一台设备上修改，其他设备同步后也会更新。": "Your Friends-page nickname, the \"show me on the leaderboard\" setting and your showcase postcards now sync with your account: log in on another device and they're all there, and changes on any device show up on the others after syncing.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21409,6 +21410,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "7.1", d: "2026-11-08", p: "fr", items: [
+    "好友页的昵称、“在排行榜上显示我”和橱窗里的明信片现在跟着账号同步：换一台设备登录，资料都还在；在任意一台设备上修改，其他设备同步后也会更新。"] },
   { v: "7.0", d: "2026-11-08", items: [
     "每日任务的每一行都可以点了：没做完的任务旁边有“去做 →”，点一下直接跳到对应的练习（答题类任务先做今日计划，复习任务去复习到期的题，变位、背单词任务去对应的板块）。"] },
   { v: "6.9", d: "2026-11-08", p: "fr", items: [
@@ -22775,18 +22778,50 @@ function featShop(note) {
 }
 // ---------- 好友：排行榜 + 橱窗（只在公开网站、登录后可用；数据在 Supabase 的 profiles 表，见 quiz-site/supabase/schema.sql） ----------
 // 每个登录用户上传一行公开资料：昵称、等级、经验、金币、明信片数、橱窗里摆的明信片（最多 6 张）。不上传邮箱。
-// 本机设置（昵称、是否隐藏、橱窗）存在 fq-social；资料在同步完成、打开好友页、改设置时上传。
+// 自己的设置（昵称、是否隐藏、橱窗）：本机存一份（fq-social），同时记成 game 集合里的 "social" 记录跟着账号同步，
+// 两边按修改时间 at 取新的那份——换设备登录后昵称和橱窗都还在。资料（含数字）在同步完成、打开好友页、改设置时上传到排行榜。
 const SOC_SHOW = 6;
-let socSort = "xp", socRows = null, socErr = "", socOpen = null, socPushT = 0;
+let socSort = "xp", socRows = null, socErr = "", socOpen = null, socPushT = 0, socRecT = 0;
+function socRemote() {
+  if (typeof gameRaw === "undefined") return null;
+  let best = null;
+  gameRaw.forEach(g => { if (g.kind === "social" && (!best || String(g.at) > String(best.at))) best = g; });
+  return best;
+}
 function socMe() {
   let x = null; try { x = JSON.parse(localStorage.getItem("fq-social") || "null"); } catch (e) {}
   x = x || {};
+  const r = socRemote();
+  if (r && (Date.parse(r.at) || 0) > (x.at || 0)) x = { nick: r.nick, hidden: !!r.hidden, showcase: Array.isArray(r.showcase) ? r.showcase.slice(0, SOC_SHOW) : [], at: Date.parse(r.at) || 0 };
   const a = typeof syncAuth === "function" ? syncAuth() : null;
   if (!x.nick) x.nick = "同学 " + (a && a.uid ? a.uid.slice(0, 4).toUpperCase() : "");
   if (!Array.isArray(x.showcase)) x.showcase = [];
   return x;
 }
-function socSave(x) { try { localStorage.setItem("fq-social", JSON.stringify(x)); } catch (e) {} }
+// 用户改了设置：本机马上存；同步记录攒一下再记（连点几张明信片只记一条）
+function socSave(x) {
+  x.at = Date.now();
+  try { localStorage.setItem("fq-social", JSON.stringify(x)); } catch (e) {}
+  clearTimeout(socRecT);
+  socRecT = setTimeout(socRecord, 1500);
+}
+function socRecord() {
+  clearTimeout(socRecT);
+  let x = null; try { x = JSON.parse(localStorage.getItem("fq-social") || "null"); } catch (e) {}
+  if (!x || !x.at || typeof gameAdd !== "function") return;
+  const r = socRemote();
+  if (r && (Date.parse(r.at) || 0) >= x.at) return;   // 云端已经是这一份或更新的
+  gameAdd({ kind: "social", nick: String(x.nick || "").slice(0, 16), hidden: !!x.hidden, showcase: (x.showcase || []).slice(0, SOC_SHOW), at: new Date(x.at).toISOString() });
+}
+addEventListener("pagehide", socRecord);
+// 旧版本只存在本机的设置：账号里还没有 "social" 记录时，记一份上去（以后换设备就能带过去）
+function socMigrate() {
+  if (socRemote()) return;
+  let x = null; try { x = JSON.parse(localStorage.getItem("fq-social") || "null"); } catch (e) {}
+  if (!x || (!x.nick && !(x.showcase || []).length && !x.hidden)) return;
+  if (!x.at) { x.at = Date.now(); try { localStorage.setItem("fq-social", JSON.stringify(x)); } catch (e) {} }
+  socRecord();
+}
 // 我现在的数字（和页面上显示的一样）
 function socStats() {
   const led = gameLedger(), ok = progEnsure();
@@ -22821,6 +22856,7 @@ function renderFriends() {
     const go = el("button", "btn", "去登录"); go.type = "button"; go.addEventListener("click", () => switchView("settings"));
     const row = el("div", "actions"); row.append(go); c.append(row); stage.append(c); return;
   }
+  socMigrate();
   stage.append(socMyCard(), socBoardCard());
   socPush().catch(() => {}).then(() => socLoad()).then(() => { socErr = ""; socDrawBoard(); }).catch(e => {
     socErr = e.status === 404 || /profiles/.test(e.message) ? "排行榜还没开通（数据库里还没有 profiles 表）。" : e.code === "auth" ? "登录已过期，请到“设置”里重新登录。" : "排行榜暂时读不到（可能是网络问题），稍后再试。";
