@@ -18218,6 +18218,7 @@ if (UI_LANG === "en") i18nLoad({
 "小行星与玫瑰": "Asteroid & Rose",
 "深夜蓝星空下，玫瑰从紫色岩面生长，远处铺开暖金沙丘与环形星球；搭配星光日历、像素玫瑰和流星边框。": "Under a midnight-blue sky, a rose grows from violet rock beside warm golden dunes and a distant ringed planet, with a starlight activity calendar, pixel rose and shooting-star borders.",
 "商店新增皮肤「小行星与玫瑰」（星空、小行星上的一朵玫瑰、沙丘和流星，1500 金币）；巴黎塔尖新增事件「女皇的新衣」：巴黎的服装店，买件新外套换一面护盾，或者校对法语吊牌赚金币。": "New skin in the shop: \"Asteroid & Rose\" (a starry sky, a single rose on a small asteroid, dunes and shooting stars, 1500 coins). New Paris Spire event: a Paris boutique where you can buy a new coat for a shield, or proofread French clothing tags for coins.",
+"单词闯关的进度现在跟着账号同步：在手机上做到一半，换到 iPad 或电脑登录同一个账号，点这一关也能接着做；在一台设备上做完或“从头开始本关”，其他设备上的存档也会一起清掉。": "Word-level progress now syncs with your account: stop halfway on your phone, log in on your iPad or computer, and the level picks up where you left off. Finishing a level or choosing \"Restart this level\" on one device clears the save on the others too.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21385,6 +21386,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "6.9", d: "2026-11-08", p: "fr", items: [
+    "单词闯关的进度现在跟着账号同步：在手机上做到一半，换到 iPad 或电脑登录同一个账号，点这一关也能接着做；在一台设备上做完或“从头开始本关”，其他设备上的存档也会一起清掉。"] },
   { v: "6.8", d: "2026-11-07", p: "fr", items: [
     "商店新增皮肤「小行星与玫瑰」（星空、小行星上的一朵玫瑰、沙丘和流星，1500 金币）；巴黎塔尖新增事件「女皇的新衣」：巴黎的服装店，买件新外套换一面护盾，或者校对法语吊牌赚金币。"] },
   { v: "6.7", d: "2026-11-07", p: "fr", items: [
@@ -25143,7 +25146,7 @@ const vLvNo = () => vTheme.startsWith("lv:") ? Number(vTheme.slice(3)) : -1;
 const vTitle = () => vTheme === "all" ? "全部单词（打乱）" : vTheme === "weak" ? "生词本" : vTheme === "levels" ? "闯关" : vTheme === "spire" ? "巴黎塔尖" : vLvNo() >= 0 ? `闯关 · 第 ${vLvNo() + 1} 关` : VOCAB.find(t => t.id === vTheme).t;
 
 // ---------- 闯关：所有单词事先分好关（levels.js），每关 10 个词，来自不同主题 ----------
-// 做到一半退出也没关系：进度存在本机，再点这一关就从上次那题接着做（见 vLvSave）。
+// 做到一半退出也没关系：进度存在本机并跟着账号同步，再点这一关就从上次那题接着做（见 vLvSave）。
 // 一关里至少 7 个词“已掌握”（这个词每种题型最近一次都答对）就算通关，解锁下一关；9 个两颗星，10 个三颗星。
 // 通关情况由背单词记录算出，跟着账号同步。
 const V_PASS = 7;
@@ -25398,21 +25401,52 @@ function vBegin(picked) {
   vLvSave(vSess);
   vQuestion();
 }
-// ---------- 闯关进度：每答一题存一次（本机），再进这一关时从上次停下的那题接着做；做完一关就清掉 ----------
+// ---------- 闯关进度：每答一题存一次，再进这一关时从上次停下的那题接着做；做完一关就清掉 ----------
+// 本机（fq-vlv）每题都存；同时记成 game 集合里的 "vlv" 记录跟着账号同步（攒一会儿再记，离开页面时马上记），
+// 换一台设备登录也能接着做。读的时候本机和云端哪份新用哪份；"vlv" + clear 表示这一关的进度已经清掉。
 const vLvAll = () => { try { return JSON.parse(localStorage.getItem("fq-vlv") || "{}") || {}; } catch (e) { return {}; } };
+let vLvPending = null, vLvTimer = 0;
+function vLvSnap(S, i) { return { words: S.words.map(w => w.id), qs: S.qs.map(q => [q.w.id, q.type]), i: i == null ? S.i : i, res: S.res, combo: S.maxCombo || 0, at: Date.now() }; }
 function vLvSave(S, i) {
   if (!S || S.lv < 0 || S.tour || S.spire) return;
-  const all = vLvAll();
-  all[S.lv] = { words: S.words.map(w => w.id), qs: S.qs.map(q => [q.w.id, q.type]), i: i == null ? S.i : i, res: S.res, combo: S.maxCombo || 0, at: Date.now() };
+  const all = vLvAll(), x = vLvSnap(S, i);
+  all[S.lv] = x;
   try { localStorage.setItem("fq-vlv", JSON.stringify(all)); } catch (e) {}
+  vLvPending = { lv: S.lv, x }; clearTimeout(vLvTimer); vLvTimer = setTimeout(vLvFlush, 20000);
 }
-function vLvClear(k) { const all = vLvAll(); if (!(k in all)) return; delete all[k]; try { localStorage.setItem("fq-vlv", JSON.stringify(all)); } catch (e) {} }
+// 把最近一次的进度记成同步记录（只记最新的一份，免得每题一条）
+function vLvFlush() {
+  clearTimeout(vLvTimer);
+  const p = vLvPending; vLvPending = null;
+  if (!p || !p.x.i || typeof gameAdd !== "function") return;   // 还一题没做：不用记
+  const r = vLvRemote(p.lv);
+  if (r && !r.clear && r.i === p.x.i && r.qs && r.qs.length === p.x.qs.length) return;   // 云端已经是这一份了
+  gameAdd({ kind: "vlv", lv: p.lv, words: p.x.words, qs: p.x.qs, i: p.x.i, res: p.x.res, combo: p.x.combo, at: new Date(p.x.at).toISOString() });
+}
+addEventListener("pagehide", vLvFlush);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") vLvFlush(); });
+function vLvClear(k) {
+  const all = vLvAll();
+  if (k in all) { delete all[k]; try { localStorage.setItem("fq-vlv", JSON.stringify(all)); } catch (e) {} }
+  if (vLvPending && vLvPending.lv === k) { vLvPending = null; clearTimeout(vLvTimer); }
+  const r = vLvRemote(k);
+  if (r && !r.clear && typeof gameAdd === "function") gameAdd({ kind: "vlv", lv: k, clear: true, at: new Date().toISOString() });
+}
+// 云端（同步过来的 game 记录）里这一关最新的一份
+function vLvRemote(k) {
+  if (typeof gameRaw === "undefined") return null;
+  let best = null;
+  gameRaw.forEach(g => { if (g.kind === "vlv" && g.lv === k && (!best || String(g.at) > String(best.at))) best = g; });
+  return best;
+}
 // 这一关有没有存着没做完的进度；词表变过（关卡重新分过）就不算
 function vLvSaved(k) {
-  const x = vLvAll()[k];
-  if (!x || !Array.isArray(x.qs) || !(x.i > 0) || x.i >= x.qs.length) return null;
+  const loc = vLvAll()[k], rem = vLvRemote(k);
+  const remAt = rem ? Date.parse(rem.at) || 0 : 0, locAt = loc ? loc.at || 0 : 0;
+  const x = rem && remAt > locAt ? (rem.clear ? null : rem) : loc;
+  if (!x || !Array.isArray(x.qs) || !(x.i > 0) || x.i >= x.qs.length || !Array.isArray(x.words)) return null;
   const ids = new Set((V_LEVELS[k] || []));
-  if (!x.words.every(id => ids.has(id) && vById.get(id))) return null;
+  if (!x.words.every(id => ids.has(id) && vById.get(id)) || !x.qs.every(([id]) => vById.get(id))) return null;
   return x;
 }
 function vLvResume(k) {
