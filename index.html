@@ -1128,6 +1128,24 @@ html[data-font="times"] body { font-size: 17px; }
 .sp-roomhead .sp-ico { flex-shrink: 0; }
 .sp-roomhead h3, .sp-choice { overflow-wrap: anywhere; }
 @media (prefers-reduced-motion: reduce) { .sp-node.open { animation: none; } }
+
+/* Cafe: original layered artwork, compact cards and existing skin tokens. */
+.cafe-page{max-width:1120px;margin:auto;color:var(--fg)}
+.cafe-title{margin:8px 0 14px}.cafe-title h2{margin:3px 0;font-weight:700;font-size:24px;line-height:1.4;font-family:inherit}.cafe-eyebrow{font-size:10px;letter-spacing:1.5px;color:var(--muted)}
+.cafe-stats{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:8px}.cafe-stat{border:1px solid var(--line);background:var(--card);border-radius:10px;padding:9px 12px;min-width:0}.cafe-stat span{display:block;font-size:11px;color:var(--muted)}.cafe-stat strong{display:block;font-size:18px;overflow-wrap:anywhere;line-height:1.5}
+.cafe-info{display:flex;gap:8px;align-items:center;flex-wrap:wrap;font-size:12px;color:var(--muted);margin:10px 0}.cafe-info .btn{min-height:44px;font-size:12px;padding:7px 10px}
+.cafe-page .card{margin:14px 0}.cafe-hero{padding:0;overflow:hidden}.cafe-brief{padding:14px}.cafe-brief h3{margin:0 0 4px}.cafe-brief>.sub{margin:4px 0}.cafe-scene{position:relative;width:100%;max-width:680px;margin:auto;overflow:hidden;isolation:isolate;background:#6d4933}.cafe-scene-art{display:block;width:100%;height:auto;aspect-ratio:3/2}.cafe-scene-caption{position:absolute;bottom:9px;right:10px;padding:4px 9px;border-radius:6px;background:#35271fd9;color:#fff1d5;font-family:inherit;font-size:11px;letter-spacing:.04em}
+.cafe-night{opacity:0;pointer-events:none}.cafe-prop.is-locked{filter:grayscale(1) brightness(.58);opacity:.8}.cafe-scene.is-closed .cafe-backdrop{filter:brightness(.7) saturate(.75)}.cafe-scene.is-closed .cafe-night{opacity:.3}.cafe-scene.is-closed .cafe-steam{opacity:0}.cafe-prop.is-scaled{filter:sepia(.4)}
+.cafe-welcome{padding:16px}.cafe-welcome .cafe-scene{border-radius:9px;margin-bottom:16px}.cafe-welcome .btn{width:100%}
+.cafe-steps{padding:0;list-style:none;display:flex;flex-wrap:wrap;gap:6px;margin:12px 0}.cafe-steps li{flex:1 1 120px}.cafe-steps button{width:100%;text-align:left;font-size:12px;min-height:50px;border:1px solid var(--line);background:var(--accent-soft);color:var(--fg);border-radius:7px;padding:8px;cursor:pointer}.cafe-step-topic{display:block;font-size:10px;line-height:1.5;margin-top:3px;opacity:.85}.cafe-brewing-note{font-size:12px;line-height:1.7;color:var(--muted)}
+.cafe-tabs{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:5px;margin:16px 0}.cafe-tabs .btn{font-size:12px;padding:8px 4px;min-height:46px;white-space:normal;line-height:1.5;min-width:0}.cafe-tabs [aria-selected=true]{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+.cafe-work{margin:10px 0;border:1px solid var(--line);border-radius:12px;background:var(--card);padding:0 12px}.cafe-work summary{display:flex;align-items:center;gap:9px;min-height:64px;cursor:pointer;font-weight:700;list-style:none}.cafe-work summary:after{content:'+';margin-left:auto;font-size:22px;color:var(--accent)}.cafe-work[open] summary:after{content:'−'}.cafe-work-count{font-size:10px;font-weight:400;color:var(--muted)}.cafe-work>p{font-size:12px}
+.cafe-icon{position:relative;display:inline-flex;width:40px;height:40px;flex-shrink:0}.cafe-icon>svg{width:100%;height:100%;display:block}.cafe-icon.is-locked{filter:grayscale(1);opacity:.55}.cafe-icon.is-scaled{filter:sepia(.3)}.cafe-scale-marks{position:absolute;inset:3px;background:radial-gradient(ellipse at 36% 60%,#eee5c5cc 0 9%,transparent 11%),radial-gradient(ellipse at 61% 76%,#ba977dcc 0 11%,transparent 13%),radial-gradient(ellipse at 67% 35%,#eee5c5bb 0 7%,transparent 9%);pointer-events:none}
+.cafe-tool{display:grid;grid-template-columns:40px minmax(0,1fr);gap:9px;padding:12px 0;border-top:1px solid var(--line);min-width:0}.cafe-tool-body{min-width:0}.cafe-tool-title{display:flex;justify-content:space-between;gap:8px;align-items:center}.cafe-tool-title b{overflow-wrap:anywhere;font-size:13px}.cafe-tool-title .tag{font-size:10px}.cafe-tool .actions{gap:6px;flex-wrap:wrap;margin:8px 0 0}.cafe-tool .btn{font-size:11px;min-height:44px;padding:7px 9px}.cafe-detail{font-size:11px;margin:5px 0}.cafe-tool .sub{font-size:11px}.cafe-tool.is-covered .sub{display:none}.cafe-learn-link{border:0;background:none;color:var(--accent);padding:3px 0;text-align:left;font:inherit;font-size:11px;min-height:32px;cursor:pointer}.cafe-tool.is-scaled .cafe-tool-title b:after{content:' ◌';color:var(--accent)}
+.cafe-lock{font-size:12px;color:var(--muted);padding:9px;border:1px dashed var(--line);border-radius:8px}.cafe-recipe-grid{display:grid;grid-template-columns:minmax(0,1fr);gap:12px}.cafe-page .cafe-recipe{margin:0;padding:16px;min-width:0}.cafe-recipe.selected{outline:2px solid var(--accent)}.cafe-recipe>.cafe-icon{width:64px;height:64px}.cafe-recipe h3{margin:5px 0}.cafe-fr{font-family:inherit;font-size:12px;color:var(--muted)}.cafe-requirements{display:flex;flex-wrap:wrap;gap:6px}.cafe-requirements .btn{font-size:12px;min-height:44px;padding:7px}.cafe-recipe .sub{font-size:12px;line-height:1.7}.cafe-order{display:flex;flex-direction:column;gap:8px;padding:16px}.cafe-order>.cafe-icon{width:56px;height:56px}.cafe-order h3{margin:0 0 5px}.cafe-order .btn{text-align:left;white-space:normal;min-height:44px}.cafe-branch{padding:20px}.cafe-branch p{line-height:1.8}
+.cafe-dialog{max-width:min(440px,calc(100vw - 32px));max-height:80vh;overflow:auto;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--fg)}.cafe-dialog::backdrop{background:#0e172a99}.cafe-dialog p{line-height:1.75;font-size:14px}.cafe-dialog .actions{display:flex;gap:10px;flex-wrap:wrap}.cafe-page button:focus-visible,.cafe-work summary:focus-visible,.cafe-dialog button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.cafe-page button:disabled{opacity:.5;cursor:default}
+@media(min-width:768px){.cafe-stats{grid-template-columns:repeat(4,minmax(0,1fr))}.cafe-panel:has(>.cafe-work){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:12px}.cafe-panel>.sub{grid-column:1/-1}.cafe-work{margin:0}.cafe-recipe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cafe-hero{display:grid;grid-template-columns:1fr 1fr;align-items:center}.cafe-brief{padding:18px}.cafe-scene{align-self:center}.cafe-title h2{font-size:27px}}
+@media(prefers-reduced-motion:no-preference){.cafe-scene.is-open .cafe-serving{animation:cafe-delivery 9s ease-in-out infinite}.cafe-scene.is-open .cafe-steam{animation:cafe-warmth 3s ease-in-out infinite}@keyframes cafe-delivery{0%,20%,100%{transform:translateX(0)}65%,85%{transform:translateX(25px)}}@keyframes cafe-warmth{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:.8;transform:translateY(-5px)}}}
 /* 外观商品（游戏模式里的商店购买）：由 quiz-common/cosmetics/build.py 生成，别手改 */
 :root[data-coin="tower"] .coin, :root .cos-prev .coin.cs-tower { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cg transform='translate%28.35 .45%29' fill='%23fff6cf' fill-opacity='.7'%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z'/%3E%3C/g%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z' fill='url%28%23s%29'/%3E%3CclipPath id='sp'%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z'/%3E%3C/clipPath%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z' fill='%23c98a12' fill-opacity='.8'/%3E%3Cpath d='M3.45 25L11.45 18.5M11.45 25L3.45 18.5M4.40 25L12.40 18.5M12.40 25L4.40 18.5M5.35 25L13.35 18.5M13.35 25L5.35 18.5M6.30 25L14.30 18.5M14.30 25L6.30 18.5M7.25 25L15.25 18.5M15.25 25L7.25 18.5M8.20 25L16.20 18.5M16.20 25L8.20 18.5M9.15 25L17.15 18.5M17.15 25L9.15 18.5M10.10 25L18.10 18.5M18.10 25L10.10 18.5M11.05 25L19.05 18.5M19.05 25L11.05 18.5M12.00 25L20.00 18.5M20.00 25L12.00 18.5M12.95 25L20.95 18.5M20.95 25L12.95 18.5M13.90 25L21.90 18.5M21.90 25L13.90 18.5M14.85 25L22.85 18.5M22.85 25L14.85 18.5M15.80 25L23.80 18.5M23.80 25L15.80 18.5M16.75 25L24.75 18.5M24.75 25L16.75 18.5M17.70 25L25.70 18.5M25.70 25L17.70 18.5M18.65 25L26.65 18.5M26.65 25L18.65 18.5M19.60 25L27.60 18.5M27.60 25L19.60 18.5M20.55 25L28.55 18.5M28.55 25L20.55 18.5' stroke='%237e4b00' stroke-opacity='.55' stroke-width='.16' clip-path='url%28%23sp%29'/%3E%3Cpath d='M9.40 24.80L13.22 23.35M12.30 24.80L10.52 23.35M10.52 23.35L13.22 23.35M10.52 23.35L13.88 22.05M13.22 23.35L11.35 22.05M11.35 22.05L13.88 22.05M11.35 22.05L14.40 20.81M13.88 22.05L12.03 20.81M12.03 20.81L14.40 20.81M12.03 20.81L14.80 19.60M14.40 20.81L12.60 19.60M12.60 19.60L14.80 19.60M12.80 18.70L15.76 17.50M15.55 18.70L13.51 17.50M13.51 17.50L15.76 17.50M13.51 17.50L15.82 16.43M15.76 17.50L14.01 16.43M14.01 16.43L15.82 16.43M14.01 16.43L15.78 15.40M15.82 16.43L14.40 15.40M14.40 15.40L15.78 15.40M22.60 24.80L18.78 23.35M19.70 24.80L21.48 23.35M21.48 23.35L18.78 23.35M21.48 23.35L18.12 22.05M18.78 23.35L20.65 22.05M20.65 22.05L18.12 22.05M20.65 22.05L17.60 20.81M18.12 22.05L19.97 20.81M19.97 20.81L17.60 20.81M19.97 20.81L17.20 19.60M17.60 20.81L19.40 19.60M19.40 19.60L17.20 19.60M19.20 18.70L16.24 17.50M16.45 18.70L18.49 17.50M18.49 17.50L16.24 17.50M18.49 17.50L16.18 16.43M16.24 17.50L17.99 16.43M17.99 16.43L16.18 16.43M17.99 16.43L16.22 15.40M16.18 16.43L17.60 15.40M17.60 15.40L16.22 15.40M14.55 14.60L17.14 13.16M17.45 14.60L14.86 13.16M14.86 13.16L17.14 13.16M14.86 13.16L16.95 12.09M17.14 13.16L15.05 12.09M15.05 12.09L16.95 12.09M15.05 12.09L16.81 11.13M16.95 12.09L15.19 11.13M15.19 11.13L16.81 11.13M15.19 11.13L16.69 10.23M16.81 11.13L15.31 10.23M15.31 10.23L16.69 10.23M15.31 10.23L16.60 9.38M16.69 10.23L15.40 9.38M15.40 9.38L16.60 9.38M15.40 9.38L16.52 8.56M16.60 9.38L15.48 8.56M15.48 8.56L16.52 8.56M15.48 8.56L16.46 7.77M16.52 8.56L15.54 7.77M15.54 7.77L16.46 7.77M15.54 7.77L16.40 7.00M16.46 7.77L15.60 7.00M15.60 7.00L16.40 7.00M12.83 24.05L13.75 24.08M13.47 23.44L13.75 24.08M14.10 22.96L14.75 23.44M14.73 22.62L14.75 23.44M15.37 22.42L15.75 23.16M16.00 22.35L15.75 23.16M16.63 22.42L16.75 23.25M17.27 22.62L16.75 23.25M17.90 22.96L17.75 23.71M18.53 23.44L17.75 23.71M19.17 24.05L18.75 24.54' fill='none' stroke='%23f8d873' stroke-opacity='.75' stroke-width='.17' stroke-linecap='round'/%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60M12.30 24.80L13.22 23.35L13.88 22.05L14.40 20.81L14.80 19.60M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40M15.55 18.70L15.76 17.50L15.82 16.43L15.78 15.40M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60M19.70 24.80L18.78 23.35L18.12 22.05L17.60 20.81L17.20 19.60M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40M16.45 18.70L16.24 17.50L16.18 16.43L16.22 15.40M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00M17.45 14.60L17.14 13.16L16.95 12.09L16.81 11.13L16.69 10.23L16.60 9.38L16.52 8.56L16.46 7.77L16.40 7.00' fill='none' stroke='%236e4000' stroke-width='.22'/%3E%3Cpath d='M11.80 18.7H20.20M13.95 14.6H18.05' stroke='%23ffe9a8' stroke-width='.28'/%3E%3Cpath d='M12.00 19.18H20.00M14.15 15.02H17.85' stroke='%23f8d873' stroke-opacity='.8' stroke-width='.15' stroke-dasharray='.22 .22'/%3E%3Cpath d='M11.98 19.6A.42 .42 0 0 1 12.82 19.6M12.88 19.6A.42 .42 0 0 1 13.72 19.6M13.78 19.6A.42 .42 0 0 1 14.62 19.6M14.68 19.6A.42 .42 0 0 1 15.52 19.6M15.58 19.6A.42 .42 0 0 1 16.42 19.6M16.48 19.6A.42 .42 0 0 1 17.32 19.6M17.38 19.6A.42 .42 0 0 1 18.22 19.6M18.28 19.6A.42 .42 0 0 1 19.12 19.6M19.18 19.6A.42 .42 0 0 1 20.02 19.6' fill='none' stroke='%23f8d873' stroke-opacity='.85' stroke-width='.16'/%3E%3Cpath d='M16 6.4V4.1' stroke='%237a4700' stroke-width='.32' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='4.0' r='.28' fill='%23ffe08a'/%3E%3Cpath d='M9.1 24.85H12.5M19.5 24.85H22.9' stroke='%236e4000' stroke-width='.4' stroke-linecap='round'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
 :root[data-coin="arc"] .coin, :root .cos-prev .coin.cs-arc { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='%23fff8d6' fill-opacity='.8' transform='translate%28.45 .55%29' fill-rule='evenodd'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='url%28%23s%29' fill-rule='evenodd'/%3E%3Cpath d='M9.4 13.4H22.6M10.6 15.2V21.6M21.4 15.2V21.6M12.2 11.4H19.8' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.35'/%3E%3Cpath d='M13.1 17.6A2.9 2.9 0 0 1 18.9 17.6' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.3'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
@@ -18239,6 +18257,180 @@ if (UI_LANG === "en") i18nLoad({
 "每日任务的每一行都可以点了：没做完的任务旁边有“去做 →”，点一下直接跳到对应的练习（答题类任务先做今日计划，复习任务去复习到期的题，变位、背单词任务去对应的板块）。": "Every daily quest row is now tappable: unfinished quests show \"Go →\" and take you straight to the right practice (answer-count quests start today's plan, the review quest opens due reviews, and conjugation / vocabulary quests open those sections).",
 "好友页的昵称、“在排行榜上显示我”和橱窗里的明信片现在跟着账号同步：换一台设备登录，资料都还在；在任意一台设备上修改，其他设备同步后也会更新。": "Your Friends-page nickname, the \"show me on the leaderboard\" setting and your showcase postcards now sync with your account: log in on another device and they're all there, and changes on any device show up on the others after syncing.",
 "全屏做题时（手机、iPad、电脑），题目放在选项上方的空白里上下左右居中，不再贴着顶部；动词变位题改成“不定式 →时态→ 主语 ___”的写法，比如 avoir 箭头上写着“直陈式现在时”，后面是 il ___。": "In full-screen practice (phone, iPad, computer), the question now sits centred in the space above the options instead of stuck to the top. Conjugation questions now read \"infinitive —tense→ subject ___\", e.g. avoir with \"present indicative\" written on the arrow, followed by il ___.",
+"烘豆房": "Roastery",
+"选豆、烘焙与分装": "Choose, roast and pack beans",
+"研磨台": "Grinding station",
+"按冲煮方法调整研磨": "Match the grind to the brewing method",
+"萃取吧台": "Brewing bar",
+"称量、注水与萃取": "Weigh, pour and extract",
+"奶泡台": "Milk station",
+"蒸汽奶与细腻奶泡": "Steam milk and create microfoam",
+"甜点柜": "Pastry counter",
+"搭配甜点、完整出餐": "Pair pastries and serve the order",
+"菜单板": "Menu board",
+"组合饮品与客制点单": "Assemble drinks and custom orders",
+"豆子分装": "Bean packing",
+"称豆秤": "Bean scale",
+"拼配罐": "Blending jar",
+"密封袋": "Sealed bag",
+"烘焙听音器": "Roast listening tool",
+"标签笔": "Label pen",
+"细磨刻度": "Fine grind setting",
+"粗磨刻度": "Coarse grind setting",
+"研磨校准器": "Grind calibration",
+"注水刻度": "Pouring scale",
+"称量刻度": "Dose scale",
+"意式咖啡机": "Espresso machine",
+"手冲滤杯": "Pour-over dripper",
+"冷萃罐": "Cold brew jar",
+"法压壶": "French press",
+"摩卡壶": "Moka pot",
+"虹吸壶": "Siphon brewer",
+"外带预约铃": "Takeaway bell",
+"蒸汽奶缸": "Milk pitcher",
+"拉花针": "Latte art tool",
+"奶泡棒": "Milk frother",
+"冷奶瓶": "Cold milk bottle",
+"浸泡计时器": "Steeping timer",
+"套餐组合板": "Set menu board",
+"长萃刻度": "Lungo setting",
+"意式浓缩": "Espresso",
+"细磨与压力萃取": "Fine grinding and pressure extraction",
+"示例：18g粉萃取36g咖啡液，约25–35秒；随豆子调整。": "Example: 18g of coffee yields 36g in about 25–35 seconds; adjust for the beans.",
+"选豆与烘焙": "Choose and roast beans",
+"细磨、称量": "Grind fine and weigh",
+"均匀布粉与压粉": "Distribute and tamp evenly",
+"压力萃取": "Extract under pressure",
+"温杯出餐": "Serve in a warm cup",
+"美式咖啡": "Americano",
+"浓缩加热水": "Espresso with hot water",
+"先做好浓缩，再加入热水；与长萃使用不同的制作方式。": "Make espresso, then add hot water. This differs from a lungo extraction.",
+"制作浓缩": "Make espresso",
+"加入热水": "Add hot water",
+"长萃咖啡": "Lungo",
+"提高萃取液量": "Increase the extraction yield",
+"同一粉量萃取更多咖啡液，需调整研磨与时间；并非兑水。": "Extract more coffee from the same dose, adjusting grind and time rather than adding water.",
+"调整研磨": "Adjust the grind",
+"称量咖啡粉": "Weigh the coffee",
+"手冲咖啡": "Pour-over coffee",
+"滤纸与分段注水": "Paper filtering and staged pouring",
+"示例：15g粉配225g水；润湿滤纸、闷蒸后分段注水。": "Example: 15g of coffee to 225g of water. Rinse the paper, bloom, then pour in stages.",
+"中细研磨": "Grind medium-fine",
+"润湿滤纸": "Rinse the filter paper",
+"闷蒸、分段注水": "Bloom and pour in stages",
+"过滤出餐": "Filter and serve",
+"法压咖啡": "French press coffee",
+"浸泡与金属过滤": "Immersion and metal filtering",
+"较粗研磨，浸泡约4分钟后缓慢压下滤网，保留较厚口感。": "Use a coarse grind, steep for about four minutes, then press slowly for a fuller texture.",
+"较粗研磨": "Grind coarse",
+"热水浸泡": "Steep in hot water",
+"缓慢压下滤网": "Press the filter slowly",
+"倒出咖啡": "Pour the coffee",
+"摩卡壶咖啡": "Moka coffee",
+"炉火加热萃取": "Stovetop brewing",
+"中细研磨，粉床铺平但不压实；水受热穿过咖啡粉。": "Use a medium-fine grind, level without tamping, and let heated water pass through the coffee.",
+"装粉、铺平": "Fill and level the grounds",
+"炉火推动萃取": "Brew on the stovetop",
+"离火出餐": "Remove from heat and serve",
+"虹吸咖啡": "Siphon coffee",
+"加热升水、降温回落": "Heat lifts the water; cooling draws it down",
+"加热使水上升，加入咖啡粉浸泡，移开热源后过滤回落。": "Heat lifts the water, coffee steeps above, then removal of heat draws it down through a filter.",
+"加热升水": "Heat to lift the water",
+"浸泡、移开热源": "Steep and remove heat",
+"过滤回落": "Filter as the coffee descends",
+"冷萃咖啡": "Cold brew coffee",
+"冷水长时间浸泡": "Long cold-water immersion",
+"现实中粗磨冷水浸泡约12–18小时后过滤；游戏中压缩并行完成。": "In real life, coarse coffee steeps in cold water for about 12–18 hours before filtering. In the game, this runs in parallel on a compressed timescale.",
+"冷水浸泡": "Steep in cold water",
+"过滤咖啡液": "Filter the coffee",
+"冷藏出餐": "Chill and serve",
+"拿铁": "Latte",
+"浓缩与细腻蒸汽奶": "Espresso and silky steamed milk",
+"浓缩加入较多蒸汽奶，覆盖薄层微奶泡。": "Add a larger portion of steamed milk to espresso, with a thin layer of microfoam.",
+"打出细腻蒸汽奶": "Steam silky milk",
+"融合、拉花": "Combine and pour latte art",
+"卡布奇诺": "Cappuccino",
+"绵密奶泡层": "A richer layer of milk foam",
+"浓缩、蒸汽奶和更明显的奶泡层，呈现不同于拿铁的口感。": "Espresso, steamed milk and a more prominent foam layer create a texture distinct from a latte.",
+"打出绵密奶泡": "Create rich milk foam",
+"分层出餐": "Layer and serve",
+"澳白咖啡": "Flat white",
+"较少奶与薄微奶泡": "Less milk and thin microfoam",
+"浓缩基底搭配较少奶和薄微奶泡，保留较强咖啡感。": "Use less milk and thin microfoam over espresso to preserve a stronger coffee character.",
+"薄微奶泡": "Create thin microfoam",
+"融合出餐": "Combine and serve",
+"冰拿铁": "Iced latte",
+"浓缩、冰块与冷奶": "Espresso, ice and cold milk",
+"将浓缩、冰块和冷奶组合；这杯使用冷奶，不需打热奶泡。": "Combine espresso, ice and cold milk. This drink uses cold milk rather than hot foam.",
+"加入冰块与冷奶": "Add ice and cold milk",
+"冰杯出餐": "Serve over ice",
+"咖啡馆暂时无法保存，请稍后重试": "Cafe progress cannot be saved right now. Please try again later.",
+"欢迎回到河畔咖啡馆": "Welcome back to the riverside cafe",
+"离开 ${hours} 小时，实际营业 ${minutes} 分钟。": "Away for ${hours} hours; the cafe operated for ${minutes} minutes.",
+"自动获得 ${tips} 小费，已经计入余额。": "${tips} tips from automatic service are already in your balance.",
+"营业时间用完后会打烊；做题后可继续营业。": "The cafe closes when its operating time runs out. Practice to reopen.",
+"收起": "Dismiss",
+"确认开分店": "Confirm new branch",
+"正在读取咖啡馆记录…": "Loading cafe records…",
+"塞纳河畔咖啡馆": "Cafe by the Seine",
+"从一杯咖啡开始": "Start with a cup of coffee",
+"练习法语，点亮器具；按时复习提升掌握度，再安排咖啡师班次。": "Practice French to activate equipment. Spaced review builds mastery and unlocks barista shifts.",
+"小费只用于咖啡馆，不能兑换金币。营业时间最多储存12小时。": "Tips are for the cafe only and cannot become coins. Store up to 12 hours of operating time.",
+"开门营业": "Open the cafe",
+"小费": "Tips",
+"每分钟小费": "Tips per minute",
+"剩余营业": "Operating time left",
+"${hours}小时 ${minutes}分": "${hours}h ${minutes}m",
+"今日学习奖励": "Today's study rewards",
+"吧台正在营业，离线也会继续。": "The bar is open and keeps serving while you are away.",
+"打烊休息中，做题补充营业时间。": "Closed for a break. Practice to add operating time.",
+"听法语唱片": "Listen in French",
+"今天想做：${name}": "Today's brew: ${name}",
+"点制作环节，练对应的法语知识。": "Choose a brewing step to practice its French topic.",
+"咖啡馆页面": "Cafe pages",
+"工作台": "Workstations",
+"咖啡工艺": "Coffee craft",
+"今日客人点单": "Today's orders",
+"开分店": "New branch",
+"答对一次点亮器具；记忆达到2级的题决定器具等级。小费只能增加班次。": "One correct answer activates equipment. Questions at memory level 2 determine its level. Tips only buy shifts.",
+"${n} 件已点亮": "${n} activated",
+"先在前面的每个工作台点亮2件器具。": "Activate two tools at each preceding workstation first.",
+"知识配方": "Knowledge recipe",
+"答对1道「${tag}」的题来启动。": "Answer one ${tag} question correctly to activate this tool.",
+"去学习": "Practice",
+"已满级": "Maximum level",
+"下一级还差 ${n} 道掌握题": "Master ${n} more questions for the next level",
+"班次 ${n} / ${max} · 每分钟 ${rate} 小费": "Shifts ${n} / ${max} · ${rate} tips per minute",
+"加班次 · ${price} 小费": "Add shift · ${price} tips",
+"除垢：去复习 ${n} 题": "Descale: review ${n} questions",
+"提升掌握度": "Build mastery",
+"按时复习1道题，记忆到2级后可安排班次。": "Review one question on time to reach memory level 2 and unlock shifts.",
+"超出当前掌握度的班次暂休，复习恢复后继续工作。": "Shifts above your current mastery rest temporarily and resume after review restores capacity.",
+"含 ${n} 条长期记忆变位，每3条折算1题。": "Includes ${n} long-term conjugation entries; three count as one mastered question.",
+"配方点亮条件是相关标签各答对一次；升级仍需要间隔复习。参数为入门示例，可随豆子与口味调整。": "Activate a recipe by answering each topic correctly once. Levels still require spaced review. Brewing parameters are examples to adjust to your beans and taste.",
+"配方已点亮": "Recipe activated",
+"先学会标记中的知识点": "Practice the indicated topics first",
+"当前制作流程": "Current brewing steps",
+"查看制作流程": "View brewing steps",
+"每个标签当天答对3道新题或到期题。相同题当天只计一次；每份点单只能领取一次。": "Answer three new or due questions correctly for each topic today. Each question counts once a day, and each order can be claimed once.",
+"客人 ${n} · ${name}": "Guest ${n} · ${name}",
+"已出餐": "Served",
+"出餐 · ${tips} 小费 + 好评卡": "Serve · ${tips} tips + review card",
+"出餐另加60分钟营业时间。": "Serving also adds 60 minutes of operating time.",
+"口碑星 ${n}": "Reputation stars: ${n}",
+"永久出杯效率 ×${rate}": "Permanent service multiplier: ×${rate}",
+"L3以上器具 ${n}/12": "Equipment at L3 or above: ${n}/12",
+"覆盖工作台 ${n}/4": "Workstations covered: ${n}/4",
+"好评卡 ${n}/${max}": "Review cards: ${n}/${max}",
+"开分店会清零小费与班次，保留知识、剩余营业时间和多余好评卡。": "A new branch resets tips and shifts, while preserving knowledge, remaining operating time and spare review cards.",
+"开一家新分店": "Open a new branch",
+"确认开一家新分店？": "Open a new branch?",
+"小费与咖啡师班次将归零；器具掌握度、剩余营业时间和已领奖励记录保留。": "Tips and barista shifts reset. Equipment mastery, remaining operating time and reward claim records stay.",
+"消耗 ${n} 张好评卡，永久效率提升为 ×${rate}。": "Spend ${n} review cards and raise permanent efficiency to ×${rate}.",
+"练法语、学咖啡工艺，点亮器具与配方，经营塞纳河畔咖啡馆。": "Practice French, explore coffee craft, and activate tools and recipes to run your cafe by the Seine.",
+"增量经营": "Idle management",
+"有 ${n} 条经营操作未应用，余额或条件可能已变化。": "${n} management actions were not applied because the balance or requirements may have changed.",
+"游戏里新增「塞纳河畔咖啡馆」：一个靠学法语经营的放置类小游戏。每个语法知识点是一件咖啡器具（时态是不同的萃取方式，代词是磨豆机……），器具等级就是你对这个知识点的真实掌握度；答题补充营业时间，小费用来排咖啡师班次，有到期复习时器具会结垢，每天有 3 份客人点单，攒够好评卡可以开分店。还能学 12 种咖啡的制作流程，每一步对应一个法语知识点。买了游戏模式即可免费游玩，小费不能换金币。": "New in Games: \"Café by the Seine\", an idle game you run by learning French. Every grammar point is a piece of coffee equipment (tenses are brewing methods, pronouns are grinders…) and its level is your real mastery of that point. Answering questions adds opening hours, tips pay for barista shifts, equipment scales up when reviews are due, three customer orders arrive each day, and enough reviews let you open a new branch. You can also learn how to make 12 coffees, each step tied to a French grammar point. Free once you own Game Mode; tips can't be exchanged for coins.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -19022,6 +19214,7 @@ function localDb(ns) {
     saveNote.textContent = wrong ? `已有 ${wrong} 条错题记录，答题记录会自动保存到学习进度。` : "答题记录会自动保存到学习进度。";
     if (LOCAL) saveNote.textContent += "记录保存在这台设备的浏览器里，换设备或清除浏览器数据后不会保留。";
     if (view === "book") renderBook();
+    if (view === "cafe" && typeof cafeEnter === "function") cafeEnter();
   } catch (e) { saveNote.textContent = "暂时无法读取答题记录，答题不受影响。"; }
 })();
 function record(item, i, right) {
@@ -21273,6 +21466,7 @@ async function syncReload() {
   if (typeof vStats !== "undefined") vStats = null;
   planRefresh();
   if (view === "book") renderBook();
+  else if (view === "cafe" && typeof renderCafe === "function") renderCafe(true);
   else if (view === "vocab" && typeof renderVocab === "function" && !vSess) renderVocab();
 }
 // 登录状态变了：重画“账号与同步”所在的设置页
@@ -21422,6 +21616,8 @@ function setGoalSection(wrap) {
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 // 版本号格式 1.x.y：平时只动 x、y；最前面的 1 未经用户同意不能改成 2。
 const CHANGELOG = [
+  { v: "1.7.3", d: "2026-11-08", p: "fr", items: [
+    "游戏里新增「塞纳河畔咖啡馆」：一个靠学法语经营的放置类小游戏。每个语法知识点是一件咖啡器具（时态是不同的萃取方式，代词是磨豆机……），器具等级就是你对这个知识点的真实掌握度；答题补充营业时间，小费用来排咖啡师班次，有到期复习时器具会结垢，每天有 3 份客人点单，攒够好评卡可以开分店。还能学 12 种咖啡的制作流程，每一步对应一个法语知识点。买了游戏模式即可免费游玩，小费不能换金币。"] },
   { v: "1.7.2", d: "2026-11-08", p: "fr", items: [
     "全屏做题时（手机、iPad、电脑），题目放在选项上方的空白里上下左右居中，不再贴着顶部；动词变位题改成“不定式 →时态→ 主语 ___”的写法，比如 avoir 箭头上写着“直陈式现在时”，后面是 il ___。"] },
   { v: "1.7.1", d: "2026-11-08", p: "fr", items: [
@@ -22380,6 +22576,7 @@ const BOARDS = {
     { id: "exam", t: "模拟卷", d: "B1 全国卷格式，自动判分，作文由 Claude 批改。", n: () => "整套试卷" },
   ],
   game: [
+    { id: "cafe", t: "咖啡馆", d: "练法语、学咖啡工艺，点亮器具与配方，经营塞纳河畔咖啡馆。", n: () => "增量经营" },
     { id: "levels", t: "单词闯关", d: "一关 10 个词，各主题混合，按星星解锁下一关。", n: () => `${V_LEVELS.length} 关` },
     { id: "tour", t: "环法之旅", d: "像素法国地图，52 站从 A1 到 C1，答题集明信片。", n: () => "52 站", game: true },
     { id: "lsp", t: "失声的巴黎", d: "原型：像素街区解谜。学会语法得到能力、打开新区域；读懂法语线索才能解开谜题。", n: () => "原型" },
@@ -22406,13 +22603,14 @@ function curMod() {
   if (view === "shop") return "shop";
   if (view === "settings") return "settings";
   if (view === "friends") return "friends";
-  if (view === "tour" || view === "lsp" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "game";
+  if (view === "tour" || view === "lsp" || view === "cafe" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "game";
   if (view === "vocab" && vIsGame()) return "game";
   return "practice";
 }
 function curBoard() {
   if (view === "home" || view === "book" || view === "settings" || view === "shop" || view === "friends") return null;
   if (view === "lsp") return "lsp";
+  if (view === "cafe") return "cafe";
   if (view === "tour" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "tour";
   if (view === "vocab") return vIsGame() ? (vTheme === "spire" || (vSess && vSess.spire) ? "spire" : "levels") : "vocab";
   if (view === "quiz") return qBoard;
@@ -22588,6 +22786,7 @@ startSet = function (key, fresh) {
 };
 
 function switchView(v, setKey) {
+  if (view === "cafe" && v !== "cafe" && typeof cafeMarkAway === "function") cafeMarkAway();
   view = v;
   if (typeof cosTrialSkin !== "undefined" && cosTrialSkin && !cosTrialAllowed()) { cosTrialEnd(); cosApply(); }
   if (typeof spHud === "function") spHud();   // 巴黎塔尖的状态条只在背单词里显示
@@ -22603,6 +22802,7 @@ function switchView(v, setKey) {
   if (v === "settings") { renderSettings(); return; }
   if (v === "tour") { renderTour(); return; }
   if (v === "lsp") { renderLsp(); return; }
+  if (v === "cafe") { cafeEnter(); return; }
   if (v === "book") { renderBook(); return; }
   if (v === "friends") { renderFriends(); return; }
   if (setKey) { startSet(setKey); navSync(); return; }
@@ -28005,6 +28205,369 @@ document.addEventListener("keydown", e => {
     if (n >= 0) { const b = stage.querySelectorAll(".opt")[n]; if (b) { e.preventDefault(); b.click(); } }
   } else if (cjSess.answered && (k === "enter" || k === "arrowright")) { e.preventDefault(); cjGoNext(); }
 });
+// Original cafe content. Brewing ranges are examples, not fixed prescriptions.
+(function(root,factory){const data=factory();if(typeof module==='object'&&module.exports)module.exports=data;else root.CafeData=data;})(globalThis,()=>({
+  version:1, tiers:[1,3,10,30,100,300], costs:[8,24,80,240,800,2400], fuelCap:720, creditCap:40, branchCards:9,
+  stations:[
+    {name:'烘豆房',groups:['词形与书写'],verb:'选豆、烘焙与分装',icon:'beans'},
+    {name:'研磨台',groups:['词类'],verb:'按冲煮方法调整研磨',icon:'grinder'},
+    {name:'萃取吧台',groups:['动词形式'],verb:'称量、注水与萃取',icon:'brew'},
+    {name:'奶泡台',groups:['动词用法'],verb:'蒸汽奶与细腻奶泡',icon:'milk'},
+    {name:'甜点柜',groups:['句子结构'],verb:'搭配甜点、完整出餐',icon:'pastry'},
+    {name:'菜单板',groups:['常用小词','词汇'],verb:'组合饮品与客制点单',icon:'menu'}
+  ],
+  tools:{'阴阳性':'豆子分装','单复数':'称豆秤','性数配合':'拼配罐','省音/缩合':'密封袋','发音':'烘焙听音器','拼写':'标签笔','冠词':'细磨刻度','名词':'粗磨刻度','形容词':'研磨校准器','介词':'注水刻度','数词':'称量刻度','直陈式现在时':'意式咖啡机','复合过去时':'手冲滤杯','未完成过去时':'冷萃罐','不定式':'法压壶','条件式':'摩卡壶','虚拟式':'虹吸壶','简单将来时':'外带预约铃','助动词 être/avoir':'蒸汽奶缸','过去分词配合':'拉花针','代词式动词':'奶泡棒','被动态':'冷奶瓶','时间表达':'浸泡计时器','条件句 si':'套餐组合板','比较级/最高级':'长萃刻度'},
+  tenses:{pres:'直陈式现在时',pc:'复合过去时',imp:'未完成过去时',pqp:'愈过去时',ps:'简单过去时',fut:'简单将来时',fa:'先将来时',cond:'条件式',condp:'条件式',subj:'虚拟式',impe:'命令式'},
+  recipes:[
+    {id:'espresso',name:'意式浓缩',fr:'Espresso',tags:['阴阳性','冠词','直陈式现在时'],method:'细磨与压力萃取',note:'示例：18g粉萃取36g咖啡液，约25–35秒；随豆子调整。',steps:['选豆与烘焙','细磨、称量','均匀布粉与压粉','压力萃取','温杯出餐'],stages:[0,1,2,2,5],milk:false},
+    {id:'americano',name:'美式咖啡',fr:'Americano',tags:['直陈式现在时','介词','数词'],method:'浓缩加热水',note:'先做好浓缩，再加入热水；与长萃使用不同的制作方式。',steps:['选豆与烘焙','细磨、称量','制作浓缩','加入热水','温杯出餐'],stages:[0,1,2,2,5],milk:false},
+    {id:'lungo',name:'长萃咖啡',fr:'Lungo',tags:['直陈式现在时','数词','比较级/最高级'],method:'提高萃取液量',note:'同一粉量萃取更多咖啡液，需调整研磨与时间；并非兑水。',steps:['选豆与烘焙','调整研磨','称量咖啡粉','提高萃取液量','温杯出餐'],stages:[0,1,2,2,5],milk:false},
+    {id:'pour-over',name:'手冲咖啡',fr:'Pour-over',tags:['拼写','介词','复合过去时'],method:'滤纸与分段注水',note:'示例：15g粉配225g水；润湿滤纸、闷蒸后分段注水。',steps:['选豆与烘焙','中细研磨','润湿滤纸','闷蒸、分段注水','过滤出餐'],stages:[0,1,2,2,5],milk:false},
+    {id:'french-press',name:'法压咖啡',fr:'Cafetière à piston',tags:['单复数','名词','不定式'],method:'浸泡与金属过滤',note:'较粗研磨，浸泡约4分钟后缓慢压下滤网，保留较厚口感。',steps:['选豆与烘焙','较粗研磨','热水浸泡','缓慢压下滤网','倒出咖啡'],stages:[0,1,2,2,5],milk:false},
+    {id:'moka',name:'摩卡壶咖啡',fr:'Moka',tags:['性数配合','形容词','条件式'],method:'炉火加热萃取',note:'中细研磨，粉床铺平但不压实；水受热穿过咖啡粉。',steps:['选豆与烘焙','中细研磨','装粉、铺平','炉火推动萃取','离火出餐'],stages:[0,1,2,2,5],milk:false},
+    {id:'siphon',name:'虹吸咖啡',fr:'Siphon',tags:['发音','关系代词','虚拟式'],method:'加热升水、降温回落',note:'加热使水上升，加入咖啡粉浸泡，移开热源后过滤回落。',steps:['选豆与烘焙','中细研磨','加热升水','浸泡、移开热源','过滤回落'],stages:[0,1,2,2,5],milk:false},
+    {id:'cold-brew',name:'冷萃咖啡',fr:'Cold brew',tags:['未完成过去时','时间表达','条件句 si'],method:'冷水长时间浸泡',note:'现实中粗磨冷水浸泡约12–18小时后过滤；游戏中压缩并行完成。',steps:['选豆与烘焙','较粗研磨','冷水浸泡','过滤咖啡液','冷藏出餐'],stages:[0,1,2,2,5],milk:false},
+    {id:'latte',name:'拿铁',fr:'Caffè latte',tags:['直陈式现在时','助动词 être/avoir','性数配合'],method:'浓缩与细腻蒸汽奶',note:'浓缩加入较多蒸汽奶，覆盖薄层微奶泡。',steps:['选豆与烘焙','细磨、称量','制作浓缩','打出细腻蒸汽奶','融合、拉花'],stages:[0,1,2,3,5],milk:true},
+    {id:'cappuccino',name:'卡布奇诺',fr:'Cappuccino',tags:['直陈式现在时','过去分词配合','单复数'],method:'绵密奶泡层',note:'浓缩、蒸汽奶和更明显的奶泡层，呈现不同于拿铁的口感。',steps:['选豆与烘焙','细磨、称量','制作浓缩','打出绵密奶泡','分层出餐'],stages:[0,1,2,3,5],milk:true},
+    {id:'flat-white',name:'澳白咖啡',fr:'Flat white',tags:['直陈式现在时','代词式动词','形容词'],method:'较少奶与薄微奶泡',note:'浓缩基底搭配较少奶和薄微奶泡，保留较强咖啡感。',steps:['选豆与烘焙','细磨、称量','制作浓缩','薄微奶泡','融合出餐'],stages:[0,1,2,3,5],milk:true},
+    {id:'iced-latte',name:'冰拿铁',fr:'Iced latte',tags:['直陈式现在时','被动态','阴阳性'],method:'浓缩、冰块与冷奶',note:'将浓缩、冰块和冷奶组合；这杯使用冷奶，不需打热奶泡。',steps:['选豆与烘焙','细磨、称量','制作浓缩','加入冰块与冷奶','冰杯出餐'],stages:[0,1,2,3,5],milk:true}
+  ],
+  // Explicit links keep each brewing action within the selected recipe's
+  // knowledge requirements, instead of falling back to an unrelated station.
+  stepTags:{
+    espresso:['阴阳性','冠词','冠词','直陈式现在时','直陈式现在时'],
+    americano:['直陈式现在时','数词','直陈式现在时','介词','介词'],
+    lungo:['直陈式现在时','比较级/最高级','数词','比较级/最高级','直陈式现在时'],
+    'pour-over':['拼写','介词','介词','复合过去时','复合过去时'],
+    'french-press':['单复数','名词','不定式','不定式','名词'],
+    moka:['性数配合','形容词','性数配合','条件式','条件式'],
+    siphon:['发音','关系代词','虚拟式','虚拟式','关系代词'],
+    'cold-brew':['条件句 si','时间表达','未完成过去时','未完成过去时','时间表达'],
+    latte:['性数配合','性数配合','直陈式现在时','助动词 être/avoir','性数配合'],
+    cappuccino:['单复数','单复数','直陈式现在时','过去分词配合','过去分词配合'],
+    'flat-white':['形容词','形容词','直陈式现在时','代词式动词','代词式动词'],
+    'iced-latte':['阴阳性','阴阳性','直陈式现在时','被动态','被动态']
+  }
+}));
+// Deterministic, append-only cafe model. No DOM, storage, account or coin writes.
+(function(root,factory){const api=factory();if(typeof module==='object'&&module.exports)module.exports=api;else root.CafeEngine=api;})(globalThis,()=>{
+ const DAY=86400000, MEM=[0,1,2,4,7,15,30], MIN=60000;
+ const canonical=x=>JSON.stringify(x&&typeof x==='object'&&!Array.isArray(x)?Object.fromEntries(Object.keys(x).sort().map(k=>[k,x[k]])):x);
+ const dayKey=t=>{const d=new Date(t);return `${d.getFullYear()}-${String(d.getMonth()+1).padStart(2,'0')}-${String(d.getDate()).padStart(2,'0')}`;};
+ const startOfDay=t=>{const d=new Date(t);d.setHours(0,0,0,0);return +d;};
+ const dueAt=m=>m&&m.lv>0?m.last+MEM[m.lv]*DAY*.8:Infinity;
+ const masteredLevel=(m,total,all)=>all&&total>0&&total<55?10:Math.min(10,Math.floor((Math.sqrt(1+8*m)-1)/2));
+ const unique=rows=>{const out=new Map();for(const r of rows||[]){if(!r||!Number.isFinite(Date.parse(r.at)))continue;const key=r.eid?'eid:'+r.eid:canonical(r),old=out.get(key);if(!old||canonical(r)<canonical(old))out.set(key,r);}return [...out.values()];};
+ function create(data,groups,questions,conjugations=[]){
+  const validConj=new Set(conjugations.flatMap(v=>Object.keys(v.t).map(t=>`cj:${v.v}:${t}`)));
+  const qmap=new Map(questions.map(q=>[q.id,q])), machines=[], byTag=new Map();
+  data.stations.forEach((station,index)=>station.groups.forEach(group=>{
+   for(const tag of groups.find(g=>g.g===group)?.tags||[]){const ids=questions.filter(q=>(q.tags||[]).includes(tag)).map(q=>q.id);
+    const m={tag,station:index,ids,total:ids.length};machines.push(m);byTag.set(tag,m);
+   }
+  }));
+  const tagsOf=d=>validConj.has(d.qid)?[data.tenses[d.qid.split(':').pop()]].filter(Boolean):(qmap.get(d.qid)?.tags||[]).filter(t=>byTag.has(t));
+  const isListening=d=>(qmap.get(d.qid)?.tags||[]).some(t=>t==='听力理解'||t==='听写辨音');
+  function memoryEvents(answers){
+   const mem=new Map(),events=[];
+   for(const d of unique(answers).sort((a,b)=>Date.parse(a.at)-Date.parse(b.at)||canonical(a).localeCompare(canonical(b)))){
+    if(!qmap.has(d.qid)&&!validConj.has(d.qid))continue;
+    const t=Date.parse(d.at),old=mem.get(d.qid)||{lv:0,last:0},before={...old},after={...old};
+    if(d.isCorrect){if(!old.lv){after.lv=1;after.last=t;}else if(t>=dueAt(old)){after.lv=Math.min(6,old.lv+1);after.last=t;}}
+    else {after.lv=Math.max(0,old.lv-2);after.last=t;}
+    mem.set(d.qid,after);
+    const tags=tagsOf(d);events.push({type:'answer',t,key:'a:'+canonical(d),d,tags,before,after});
+    if(dueAt(after)>t&&Number.isFinite(dueAt(after)))events.push({type:'due',t:dueAt(after),key:'d:'+canonical(d),qid:d.qid,expected:{...after}});
+   }
+   return events;
+  }
+  function levelsAt(answers,time){
+   const mem=new Map(),activated=new Set();
+   for(const e of memoryEvents(answers)){if(e.type!=='answer'||e.t>time)continue;mem.set(e.d.qid,e.after);if(e.d.isCorrect)e.tags.forEach(t=>activated.add(t));}
+   return computeMachines(mem,activated,{},time,0);
+  }
+  function computeMachines(mem,activated,shifts,time,stars){
+   const opened=data.stations.map((_,i)=>i===0||data.stations.slice(0,i).every((__,j)=>machines.filter(m=>m.station===j&&activated.has(m.tag)).length>=2));
+   const conjugated=new Map();
+   for(const [id,v]of mem){if(!validConj.has(id))continue;const tag=data.tenses[id.split(':').pop()],c=conjugated.get(tag)||{learned:0,due:0,long:0};if(v.lv>=5)c.long++;if(v.lv>=1){c.learned++;if(time>=dueAt(v))c.due++;}conjugated.set(tag,c);}
+   return machines.map(m=>{
+    let learned=0,due=0,mastered=0,longConj=0;
+    for(const id of m.ids){const v=mem.get(id);if(v?.lv>=1){learned++;if(time>=dueAt(v))due++;}if(v?.lv>=2)mastered++;}
+    const cj=conjugated.get(m.tag);if(cj){longConj=cj.long;learned+=cj.learned;due+=cj.due;}
+    const count=mastered+Math.floor(longConj/3),level=masteredLevel(count,m.total,mastered===m.total),paid=shifts[m.tag]||0,effective=Math.min(paid,5*level),scale=learned?1-.5*due/learned:1;
+    return {...m,active:activated.has(m.tag),open:opened[m.station],level,mastered:count,longConj,learned,due,scale,paid,effective,cap:5*level,
+     next:level>=10?0:Math.max(0,Math.min((level+1)*(level+2)/2-count,m.total-mastered)),
+     rate:activated.has(m.tag)&&opened[m.station]?data.tiers[m.station]*.1*effective*(1+.2*level)*scale*(1+.25*stars):0,
+     price:Math.ceil(data.costs[m.station]*1.15**paid)};
+   });
+  }
+  function orders(day,answers){
+   const cutoff=+new Date(day+'T00:00:00'),status=levelsAt(answers,cutoff-1),sm=new Map(status.map(m=>[m.tag,m]));
+   let seed=[...day].reduce((n,c)=>(Math.imul(n,31)+c.charCodeAt(0))>>>0,7);
+   const next=()=>{seed=(Math.imul(seed,1664525)+1013904223)>>>0;return seed/4294967296;};
+   return data.recipes.map(recipe=>({recipe,random:next(),score:recipe.tags.reduce((n,tag)=>{const m=sm.get(tag);return n+(m?.due?4:0)+(10-(m?.level||0))/10-((m&&m.total-m.learned+m.due<3)?100:0);},0)}))
+    .sort((a,b)=>b.score-a.score||a.random-b.random).slice(0,3).map(({recipe},slot)=>({slot,recipe:recipe.id,name:recipe.name,tags:recipe.tags.slice(),key:day+':'+slot}));
+  }
+  function replay(input,now=Date.now()){
+   const answerRows=unique(input.answers), answerEvents=memoryEvents(answerRows), orderCache=new Map();
+   const dayOrders=day=>{if(!orderCache.has(day))orderCache.set(day,orders(day,answerRows));return orderCache.get(day);};
+   const events=answerEvents.concat(unique(input.vocab).map(d=>({type:'vocab',d,t:Date.parse(d.at),key:'v:'+canonical(d)})),unique(input.game).filter(d=>d.kind?.startsWith('idle-')||d.kind==='mode').map(d=>({type:'op',d,t:Date.parse(d.at),key:d.eid||canonical(d)})))
+    .filter(e=>e.t<=now).sort((a,b)=>a.t-b.t||((a.type==='op')-(b.type==='op'))||a.key.localeCompare(b.key));
+   const state={started:false,start:0,tips:0,fuel:0,stars:0,cards:0,autoTotal:0,servedMinutes:0,shifts:{},claims:new Set(),visits:new Set(),days:{},mem:new Map(),words:new Map(),activated:new Set(),invalid:[],on:true,at:events[0]?.t||now};
+   let current=[];
+   const refresh=()=>{current=computeMachines(state.mem,state.activated,state.shifts,state.at,state.stars);state.rate=state.started?(.1*(1+.25*state.stars)+current.reduce((n,m)=>n+m.rate,0)):0;};
+   const advance=t=>{if(t<state.at)return;const minutes=Math.min(state.fuel,(t-state.at)/MIN);if(state.started){state.tips+=minutes*(state.rate||0);state.autoTotal+=minutes*(state.rate||0);state.servedMinutes+=minutes;state.fuel-=minutes;}state.at=t;};
+   const daily=day=>state.days[day]||(state.days[day]={credit:0,heard:0,concepts:new Set(),eligible:new Map()});
+   const fail=(d,reason)=>state.invalid.push({eid:d.eid,kind:d.kind,reason});
+   refresh();
+   for(const e of events){advance(e.t);const day=dayKey(e.t),ds=daily(day);
+    if(e.type==='due'){const m=state.mem.get(e.qid);if(state.started&&m&&m.last===e.expected.last&&m.lv===e.expected.lv)refresh();continue;}
+    if(e.type==='answer'){
+     state.mem.set(e.d.qid,e.after);if(e.d.isCorrect)e.tags.forEach(t=>state.activated.add(t));
+     if(state.started&&state.on&&e.d.isCorrect&&!ds.concepts.has(e.d.qid)){
+      ds.concepts.add(e.d.qid);const isDue=e.before.lv>0&&e.t>=dueAt(e.before),fresh=!e.before.lv;
+      const w=Math.max(0,Math.min(data.creditCap-ds.credit,e.before.lv>=2&&!isDue ? .25 : 1));
+      state.tips+=w*(10+5*(state.rate||0));state.fuel=Math.min(data.fuelCap,state.fuel+w*10);ds.credit+=w;
+      if(fresh||isDue)for(const tag of e.tags){if(!ds.eligible.has(tag))ds.eligible.set(tag,new Set());ds.eligible.get(tag).add(e.d.qid);}
+      if(isListening(e.d)&&w>0&&ds.heard<60){const n=Math.min(10,60-ds.heard);state.fuel=Math.min(data.fuelCap,state.fuel+n);ds.heard+=n;}
+     }
+     if(state.started)refresh();continue;
+    }
+    if(e.type==='vocab'){
+     const id='word:'+e.d.word,previous=state.words.get(id);if(e.d.ok)state.words.set(id,e.t);
+     if(state.started&&state.on&&e.d.ok&&!ds.concepts.has(id)){ds.concepts.add(id);const w=Math.max(0,Math.min(data.creditCap-ds.credit,previous!=null&&e.t-previous<.8*DAY ? .25 : 1));ds.credit+=w;state.tips+=w*(10+5*(state.rate||0));state.fuel=Math.min(data.fuelCap,state.fuel+10*w);}
+     continue;
+    }
+    const d=e.d;
+    if(d.kind==='mode'){state.on=!!d.on;continue;}
+    if(!d.eid||d.v!==data.version){fail(d,'schema');continue;}
+    if(!state.on){fail(d,'mode-off');continue;}
+    if(d.kind==='idle-start'){
+     if(!state.started){state.started=true;state.start=e.t;state.tips=20;state.fuel=60;}refresh();continue;
+    }
+    if(!state.started){fail(d,'not-started');continue;}
+    if(d.kind==='idle-visit'){
+     if(d.day!==day){fail(d,'day');continue;}
+     if(!state.visits.has(day)){state.visits.add(day);state.fuel=Math.min(data.fuelCap,state.fuel+15);}continue;
+    }
+    if(d.kind==='idle-shift'){
+     const m=current.find(x=>x.tag===d.tag);
+     if(d.branch!==state.stars||!m?.active||!m.open||m.paid>=m.cap||!Number.isInteger(d.expected)||d.expected!==m.paid||state.tips+1e-8<m.price){fail(d,'shift');continue;}
+     state.tips=Math.max(0,state.tips-m.price);state.shifts[d.tag]=m.paid+1;refresh();continue;
+    }
+    if(d.kind==='idle-order'){
+     const order=dayOrders(day)[d.slot],key=day+':'+d.slot;
+     if(d.day!==day||!order||d.recipe!==order.recipe){fail(d,'order');continue;}
+     if(state.claims.has(key))continue;
+     if(!order.tags.every(tag=>(ds.eligible.get(tag)?.size||0)>=3)){fail(d,'unfinished');continue;}
+     state.claims.add(key);state.tips+=40+60*state.rate;state.fuel=Math.min(data.fuelCap,state.fuel+60);state.cards++;continue;
+    }
+    if(d.kind==='idle-branch'){
+     const ready=current.filter(m=>m.open&&m.active&&m.level>=3),cost=data.branchCards+state.stars*3;
+     if(d.branch!==state.stars||ready.length<12||new Set(ready.map(m=>m.station)).size<4||state.cards<cost){fail(d,'branch');continue;}
+     state.cards-=cost;state.stars++;state.tips=0;state.shifts={};refresh();continue;
+    }
+    fail(d,'unknown');
+   }
+   advance(now);refresh();const today=daily(dayKey(now));
+   state.machines=current;state.orders=dayOrders(dayKey(now)).map(o=>({...o,progress:o.tags.map(tag=>({tag,n:Math.min(3,today.eligible.get(tag)?.size||0)})),claimed:state.claims.has(o.key)}));
+   state.credit=today.credit;state.ready=current.filter(m=>m.active&&m.open&&m.level>=3);state.readyStations=new Set(state.ready.map(m=>m.station)).size;state.branchCost=data.branchCards+3*state.stars;
+   state.canBranch=state.started&&state.ready.length>=12&&state.readyStations>=4&&state.cards>=state.branchCost;
+   return state;
+  }
+  return {replay,orders,catalog:machines,tagsOf};
+ }
+ return {create,dayKey,startOfDay,dueAt,masteredLevel,settle:(rate,fuel,minutes)=>{const n=Math.min(fuel,Math.max(0,minutes));return {tips:rate*n,fuel:fuel-n};}};
+});
+// Native app integration; balances and knowledge are always derived, never saved.
+let cafeModel=null,cafeCache=null,cafePanel='tools',cafeRecipe='espresso';
+try{cafeRecipe=localStorage.getItem('fq-cafe-recipe')||cafeRecipe;}catch(e){}
+function cafeRead(now=Date.now()){
+ if(!cafeModel)cafeModel=CafeEngine.create(CafeData,TAG_GROUPS,BANK,CJ_VERBS);
+ if(!gameLoaded||!Array.isArray(ansRaw))return null;
+ const at=now;
+ if(cafeCache&&cafeCache.at===at&&cafeCache.g===gameRaw&&cafeCache.a===ansRaw&&cafeCache.v===vocRaw&&cafeCache.gn===gameRaw.length&&cafeCache.an===ansRaw.length&&cafeCache.vn===vocRaw.length)return cafeCache.state;
+ const state=cafeModel.replay({game:gameRaw,answers:ansRaw,vocab:vocRaw},at);
+ cafeCache={at,g:gameRaw,a:ansRaw,v:vocRaw,gn:gameRaw.length,an:ansRaw.length,vn:vocRaw.length,state};return state;
+}
+function cafeAdd(kind,fields={}){
+ if(!gameOn()||!gameLoaded||!dbRef){xpToast('咖啡馆暂时无法保存，请稍后重试');return;}
+ const state=cafeRead();
+ if(kind==='idle-shift'&&(!state||!state.machines.some(m=>m.tag===fields.tag&&m.open&&m.active&&m.paid<m.cap&&state.tips>=m.price)))return;
+ if(kind==='idle-branch'&&!state?.canBranch)return;
+ const eid=globalThis.crypto?.randomUUID?.()||Date.now().toString(36)+'-'+Math.random().toString(36).slice(2);
+ gameAdd({kind,eid,v:CafeData.version,at:new Date().toISOString(),...fields});cafeCache=null;
+}
+function cafeVisit(){
+ let s=cafeRead();if(!s?.started)return s;
+ const day=dayKey(new Date());if(!s.visits.has(day)){cafeAdd('idle-visit',{day});s=cafeRead();}return s;
+}
+function cafePractice(tag,review=false){
+ cafeMarkAway();
+ const key=(review?'rev:':'learn:')+tag;
+ if(!progMembers(key).length){
+  const tenses=Object.entries(CafeData.tenses).filter(([,v])=>v===tag).map(([k])=>k);
+  if(tenses.length){cjCfg.tenses=tenses;cjSaveCfg();goBoard('conj');return;}
+  if(review){xpToast('现在没有到期要复习的题');return;}
+ }
+ qBoard='grammar';qIntro=false;progGo(key);
+}
+function cafeMarkAway(){
+ if(typeof view==='undefined'||view!=='cafe')return;
+ try{localStorage.setItem('fq-cafe-away',String(Date.now()));}catch(e){}
+}
+function cafeOffline(s){
+ let away=0;try{away=Number(localStorage.getItem('fq-cafe-away'));localStorage.removeItem('fq-cafe-away');}catch(e){}
+ const now=Date.now();if(!away||now-away<5*60000||away<s.start||away>now)return;
+ const before=cafeRead(away);if(!before)return;
+ cafeDialog('欢迎回到河畔咖啡馆',[
+  cafeSay('离开 ${hours} 小时，实际营业 ${minutes} 分钟。',{hours:((now-away)/3600000).toFixed(1),minutes:Math.max(0,s.servedMinutes-before.servedMinutes).toFixed(0)}),
+  cafeSay('自动获得 ${tips} 小费，已经计入余额。',{tips:cafeNumber(Math.max(0,s.autoTotal-before.autoTotal))}),
+  '营业时间用完后会打烊；做题后可继续营业。'
+ ]);
+}
+function cafeEnter(){
+ const s=cafeVisit();renderCafe();if(s?.started)cafeOffline(s);
+}
+addEventListener('pagehide',cafeMarkAway);
+document.addEventListener('visibilitychange',()=>{
+ if(document.visibilityState==='hidden')cafeMarkAway();
+ else if(typeof view!=='undefined'&&view==='cafe'){const s=cafeVisit();renderCafe(true);if(s)cafeOffline(s);}
+});
+setInterval(()=>{if(typeof view!=='undefined'&&view==='cafe'&&document.visibilityState==='visible'&&!document.querySelector('.cafe-dialog[open]'))renderCafe(true);},15000);
+// Generated by french-quiz/tools/idle/art.cjs; original cafe icon mapping.
+const CafeArt = {"stations":["station-0","station-1","station-2","station-3","station-4","station-5"],"tools":{"阴阳性":"tool-0","单复数":"tool-1","性数配合":"tool-2","省音/缩合":"tool-3","发音":"tool-4","拼写":"tool-5","标点":"tool-6","语域":"tool-7","名词":"tool-8","冠词":"tool-9","形容词":"tool-10","副词":"tool-11","人称代词":"tool-12","关系代词":"tool-13","指示词":"tool-14","主有词":"tool-15","泛指词":"tool-16","疑问词":"tool-17","介词":"tool-18","连词":"tool-19","数词":"tool-20","直陈式现在时":"tool-21","复合过去时":"tool-22","未完成过去时":"tool-23","愈过去时":"tool-24","简单过去时":"tool-25","简单将来时":"tool-26","先将来时":"tool-27","近将来时/近过去时":"tool-28","条件式":"tool-29","虚拟式":"tool-30","命令式":"tool-31","不定式":"tool-32","现在分词/副动词":"tool-33","过去分词":"tool-34","助动词 être/avoir":"tool-35","过去分词配合":"tool-36","代词式动词":"tool-37","被动态":"tool-38","无人称结构":"tool-39","情态动词":"tool-40","savoir/connaître":"tool-41","时态配合":"tool-42","疑问句":"tool-43","否定":"tool-44","感叹句":"tool-45","间接引语":"tool-46","关系从句":"tool-47","条件句 si":"tool-48","比较级/最高级":"tool-49","时间表达":"tool-50","语序":"tool-51","c'est / il est":"tool-52","并列与连接":"tool-53","强调":"tool-54","de":"tool-55","à":"tool-56","en":"tool-57","y":"tool-58","que":"tool-59","ce/cela":"tool-60","tout":"tool-61","on":"tool-62","ne":"tool-63","搭配":"tool-64","固定表达":"tool-65","词义辨析":"tool-66","构词":"tool-67"},"drinks":{"espresso":"drink-espresso","americano":"drink-americano","lungo":"drink-lungo","pour-over":"drink-pour-over","french-press":"drink-french-press","moka":"drink-moka","siphon":"drink-siphon","cold-brew":"drink-cold-brew","latte":"drink-latte","cappuccino":"drink-cappuccino","flat-white":"drink-flat-white","iced-latte":"drink-iced-latte"}};
+// Cafe UI: original vector art, keyboard-friendly controls, native study links.
+const cafeSay=(s,values={})=>Object.entries(values).reduce((text,[k,v])=>text.split('${'+k+'}').join(v),tr(s));
+const cafeNumber=n=>new Intl.NumberFormat(UI_LANG==='en'?'en':'zh-CN',{maximumFractionDigits:1,notation:n>=1000000?'compact':'standard'}).format(n);
+function cafeButton(label,action,cls='btn ghost'){
+ const b=el('button',cls,tr(label));b.type='button';b.addEventListener('click',action);return b;
+}
+const cafeArtHref=id=>'skins/cafe/icons.svg#'+id;
+const cafeArtSvg=(id,extra='')=>`<svg viewBox="0 0 96 96" ${extra}><use href="${cafeArtHref(id)}"/></svg>`;
+function cafeIcon(id,state=''){
+ const icon=el('span','cafe-icon '+state);icon.setAttribute('aria-hidden','true');icon.dataset.art=id;
+ icon.innerHTML=cafeArtSvg(id)+(state==='is-scaled'?'<span class="cafe-scale-marks"></span>':'');return icon;
+}
+function cafeScene(recipe,s){
+ const running=!s?.started||s.fuel>0,box=el('div','cafe-scene'+(running?' is-open':' is-closed'));
+ box.setAttribute('aria-hidden','true');box.dataset.status=s?.started?(running?'open':'closed'):'preview';box.dataset.drink=recipe.id;
+ const positions=[[18,395,130],[162,361,162],[320,329,194],[626,415,108],[748,383,140],[767,122,125]];
+ const props=positions.map(([x,y,w],i)=>{
+  const machines=s?.machines.filter(m=>m.station===i&&m.active&&m.open)||[],active=machines.length>0,scaled=machines.some(m=>m.due>0);
+  return `<g class="cafe-prop ${active?'is-ready':'is-locked'}${scaled?' is-scaled':''}" data-station="${i}" data-active="${active}">${cafeArtSvg(CafeArt.stations[i],`x="${x}" y="${y}" width="${w}" height="${w}"`)}</g>`;
+ }).join('');
+ const brew=s?.machines.find(m=>m.tag==='复合过去时');
+ box.innerHTML=`<svg class="cafe-scene-art" viewBox="0 0 960 640" xmlns="http://www.w3.org/2000/svg"><image class="cafe-backdrop" href="skins/cafe/counter.webp" width="960" height="640"/>${props}<g class="cafe-prop ${brew?.active&&brew.open?'is-ready':'is-locked'}">${cafeArtSvg(CafeArt.tools['复合过去时'],'x="518" y="397" width="126" height="126"')}</g><g transform="translate(727 457)"><g class="cafe-serving">${cafeArtSvg(CafeArt.drinks[recipe.id],'width="92" height="92"')}${!['cold-brew','iced-latte'].includes(recipe.id)?'<path class="cafe-steam" d="M35 13q-9-12 0-22m15 22q-9-12 0-22m15 22q-9-12 0-22" fill="none" stroke="#fff1d5" stroke-width="3" stroke-linecap="round"/>':''}</g></g><rect class="cafe-night" width="960" height="640" fill="#142832"/></svg>`;
+ box.append(el('span','cafe-scene-caption',recipe.fr));return box;
+}
+let cafeWorkOpen=null;
+try{const saved=JSON.parse(localStorage.getItem('fq-cafe-work-open')||'null');if(Array.isArray(saved))cafeWorkOpen=new Set(saved.map(String));}catch(e){}
+function cafeDialog(title,paragraphs,confirm){
+ document.querySelectorAll('.cafe-dialog').forEach(d=>d.remove());
+ const d=el('dialog','cafe-dialog'),h=el('h3',null,tr(title));h.id='cafe-dialog-title';d.setAttribute('aria-labelledby',h.id);d.append(h);
+ paragraphs.forEach(s=>d.append(el('p',null,tr(s))));
+ const actions=el('div','actions'),close=()=>{d.close();d.remove();};
+ actions.append(cafeButton(confirm?'取消':'收起',close));
+ if(confirm)actions.append(cafeButton('确认开分店',()=>{close();confirm();},'btn'));
+ d.append(actions);document.body.append(d);d.addEventListener('close',()=>d.remove());d.showModal();
+}
+function renderCafe(preserve=false){
+ if(!gameOn()){renderGameLocked();return;}
+ const open=new Set([...document.querySelectorAll('.cafe-work[open]')].map(n=>n.dataset.station)),focus=document.activeElement?.id,y=scrollY;
+ const s=cafeRead();stage.textContent='';
+ const root=el('section','cafe-page');root.id='cafe';stage.append(root);
+ if(!s){root.append(el('p','empty',tr('正在读取咖啡馆记录…')));return;}
+ const head=el('div','cafe-title');head.append(el('span','cafe-eyebrow','CAFÉ AU BORD DE LA SEINE'),el('h2',null,tr('塞纳河畔咖啡馆')));root.append(head);
+ const recipe=CafeData.recipes.find(r=>r.id===cafeRecipe)||CafeData.recipes[0];
+ if(!s.started){
+  const welcome=el('div','card cafe-welcome');welcome.append(cafeScene(recipe,s),el('h3',null,tr('从一杯咖啡开始')),el('p',null,tr('练习法语，点亮器具；按时复习提升掌握度，再安排咖啡师班次。')),
+   el('p','sub',tr('小费只用于咖啡馆，不能兑换金币。营业时间最多储存12小时。')),
+   cafeButton('开门营业',()=>{cafeAdd('idle-start');cafeVisit();renderCafe();},'btn'));root.append(welcome);return;
+ }
+ const stats=el('div','cafe-stats');
+ for(const[label,value]of [['小费',cafeNumber(s.tips)],['每分钟小费',cafeNumber(s.rate)],['剩余营业',cafeSay('${hours}小时 ${minutes}分',{hours:Math.floor(s.fuel/60),minutes:Math.floor(s.fuel%60)})],['今日学习奖励',cafeSay('${n} / 40',{n:cafeNumber(s.credit)})]]){
+  const tile=el('div','cafe-stat');tile.append(el('span',null,tr(label)),el('strong',null,value));stats.append(tile);
+ }
+ root.append(stats);
+ if(s.invalid.length)root.append(el('p','sub',cafeSay('有 ${n} 条经营操作未应用，余额或条件可能已变化。',{n:s.invalid.length})));
+ const info=el('p','cafe-info',s.fuel>0?tr('吧台正在营业，离线也会继续。'):tr('打烊休息中，做题补充营业时间。'));
+ info.append(document.createTextNode(' '),cafeButton('听法语唱片',()=>{cafeMarkAway();goBoard('listen');}));root.append(info);
+ const hero=el('div','card cafe-hero'),brief=el('div','cafe-brief');hero.append(cafeScene(recipe,s),brief);
+ brief.append(el('h3',null,cafeSay('今天想做：${name}',{name:tr(recipe.name)})),el('p','sub',tr(recipe.method)),el('p','cafe-brewing-note',tr(recipe.note)));
+ const steps=el('ol','cafe-steps');recipe.steps.forEach((step,i)=>{
+  const li=el('li'),tag=CafeData.stepTags[recipe.id][i];
+  const button=cafeButton(`${i+1}. ${tr(step)}`,()=>cafePractice(tag));button.dataset.stepTag=tag;
+  button.append(el('span','cafe-step-topic',tr(tag)));li.append(button);steps.append(li);
+ });brief.append(steps,el('p','sub',tr('点制作环节，练对应的法语知识。')));root.append(hero);
+ const tabs=el('div','cafe-tabs');tabs.setAttribute('role','tablist');tabs.setAttribute('aria-label',tr('咖啡馆页面'));
+ for(const[id,label]of [['tools','工作台'],['recipes','咖啡工艺'],['orders','今日客人点单'],['branch','开分店']]){
+  const b=cafeButton(label,()=>{cafePanel=id;renderCafe();});b.id='cafe-tab-'+id;b.setAttribute('role','tab');b.setAttribute('aria-selected',String(cafePanel===id));b.setAttribute('aria-controls','cafe-panel');tabs.append(b);
+ }root.append(tabs);
+ const panel=el('div','cafe-panel');panel.id='cafe-panel';panel.setAttribute('role','tabpanel');panel.setAttribute('aria-labelledby','cafe-tab-'+cafePanel);root.append(panel);
+ if(cafePanel==='tools'){
+  panel.append(el('p','sub',tr('答对一次点亮器具；记忆达到2级的题决定器具等级。小费只能增加班次。')));
+  CafeData.stations.forEach((station,index)=>{
+   const list=s.machines.filter(m=>m.station===index),work=el('details','cafe-work');work.dataset.station=String(index);work.open=preserve?open.has(String(index)):!!cafeWorkOpen?.has(String(index));
+   work.addEventListener('toggle',()=>{if(!work.isConnected)return;cafeWorkOpen=new Set([...document.querySelectorAll('.cafe-work[open]')].map(n=>n.dataset.station));try{localStorage.setItem('fq-cafe-work-open',JSON.stringify([...cafeWorkOpen]));}catch(e){}});
+   const summary=el('summary');summary.append(cafeIcon(CafeArt.stations[index],list.some(m=>m.active)?'':'is-locked'),el('span',null,tr(station.name)),el('span','cafe-work-count',cafeSay('${n} 件已点亮',{n:list.filter(m=>m.active).length})));work.append(summary);
+   work.append(el('p','sub',tr(station.verb)));
+   if(!list.some(m=>m.open)){work.append(el('p','cafe-lock',tr('先在前面的每个工作台点亮2件器具。')));}
+   for(const m of list){
+    const card=el('article','cafe-tool'+(!m.active?' is-covered':'')+(m.due?' is-scaled':''));card.dataset.tag=m.tag;
+    card.append(cafeIcon(CafeArt.tools[m.tag],!m.active?'is-locked':m.due?'is-scaled':''));
+    const body=el('div','cafe-tool-body');card.append(body);
+    const top=el('div','cafe-tool-title');top.append(el('b',null,tr(m.tag)),el('span','tag plain',`L${m.level}/10`));body.append(top);
+    body.append(el('span','sub',tr(CafeData.tools[m.tag]||'知识配方')));
+    if(!m.active){body.append(cafeButton(cafeSay('答对1道「${tag}」的题来启动。',{tag:tr(m.tag)}),()=>cafePractice(m.tag),'cafe-learn-link'));}
+    else{
+     body.append(el('p','cafe-detail',m.level>=10?tr('已满级'):cafeSay('下一级还差 ${n} 道掌握题',{n:m.next})),
+      el('p','cafe-detail',cafeSay('班次 ${n} / ${max} · 每分钟 ${rate} 小费',{n:m.paid,max:m.cap,rate:cafeNumber(m.rate)})));
+     const actions=el('div','actions');
+     const buy=cafeButton(cafeSay('加班次 · ${price} 小费',{price:cafeNumber(m.price)}),()=>{cafeAdd('idle-shift',{tag:m.tag,expected:m.paid,branch:s.stars});renderCafe(true);},'btn');
+     buy.id='cafe-shift-'+s.machines.indexOf(m);buy.disabled=!m.open||m.paid>=m.cap||s.tips+1e-8<m.price;actions.append(buy);
+     if(m.due)actions.append(cafeButton(cafeSay('除垢：去复习 ${n} 题',{n:m.due}),()=>cafePractice(m.tag,true)));
+     else actions.append(cafeButton('提升掌握度',()=>cafePractice(m.tag)));
+     body.append(actions);
+     if(!m.level)body.append(el('p','sub',tr('按时复习1道题，记忆到2级后可安排班次。')));
+     if(m.paid>m.cap)body.append(el('p','sub',tr('超出当前掌握度的班次暂休，复习恢复后继续工作。')));
+     if(m.longConj)body.append(el('p','sub',cafeSay('含 ${n} 条长期记忆变位，每3条折算1题。',{n:m.longConj})));
+    }
+    work.append(card);
+   }panel.append(work);
+  });
+ }
+ if(cafePanel==='recipes'){
+  panel.append(el('p','sub',tr('配方点亮条件是相关标签各答对一次；升级仍需要间隔复习。参数为入门示例，可随豆子与口味调整。')));
+  const grid=el('div','cafe-recipe-grid');
+  for(const r of CafeData.recipes){
+   const available=r.tags.every(tag=>s.machines.some(m=>m.tag===tag&&m.active&&m.open)),card=el('article','card cafe-recipe'+(r.id===recipe.id?' selected':''));
+   card.append(cafeIcon(CafeArt.drinks[r.id],available?'':'is-locked'),el('h3',null,tr(r.name)),el('span','cafe-fr',r.fr),el('p',null,tr(r.method)),el('p','sub',tr(r.note)));
+   const req=el('div','cafe-requirements');for(const tag of r.tags){const yes=s.machines.some(m=>m.tag===tag&&m.active&&m.open);req.append(cafeButton((yes?'✓ ':'○ ')+tr(tag),()=>cafePractice(tag)));}
+   card.append(req,el('p','sub',available?tr('配方已点亮'):tr('先学会标记中的知识点')),
+    cafeButton(r.id===recipe.id?'当前制作流程':'查看制作流程',()=>{cafeRecipe=r.id;try{localStorage.setItem('fq-cafe-recipe',r.id);}catch(e){}renderCafe();scrollTo({top:stage.offsetTop,behavior:'auto'});}));grid.append(card);
+  }panel.append(grid);
+ }
+ if(cafePanel==='orders'){
+  panel.append(el('p','sub',tr('每个标签当天答对3道新题或到期题。相同题当天只计一次；每份点单只能领取一次。')));
+  for(const order of s.orders){
+   const card=el('article','card cafe-order');card.append(cafeIcon(CafeArt.drinks[order.recipe]),el('h3',null,cafeSay('客人 ${n} · ${name}',{n:order.slot+1,name:tr(order.name)})));
+   order.progress.forEach(({tag,n})=>card.append(cafeButton(cafeSay('${tag}：${n}/3',{tag:tr(tag),n}),()=>cafePractice(tag,s.machines.find(m=>m.tag===tag)?.due>0))));
+   const done=order.progress.every(p=>p.n>=3),b=cafeButton(order.claimed?'已出餐':cafeSay('出餐 · ${tips} 小费 + 好评卡',{tips:cafeNumber(40+60*s.rate)}),()=>{cafeAdd('idle-order',{day:dayKey(new Date()),slot:order.slot,recipe:order.recipe});renderCafe();},'btn');
+   b.id='cafe-order-'+order.slot;b.disabled=!done||order.claimed;card.append(el('p','sub',tr('出餐另加60分钟营业时间。')),b);panel.append(card);
+  }
+ }
+ if(cafePanel==='branch'){
+  const card=el('div','card cafe-branch');card.append(el('h3',null,cafeSay('口碑星 ${n}',{n:s.stars})),el('p',null,cafeSay('永久出杯效率 ×${rate}',{rate:(1+.25*s.stars).toFixed(2)})));
+  for(const text of [cafeSay('L3以上器具 ${n}/12',{n:s.ready.length}),cafeSay('覆盖工作台 ${n}/4',{n:s.readyStations}),cafeSay('好评卡 ${n}/${max}',{n:s.cards,max:s.branchCost})])card.append(el('p',null,text));
+  card.append(el('p','sub',tr('开分店会清零小费与班次，保留知识、剩余营业时间和多余好评卡。')));
+  const branch=cafeButton('开一家新分店',()=>cafeDialog('确认开一家新分店？',[
+   '小费与咖啡师班次将归零；器具掌握度、剩余营业时间和已领奖励记录保留。',
+   cafeSay('消耗 ${n} 张好评卡，永久效率提升为 ×${rate}。',{n:s.branchCost,rate:(1+.25*(s.stars+1)).toFixed(2)})
+  ],()=>{cafeAdd('idle-branch',{branch:s.stars});renderCafe();}),'btn');branch.id='cafe-branch';branch.disabled=!s.canBranch;card.append(branch);panel.append(card);
+ }
+ if(preserve){if(focus)document.getElementById(focus)?.focus({preventScroll:true});scrollTo(0,y);}
+}
 // ---------- 设置：集中管理各模块的练习设置（都记在本机浏览器里） ----------
 function renderSettings() {
   stage.innerHTML = "";
