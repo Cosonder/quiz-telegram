@@ -661,6 +661,10 @@ html.qf #stage .cj-fb { overflow-y: auto; }
 .quest .n { grid-area: n; color: var(--muted); font-variant-numeric: tabular-nums; font-size: .82rem; }
 .quest .coin-n { grid-area: c; font-size: .85rem; }
 .quest .pbar { grid-area: bar; }
+button.quest.go { width: 100%; text-align: left; font: inherit; color: inherit; background: none; border: 1px solid transparent; border-radius: 10px; padding: 6px 8px; margin: -6px -8px; width: calc(100% + 16px); cursor: pointer;
+  grid-template-columns: 1.5em minmax(0, 1fr) auto auto auto; grid-template-areas: "chk t n c go" "chk bar bar bar bar"; }
+button.quest.go:hover, button.quest.go:focus-visible { border-color: var(--accent); background: var(--accent-soft); }
+.quest-go { grid-area: go; font-size: .78rem; font-weight: 700; color: var(--accent); white-space: nowrap; }
 .quest.done .t { color: var(--muted); text-decoration: line-through; }
 .quest-bonus, .shop-note { margin: 0; font-size: .82rem; color: var(--muted); }
 .potion-on { margin: 0; padding: 6px 10px; border-radius: 8px; background: var(--good-soft); color: var(--good); font-weight: 600; font-size: .88rem; }
@@ -18219,6 +18223,10 @@ if (UI_LANG === "en") i18nLoad({
 "深夜蓝星空下，玫瑰从紫色岩面生长，远处铺开暖金沙丘与环形星球；搭配星光日历、像素玫瑰和流星边框。": "Under a midnight-blue sky, a rose grows from violet rock beside warm golden dunes and a distant ringed planet, with a starlight activity calendar, pixel rose and shooting-star borders.",
 "商店新增皮肤「小行星与玫瑰」（星空、小行星上的一朵玫瑰、沙丘和流星，1500 金币）；巴黎塔尖新增事件「女皇的新衣」：巴黎的服装店，买件新外套换一面护盾，或者校对法语吊牌赚金币。": "New skin in the shop: \"Asteroid & Rose\" (a starry sky, a single rose on a small asteroid, dunes and shooting stars, 1500 coins). New Paris Spire event: a Paris boutique where you can buy a new coat for a shield, or proofread French clothing tags for coins.",
 "单词闯关的进度现在跟着账号同步：在手机上做到一半，换到 iPad 或电脑登录同一个账号，点这一关也能接着做；在一台设备上做完或“从头开始本关”，其他设备上的存档也会一起清掉。": "Word-level progress now syncs with your account: stop halfway on your phone, log in on your iPad or computer, and the level picks up where you left off. Finishing a level or choosing \"Restart this level\" on one device clears the save on the others too.",
+"去做 →": "Go →",
+"去做这个任务": "Do this quest",
+"${x.text}，${x.v}/${x.target}，去做": "${x.text}, ${x.v}/${x.target}, go",
+"每日任务的每一行都可以点了：没做完的任务旁边有“去做 →”，点一下直接跳到对应的练习（答题类任务先做今日计划，复习任务去复习到期的题，变位、背单词任务去对应的板块）。": "Every daily quest row is now tappable: unfinished quests show \"Go →\" and take you straight to the right practice (answer-count quests start today's plan, the review quest opens due reviews, and conjugation / vocabulary quests open those sections).",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -19922,6 +19930,19 @@ function questStatus() {
   });
   return { day: q.day, list, all: list.every(x => x.done), allClaimed: led.earned.has(`${q.day}:all`) || gameRaw.some(g => g.kind === "chest" && g.key === `${q.day}:chest`), planClaimed: led.earned.has(`${q.day}:plan`), led };
 }
+// 点每日任务：去做对应的练习
+function questGo(id) {
+  const board = b => typeof goBoard === "function" ? goBoard(b) : switchView(b);
+  if (id === "cj") { board("conj"); return; }
+  if (id === "voc") { board("vocab"); return; }
+  if (id === "up") { progGo("rev:"); return; }
+  if (id === "learn") { progGo(progMembers("learn:").length ? "learn:" : "rev:"); return; }
+  // 答题数、答对数、连对、经验：先做今日计划里还没做的题；计划做完了就学新题，再不行就复习
+  if (typeof planMembers === "function" && planMembers("plan:").length) { planGo("plan:"); return; }
+  if (progMembers("learn:").length) { progGo("learn:"); return; }
+  if (progMembers("rev:").length) { progGo("rev:"); return; }
+  if (typeof goHome === "function") goHome("practice"); else switchView("home");
+}
 // 发放刚完成的任务奖励（答完题后、打开学习进度页时调用），返回这次发的
 function gameCheck() {
   if (!gameOn()) return [];
@@ -20005,9 +20026,11 @@ function gameCard() {
   if (ca) { const b = el("p", "potion-on coin-on"); b.append(document.createTextNode(`金币 ×${ca.mult} 生效中 · 还剩 `), el("b", "potion-left-c", mmss(ca.left))); card.append(b); }
   const list = el("div", "quest-list");
   st.list.forEach(x => {
-    const r = el("div", "quest" + (x.done ? " done" : ""));
+    // 没做完的任务整行可以点：直接去做对应的练习
+    const r = el(x.done ? "div" : "button", "quest" + (x.done ? " done" : " go"));
     const bar = el("span", "pbar"), f = el("i", "mastery"); f.style.width = (x.v / x.target * 100) + "%"; bar.append(f);
     r.append(el("span", "chk", x.done ? "✓" : ""), el("span", "t", x.text), el("span", "n", `${x.v}/${x.target}`), bar, coinEl("+" + x.coins));
+    if (!x.done) { r.type = "button"; r.title = "去做这个任务"; r.setAttribute("aria-label", `${x.text}，${x.v}/${x.target}，去做`); r.append(el("span", "quest-go", "去做 →")); r.addEventListener("click", () => questGo(x.id)); }
     list.append(r);
   });
   card.append(list);
@@ -21386,6 +21409,8 @@ function setGoalSection(wrap) {
 // ---------- 版本更新记录：设置页最下面，展开后能看到每个版本改了什么 ----------
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 const CHANGELOG = [
+  { v: "7.0", d: "2026-11-08", items: [
+    "每日任务的每一行都可以点了：没做完的任务旁边有“去做 →”，点一下直接跳到对应的练习（答题类任务先做今日计划，复习任务去复习到期的题，变位、背单词任务去对应的板块）。"] },
   { v: "6.9", d: "2026-11-08", p: "fr", items: [
     "单词闯关的进度现在跟着账号同步：在手机上做到一半，换到 iPad 或电脑登录同一个账号，点这一关也能接着做；在一台设备上做完或“从头开始本关”，其他设备上的存档也会一起清掉。"] },
   { v: "6.8", d: "2026-11-07", p: "fr", items: [
