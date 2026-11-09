@@ -1146,6 +1146,14 @@ html[data-font="times"] body { font-size: 17px; }
 .cafe-dialog{max-width:min(440px,calc(100vw - 32px));max-height:80vh;overflow:auto;padding:24px;border:1px solid var(--line);border-radius:16px;background:var(--card);color:var(--fg)}.cafe-dialog::backdrop{background:#0e172a99}.cafe-dialog p{line-height:1.75;font-size:14px}.cafe-dialog .actions{display:flex;gap:10px;flex-wrap:wrap}.cafe-page button:focus-visible,.cafe-work summary:focus-visible,.cafe-dialog button:focus-visible{outline:3px solid var(--accent);outline-offset:3px}.cafe-page button:disabled{opacity:.5;cursor:default}
 @media(min-width:768px){.cafe-stats{grid-template-columns:repeat(4,minmax(0,1fr))}.cafe-panel:has(>.cafe-work){display:grid;grid-template-columns:repeat(2,minmax(0,1fr));align-items:start;gap:12px}.cafe-panel>.sub{grid-column:1/-1}.cafe-work{margin:0}.cafe-recipe-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.cafe-hero{display:grid;grid-template-columns:1fr 1fr;align-items:center}.cafe-brief{padding:18px}.cafe-scene{align-self:center}.cafe-title h2{font-size:27px}}
 @media(prefers-reduced-motion:no-preference){.cafe-scene.is-open .cafe-serving{animation:cafe-delivery 9s ease-in-out infinite}.cafe-scene.is-open .cafe-steam{animation:cafe-warmth 3s ease-in-out infinite}@keyframes cafe-delivery{0%,20%,100%{transform:translateX(0)}65%,85%{transform:translateX(25px)}}@keyframes cafe-warmth{0%,100%{opacity:.35;transform:translateY(0)}50%{opacity:.8;transform:translateY(-5px)}}}
+
+/* 变位的学习模式：开组前复习本组要考的变位 */
+.cj-study-item { border: 1px solid var(--line); border-radius: 10px; padding: 10px 12px; margin-top: 10px; display: flex; flex-direction: column; gap: 6px; }
+.cj-study-head { display: flex; align-items: center; flex-wrap: wrap; gap: 4px 8px; font-family: var(--display); font-size: 1.15rem; }
+.cj-study-head .cj-inf { font-weight: 900; }
+.cj-study-zh { font-family: var(--body); font-size: .85rem; color: var(--muted); }
+.cj-study-head .cj-say { margin-left: auto; font-family: var(--body); }
+.cj-study .cj-rule ul { margin: 4px 0 0; padding-left: 1.2em; }
 /* 外观商品（游戏模式里的商店购买）：由 quiz-common/cosmetics/build.py 生成，别手改 */
 :root[data-coin="tower"] .coin, :root .cos-prev .coin.cs-tower { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cg transform='translate%28.35 .45%29' fill='%23fff6cf' fill-opacity='.7'%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z'/%3E%3C/g%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60L14.80 19.60L14.40 20.81L13.88 22.05L13.22 23.35L12.30 24.80Z M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40L15.78 15.40L15.82 16.43L15.76 17.50L15.55 18.70Z M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60L17.20 19.60L17.60 20.81L18.12 22.05L18.78 23.35L19.70 24.80Z M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40L16.22 15.40L16.18 16.43L16.24 17.50L16.45 18.70Z M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00L16.40 7.00L16.46 7.77L16.52 8.56L16.60 9.38L16.69 10.23L16.81 11.13L16.95 12.09L17.14 13.16L17.45 14.60Z M12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.00 24.80L18.75 24.54L18.50 24.30L18.25 24.08L18.00 23.88L17.75 23.71L17.50 23.56L17.25 23.44L17.00 23.33L16.75 23.25L16.50 23.20L16.25 23.16L16.00 23.15L15.75 23.16L15.50 23.20L15.25 23.25L15.00 23.33L14.75 23.44L14.50 23.56L14.25 23.71L14.00 23.88L13.75 24.08L13.50 24.30L13.25 24.54L13.00 24.80Z M11.80 18.7H20.20V19.6H11.80Z M13.95 14.6H18.05V15.4H13.95Z M15.3 6.4H16.7V7.0H15.3Z' fill='url%28%23s%29'/%3E%3CclipPath id='sp'%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z'/%3E%3C/clipPath%3E%3Cpath d='M14.80 19.60L14.70 19.93L14.59 20.25L14.48 20.58L14.36 20.90L14.24 21.23L14.10 21.55L13.96 21.88L13.81 22.20L13.66 22.53L13.49 22.85L13.32 23.18L13.13 23.50L12.94 23.83L12.74 24.15L12.52 24.48L12.30 24.80L12.20 24.80L12.52 24.41L12.83 24.05L13.15 23.73L13.47 23.44L13.78 23.18L14.10 22.96L14.42 22.78L14.73 22.62L15.05 22.50L15.37 22.42L15.68 22.37L16.00 22.35L16.32 22.37L16.63 22.42L16.95 22.50L17.27 22.62L17.58 22.78L17.90 22.96L18.22 23.18L18.53 23.44L18.85 23.73L19.17 24.05L19.48 24.41L19.80 24.80L19.70 24.80L19.48 24.48L19.26 24.15L19.06 23.83L18.87 23.50L18.68 23.18L18.51 22.85L18.34 22.53L18.19 22.20L18.04 21.88L17.90 21.55L17.76 21.23L17.64 20.90L17.52 20.58L17.41 20.25L17.30 19.93L17.20 19.60Z' fill='%23c98a12' fill-opacity='.8'/%3E%3Cpath d='M3.45 25L11.45 18.5M11.45 25L3.45 18.5M4.40 25L12.40 18.5M12.40 25L4.40 18.5M5.35 25L13.35 18.5M13.35 25L5.35 18.5M6.30 25L14.30 18.5M14.30 25L6.30 18.5M7.25 25L15.25 18.5M15.25 25L7.25 18.5M8.20 25L16.20 18.5M16.20 25L8.20 18.5M9.15 25L17.15 18.5M17.15 25L9.15 18.5M10.10 25L18.10 18.5M18.10 25L10.10 18.5M11.05 25L19.05 18.5M19.05 25L11.05 18.5M12.00 25L20.00 18.5M20.00 25L12.00 18.5M12.95 25L20.95 18.5M20.95 25L12.95 18.5M13.90 25L21.90 18.5M21.90 25L13.90 18.5M14.85 25L22.85 18.5M22.85 25L14.85 18.5M15.80 25L23.80 18.5M23.80 25L15.80 18.5M16.75 25L24.75 18.5M24.75 25L16.75 18.5M17.70 25L25.70 18.5M25.70 25L17.70 18.5M18.65 25L26.65 18.5M26.65 25L18.65 18.5M19.60 25L27.60 18.5M27.60 25L19.60 18.5M20.55 25L28.55 18.5M28.55 25L20.55 18.5' stroke='%237e4b00' stroke-opacity='.55' stroke-width='.16' clip-path='url%28%23sp%29'/%3E%3Cpath d='M9.40 24.80L13.22 23.35M12.30 24.80L10.52 23.35M10.52 23.35L13.22 23.35M10.52 23.35L13.88 22.05M13.22 23.35L11.35 22.05M11.35 22.05L13.88 22.05M11.35 22.05L14.40 20.81M13.88 22.05L12.03 20.81M12.03 20.81L14.40 20.81M12.03 20.81L14.80 19.60M14.40 20.81L12.60 19.60M12.60 19.60L14.80 19.60M12.80 18.70L15.76 17.50M15.55 18.70L13.51 17.50M13.51 17.50L15.76 17.50M13.51 17.50L15.82 16.43M15.76 17.50L14.01 16.43M14.01 16.43L15.82 16.43M14.01 16.43L15.78 15.40M15.82 16.43L14.40 15.40M14.40 15.40L15.78 15.40M22.60 24.80L18.78 23.35M19.70 24.80L21.48 23.35M21.48 23.35L18.78 23.35M21.48 23.35L18.12 22.05M18.78 23.35L20.65 22.05M20.65 22.05L18.12 22.05M20.65 22.05L17.60 20.81M18.12 22.05L19.97 20.81M19.97 20.81L17.60 20.81M19.97 20.81L17.20 19.60M17.60 20.81L19.40 19.60M19.40 19.60L17.20 19.60M19.20 18.70L16.24 17.50M16.45 18.70L18.49 17.50M18.49 17.50L16.24 17.50M18.49 17.50L16.18 16.43M16.24 17.50L17.99 16.43M17.99 16.43L16.18 16.43M17.99 16.43L16.22 15.40M16.18 16.43L17.60 15.40M17.60 15.40L16.22 15.40M14.55 14.60L17.14 13.16M17.45 14.60L14.86 13.16M14.86 13.16L17.14 13.16M14.86 13.16L16.95 12.09M17.14 13.16L15.05 12.09M15.05 12.09L16.95 12.09M15.05 12.09L16.81 11.13M16.95 12.09L15.19 11.13M15.19 11.13L16.81 11.13M15.19 11.13L16.69 10.23M16.81 11.13L15.31 10.23M15.31 10.23L16.69 10.23M15.31 10.23L16.60 9.38M16.69 10.23L15.40 9.38M15.40 9.38L16.60 9.38M15.40 9.38L16.52 8.56M16.60 9.38L15.48 8.56M15.48 8.56L16.52 8.56M15.48 8.56L16.46 7.77M16.52 8.56L15.54 7.77M15.54 7.77L16.46 7.77M15.54 7.77L16.40 7.00M16.46 7.77L15.60 7.00M15.60 7.00L16.40 7.00M12.83 24.05L13.75 24.08M13.47 23.44L13.75 24.08M14.10 22.96L14.75 23.44M14.73 22.62L14.75 23.44M15.37 22.42L15.75 23.16M16.00 22.35L15.75 23.16M16.63 22.42L16.75 23.25M17.27 22.62L16.75 23.25M17.90 22.96L17.75 23.71M18.53 23.44L17.75 23.71M19.17 24.05L18.75 24.54' fill='none' stroke='%23f8d873' stroke-opacity='.75' stroke-width='.17' stroke-linecap='round'/%3E%3Cpath d='M9.40 24.80L10.52 23.35L11.35 22.05L12.03 20.81L12.60 19.60M12.30 24.80L13.22 23.35L13.88 22.05L14.40 20.81L14.80 19.60M12.80 18.70L13.51 17.50L14.01 16.43L14.40 15.40M15.55 18.70L15.76 17.50L15.82 16.43L15.78 15.40M22.60 24.80L21.48 23.35L20.65 22.05L19.97 20.81L19.40 19.60M19.70 24.80L18.78 23.35L18.12 22.05L17.60 20.81L17.20 19.60M19.20 18.70L18.49 17.50L17.99 16.43L17.60 15.40M16.45 18.70L16.24 17.50L16.18 16.43L16.22 15.40M14.55 14.60L14.86 13.16L15.05 12.09L15.19 11.13L15.31 10.23L15.40 9.38L15.48 8.56L15.54 7.77L15.60 7.00M17.45 14.60L17.14 13.16L16.95 12.09L16.81 11.13L16.69 10.23L16.60 9.38L16.52 8.56L16.46 7.77L16.40 7.00' fill='none' stroke='%236e4000' stroke-width='.22'/%3E%3Cpath d='M11.80 18.7H20.20M13.95 14.6H18.05' stroke='%23ffe9a8' stroke-width='.28'/%3E%3Cpath d='M12.00 19.18H20.00M14.15 15.02H17.85' stroke='%23f8d873' stroke-opacity='.8' stroke-width='.15' stroke-dasharray='.22 .22'/%3E%3Cpath d='M11.98 19.6A.42 .42 0 0 1 12.82 19.6M12.88 19.6A.42 .42 0 0 1 13.72 19.6M13.78 19.6A.42 .42 0 0 1 14.62 19.6M14.68 19.6A.42 .42 0 0 1 15.52 19.6M15.58 19.6A.42 .42 0 0 1 16.42 19.6M16.48 19.6A.42 .42 0 0 1 17.32 19.6M17.38 19.6A.42 .42 0 0 1 18.22 19.6M18.28 19.6A.42 .42 0 0 1 19.12 19.6M19.18 19.6A.42 .42 0 0 1 20.02 19.6' fill='none' stroke='%23f8d873' stroke-opacity='.85' stroke-width='.16'/%3E%3Cpath d='M16 6.4V4.1' stroke='%237a4700' stroke-width='.32' stroke-linecap='round'/%3E%3Ccircle cx='16' cy='4.0' r='.28' fill='%23ffe08a'/%3E%3Cpath d='M9.1 24.85H12.5M19.5 24.85H22.9' stroke='%236e4000' stroke-width='.4' stroke-linecap='round'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
 :root[data-coin="arc"] .coin, :root .cos-prev .coin.cs-arc { background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='r' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23ffe9a0'/%3E%3Cstop offset='.45' stop-color='%23f0b21a'/%3E%3Cstop offset='1' stop-color='%23a86a00'/%3E%3C/linearGradient%3E%3CradialGradient id='f' cx='.38' cy='.32' r='.8'%3E%3Cstop offset='0' stop-color='%23fff6c8'/%3E%3Cstop offset='.45' stop-color='%23ffcf3f'/%3E%3Cstop offset='1' stop-color='%23e09a00'/%3E%3C/radialGradient%3E%3ClinearGradient id='s' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%23b87700'/%3E%3Cstop offset='1' stop-color='%237e4b00'/%3E%3C/linearGradient%3E%3C/defs%3E%3Ccircle cx='16' cy='16' r='15.5' fill='url%28%23r%29'/%3E%3Ccircle cx='16' cy='16' r='14.3' fill='none' stroke='%238f5a00' stroke-opacity='.45' stroke-width='1.4' stroke-dasharray='.9 1.1'/%3E%3Ccircle cx='16' cy='16' r='12.4' fill='url%28%23f%29' stroke='%23b77800' stroke-width='.9'/%3E%3Ccircle cx='16' cy='16' r='10.6' fill='none' stroke='%23fff3c4' stroke-opacity='.7' stroke-width='.6'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='%23fff8d6' fill-opacity='.8' transform='translate%28.45 .55%29' fill-rule='evenodd'/%3E%3Cpath d='M8.6 10.2H23.4V12.6H22.6V23.4H24.6V24.6H7.4V23.4H9.4V12.6H8.6ZM13.1 23.4V17.6A2.9 2.9 0 0 1 18.9 17.6V23.4Z' fill='url%28%23s%29' fill-rule='evenodd'/%3E%3Cpath d='M9.4 13.4H22.6M10.6 15.2V21.6M21.4 15.2V21.6M12.2 11.4H19.8' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.35'/%3E%3Cpath d='M13.1 17.6A2.9 2.9 0 0 1 18.9 17.6' stroke='%23f8d873' stroke-opacity='.8' fill='none' stroke-width='.3'/%3E%3Cpath d='M6.2 12.5A10.5 10.5 0 0 1 13 5.6' fill='none' stroke='%23fff' stroke-opacity='.75' stroke-width='1.6' stroke-linecap='round'/%3E%3C/svg%3E"); }
@@ -18439,6 +18447,123 @@ if (UI_LANG === "en") i18nLoad({
 "有 ${n} 条经营操作未应用，余额或条件可能已变化。": "${n} management actions were not applied because the balance or requirements may have changed.",
 "游戏里新增「塞纳河畔咖啡馆」：一个靠学法语经营的放置类小游戏。每个语法知识点是一件咖啡器具（时态是不同的萃取方式，代词是磨豆机……），器具等级就是你对这个知识点的真实掌握度；答题补充营业时间，小费用来排咖啡师班次，有到期复习时器具会结垢，每天有 3 份客人点单，攒够好评卡可以开分店。还能学 12 种咖啡的制作流程，每一步对应一个法语知识点。买了游戏模式即可免费游玩，小费不能换金币。": "New in Games: \"Café by the Seine\", an idle game you run by learning French. Every grammar point is a piece of coffee equipment (tenses are brewing methods, pronouns are grinders…) and its level is your real mastery of that point. Answering questions adds opening hours, tips pay for barista shifts, equipment scales up when reviews are due, three customer orders arrive each day, and enough reviews let you open a new branch. You can also learn how to make 12 coffees, each step tied to a French grammar point. Free once you own Game Mode; tips can't be exchanged for coins.",
 "英文界面修复：背单词例句识图题图片下的意思改成英文，配图例句也有了英文翻译（460 句）；巴黎塔尖开局给 60 金币，商人卖的遗物涨价；Boss 题答完也有局外的经验、金币和连对；选词造句和配对战点错会扣心；选词造句、Boss 题和事件小题在全屏时居中显示。": "Fixes: in the English interface, picture-question captions now show English meanings and all 460 picture sentences have English translations. Paris Spire: runs start with 60 coins and merchant relics cost more; boss questions now give XP, coins and combo like normal practice; mistakes in sentence-building and matching fights now cost a heart; sentence-building, boss and event prompts are centred in full-screen mode.",
+"金币不够（还差 ${GAME_PRICE - led.coins}）": "Not enough coins (${GAME_PRICE - led.coins} short)",
+"答对题得到的金币已经在后台积累（现在 ${led.coins} 金币）。做完今天的计划，商店就会开放。": "Coins from correct answers are already piling up in the background (${led.coins} coins now). Finish today's plan and the shop will open.",
+"购买 · ${GAME_PRICE} 金币": "Buy · ${GAME_PRICE} coins",
+"还差 ${GAME_PRICE - led.coins} 金币，继续答题就能攒够。": "${GAME_PRICE - led.coins} coins short — keep answering and you'll get there.",
+"确认花 ${GAME_PRICE} 金币": "Confirm: spend ${GAME_PRICE} coins",
+"花了 ${GAME_PRICE} 金币": "Spent ${GAME_PRICE} coins",
+"在“商店”用 ${GAME_PRICE} 金币买下游戏模式后开放。": "Opens after you buy Game Mode in the \"Shop\" for ${GAME_PRICE} coins.",
+"先完成一次今日计划开放商店，再在商店用 ${GAME_PRICE} 金币买下游戏模式。": "Finish today's plan once to open the shop, then buy Game Mode there for ${GAME_PRICE} coins.",
+"去商店解锁 · ${it.price} 金币": "Unlock in the shop · ${it.price} coins",
+"做题日历、错题本 · 已拥有 ${ownN} / ${FEAT_ITEMS.length}": "Study calendar, mistake book · owned ${ownN} / ${FEAT_ITEMS.length}",
+"解锁了：${it.name}": "Unlocked: ${it.name}",
+"同学 ": "Learner ",
+"失声的巴黎": "Voiceless Paris",
+"原型：像素街区解谜。学会语法得到能力、打开新区域；读懂法语线索才能解开谜题。": "Prototype: a pixel-district puzzle. Learn grammar to gain abilities and open new areas; read French clues to solve the puzzles.",
+"原型": "Prototype",
+"冠词之力": "Power of Articles",
+"能修好消失的门牌": "Can repair the missing shop sign",
+"回望过去": "Look Back",
+"能看见过去：鬼魂的桥、鬼魂留下的字": "Can see the past: the ghost bridge and the ghost's writing",
+"预见将来": "Foresight",
+"能转动刻着将来时的齿轮": "Can turn the gear engraved with the future tense",
+"失声的巴黎 · 原型": "Voiceless Paris · Prototype",
+"方向键 / 下方按钮移动，靠近东西按“调查”。": "Move with the arrow keys or the buttons below; next to something, press \"Look\".",
+"调查": "Look",
+"重新开始": "Restart",
+"确定重新开始？": "Restart for sure?",
+"一夜之间，这个街区的人们说话缺了语法：门牌上的冠词掉了，钟楼停在了现在时。三块发光的石碑里藏着三种语法的力量——先去最近的那块看看。": "Overnight, the people of this neighbourhood lost their grammar: the articles fell off the shop signs and the clock tower got stuck in the present tense. Three glowing stones hold the power of three grammar points — go and look at the nearest one first.",
+"街区已经恢复了声音。你可以随便逛逛，或者点“重新开始”再玩一遍。": "The neighbourhood has found its voice again. Feel free to wander around, or press \"Restart\" to play again.",
+"继续探索：靠近发光的石碑、门、长椅、齿轮，按“调查”。": "Keep exploring: walk up to the glowing stones, doors, benches and gears and press \"Look\".",
+"钥匙": "Key",
+"背包：": "Bag: ",
+"背包：空": "Bag: empty",
+"河水湍急，过不去。传说这里以前有一座桥……要是能看见过去就好了。": "The river is too rough to cross. Legend says there used to be a bridge here… if only you could see the past.",
+"输入密码": "Enter the code",
+"开门": "Open",
+"不对，门纹丝不动。": "Wrong — the gate doesn't budge.",
+"不对。再读一遍线索。": "Not quite. Read the clue again.",
+"再给一点提示": "Another hint",
+"提示": "Hint",
+"先离开": "Leave for now",
+"石碑亮了起来——你得到了「${a.name}」！（${right}/5）${a.hint}。": "The stone lights up — you gained \"${a.name}\"! (${right}/5) ${a.hint}.",
+"好": "OK",
+"石碑闪了一下又暗了（${right}/5，要答对 4 题）。看看解析，再来一次吧。": "The stone flickers and goes dark again (${right}/5; you need 4 right). Check the explanations and try again.",
+"再试一次": "Try again",
+"「${a.tag}」试炼 · 第 ${i + 1} / 5 题": "\"${a.tag}\" trial · question ${i + 1} / 5",
+"✓ 答对了。": "✓ Correct.",
+"✗ 正确答案是：${q.opts[q.a]}": "✗ The correct answer is: ${q.opts[q.a]}",
+"石碑上刻着：「${a.tag}」。答对 5 题中的 4 题，就能得到「${a.name}」——${a.hint}。": "The stone is engraved: \"${a.tag}\". Get 4 of 5 questions right to gain \"${a.name}\" — ${a.hint}.",
+"开始试炼": "Start the trial",
+"这里什么也没有。": "There's nothing here.",
+"石碑已经暗了。你已经有「${LSP_AB[k].name}」。": "The stone has gone dark. You already have \"${LSP_AB[k].name}\".",
+"门牌上只剩一个词：« ___ boulangerie »。少了什么……你现在还修不好它。（需要「冠词之力」）": "Only one word is left on the shop sign: « ___ boulangerie ». Something's missing… you can't fix it yet. (Needs \"Power of Articles\")",
+"门牌上缺一个冠词，填哪个？": "The sign is missing an article. Which one?",
+"boulangerie（面包店）以 -erie 结尾。": "boulangerie (bakery) ends in -erie.",
+"-erie 结尾的名词是阴性：la boulangerie。": "Nouns ending in -erie are feminine: la boulangerie.",
+"面包师：« Merci ! Apporte-moi un fouet et un tablier, s'il te plaît. Ils sont dans le jardin. Le code du jardin ? C'est l'année de naissance de mon grand-père : mille neuf cent quatre-vingt-dix-sept. »": "Baker: « Merci ! Apporte-moi un fouet et un tablier, s'il te plaît. Ils sont dans le jardin. Le code du jardin ? C'est l'année de naissance de mon grand-père : mille neuf cent quatre-vingt-dix-sept. »",
+"记下了": "Got it",
+"面包师：« Parfait ! Pour traverser le canal, il faut se souvenir d'hier... La pierre du jardin peut t'aider. »（要过河，得“记得昨天”……花园里的石碑能帮你。）": "Baker: « Parfait ! Pour traverser le canal, il faut se souvenir d'hier... La pierre du jardin peut t'aider. » (To cross the river you must \"remember yesterday\"… the stone in the garden can help.)",
+"谢谢": "Thanks",
+"面包师：« Non, je n'ai pas besoin de ${wrong.map(w => (V_WORDS.find(v => v.fr === w) ? vLabel(V_WORDS.find(v => v.fr === w)) : w)).join(\", \")}. » 她把不需要的东西还给你。": "Baker: « Non, je n'ai pas besoin de ${wrong.map(w => (V_WORDS.find(v => v.fr === w) ? vLabel(V_WORDS.find(v => v.fr === w)) : w)).join(\", \")}. » She hands back the things she doesn't need.",
+"面包师：« Un fouet et un tablier, s'il te plaît ! »（她还在等这两样东西。）": "Baker: « Un fouet et un tablier, s'il te plaît ! » (She's still waiting for those two things.)",
+"面包店里飘着可颂的香味。面包师冲你点点头。": "The smell of croissants drifts through the bakery. The baker nods at you.",
+"铁门上有一个四位数的密码锁。也许有人知道密码。": "The iron gate has a four-digit combination lock. Maybe someone knows the code.",
+"面包师说的年份，就是花园门的密码。": "The year the baker mentioned is the code for the garden gate.",
+"咔哒一声，花园的门开了。": "Click — the garden gate opens.",
+"这里有一件东西（看图认一认）。要拿走吗？": "There's something here (look at the picture). Take it?",
+"拿走": "Take it",
+"你拿起了 ${w ? vLabel(w) : it[2]}。": "You picked up ${w ? vLabel(w) : it[2]}.",
+"不要": "Leave it",
+"老人：« J'ai perdu la clé de la tour. Je l'ai cachée sous le banc, à côté de la fontaine. »": "Old man: « J'ai perdu la clé de la tour. Je l'ai cachée sous le banc, à côté de la fontaine. »",
+"关键词：la clé 钥匙 · sous 在……下面 · le banc 长椅 · à côté de 在……旁边 · la fontaine 喷泉。": "Key words: la clé key · sous under · le banc bench · à côté de next to · la fontaine fountain.",
+"“我把塔楼的钥匙藏在了喷泉旁边的长椅下面。”": "\"I hid the tower key under the bench next to the fountain.\"",
+"长椅下面已经空了。": "There's nothing left under the bench.",
+"你在长椅下面摸到了一把旧钥匙！": "You feel an old key under the bench!",
+"长椅下面什么也没有。": "There's nothing under this bench.",
+"钟楼的门锁着。门上还有一个大齿轮。": "The clock tower door is locked. There's a big gear on it too.",
+"钥匙插进去了，可齿轮卡住了——齿轮上刻的句子都是将来时，你还转不动它。（需要「预见将来」）": "The key goes in, but the gear is stuck — the sentences engraved on it are all in the future tense, and you can't turn it yet. (Needs \"Foresight\")",
+"把齿轮转到正确的形式：": "Turn the gear to the correct form:",
+"demain（明天）→ 简单将来时。": "demain (tomorrow) → simple future.",
+"简单将来时 = 不定式 + -ons：finir → nous finirons。": "Simple future = infinitive + -ons: finir → nous finirons.",
+"齿轮转动起来，钟楼的门开了。": "The gear turns and the clock tower door opens.",
+"钟楼的门还锁着。": "The clock tower door is still locked.",
+"钟声在街区上空回荡，大家又能好好说话了。": "The bell rings out over the neighbourhood, and everyone can speak properly again.",
+"钟楼里空荡荡的，墙上好像有什么，可你看不见。（需要「回望过去」）": "The clock tower is empty. There seems to be something on the wall, but you can't see it. (Needs \"Look Back\")",
+"鬼魂在墙上留下一行字：« Hier, le gardien a caché la cloche derrière la grande horloge. »": "The ghost left a line on the wall: « Hier, le gardien a caché la cloche derrière la grande horloge. »",
+"钟藏在哪里？": "Where is the bell hidden?",
+"在大钟后面": "Behind the big clock",
+"在喷泉下面": "Under the fountain",
+"在桥上": "On the bridge",
+"在面包店里": "In the bakery",
+"la cloche 钟（敲的那种）· derrière 在……后面 · l'horloge 大钟（钟表）。": "la cloche bell (the kind you ring) · derrière behind · l'horloge clock (the timepiece).",
+"“昨天，看守把钟藏在了大钟后面。”": "\"Yesterday, the keeper hid the bell behind the big clock.\"",
+"失声的巴黎（原型）通关": "Voiceless Paris (prototype) cleared",
+"获得 50 金币。": "You got 50 coins.",
+"你在大钟后面找到了那口钟。钟声一响，整个街区重新有了颜色，人们又能好好说话了！${coins}\n\n原型到这里结束。觉得好玩的话，下一步可以做更多街区、更多语法能力。": "You found the bell behind the big clock. As it rings, the whole neighbourhood regains its colours and everyone can speak properly again! ${coins}\n\nThat's the end of the prototype. If you enjoyed it, the next step could be more districts and more grammar abilities.",
+"（商店解锁）": " (unlock in the shop)",
+"结束试用": "End trial",
+"试用": "Try on",
+"正在试用「": "Trying on \"",
+"」· 仅在商店生效，离开后恢复原皮肤。": "\" · only in the shop; your own skin comes back when you leave.",
+"皮肤可免费试用，仅在商店生效，不扣金币。": "Skins can be tried on for free — only in the shop, no coins spent.",
+" · ${all.due} 题待复习": " · ${all.due} due for review",
+"打开后：答对得金币、连对 combo 计数、每日任务、商店和道具（经验药水、补签卡）。关掉后这些都不显示；答对得的金币照常在后台积累，已有的金币和道具会保留，重新打开还在。经验、等级、今日计划和闯关不受影响。这个开关跟着账号同步。": "When on: coins for correct answers, combo counter, daily quests, the shop and items (XP potions, streak repair cards). When off, none of these show; coins from correct answers still pile up in the background, and your coins and items are kept for when you turn it back on. XP, level, today's plan and the levels aren't affected. This setting syncs with your account.",
+"全部练习": "All practice",
+"记录保存在这台设备的浏览器里，换设备或清除浏览器数据后不会保留。": " Records are kept in this device's browser and won't carry over if you switch devices or clear browser data.",
+"答题记录会自动保存到学习进度。记录保存在这台设备的浏览器里，换设备或清除浏览器数据后不会保留。": "Your answers are saved to your progress automatically. Records are kept in this device's browser and won't carry over if you switch devices or clear browser data.",
+"“失声的巴黎”有了完整的英文版：剧情、对话、提示和谜题说明都翻译了；另外补齐了商店、皮肤试用和设置里几处漏翻的英文。": "\"Voiceless Paris\" is now fully in English: story, dialogue, hints and puzzle text are all translated. Also filled in a few missing English strings in the shop, skin try-on and settings.",
+"再爬一次 · 选难度": "Climb again · choose difficulty",
+"巴黎塔尖：一局结束后点“再爬一次 · 选难度”会回到选难度的页面（以前会直接用上一局的难度开局，看不到新解锁的难度）。": "Paris Spire: after a run ends, \"Climb again · choose difficulty\" now takes you back to the difficulty screen (it used to start straight away at the previous difficulty, hiding newly unlocked ones).",
+"学习模式 · 先复习": "Study mode · review first",
+"这一组 ${S.fixed.length} 题 · ${pairs.length} 个“动词 + 时态”": "${S.fixed.length} questions · ${pairs.length} verb + tense pairs",
+"先看一遍这一组会考到的变位：整张变位表和这一类动词在这个时态的规律。看完点“开始做题”。": "First look over the conjugations this set will test: the full table and the rule for this kind of verb in this tense. Then press \"Start\".",
+"规律同上。": "Same rule as above.",
+"开始做题": "Start",
+"学习模式（做题前先复习会考的变位）": "Study mode (review the conjugations before each set)",
+"助动词用 ${v.aux}": "Auxiliary: ${v.aux}",
+"动词变位也有了学习模式（在变位的目录里打开，和语法题共用一个开关）：每组开始前先列出这一组会考的“动词 + 时态”，附整张变位表、变位规律和朗读，看完再做题，考的正好是这些。": "Conjugation now has a study mode too (turn it on in the conjugation menu; it shares the switch with grammar questions): before each set you see the verb + tense pairs it will test, with full tables, rules and audio, and then the set asks exactly those.",
 "说话": "to speak",
 "喜欢；爱": "to like; to love",
 "工作": "to work",
@@ -21624,6 +21749,10 @@ function setGoalSection(wrap) {
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 // 版本号格式 1.x.y：平时只动 x、y；最前面的 1 未经用户同意不能改成 2。
 const CHANGELOG = [
+  { v: "1.7.5", d: "2026-11-09", p: "fr", items: [
+    "“失声的巴黎”有了完整的英文版：剧情、对话、提示和谜题说明都翻译了；另外补齐了商店、皮肤试用和设置里几处漏翻的英文。",
+    "巴黎塔尖：一局结束后点“再爬一次 · 选难度”会回到选难度的页面（以前会直接用上一局的难度开局，看不到新解锁的难度）。",
+    "动词变位也有了学习模式（在变位的目录里打开，和语法题共用一个开关）：每组开始前先列出这一组会考的“动词 + 时态”，附整张变位表、变位规律和朗读，看完再做题，考的正好是这些。"] },
   { v: "1.7.4", d: "2026-11-09", p: "fr", items: [
     "英文界面修复：背单词例句识图题图片下的意思改成英文，配图例句也有了英文翻译（460 句）；巴黎塔尖开局给 60 金币，商人卖的遗物涨价；Boss 题答完也有局外的经验、金币和连对；选词造句和配对战点错会扣心；选词造句、Boss 题和事件小题在全屏时居中显示。"] },
   { v: "1.7.3", d: "2026-11-08", p: "fr", items: [
@@ -27855,8 +27984,9 @@ function spEnd(win, quit, ending) {
     r.wrong.map(id => vById.get(id)).filter(Boolean).forEach(w => { const s = el("span"); s.append(el("b", null, vLabel(w)), document.createTextNode(" " + vMean(w))); t.append(s); });
     card.append(t);
   }
-  const again = el("button", "btn", "再爬一次"); again.type = "button"; again.id = "spAgain";
-  again.addEventListener("click", () => { spNewRun(); spMap(); });
+  // 再爬一次：先回到选难度的页面（刚通关解锁了新难度，可以直接选上去），不再沿用上一局的难度直接开局
+  const again = el("button", "btn", "再爬一次 · 选难度"); again.type = "button"; again.id = "spAgain";
+  again.addEventListener("click", () => { spRun = null; try { localStorage.removeItem("fq-spire-run"); } catch (e) {} spHome(); });
   const row = el("div", "actions"); row.append(again); card.append(row);
   stage.append(card);
 }
@@ -28467,7 +28597,11 @@ function cjMake(v, t, i, fem) {
   return q;
 }
 function cjNext() {
-  if (cjSess?.fixed) { const f = cjSess.fixed[cjSess.k]; return f ? cjMake(CJ_BY.get(f.v), f.t, f.i, f.fem) : null; }   // 环法之旅：每站固定的题
+  if (cjSess?.fixed) {   // 环法之旅：每站固定的题；学习模式：开组前排好的题（“不限”时排好的做完再随机出）
+    const f = cjSess.fixed[cjSess.k];
+    if (f) return cjMake(CJ_BY.get(f.v), f.t, f.i, f.fem);
+    if (!cjSess.studyFixed) return null;
+  }
   const pool = cjPool(), now = Date.now();
   if (!pool.length) return null;
   const m = ([v, t]) => memOf(cjId(v.v, t));
@@ -28530,6 +28664,14 @@ function cjToc() {
     mode.append(b);
   });
   const g0 = el("div", "tag-group"); g0.append(el("div", "tag-gname", "出题方式"), mode);
+  // 学习模式（和语法题共用一个开关）：开组前先复习这一组要考的变位
+  const sm = el("div", "tag-mode");
+  [[true, "开"], [false, "关"]].forEach(([on, t]) => {
+    const b = el("button", null, t); b.type = "button"; b.setAttribute("aria-pressed", String(cjStudyOn() === on));
+    b.addEventListener("click", () => { study = on; try { localStorage.setItem("fq-study", on ? "1" : "0"); } catch (e) {} if (typeof studyChk !== "undefined" && studyChk) studyChk.checked = on; restart(); });
+    sm.append(b);
+  });
+  g0.append(el("div", "tag-gname", "学习模式（做题前先复习会考的变位）"), sm);
   const nRow = el("div", "tag-mode");
   [[10, "10 题"], [20, "20 题"], [30, "30 题"], [0, "不限"]].forEach(([n, t]) => {
     const b = el("button", null, t); b.type = "button"; b.setAttribute("aria-pressed", String(cjCfg.n === n));
@@ -28549,9 +28691,65 @@ function cjToc() {
 }
 
 // ---------- 出题 ----------
+// ---------- 学习模式：开组前先把这一组要考的“动词 + 时态”排好，复习它们的变位表和变位规律 ----------
+const cjStudyOn = () => typeof study !== "undefined" && study;
+function cjPlan(n) {
+  const out = [], save = cjSess;
+  cjSess = { k: 0, lastKey: null };
+  for (let k = 0; k < n; k++) { const q = cjNext(); if (!q) break; out.push({ v: q.v.v, t: q.t, i: q.i, fem: q.fem }); cjSess.lastKey = cjId(q.v.v, q.t); }
+  cjSess = save;
+  return out;
+}
+function cjStudy() {
+  stage.innerHTML = "";
+  const S = cjSess, pairs = [];
+  S.fixed.forEach(f => { if (!pairs.some(p => p.v === f.v && p.t === f.t)) pairs.push(f); });
+  const card = el("section", "card cj-study");
+  const tags = el("div", "tagrow");
+  tags.append(el("span", "tag", "学习模式 · 先复习"), el("span", "tag plain", `这一组 ${S.fixed.length} 题 · ${pairs.length} 个“动词 + 时态”`));
+  card.append(tags, el("p", "sub", "先看一遍这一组会考到的变位：整张变位表和这一类动词在这个时态的规律。看完点“开始做题”。"));
+  const seen = new Set();   // 同样的规律只写一次
+  pairs.forEach(f => {
+    const v = CJ_BY.get(f.v), box = el("div", "cj-study-item");
+    const head = el("div", "cj-study-head");
+    head.append(el("b", "cj-inf", v.v));
+    const arrow = el("span", "cj-arrow"); arrow.append(el("span", "cj-arrow-t", CJ_TZH[f.t]), el("span", "cj-arrow-line")); head.append(arrow);
+    if (UI_LANG !== "en" && v.zh) head.append(el("span", "cj-study-zh", v.zh));
+    if (tts) { const say = el("button", "play cj-say", "▶ 读"); say.type = "button"; say.addEventListener("click", () => speak((f.t === "impe" ? [1, 3, 4] : [0, 1, 2, 3, 4, 5]).map(j => cjFull(f.t, j, false, cjForm(v, f.t, j, false)).replace(/ !$/, "")).join(", "), .9, say)); head.append(say); }
+    box.append(head);
+    const table = el("div", "cj-table");
+    (f.t === "impe" ? [1, 3, 4] : [0, 1, 2, 3, 4, 5]).forEach(j => table.append(el("span", null, cjFull(f.t, j, false, cjForm(v, f.t, j, false)))));
+    box.append(table);
+    const rule = cjRule(v, f.t), lines = rule.lines.filter(t => !seen.has(t));
+    lines.forEach(t => seen.add(t));
+    const rb = el("div", "cj-rule");
+    if (lines.length) { rb.append(el("b", null, rule.title)); const ul = el("ul"); lines.forEach(t => ul.append(el("li", null, t))); rb.append(ul); }
+    else rb.append(el("span", "sub", "规律同上。"));
+    if (CJ_COMPOUND.includes(f.t)) rb.append(el("p", "sub", `助动词用 ${v.aux}` + (v.aux === "être" ? "，过去分词与主语性数配合" : "") + "。"));
+    box.append(rb);
+    card.append(box);
+  });
+  const act = el("div", "actions");
+  const skip = el("button", "btn ghost", "跳过复习"); skip.type = "button";
+  const go = el("button", "btn", "开始做题"); go.type = "button"; go.id = "cjStudyGo";
+  const start = () => { S.studied = true; cjQuestion(); };
+  skip.addEventListener("click", start); go.addEventListener("click", start);
+  act.append(skip, go);
+  card.append(act);
+  stage.append(card);
+  go.focus({ preventScroll: true });
+}
+
 function cjQuestion() {
   stage.innerHTML = "";
-  if (!cjSess) cjSess = { k: 0, right: 0, xp0: prog ? prog.xp : 0 };
+  if (!cjSess) {
+    cjSess = { k: 0, right: 0, xp0: prog ? prog.xp : 0 };
+    if (cjStudyOn()) {   // 学习模式：先排好这一组的题，复习完再做
+      cjSess.fixed = cjPlan(cjCfg.n || 10); cjSess.studyFixed = !cjCfg.n;
+      if (cjSess.fixed.length) { cjStudy(); return; }
+      delete cjSess.fixed;
+    }
+  }
   const cjN = cjSess.tour ? TOUR_N : cjCfg.n;
   if (cjN && cjSess.k >= cjN) { if (cjSess.tour && typeof tourHook === "function" && tourHook("conj")) return; cjResult(); return; }
   const q = cjNext();
