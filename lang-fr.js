@@ -4471,6 +4471,16 @@ const LANG_DICT = {
 "le feu vert 绿灯": "le feu vert",
 "débrancher 拔掉": "débrancher",
 "商店新上架「法语界面」（10000 金币）：买下后可以在设置里把整个网站切成法语，按钮、提示、题目解析、知识点讲解和游戏文字都是法语；法语界面下答题金币 ×3（英文界面 ×2）。": "Nouveau dans la boutique : l'interface en français (10 000 pièces). Une fois achetée, passez tout le site en français dans les Paramètres : boutons, astuces, explications, fiches de grammaire et textes des jeux. En français, chaque bonne réponse rapporte ×3 pièces (×2 en anglais).",
-"英文和法语界面改成选用了才下载：没用这两种语言的话，页面从 8.8 MB 减到 4.2 MB，打开更快；用过的语言包会存在设备上，断网也能用。": "Les interfaces anglaise et française ne se téléchargent plus que si vous les utilisez : sans elles, la page passe de 8,8 Mo à 4,2 Mo et s'ouvre plus vite. Un pack de langue déjà utilisé reste sur l'appareil et fonctionne hors ligne."
+"英文和法语界面改成选用了才下载：没用这两种语言的话，页面从 8.8 MB 减到 4.2 MB，打开更快；用过的语言包会存在设备上，断网也能用。": "Les interfaces anglaise et française ne se téléchargent plus que si vous les utilisez : sans elles, la page passe de 8,8 Mo à 4,2 Mo et s'ouvre plus vite. Un pack de langue déjà utilisé reste sur l'appareil et fonctionne hors ligne.",
+"离线配图包：正在查询……": "Pack d'images hors ligne : vérification…",
+"离线配图包：已下载 ✓（${d.images} 张，约 ${d.mb} MB），断网也能看单词图片。": "Pack d'images hors ligne : téléchargé ✓ (${d.images} images, environ ${d.mb} Mo). Les images des mots s'affichent même hors ligne.",
+"确认删除": "Confirmer la suppression",
+"删除配图包": "Supprimer le pack d'images",
+"正在下载配图包…… ${d.imgs} / ${d.images}": "Téléchargement du pack d'images… ${d.imgs} / ${d.images}",
+"配图包已下载 ${d.imgs} / ${d.images}，联网后会继续下载。": "Pack d'images : ${d.imgs} / ${d.images} téléchargées ; la suite se téléchargera une fois en ligne.",
+"停止并删除": "Arrêter et supprimer",
+"单词配图平时看到哪张加载哪张。下载配图包（${d.images} 张，约 ${d.mb} MB）后，断网也能看图。": "Les images des mots se chargent au fur et à mesure. Téléchargez le pack d'images (${d.images} images, environ ${d.mb} Mo) pour les voir hors ligne.",
+"下载配图包": "Télécharger le pack d'images",
+"公开网站不再在打开时自动下载全部单词配图（约 16 MB）：平时看到哪张加载哪张，打开更快。需要断网看图的话，在“背单词”页点“下载配图包”；也可以随时删除。以前已经存好图片的设备会保留。": "Le site public ne télécharge plus toutes les images des mots (environ 16 Mo) à l'ouverture : elles se chargent au fur et à mesure, et le site s'ouvre plus vite. Pour les voir hors ligne, touchez « Télécharger le pack d'images » sur la page Vocabulaire ; vous pouvez le supprimer à tout moment. Les appareils qui avaient déjà enregistré les images les gardent."
 };
 

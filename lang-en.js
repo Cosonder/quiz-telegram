@@ -4471,7 +4471,17 @@ const LANG_DICT = {
 "设置里加了“字体”：默认、Times New Roman、Kreon，影响英文和法语字母，汉字仍用思源字体。": "Settings now includes font choices: Default, Times New Roman and Kreon. The choice affects English and French letters; Chinese characters retain the Noto fonts.",
 "英文界面补齐正文：4157 道题的题干和解析、1164 张知识点卡片、800 道 Boss 题、巴黎塔尖事件、变位规律、模拟卷说明、环法站点和明信片介绍、更新记录都有了英文版。": "The English interface now includes translated content: prompts and explanations for 4,157 questions, 1,164 knowledge cards, 800 boss questions, Paris Spire events, conjugation rules, exam instructions, France tour stops, postcard descriptions and release notes.",
 "商店新上架「法语界面」（10000 金币）：买下后可以在设置里把整个网站切成法语，按钮、提示、题目解析、知识点讲解和游戏文字都是法语；法语界面下答题金币 ×3（英文界面 ×2）。": "New in the shop: the French interface (10,000 coins). Once bought, switch the whole site to French in Settings: buttons, tips, explanations, grammar notes and game text. Correct answers earn ×3 coins in French (×2 in English).",
-"英文和法语界面改成选用了才下载：没用这两种语言的话，页面从 8.8 MB 减到 4.2 MB，打开更快；用过的语言包会存在设备上，断网也能用。": "The English and French interfaces now download only when you use them: without them the page shrinks from 8.8 MB to 4.2 MB and opens faster. A language pack you have used stays on your device and works offline."
+"英文和法语界面改成选用了才下载：没用这两种语言的话，页面从 8.8 MB 减到 4.2 MB，打开更快；用过的语言包会存在设备上，断网也能用。": "The English and French interfaces now download only when you use them: without them the page shrinks from 8.8 MB to 4.2 MB and opens faster. A language pack you have used stays on your device and works offline.",
+"离线配图包：正在查询……": "Offline picture pack: checking…",
+"离线配图包：已下载 ✓（${d.images} 张，约 ${d.mb} MB），断网也能看单词图片。": "Offline picture pack: downloaded ✓ (${d.images} pictures, about ${d.mb} MB). Word pictures work offline.",
+"确认删除": "Confirm delete",
+"删除配图包": "Delete picture pack",
+"正在下载配图包…… ${d.imgs} / ${d.images}": "Downloading the picture pack… ${d.imgs} / ${d.images}",
+"配图包已下载 ${d.imgs} / ${d.images}，联网后会继续下载。": "Picture pack: ${d.imgs} / ${d.images} downloaded; the rest will download when you are back online.",
+"停止并删除": "Stop and delete",
+"单词配图平时看到哪张加载哪张。下载配图包（${d.images} 张，约 ${d.mb} MB）后，断网也能看图。": "Word pictures load one by one as you see them. Download the picture pack (${d.images} pictures, about ${d.mb} MB) to see them offline.",
+"下载配图包": "Download picture pack",
+"公开网站不再在打开时自动下载全部单词配图（约 16 MB）：平时看到哪张加载哪张，打开更快。需要断网看图的话，在“背单词”页点“下载配图包”；也可以随时删除。以前已经存好图片的设备会保留。": "The public site no longer downloads all word pictures (about 16 MB) when it opens: pictures load as you see them, so the site opens faster. To see pictures offline, tap \"Download picture pack\" on the Vocabulary page; you can delete it any time. Devices that already stored the pictures keep them."
 };
 
 // 配图例句（V_PICEX）的英文翻译：英文界面用。由 tools/i18n/picsent-en.json 生成，改译文请改那个文件。
