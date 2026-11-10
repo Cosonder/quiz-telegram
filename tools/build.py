@@ -29,5 +29,10 @@ shutil.copytree(os.path.join(src, "french", "img"), img)
 sk = os.path.join(root, "skins")
 if os.path.exists(sk): shutil.rmtree(sk)
 if os.path.isdir(os.path.join(src, "skins")): shutil.copytree(os.path.join(src, "skins"), sk)
+# 英文、法语语言包（选了这个语言才下载），和页面放在一起
+for f in os.listdir(root):
+    if re.fullmatch(r"lang-\w+\.js", f): os.remove(os.path.join(root, f))
+for f in os.listdir(os.path.join(src, "french")):
+    if re.fullmatch(r"lang-\w+\.js", f): shutil.copy(os.path.join(src, "french", f), os.path.join(root, f))
 open(os.path.join(root, ".nojekyll"), "w").close()
 print("index.html", round(os.path.getsize(os.path.join(root, "index.html")) / 1e6, 1), "MB ·", len(os.listdir(img)), "images")
