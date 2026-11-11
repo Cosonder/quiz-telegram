@@ -19927,8 +19927,11 @@ const V_SCENE = {
   "se souvenir": "ex-se-souvenir", "éviter": "ex-eviter", "décider": "ex-decider", "se tromper": "ex-se-tromper", "prévenir": "ex-prevenir",
 };
 const vPic = w => V_IMG[w.fr] || V_SCENE[w.fr];
+// 图片地址：一般是 img/<文件名>.jpg。Claude 页面一个版本最多放 512 个文件，放不下的图存在页面的素材库里，
+// 私人构建会加一张 V_IMG_BLOB（文件名 → /_blob/<id>）；公开网站和 Telegram 版没有这张表。
+const vImgSrc = f => (typeof V_IMG_BLOB !== "undefined" && V_IMG_BLOB[f]) || "img/" + f + ".jpg";
 function vImg(w, cls) {
-  const i = el("img", cls); i.loading = "lazy"; i.decoding = "async"; i.alt = ""; i.src = "img/" + vPic(w) + ".jpg";   // 先设 lazy 再设 src，否则浏览器会立刻下载（词表里有几百张缩略图）
+  const i = el("img", cls); i.loading = "lazy"; i.decoding = "async"; i.alt = ""; i.src = vImgSrc(vPic(w));   // 先设 lazy 再设 src，否则浏览器会立刻下载（词表里有几百张缩略图）
   return i;
 }
 
@@ -23404,7 +23407,7 @@ function lspPerson(c, X, Y, coat, skin, old) {
 // ---------- 页面 ----------
 function renderLsp() {
   lspLoad();
-  LSP_ITEMS.forEach(([, , w]) => { if (!lspImgs[w]) { const im = new Image(); im.src = "img/" + (typeof V_IMG !== "undefined" && V_IMG[w] || w) + ".jpg"; im.onload = lspDraw; lspImgs[w] = im; } });
+  LSP_ITEMS.forEach(([, , w]) => { if (!lspImgs[w]) { const im = new Image(); im.src = vImgSrc(typeof V_IMG !== "undefined" && V_IMG[w] || w); im.onload = lspDraw; lspImgs[w] = im; } });
   stage.innerHTML = "";
   const card = el("section", "card lsp-card");
   const head = el("div", "lsp-head");
@@ -23581,7 +23584,7 @@ function lspAct() {
     const it = LSP_ITEMS.find(v => v[0] === x && v[1] === y);
     const w = V_WORDS.find(v => v.fr === it[2]);
     lspSay(`这里有一件东西（看图认一认）。要拿走吗？`, [["拿走", () => { lsp.inv.push(it[2]); lsp.picked.push(x + "," + y); lspSave(); lspHud(); lspDraw(); lspSay(`你拿起了 ${w ? vLabel(w) : it[2]}。`); }, ""], ["不要", lspClose]], true);
-    const box = document.getElementById("lspDlg"), im = el("img", "lsp-thumb"); im.src = "img/" + (V_IMG[it[2]] || it[2]) + ".jpg"; im.alt = ""; box.prepend(im);
+    const box = document.getElementById("lspDlg"), im = el("img", "lsp-thumb"); im.src = vImgSrc(V_IMG[it[2]] || it[2]); im.alt = ""; box.prepend(im);
     return;
   }
   if (t === "n") {   // 老人：线索里藏着钥匙的位置（知识锁）
