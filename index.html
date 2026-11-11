@@ -1475,6 +1475,66 @@ html.qf #stage > section.q-card > .explain { flex: none !important; height: clam
   html.qf #stage .v-rv-sent { font-size: .92rem; line-height: 1.4; }
   html.qf #stage .v-rv-tr { font-size: .82rem; line-height: 1.35; }
 }
+/* Companion art is fetched only when a sprite is explicitly mounted. */
+.pet-widget[hidden], .pet-launcher[hidden], .pet-trial-note[hidden] { display: none !important; }
+.pet-widget { position: fixed; z-index: 20; width: 108px; isolation: isolate; }
+.pet-avatar { display: block; width: 108px; height: 132px; border: 0; padding: 6px; background: transparent; color: var(--fg); cursor: grab; touch-action: none; border-radius: 18px; }
+.pet-avatar:active { cursor: grabbing; }
+.pet-avatar:focus-visible, .pet-launcher:focus-visible, .pet-character:focus-visible, .pet-page button:focus-visible, .pet-bubble button:focus-visible { outline: 3px solid var(--accent); outline-offset: 3px; }
+.pet-sprite { display: block; position: relative; flex: none; width: 96px; aspect-ratio: 4 / 5; background-size: 400% 500%; background-repeat: no-repeat; background-position: 0 calc(var(--pet-row, 0) * 25%); animation: pet-frames 1.8s step-end infinite; filter: drop-shadow(0 4px 3px rgb(0 0 0 / .15)); }
+.pet-accessory { position: absolute; inset: 0; background-size: 300% 100%; background-repeat: no-repeat; pointer-events: none; }
+@keyframes pet-frames { 0% { background-position-x: 0; } 25% { background-position-x: 33.333333%; } 50% { background-position-x: 66.666667%; } 75% { background-position-x: 100%; } }
+.pet-static, .pet-paused { animation: none !important; background-position-x: 0; }
+.pet-launcher { display: inline-grid; place-items: center; width: 48px; height: 48px; flex: 0 0 48px; border: 2px solid var(--line); border-radius: 50%; background: var(--card); color: var(--fg); font: 700 1.2rem var(--display); cursor: pointer; }
+.pet-bubble { position: absolute; bottom: 132px; right: 0; width: min(300px, calc(100vw - 32px)); padding: 14px; border: 1.5px solid var(--line); border-radius: 16px; background: var(--card); color: var(--fg); box-shadow: 0 6px 24px rgb(0 0 0 / .13); text-align: left; max-height: min(430px, calc(100dvh - 170px)); overflow: auto; overflow-wrap: anywhere; }
+.pet-widget[data-side="left"] .pet-bubble { right: auto; left: 0; }
+.pet-widget[data-bubble="below"] .pet-bubble { top: 132px; bottom: auto; }
+.pet-bubble-head { display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+.pet-bubble-head .btn { font-size: .8rem; }
+.pet-words { display: grid; gap: 8px; padding: 10px 0; }
+.pet-words p { margin: 0; }
+.pet-french { font-family: Georgia, "Times New Roman", serif; font-size: 1.05rem; }
+.pet-actions { display: flex; gap: 7px; flex-wrap: wrap; margin-top: 10px; }
+.pet-actions .btn { min-height: 44px; font-size: .85rem; padding: 7px 10px; }
+.pet-page { gap: 22px; overflow-wrap: anywhere; }
+.pet-page-title h2 { margin: 4px 0; font-family: var(--display); font-size: clamp(1.8rem, 4vw, 2.4rem); }
+.pet-eyebrow { font-size: .7rem; letter-spacing: .2em; color: var(--muted); }
+.pet-characters { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.pet-character { display: flex; flex-direction: column; gap: 6px; text-align: left; padding: 14px; min-width: 0; border: 1px solid var(--line); border-top: 4px solid var(--pet-color); border-radius: 12px; background: var(--card); color: var(--fg); font: 700 1rem var(--body); cursor: pointer; }
+.pet-character[aria-pressed="true"] { border-color: var(--pet-color); box-shadow: inset 0 0 0 1px var(--pet-color); background: var(--accent-soft); }
+.pet-character .sub { font-weight: 400; font-size: .83rem; }
+.pet-age { font-size: .75rem; font-weight: 400; color: var(--muted); }
+.pet-hero { display: grid; grid-template-columns: minmax(150px, .65fr) minmax(0, 1fr); gap: 20px; align-items: center; padding: 18px; border-radius: 18px; background: var(--bg); border: 1px solid var(--line); }
+.pet-preview { display: grid; place-items: center; min-height: 250px; }
+.pet-preview .pet-sprite { width: 192px; max-width: 100%; }
+.pet-info { display: flex; flex-direction: column; gap: 10px; min-width: 0; }
+.pet-info p, .pet-info h3 { margin: 0; }
+.pet-info progress { width: 100%; accent-color: var(--accent); }
+.pet-affinity { font-size: 1.3rem; font-variant-numeric: tabular-nums; }
+.pet-accessories { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
+.pet-accessory-card { display: flex; flex-direction: column; align-items: flex-start; gap: 10px; padding: 14px; border: 1px solid var(--line); border-radius: 12px; min-width: 0; }
+.pet-accessory-card h4, .pet-accessory-card p { margin: 0; }
+.pet-accessory-card .btn { white-space: normal; max-width: 100%; min-height: 44px; }
+.pet-trial-note { border-left: 3px solid var(--accent); padding: 8px 12px; font-size: .88rem; }
+.pet-page .set-card { margin: 0; box-shadow: none; }
+.pet-mobile { position: static; width: 100%; display: flex; align-items: flex-end; gap: 12px; margin: 0; }
+.pet-mobile .pet-avatar { flex: none; }
+.pet-mobile .pet-bubble { position: static; width: auto; flex: 1; max-height: none; }
+html.qf #petWidget, html.qf #petLauncher { display: none !important; }
+@media (max-width: 600px) {
+  .pet-hero { grid-template-columns: 1fr; gap: 8px; padding: 14px; }
+  .pet-preview { min-height: 200px; }
+  .pet-preview .pet-sprite { width: 144px; }
+  .pet-characters { gap: 6px; }
+  .pet-character { padding: 10px 8px; }
+  .pet-character .sub { font-size: .74rem; }
+  .pet-accessories { grid-template-columns: 1fr; }
+  .pet-mobile { align-items: center; flex-direction: column-reverse; }
+  .pet-mobile .pet-bubble { width: 100%; }
+  .pet-mobile .pet-avatar { height: 112px; width: 92px; }
+  .pet-mobile .pet-avatar .pet-sprite { width: 80px; }
+}
+@media (prefers-reduced-motion: reduce) { .pet-sprite { animation: none !important; background-position-x: 0; } .pet-widget *, .pet-page * { transition: none !important; scroll-behavior: auto !important; } }
 </style>
 
 <div class="wrap">
@@ -14685,7 +14745,7 @@ GPA2.forEach(u => {
     LEVEL_OF[id] = u.lv; TAGS_OF[id] = q.tags; KP_OF[id] = "gb" + u.unit;
   });
 });
-const LANG_FILES = {"en": "lang-en.js?v=1e73dfd2d2", "fr": "lang-fr.js?v=d719c58f60"};
+const LANG_FILES = {"en": "lang-en.js?v=b35f07cdeb", "fr": "lang-fr.js?v=a6818f22e2"};
 (() => { let l = null; try { l = localStorage.getItem("fq-lang"); } catch (e) {}
   if (Object.hasOwn(LANG_FILES, l)) document.write('<script src="' + LANG_FILES[l] + '"><\/script>'); })();
 </script>
@@ -14932,6 +14992,7 @@ function localDb(ns) {
     try { voc = (await dbRef.collection("vocab").get()).docs.map(d => d.data()); } catch (e) {}
     try { gameReset((await dbRef.collection("game").get()).docs.map(d => d.data())); } catch (e) {}
     progReset(docs, voc); progEnsure(); planRefresh();
+    if (typeof petOnDataReady === "function") petOnDataReady();
     if (typeof syncNow === "function") syncNow(true);   // 公开网站登录后：和云端同步
     const wrong = docs.filter(d => !d.isCorrect).length;
     saveNote.textContent = wrong ? `已有 ${wrong} 条错题记录，答题记录会自动保存到学习进度。` : "答题记录会自动保存到学习进度。";
@@ -15107,6 +15168,7 @@ function goPrev() { if (idx > bStart) { idx--; renderQuestion(); } }
 document.addEventListener("keydown", e => {
   if (view !== "quiz" || !set || e.ctrlKey || e.metaKey || e.altKey || stage.querySelector(".board-intro")) return;
   const t = e.target;
+  if (t && t.closest && t.closest("#petWidget, #petLauncher, #petPage")) return;
   if (t && /^(INPUT|SELECT|TEXTAREA)$/.test(t.tagName)) return;
   const k = e.key, click = id => { const b = document.getElementById(id); if (b && !b.disabled) { e.preventDefault(); b.click(); return true; } return false; };
   if (rv) {   // 正在复习知识点
@@ -15291,6 +15353,7 @@ function progLive(d, kind) {
   else if (r.down >= 0) parts.push(`记忆退到 ${r.down} 级`);
   const note = typeof planNotice === "function" ? planNotice(d, todayBefore) : "";
   const coins = typeof gameCheck === "function" ? gameCheck() : [];   // 刚完成的每日任务 → 金币
+  if (typeof petOnAnswer === "function") petOnAnswer(d, kind, { run: r.run || 0, planCompleted: coins.some(c => /:plan$/.test(c.key || "")) });
   coins.forEach(c => parts.push(c.coins ? `${c.why} +${c.coins} 金币` : c.why));
   xpToast(parts.join(" · "), after > before ? `升级！Lv ${after} · ${xpTitle(after)}` : note || (coins.some(c => c.chest) ? "获得一个宝箱！" : coins.length ? "任务完成！" : shield ? "护盾生效！" : ""));
   if (typeof planRefresh === "function") planRefresh();
@@ -17088,7 +17151,18 @@ function syncHash(str) {
 }
 const syncKeyOf = d => syncHash(recKey(d));
 function syncAuth() { try { return JSON.parse(localStorage.getItem(SYNC_AUTH) || "null"); } catch (e) { return null; } }
-function syncSaveAuth(a) { try { if (a) localStorage.setItem(SYNC_AUTH, JSON.stringify(a)); else localStorage.removeItem(SYNC_AUTH); } catch (e) {} }
+function syncAccountChanged() {
+  clearTimeout(syncState.timer); syncState.timer = 0; syncState.queue = []; syncState.last = 0;
+  if (typeof petOnAccountChange === "function") petOnAccountChange();
+}
+function syncSaveAuth(a) {
+  const previous = syncAuth()?.uid || "";
+  try { if (a) localStorage.setItem(SYNC_AUTH, JSON.stringify(a)); else localStorage.removeItem(SYNC_AUTH); } catch (e) {}
+  if (previous !== (syncAuth()?.uid || "")) syncAccountChanged();
+}
+function syncAssertAccount(uid) {
+  if ((syncAuth()?.uid || "") !== uid) { const e = new Error("Account changed"); e.code = "account"; throw e; }
+}
 function syncSaveSession(j) {
   const old = syncAuth() || {};
   syncSaveAuth({ access_token: j.access_token, refresh_token: j.refresh_token, expires_at: j.expires_at || Math.floor(Date.now() / 1000) + (j.expires_in || 3600),
@@ -17102,14 +17176,19 @@ async function syncToken() {
   const r = await fetch(`${SYNC_URL}/auth/v1/token?grant_type=refresh_token`, {
     method: "POST", headers: { apikey: SYNC_KEY, "Content-Type": "application/json" }, body: JSON.stringify({ refresh_token: a.refresh_token }),
   });
+  syncAssertAccount(a.uid || "");
   if (!r.ok) { if (r.status >= 400 && r.status < 500) syncSaveAuth(null); return null; }
-  syncSaveSession(await r.json());
+  const session = await r.json();
+  syncAssertAccount(a.uid || "");
+  syncSaveSession(session);
   return syncAuth().access_token;
 }
-async function syncFetch(path, opt = {}, auth = true) {
+async function syncFetch(path, opt = {}, auth = true, uid = null) {
   const headers = { apikey: SYNC_KEY, "Content-Type": "application/json", ...(opt.headers || {}) };
   if (auth) {
+    if (uid !== null) syncAssertAccount(uid);
     const tok = await syncToken();
+    if (uid !== null) syncAssertAccount(uid);
     if (!tok) { const e = new Error("未登录"); e.code = "auth"; throw e; }
     headers.Authorization = "Bearer " + tok;
   }
@@ -17127,21 +17206,28 @@ async function syncFetch(path, opt = {}, auth = true) {
 const syncLocal = c => { try { return JSON.parse(localStorage.getItem(SYNC_NS + "db-" + c) || "[]"); } catch (e) { return []; } };
 const syncStore = (c, arr) => { try { localStorage.setItem(SYNC_NS + "db-" + c, JSON.stringify(arr)); } catch (e) {} };
 const syncRow = (c, d) => ({ app: REC_APP, coll: c, key: syncKeyOf(d), data: d });
-async function syncUpload(rows) {
-  for (let i = 0; i < rows.length; i += 500)
+// 只隔离新增伙伴配置；既有答案/金币继续沿用原站的本机合并规则。
+const syncPetAllowed = (c, d, uid) => c !== "game" || d?.kind !== "pet" || !!uid && d.scope === "user:" + uid;
+async function syncUpload(rows, uid = syncAuth()?.uid || "") {
+  const own = rows.filter(r => syncPetAllowed(r.coll, r.data, uid));
+  for (let i = 0; i < own.length; i += 500) {
+    syncAssertAccount(uid);
     await syncFetch("/rest/v1/records?on_conflict=user_id,app,coll,key", {
-      method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=minimal" }, body: JSON.stringify(rows.slice(i, i + 500)),
-    });
+      method: "POST", headers: { Prefer: "resolution=ignore-duplicates,return=minimal" }, body: JSON.stringify(own.slice(i, i + 500)),
+    }, true, uid);
+  }
 }
 // 完整同步：拉取云端全部记录合并进本机，再把本机有、云端没有的传上去
 async function syncNow(force) {
   if (!SYNC_ON || !syncAuth() || !navigator.onLine || syncState.busy) return;
   if (!force && Date.now() - syncState.last < 60e3) return;
+  const uid = syncAuth().uid || "";
   syncState.busy = true; syncDraw();
   try {
     const remote = [];
     for (let off = 0; ; off += 1000) {
-      const rows = await syncFetch(`/rest/v1/records?select=coll,key,data&app=eq.${REC_APP}&order=id.asc&limit=1000&offset=${off}`);
+      const rows = await syncFetch(`/rest/v1/records?select=coll,key,data&app=eq.${REC_APP}&order=id.asc&limit=1000&offset=${off}`, {}, true, uid);
+      syncAssertAccount(uid);
       remote.push(...rows);
       if (rows.length < 1000) break;
     }
@@ -17151,30 +17237,36 @@ async function syncNow(force) {
       const loc = syncLocal(c), lk = new Set(loc.map(syncKeyOf));
       const rk = new Set();
       let n = 0;
-      remote.forEach(r => { if (r.coll !== c) return; rk.add(r.key); if (!lk.has(r.key)) { loc.push(r.data); lk.add(r.key); n++; } });
+      remote.forEach(r => { if (r.coll !== c || !syncPetAllowed(c, r.data, uid)) return; rk.add(r.key); if (!lk.has(r.key)) { loc.push(r.data); lk.add(r.key); n++; } });
       if (n) { syncStore(c, loc); added += n; }
-      loc.forEach(d => { const k = syncKeyOf(d); if (!rk.has(k)) { up.push({ app: REC_APP, coll: c, key: k, data: d }); rk.add(k); } });
+      loc.forEach(d => { if (!syncPetAllowed(c, d, uid)) return; const k = syncKeyOf(d); if (!rk.has(k)) { up.push({ app: REC_APP, coll: c, key: k, data: d }); rk.add(k); } });
     }
-    await syncUpload(up);
+    await syncUpload(up, uid);
+    syncAssertAccount(uid);
     syncState.last = Date.now(); syncState.err = "";
     syncState.lastUp = up.length; syncState.lastDown = added;
     if (added) await syncReload();
     if (typeof socPushSoon === "function") socPushSoon();   // 好友排行榜上的资料跟着更新（只有法语页有）
   } catch (e) {
-    syncState.err = e.code === "auth" ? "登录已过期，请重新登录" : "同步没成功（可能是网络问题），稍后会自动再试";
-    if (e.code === "auth") syncSaveAuth(null);
+    if (e.code !== "account" && (syncAuth()?.uid || "") === uid) {
+      syncState.err = e.code === "auth" ? "登录已过期，请重新登录" : "同步没成功（可能是网络问题），稍后会自动再试";
+      if (e.code === "auth") syncSaveAuth(null);
+    }
   }
   syncState.busy = false; syncDraw();
+  if ((syncAuth()?.uid || "") !== uid && syncAuth()) setTimeout(() => syncNow(true), 0);
 }
 // 答完一题：把新记录攒一小会儿再一起传
 function syncPush(c, d) {
   if (!SYNC_ON || !syncAuth()) return;
+  const uid = syncAuth().uid || "";
+  if (!syncPetAllowed(c, d, uid)) return;
   syncState.queue.push(syncRow(c, d));
   clearTimeout(syncState.timer);
   syncState.timer = setTimeout(async () => {
     const rows = syncState.queue.splice(0);
     if (!rows.length || !navigator.onLine) return;   // 没网：下次完整同步时会补传
-    try { await syncUpload(rows); syncState.last = Date.now(); syncState.err = ""; } catch (e) {}
+    try { await syncUpload(rows, uid); syncAssertAccount(uid); syncState.last = Date.now(); syncState.err = ""; } catch (e) {}
     syncDraw();
   }, 1500);
 }
@@ -17185,6 +17277,7 @@ async function syncReload() {
   gameReset(await get("game"));
   progReset(await get("answers"), await get("vocab"));
   progEnsure();
+  if (typeof petOnDataReady === "function") petOnDataReady();
   bookCache = null;
   if (typeof vStats !== "undefined") vStats = null;
   planRefresh();
@@ -17200,6 +17293,12 @@ async function syncDeleteAccount() {
   syncLogout();
 }
 if (SYNC_ON) {
+  addEventListener("storage", e => {
+    if (e.key !== SYNC_AUTH) return;
+    let before = "", after = "";
+    try { before = JSON.parse(e.oldValue || "null")?.uid || ""; after = JSON.parse(e.newValue || "null")?.uid || ""; } catch (err) {}
+    if (before !== after) { syncAccountChanged(); syncNow(true); }
+  });
   addEventListener("online", () => syncNow(true));
   document.addEventListener("visibilitychange", () => { if (document.visibilityState === "visible") syncNow(false); });
   setInterval(() => { if (document.visibilityState === "visible") syncNow(false); }, 5 * 60e3);
@@ -17339,6 +17438,8 @@ function setGoalSection(wrap) {
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 // 版本号格式 1.x.y：平时只动 x、y；最前面的 1 未经用户同意不能改成 2。
 const CHANGELOG = [
+  { v: "1.7.9", d: "2026-11-11", p: "fr", items: [
+    "游戏新增「学习伙伴」：800 金币解锁 Ninon、Lison 和 Pia，可切换、试穿配饰、听法语例句；亲密度来自学习进步。支持拖动、关闭与减少动画，做题时自动避让，角色设置跟账号同步。"] },
   { v: "1.7.8", d: "2026-11-10", p: "fr", items: [
     "背单词新增 60 个常用动词和形容词（比如 se rendre compte、se débrouiller、compter sur、déçu、efficace），每个动词都带最常用的搭配，配图由 ChatGPT 按例句画成，画风更多样；单词闯关多了第 47–52 关。"] },
   { v: "1.7.7", d: "2026-11-10", p: "fr", items: [
@@ -18318,6 +18419,7 @@ const BOARDS = {
     { id: "exam", t: "模拟卷", d: "B1 全国卷格式，自动判分，作文由 Claude 批改。", n: () => "整套试卷" },
   ],
   game: [
+    { id: "pet", t: "学习伙伴", d: "三位法语学习伙伴，陪你练习、聊例句，也能换装。", n: () => typeof petOwned === "function" && petOwned() ? "伙伴面板" : "可预览 · 800 金币" },
     { id: "cafe", t: "咖啡馆", d: "练法语、学咖啡工艺，点亮器具与配方，经营塞纳河畔咖啡馆。", n: () => "增量经营" },
     { id: "levels", t: "单词闯关", d: "一关 10 个词，各主题混合，按星星解锁下一关。", n: () => `${V_LEVELS.length} 关` },
     { id: "tour", t: "环法之旅", d: "像素法国地图，52 站从 A1 到 C1，答题集明信片。", n: () => "52 站", game: true },
@@ -18345,12 +18447,13 @@ function curMod() {
   if (view === "shop") return "shop";
   if (view === "settings") return "settings";
   if (view === "friends") return "friends";
-  if (view === "tour" || view === "lsp" || view === "cafe" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "game";
+  if (view === "pet" || view === "tour" || view === "lsp" || view === "cafe" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "game";
   if (view === "vocab" && vIsGame()) return "game";
   return "practice";
 }
 function curBoard() {
   if (view === "home" || view === "book" || view === "settings" || view === "shop" || view === "friends") return null;
+  if (view === "pet") return "pet";
   if (view === "lsp") return "lsp";
   if (view === "cafe") return "cafe";
   if (view === "tour" || (inTour() && ["quiz", "vocab", "conj"].includes(view))) return "tour";
@@ -18528,6 +18631,7 @@ startSet = function (key, fresh) {
 };
 
 function switchView(v, setKey) {
+  if (typeof petOnLeave === "function" && view !== v) petOnLeave();
   if (view === "cafe" && v !== "cafe" && typeof cafeMarkAway === "function") cafeMarkAway();
   view = v;
   if (typeof cosTrialSkin !== "undefined" && cosTrialSkin && !cosTrialAllowed()) { cosTrialEnd(); cosApply(); }
@@ -18545,6 +18649,7 @@ function switchView(v, setKey) {
   if (v === "tour") { renderTour(); return; }
   if (v === "lsp") { renderLsp(); return; }
   if (v === "cafe") { cafeEnter(); return; }
+  if (v === "pet") { renderPet(); return; }
   if (v === "book") { renderBook(); return; }
   if (v === "friends") { renderFriends(); return; }
   if (setKey) { startSet(setKey); navSync(); return; }
@@ -18659,6 +18764,7 @@ function renderShop() {
   if (pa) { const b = el("p", "potion-on"); b.append(document.createTextNode(`${pa.mult} 倍经验生效中 · 还剩 `), el("b", "potion-left", mmss(pa.left))); card.append(b); }
   if (ca) { const b = el("p", "potion-on coin-on"); b.append(document.createTextNode(`金币 ×${ca.mult} 生效中 · 还剩 `), el("b", "potion-left-c", mmss(ca.left))); card.append(b); }
   gameShopParts(card, st ? st.led : led);
+  card.append(petShop());
   stage.append(card);
 }
 
@@ -21002,6 +21108,529 @@ const V_PICEX = {
   "généreux": ["Mon voisin [généreux] partage toutes ses fraises avec les enfants.", "我慷慨的邻居把他所有的草莓都拿来和孩子们分享。"],
   "autonome": ["Cet enfant [autonome] prépare son cartable tout seul avant l'école.", "这个独立的孩子上学前自己整理书包。"],
   "usé": ["Mes chaussons [usés] laissent dépasser mes orteils par de grands trous.", "我的旧拖鞋磨出了大洞，脚趾都露出来了。"],
+};
+// 配图例句（V_PICEX）的英文翻译：英文界面用。由 tools/i18n/picsent-en.json 生成，改译文请改那个文件。
+const V_PICEX_EN = {
+  "loyer": "Every month, we pay the rent in banknotes so we can live in this house.",
+  "emploi": "The young woman is looking for a job on her laptop, with a coffee next to her.",
+  "diplôme": "The diploma is rolled up and tied with a red ribbon.",
+  "douleur": "Sitting on a bench, the man holds his back because of a sharp pain.",
+  "billet": "On this roll, each ticket bears the word \"ticket\" and a number.",
+  "environnement": "In this mountain environment, a waterfall flows between the rocks and the trees.",
+  "loi": "This wooden judge's gavel is the symbol of the law and of justice.",
+  "écran": "On the white desk, the computer screen is on but completely blank.",
+  "colère": "The young woman is so angry that smoke is coming out of her ears.",
+  "cependant": "The cake is magnificent; however, nobody dares to taste it.",
+  "recette": "The cookbook is open to a recipe for meat in tomato sauce.",
+  "caisse": "At the supermarket checkout, the cashier scans a smiling customer's items.",
+  "entraînement": "During training, the little girl runs across the football pitch, the ball behind her.",
+  "tableau": "This painting in a gilded frame shows an angel statue next to a clock.",
+  "mariage": "On their wedding day, the bride and groom pose in front of a stone wall.",
+  "immeuble": "This apartment building has blue windows and balconies with plants.",
+  "vol": "With his flashlight and his big bag, the thief is planning a burglary.",
+  "expérience": "In the lab, someone wearing blue gloves pours a red liquid into a tube for an experiment.",
+  "visage": "The red-haired woman looks down, and her face is very calm.",
+  "oublier": "He forgot to put on his trousers before the online meeting.",
+  "quartier": "In this quiet neighbourhood, pretty colourful houses line a wide street.",
+  "chômage": "Unemployed, this young man is looking for a job with binoculars.",
+  "formation": "During the training course, two smiling women work together on a laptop.",
+  "ordonnance": "A stethoscope and a pen are lying on the doctor's prescription.",
+  "quai": "A woman sitting on a bench on the platform waits as a train pulls into the station.",
+  "déchet": "At sunset, birds fly over a mountain of rubbish.",
+  "élection": "On election day, four people vote in voting booths.",
+  "clavier": "This white computer keyboard has keys in English and Korean.",
+  "honte": "She hides her face in her hands, as if she were ashamed.",
+  "d'ailleurs": "I don't feel like going out; besides, my cat is sleeping on me.",
+  "casserole": "This large stainless steel pot has two handles and a lid.",
+  "reçu": "This small white paper receipt has several lines printed in grey.",
+  "équipe": "The team's players huddle in a circle before the match.",
+  "peintre": "Outdoors, a blonde painter paints apples on a canvas set on an easel.",
+  "couple": "This couple is holding hands in front of a white brick wall.",
+  "banlieue": "In the suburbs, these brick houses each have a small garden in front.",
+  "voleur": "The masked thief wears a backpack and grabs a big bag of money.",
+  "laboratoire": "In the laboratory, a woman in a white coat works surrounded by flasks.",
+  "peau": "The young woman has put a white cream on the skin of her face.",
+  "se souvenir": "Grandpa remembers his first bike as if it were yesterday.",
+  "déménagement": "For the move, two big boxes are loaded on a red hand truck.",
+  "salaire": "All these hundred-euro notes represent a whole month's salary.",
+  "connaissance": "This old open book, with glasses resting on it, is full of knowledge.",
+  "médicament": "White medicine tablets spill out of an overturned bottle.",
+  "retard": "At the airport, a young woman looks at the boards to see if her flight is delayed.",
+  "réchauffement": "This Earth surrounded by flames illustrates global warming.",
+  "gouvernement": "In this large parliament chamber, the members of the government sit facing the MPs.",
+  "souris": "A hand is resting on a grey and black mouse.",
+  "fierté": "The young man shows off his golden trophy with pride and a big smile.",
+  "autrement dit": "The dog ate all twelve croissants; in other words, no more breakfast.",
+  "four": "A white-haired woman takes a steaming pie out of the oven.",
+  "rayon": "In this aisle of the supermarket, yoghurts fill all the shelves.",
+  "stade": "The stadium is empty under a blue sky, with its bright green pitch.",
+  "musée": "Tourists stroll in front of the glass pyramid of the Louvre museum.",
+  "naissance": "Shortly after birth, the baby sleeps in a hat with bear ears.",
+  "pont": "In the evening, the lights of the bridge are reflected in the river.",
+  "policier": "Each police officer wears a black vest marked \"POLICE\" on the back.",
+  "chercheur": "The researcher in a white coat looks into a microscope.",
+  "joue": "The young woman gently places her fingers on her cheek.",
+  "expliquer": "The teacher holds some books and points at the board to explain something.",
+  "étagère": "Hundreds of colourful books are arranged on every shelf of the bookcase.",
+  "entreprise": "Several large companies have their offices in these modern glass buildings.",
+  "apprentissage": "In front of her computer, the young woman bites her pencil: learning takes effort.",
+  "rhume": "She has caught a cold and is blowing her nose into a tissue.",
+  "correspondance": "At the station, two TGV trains wait side by side for a quick connection.",
+  "sécheresse": "Because of the drought, the ground is all cracked and the tree is dead.",
+  "citoyenneté": "After ten years in Lyon, Mei has obtained French citizenship.",
+  "logiciel": "On the laptop screen, you can see the code of a piece of software in development.",
+  "jalousie": "Sitting alone, the woman looks away with jealousy while the couple chats.",
+  "en revanche": "My brother hates the beach; on the other hand, he loves the mountains.",
+  "poêle": "A fried egg sits in a small black frying pan, next to the broken shells.",
+  "panier": "This wicker basket on the grass contains apples and bananas.",
+  "ballon": "It's a classic football, with white hexagons and black pentagons.",
+  "exposition": "In the museum, a woman sitting on a bench admires the large paintings in the exhibition.",
+  "enfance": "Barefoot, three boys play football on a wet field: a true childhood scene.",
+  "place": "At sunset, a few passers-by cross the large square in front of a Gothic church.",
+  "enquête": "With his big magnifying glass, the detective in green conducts his investigation.",
+  "découverte": "The discovery of a dinosaur egg astonished the researchers.",
+  "menton": "In profile, this man's chin is covered with a grey beard.",
+  "partager": "Sitting on the floor, friends share several pizzas and cans of soda.",
+  "tiroir": "Each old wooden drawer has a handwritten label and a round handle.",
+  "entretien": "During the interview, the two men talk face to face in front of a laptop.",
+  "exposé": "A blonde woman with curly hair speaks into the microphone during her presentation.",
+  "grippe": "In bed in their pyjamas, the couple has the flu and is using lots of tissues.",
+  "bagage": "For this trip, there are three pieces of luggage: two pink suitcases and a green one.",
+  "inondation": "During the flood, only the pedestrian and bicycle sign sticks out of the muddy water.",
+  "droit": "Everyone has the right to go to school, even the little girl from the village.",
+  "mot de passe": "On the screen, you have to enter a username and a password.",
+  "inquiétude": "Leaning on the railing above the water, the young woman seems full of worry.",
+  "davantage": "With three cats, you need more kibble.",
+  "épicerie": "In this grocery store, the fresh fruit is arranged in green crates.",
+  "marque": "This designer boutique displays handbags and shoes on its shelves.",
+  "natation": "Wearing his pink goggles, the little boy is swimming in the pool.",
+  "roman": "Sitting on the grass in the park, she reads a novel in the sun.",
+  "jumeau": "Each twin wears a white hat with bunny ears and holds a stuffed toy.",
+  "fontaine": "Water flows from the stone fountain in front of old brick buildings.",
+  "témoin": "The only witness to the theft of the pie is the parrot.",
+  "inventer": "This old black rotary phone was invented a very long time ago.",
+  "barbe": "This blue-eyed young man has a thick brown beard.",
+  "attendre": "At the bus stop, the young woman waits while looking at her phone.",
+  "évier": "Water flows from the black tap into the kitchen sink.",
+  "candidature": "For her job application, this blonde woman has prepared a CV.",
+  "mémoire": "In the library, a student writes her thesis surrounded by books.",
+  "blessure": "You put these two plasters on a small wound.",
+  "valise": "An old brown leather suitcase lies open on the bed.",
+  "forêt": "A dirt path runs through the forest, lit by the sun's rays.",
+  "manifestation": "During the demonstration, the crowd carries flags in the street.",
+  "fichier": "This yellow icon represents a folder containing a file.",
+  "soulagement": "Arms raised toward the sun, she expresses her relief.",
+  "désormais": "From now on, people pay with their phones, even at the market.",
+  "repas": "The table is set for a big meal with salads and small dishes.",
+  "taille": "On the grey label, the size shown is XL.",
+  "randonnée": "A man with a backpack is hiking in the mountains.",
+  "auteur": "Two writer's quills are resting on an old open book.",
+  "neveu": "My little nephew smiles in front of his birthday cakes and blue balloons.",
+  "gratte-ciel": "These glass skyscrapers rise high into the blue sky.",
+  "preuve": "This fingerprint can serve as evidence for the police.",
+  "outil": "The hammer and the wrench are useful tools for DIY.",
+  "lunettes": "These metal-framed glasses are lying on a white background.",
+  "remplir": "With a pencil, he fills in the boxes on a questionnaire.",
+  "poubelle": "Three large grey bins stand on the grass, near a path.",
+  "embaucher": "Two men in suits shake hands: one has just hired the other.",
+  "bourse": "A graduation cap resting on bundles of banknotes symbolises a scholarship.",
+  "se blesser": "This football player has been injured and stays on his knees on the pitch.",
+  "embouteillage": "At sunset, a long traffic jam holds up the cars on the avenue.",
+  "paysage": "This landscape of wooded mountains is reflected in a green lake.",
+  "débat": "During the debate, a man and a woman speak from behind two lecterns.",
+  "réseau": "Phones and app icons form a large social network.",
+  "ennui": "On this rainy day, boredom shows on the face of the boy at the window.",
+  "auparavant": "Previously, this factory was grey; today, it's a garden.",
+  "goût": "The chef raises the spoon to his mouth to check the taste of the sauce.",
+  "prix": "On this yellow tag, the price hasn't been written yet.",
+  "course": "An athlete is in mid-race on the track of a large empty stadium.",
+  "scène": "Spotlights light up the stage of a theatre plunged into darkness.",
+  "copain": "Three smiling friends pose together, squeezed up against each other.",
+  "chantier": "On this building site, two tall cranes tower over a building under construction.",
+  "juge": "In the courtroom, a young man in a suit addresses the judge.",
+  "machine": "This big industrial machine is made of grey pipes and blue valves.",
+  "manteau": "The young woman wears a dark coat with a fur-trimmed hood.",
+  "éviter": "The cat jumps very high to avoid the puddle.",
+  "ménage": "A green mop and some cloths are ready for doing the housework.",
+  "licencier": "This big red stamp announces that an employee has just been fired.",
+  "note": "The children raise their arms, proud of their excellent exam grade.",
+  "guérir": "Sad under the clouds at first, the man seems cured and walks happily in the sun.",
+  "permis de conduire": "Two British driving licences are lying on a printed sheet.",
+  "espèce": "The African elephant is a species that lives in herds on the savannah.",
+  "inégalité": "Inequalities are growing: one person has a whole cake, the others a crumb.",
+  "appareil": "A monitor, a tablet and a phone: three devices of different sizes.",
+  "bonheur": "The two friends jump in the air under the blue sky, full of happiness.",
+  "aussitôt": "The chef puts the cake down and the dog immediately jumps on it.",
+  "épice": "Spoons filled with salt, pepper and other spices are laid on a slate.",
+  "remise": "Four tags spell the word \"SALE\" to announce a discount.",
+  "spectateur": "In the packed stadium, a spectator raises his fist to cheer on his team.",
+  "pièce": "At the end of the play, the actresses dance on stage under the streamers.",
+  "dispute": "During the argument, the young man points his finger at the young woman.",
+  "ascenseur": "In the lift, a hand presses the button for the eighteenth floor.",
+  "tribunal": "The courtroom is empty, with its dark wooden benches.",
+  "robot": "A white robot vacuum cleans the tiled floor of the house.",
+  "écharpe": "The little girl wears a thick grey scarf around her head.",
+  "réfléchir": "The young man with glasses is thinking, his hand under his chin.",
+  "lessive": "Colourful clothes pegs wait on the line for hanging out the washing.",
+  "démissionner": "She quit her job to cycle around the world.",
+  "échouer": "This big red \"FAIL\" stamp means you failed.",
+  "tousser": "The long-haired woman coughs hard into a white tissue.",
+  "carrefour": "Two dirt paths cross and form a crossroads in the middle of the forest.",
+  "ressource": "The water from this old stone well is a precious resource.",
+  "pauvreté": "Every winter, the charity fights poverty by serving hot meals.",
+  "télécharger": "This blue icon with an arrow is used to download a file.",
+  "malheur": "Overwhelmed by misfortune, the man hides his face in his hands.",
+  "peu à peu": "Little by little, the small acorn has become a great oak.",
+  "plat": "This dish of couscous is topped with chickpeas, onions and olives.",
+  "vendeur": "The salesman shows a brown shoe to a customer sitting in the shop.",
+  "joueur": "The young player in the green shirt kicks the ball on the pitch.",
+  "concert": "During the concert, the crowd raises their arms under the spotlights.",
+  "rencontre": "They met in the rain, under the same umbrella.",
+  "escalier": "This large spiral staircase goes all the way down to the ground floor.",
+  "avocat": "The lawyer writes at his desk, next to a statue of Justice.",
+  "énergie": "The lit bulb turns electrical energy into light.",
+  "gant": "Two hands in red gloves hold a heart made of snow.",
+  "décider": "After an hour staring at the menu, he has finally decided: a pizza!",
+  "facture": "A hand holds out a banknote to pay the bill sticking out of the envelope.",
+  "réunion": "Around the table, two colleagues shake hands at the start of the meeting.",
+  "réussir": "Arms raised amid the flying sheets of paper, he shouts with joy: he did it!",
+  "fièvre": "The thermometer reads 36 degrees, so there's no fever.",
+  "trottoir": "Three people walk on the pavement at the corner of a sunny street.",
+  "renouvelable": "These wind turbines on the hills produce renewable energy.",
+  "accueil": "At the hotel reception, an employee answers the phone next to her colleague.",
+  "enregistrer": "In the past, people used this floppy disk to save their files.",
+  "espoir": "This young shoot coming out of the ground in the sun is a symbol of hope.",
+  "environ": "There are about a thousand sweets in this jar: guess how many!",
+  "cuire": "A hand holds spaghetti over the pot to cook it.",
+  "client": "This bearded customer walks along with colourful shopping bags in his hands.",
+  "gagner": "This golden trophy with the number 1 rewards the team that won.",
+  "orchestre": "The orchestra's violinists play seated in front of their music stands.",
+  "anniversaire": "A single candle burns on this small red-berry birthday cake.",
+  "toit": "A tabby cat sits on the roof and looks straight ahead.",
+  "prison": "In this long corridor of the old prison, the cell doors are closed.",
+  "électricité": "These tall pylons carry electricity across the countryside.",
+  "chaussette": "Each little wool sock is white, with a grey and green pattern.",
+  "empêcher": "Lying in bed, she has her eyes open: something is keeping her from sleeping.",
+  "chauffage": "This grey radiator and its white thermostat are used to heat the room.",
+  "tâche": "On this list, four tasks are ticked in green and one has a red cross.",
+  "rédiger": "You can write a beautiful letter with this gold fountain pen.",
+  "poumon": "In this image, you can see the two pink lungs in the chest.",
+  "auberge": "In front of this old inn with green shutters, there is a large garden.",
+  "gaspiller": "These fruits and vegetables thrown around a green skip have gone to waste.",
+  "bénévolat": "These many raised hands on a colourful background symbolise volunteering.",
+  "supprimer": "To delete a word, you press the red \"Del\" key.",
+  "sensible": "This sensitive girl hides her face in her hands under her hood.",
+  "grâce à": "Thanks to a rescue dog, the lost hiker was found.",
+  "éplucher": "We use this blue peeler to peel the potatoes.",
+  "vitrine": "Several white wedding dresses are displayed in the shop window.",
+  "marquer": "Near the corner flag, the player kicks the ball to try to score a goal.",
+  "chanson": "On stage, the long-haired guitarist sings a song with power.",
+  "souvenir": "He looks at old black-and-white photos full of memories.",
+  "balcon": "On this white facade, each balcony has a red railing.",
+  "amende": "A parking fine is lying on the car's dashboard.",
+  "batterie": "The red battery is only twenty percent charged.",
+  "ceinture": "This black leather belt has a silver buckle.",
+  "profiter": "Two young women run into the waves to enjoy the sea.",
+  "clé": "There are lots of different keys on this key ring.",
+  "délai": "On this stopwatch, the word \"deadline\" is a reminder that the deadline must be met.",
+  "réviser": "The young man reviews his notes at his desk with an open book.",
+  "cœur": "This drawing shows a human heart with its blue and red blood vessels.",
+  "séjour": "We dream of a stay on this white sandy beach by the sea.",
+  "recycler": "This green bin is full of bottles and packaging to recycle.",
+  "voter": "To vote, you slip your ballot into this ballot box.",
+  "recherche": "The magnifying glass is often the symbol of search.",
+  "bavard": "These three people are very talkative and all speak at the same time.",
+  "au lieu de": "Instead of doing his homework, Léo is building a cardboard rocket.",
+  "mélanger": "With this whisk, we're going to mix the eggs in the bowl.",
+  "échanger": "At break time, Lucas swaps his sandwich for a toffee apple.",
+  "s'entraîner": "On the football pitch, the young woman trains by doing stretches.",
+  "danse": "A man jumps while a woman in red does a dance move on the floor.",
+  "se marier": "When people get married, they often exchange two gold wedding rings like these.",
+  "habitant": "Residents stroll along a sunny street, next to a small white dog.",
+  "arrêter": "The police have arrested this man; he has handcuffs on his wrists.",
+  "planète": "Mars is a red planet covered in craters.",
+  "bague": "This gold ring has a beautiful red stone.",
+  "se tromper": "The burglar got the wrong house: it's the police station!",
+  "couverture": "A striped blanket with black fringes lies on the green armchair.",
+  "dépense": "Behind a small golden trolley, a pile of till receipts shows the expenses.",
+  "emploi du temps": "A pen rests on an open diary where you write down your schedule.",
+  "foie": "The doctor points to the liver: it's just under the ribs, on the right.",
+  "douane": "This round sign indicates that you must stop at customs.",
+  "protéger": "Two open hands gently protect a little brown bird.",
+  "interdire": "This red sign with a diagonal line through it means something is forbidden.",
+  "journal": "A folded newspaper lies on a wooden table.",
+  "têtu": "This shaggy donkey, known for being stubborn, stands motionless by the fence.",
+  "malgré": "Despite the storm, the postman delivers the mail, whistling.",
+  "goûter": "With the wooden spoon, you can taste this pumpkin soup served in a jar.",
+  "rembourser": "A hand holds out a one-euro coin to pay back a small debt.",
+  "se détendre": "Lying in an orange hammock, a woman relaxes in the shade of the trees.",
+  "sous-titre": "On the cinema screen, a dancer appears, but there are no subtitles to be seen.",
+  "divorcer": "Mr and Mrs Dupont have divorced: even the dog has two homes.",
+  "piéton": "This wide zebra crossing in town lets pedestrians cross the street.",
+  "voler": "This wallet is sticking out of the back pocket: it would be easy to steal.",
+  "étoile": "Thousands of stars shine in the sky above a mountain.",
+  "maquillage": "With a brush, someone applies green make-up to a woman's eyelid.",
+  "prévenir": "The sign warns walkers: beware of crocodiles!",
+  "quotidien": "Reading the newspaper in bed with a cup is part of his daily routine.",
+  "économiser": "This pink piggy bank is used to save money.",
+  "bibliothèque": "This large old library has several floors of books and iron balconies.",
+  "genou": "This drawing shows the bones of the knee, with a red area between them.",
+  "frontière": "At the border checkpoint, the road is blocked by cones and a stop sign.",
+  "menacer": "A clenched fist smashes the glass and seems to threaten the person behind it.",
+  "exiger": "With a pointing finger, this hand seems to demand something with authority.",
+  "émission": "Two presenters record a programme in a studio full of cameras and lights.",
+  "paresseux": "This lazy cat naps in a wicker basket, one paw in the air.",
+  "lors de": "At their wedding, the cake fell on the floor.",
+  "bouillir": "The water is boiling in the glass kettle, next to a cup and a tea bag.",
+  "essayer": "In the fitting room, she holds a white shirt up against herself before trying it on.",
+  "nager": "A man is about to swim in the sea, among the big waves.",
+  "critique": "With only one star out of five, this review is very negative.",
+  "élever": "This mother is raising her three daughters, who hug her on the grass.",
+  "bruyant": "At night, this noisy neighbourhood is full of lights, screens and passers-by.",
+  "coupable": "The dog looks guilty: its muzzle is covered in cream.",
+  "lune": "The full moon shines in the black night sky.",
+  "mode": "The models walk down the catwalk during a fashion show.",
+  "atteindre": "With his ice axe, the mountaineer climbs to reach the summit of the mountain.",
+  "ranger": "In ten minutes, the little robot has tidied the whole bedroom.",
+  "compte": "To open an account, you can go to this old bank.",
+  "matière": "Each book corresponds to a subject: history, physics, biology or English.",
+  "épaule": "The parrot always travels on the pirate's shoulder.",
+  "atterrir": "The plane is descending and will soon land near the big city.",
+  "tempête": "During the storm, huge waves crash against the lighthouse at the end of the pier.",
+  "soutenir": "One hand reaches out to another to support it and help it.",
+  "chaîne": "He changes the channel with the remote in front of the television.",
+  "fier": "She smiles and points at herself, very proud of herself.",
+  "à condition que": "I'll lend you my bike, on condition that you bring it back clean.",
+  "frais": "Fresh broccoli and carrots are cooking in a frying pan.",
+  "livrer": "The young man is carrying three parcels that he has to deliver in the building.",
+  "courir": "A person in trainers runs along a path in the park.",
+  "chef-d'œuvre": "Leonardo da Vinci's Mona Lisa is a world-famous masterpiece.",
+  "se disputer": "Two boys are fighting on the bed, hitting each other with pillows.",
+  "propre": "He sweeps up the leaves so that the ground is clean.",
+  "innocent": "The cat puts on an innocent look, but the broken vase is right next to it.",
+  "mesurer": "He measures a stack of wooden planks with a yellow tape measure.",
+  "s'habiller": "She dresses warmly in a thick wool jumper.",
+  "vide": "The fridge door is open and it's completely empty.",
+  "emprunter": "My grandmother borrows ten novels a week from the library.",
+  "prêt": "The man in the suit hands over a wad of 500-euro notes for the loan.",
+  "inscription": "Someone fills in the registration form with a pen.",
+  "urgences": "The ambulances are parked in front of the hospital's emergency entrance.",
+  "décoller": "The plane has just taken off and is climbing into the cloudy sky.",
+  "falaise": "The high cliff, covered in grass at the top, drops sheer into the sea.",
+  "lutter": "This raised fist shows the will to fight to the end.",
+  "rubrique": "Two elderly people sitting outside each read a section of the newspaper.",
+  "gêné": "The girl, very embarrassed, hides her face in her hands.",
+  "tandis que": "The cat sleeps in the sun, while the mouse throws a party.",
+  "épicé": "These red chillies in the basket are very spicy.",
+  "commander": "This little trolley full of bags, sitting on a computer, is a reminder that you can order online.",
+  "sportif": "This athletic young man trains between cones on an outdoor field.",
+  "applaudir": "These two hands strike against each other to applaud.",
+  "fidèle": "This loyal Dalmatian waits, its paws resting on the railing.",
+  "sale": "This shoe is all dirty, covered in mud.",
+  "incendie": "A violent fire destroys the house in the middle of the night.",
+  "calculer": "A calculator and a pen lie on sheets full of figures to calculate.",
+  "porter": "She wears a long red dress and dances on a dirt path.",
+  "plein": "The train is full and the passengers are squeezed up against each other.",
+  "prêter": "The penguin lends its scarf to the shivering flamingo.",
+  "grève": "This red and yellow triangular sign announces a strike.",
+  "enseignement": "This smiling woman works in teaching, standing in her classroom.",
+  "piqûre": "This green syringe is ready for an injection.",
+  "louer": "With a key, someone opens the grey door of the rented car.",
+  "marée": "At high tide, the waves cover the base of the wooden posts.",
+  "mairie": "At night, the illuminated town hall stands behind a large fountain.",
+  "abonnement": "The cursor clicks the red button to subscribe to the channel.",
+  "se plaindre": "In front of the desk, the schoolgirl thinks about the woman who shouted complaints about her.",
+  "bien que": "Although it's tiny, the chihuahua frightens the postman.",
+  "sucré": "These little gummy bears of every colour are very sweet.",
+  "cher": "This silver watch with a leather strap looks very expensive.",
+  "vélo": "A black bike is parked on a path in the middle of the forest.",
+  "dessiner": "Someone is drawing on a white sheet with a blue pencil.",
+  "amical": "She gives a friendly wave and says hello with a smile.",
+  "construire": "A worker carries a long iron bar to construct a building.",
+  "pompier": "Firefighters in uniform carry yellow air tanks on their backs.",
+  "chiffre": "The number eight is fixed in white on a wall of blue tiles.",
+  "mince": "Only the slim cat gets through the bars; the fat one stays stuck.",
+  "lourd": "She smiles as she holds a heavy suitcase standing on the cobblestones.",
+  "s'habituer": "The polar bear quickly got used to the Marseille sun.",
+  "syndicat": "The postal workers' union marches for better wages.",
+  "devoir": "The child does his homework on a sheet of paper with a red pencil.",
+  "enceinte": "The pregnant woman makes a heart shape with her hands on her belly.",
+  "rater": "He missed his train and waits alone on a bench on the platform.",
+  "colline": "A lone tree grows at the top of each green hill.",
+  "impôt": "Two men walk with their heads bowed under the weight of taxes.",
+  "publicité": "On this black board in the street, the white screen is waiting for a new advert.",
+  "se fâcher": "The young man gets angry and points his finger at us, shouting.",
+  "afin de": "He gets up at five o'clock in order to see the sun rise from the summit.",
+  "faim": "The wolf is so hungry that he sees sandwiches instead of sheep.",
+  "gratuit": "All the things coming out of this orange box are free.",
+  "jeu": "The black and white pieces are set up for a game of chess.",
+  "célèbre": "The famous actress smiles for the photographers on the red carpet.",
+  "célibataire": "At the couples' party, Paul is the only single person... with his cat.",
+  "traverser": "A crowd of pedestrians crosses the street at the zebra crossing.",
+  "sécurité": "This sign is a reminder that seatbelts are mandatory for your safety.",
+  "scientifique": "For her science experiment, Léa makes a volcano erupt.",
+  "élégant": "With his grey suit and bow tie, this man is very elegant.",
+  "léger": "This blue feather is so light that it floats in the air.",
+  "se dépêcher": "The man in a suit runs with a clock and a briefcase in his hands: he's in a hurry.",
+  "carrière": "This man climbing a big staircase symbolises a career on the rise.",
+  "épreuve": "During the exam, the pupil fills in his answer sheet in pencil.",
+  "épuisé": "Exhausted, the man has laid his head on the table, next to an empty bottle.",
+  "itinéraire": "A toy car sits on a map to plan the route for the trip.",
+  "nuage": "Several small white clouds float in the blue sky.",
+  "sondage": "To answer the poll, you have to tick the \"yes\" or \"no\" box.",
+  "en ligne": "Dozens of emails are sent online from the laptop and the phone.",
+  "regretter": "The man grimaces and puts two fingers to his temple: he regrets his mistake.",
+  "quant à": "The children want to go to the beach; as for the cat, it prefers to sleep.",
+  "boulangerie": "Golden baguettes lie on a cloth in front of the bakery's oven.",
+  "colis": "A man lifts a cardboard parcel off a stack of boxes.",
+  "pêche": "A fishing rod is fixed to the boat on the lake at sunset.",
+  "sculpture": "This old stone sculpture depicts an angel with large wings.",
+  "confiance": "The baby's little hand grips the adult's finger with trust.",
+  "se promener": "A young couple walks along a path in the park.",
+  "danger": "This triangular sign with an exclamation mark warns of danger.",
+  "microscope": "The microscope's lens is positioned just above an illuminated slide.",
+  "ressembler": "The girl with the flowers looks a lot like the woman next to her.",
+  "lent": "The snail moves across the stone; it's a very slow animal.",
+  "voisin": "These houses with red-tiled roofs have terraces very close to the neighbours'.",
+  "rentable": "On the screen, the rising graph shows a business that is more and more profitable.",
+  "doué": "This little girl in a blue dress is very gifted at playing the violin.",
+  "sain": "Broccoli, tomatoes and cucumber are healthy, fresh vegetables.",
+  "dépaysement": "This white sandy beach under a palm tree offers a real change of scene.",
+  "ciel": "Above the field and the lone tree, the sky is filled with orange clouds.",
+  "société": "These figures of every colour hold hands like a united society.",
+  "numérique": "Someone looks at digital photos on a tablet, in front of a laptop.",
+  "éprouver": "In this watercolour, the young woman seems to feel a deep sadness.",
+  "parmi": "Can you find the cat among all these owls?",
+  "serveur": "The waitress in a black waistcoat smiles as she prepares a drink at the counter.",
+  "dépenser": "She has spent a lot of money and carries several shopping bags on her shoulder.",
+  "vacances": "This wooden jetty leads to bungalows over the water, perfect for a holiday.",
+  "public": "In the cinema, the audience sits in front of a large white screen.",
+  "petit-enfant": "The grandmother poses for a photo between her two grandchildren.",
+  "panneau": "The red and white sign tells drivers they must stop.",
+  "accident": "After the accident, the front of the grey car is badly damaged.",
+  "fusée": "The rocket takes off in a huge cloud of white smoke.",
+  "ride": "This old woman in a green headscarf has a face covered in wrinkles.",
+  "rapide": "This very fast white train crosses a bridge over the river.",
+  "aspirateur": "The cat rides around on the vacuum cleaner as if it were a little train.",
+  "oreiller": "The two children fight with pillows full of feathers.",
+  "robinet": "The little boy turns off the tap so as not to waste water.",
+  "patron": "The boss treats the whole team to a cake to celebrate the contract.",
+  "imprimante": "The printer is spitting sheets of paper all over the office!",
+  "stage": "On the first day of her internship, Léa carries a pile of files taller than she is.",
+  "cartable": "The little schoolboy has a school bag almost as big as he is.",
+  "craie": "The teacher draws an enormous dinosaur in chalk on the board.",
+  "tricher": "During the exam, Hugo cheats by looking at the answers written on his hand.",
+  "pansement": "Mum puts a plaster on the knee of her daughter, who fell off her bike.",
+  "béquille": "On his crutches, the footballer watches the match from the bench.",
+  "éternuer": "The elephant sneezes so hard that all the balloons fly away.",
+  "passeport": "At the airport, the dog proudly hands its passport to the customs officer.",
+  "boussole": "Lost in the forest, the hiker follows his compass north.",
+  "tente": "The wind blows the tent away, and the campers wake up under the open sky.",
+  "arc-en-ciel": "After the storm, a rainbow appears above the village.",
+  "écureuil": "The squirrel hides hazelnuts in the gardener's hat.",
+  "cascade": "Tourists in raincoats take a photo in front of the waterfall.",
+  "foule": "A huge crowd awaits the arrival of the Tour de France.",
+  "drapeau": "On the town hall, the blue, white and red flag flutters in the wind.",
+  "urne": "An old lady slips her ballot into the ballot box with a big smile.",
+  "écouteurs": "With his earphones on, Paul can't hear the dog barking.",
+  "brancher": "The robot plugs in its cable to recharge its battery.",
+  "zapper": "With the remote, Grandpa flicks from one channel to another.",
+  "rougir": "When Tom gives her flowers, Julie blushes right up to her ears.",
+  "pleurer": "While peeling the onions, the cook cries his eyes out.",
+  "timide": "The shy little girl hides behind her dad's leg.",
+  "pourtant": "The weather is nice, and yet Marc goes out with an enormous umbrella.",
+  "dès que": "As soon as the bell rings, the pupils run into the playground.",
+  "à cause de": "Because of the snow, the bus is stuck in the middle of the road.",
+  "tablier": "The little chef wears an apron covered in flour.",
+  "fouet": "Granny beats the eggs with a whisk at top speed.",
+  "saupoudrer": "The pastry chef sprinkles icing sugar over the waffles like snow.",
+  "chariot": "The baby sits in the shopping trolley among the vegetables.",
+  "soldes": "During the sales, customers rush into the shop as soon as it opens.",
+  "étiquette": "On the dress's price tag, the old price is crossed out in red.",
+  "cerf-volant": "The grandfather and his grandson fly a dragon-shaped kite.",
+  "luge": "The whole family slides down the hill on a single sledge.",
+  "plongée": "During her dive, Emma meets a sea turtle.",
+  "rideau": "At the end of the show, the red curtain falls to applause.",
+  "pinceau": "The painter holds his brush between his teeth to scratch his head.",
+  "violon": "On the bridge, a musician plays the violin for passers-by.",
+  "berceau": "The cat purrs next to the cradle where the baby is sleeping.",
+  "câlin": "After a year away, the big brother gives his little sister a big hug.",
+  "gronder": "The mother scolds the dog that ate her shoes.",
+  "lampadaire": "In the evening, the street lamps come on one by one along the street.",
+  "feu rouge": "The duck and her ducklings wait patiently at the red light.",
+  "banc": "Two old friends play chess on a park bench.",
+  "menottes": "The police officer puts handcuffs on the croissant thief.",
+  "cambrioleur": "The burglar comes in through the window, but the dog is waiting for him.",
+  "extincteur": "The cook puts out the fire in the frying pan with a fire extinguisher.",
+  "aimant": "With an enormous magnet, the scientist attracts all the spoons in the kitchen.",
+  "loupe": "The detective examines a footprint with his magnifying glass.",
+  "éprouvette": "The chemist pours a green liquid into a test tube, and purple smoke comes out.",
+  "chauve": "The bald man looks at himself in the mirror with a wig in his hand.",
+  "frisé": "The little girl with curly hair looks like a little sheep.",
+  "tatouage": "The sailor proudly shows off the anchor tattoo on his arm.",
+  "pousser": "Three friends push the old broken-down car.",
+  "tirer": "The little dog pulls its owner towards the park.",
+  "glisser": "The waiter slips on a banana skin with his tray.",
+  "se rendre compte": "As he leaves, Paul realizes that he has forgotten his keys.",
+  "s'en sortir": "Despite his arm being in a cast, Hugo manages on his own in the kitchen.",
+  "se débrouiller": "Without a stepladder, Lina finds a way to reach the jar.",
+  "s'adapter": "During her first winter, Lina adapts to the cold by dressing warmly.",
+  "se méfier": "The walker is wary of the dog guarding the gate.",
+  "compter sur": "During her holiday, Léa counts on her sister to water her plants.",
+  "renoncer": "Faced with the storm, the hikers give up climbing the mountain.",
+  "oser": "Despite her fear, Zoé dares to stroke the big horse.",
+  "hésiter": "At the market, Hugo hesitates between the apples and the pears.",
+  "convaincre": "Léa convinces her brother to wear a helmet before leaving.",
+  "insister": "Despite her heavy bag, Grandma insists on carrying the cake as well.",
+  "rassurer": "During the storm, the father reassures his daughter by holding her hand.",
+  "encourager": "Lina encourages her brother to pedal without training wheels.",
+  "se confier": "On the bench, Zoé confides in her attentive friend.",
+  "se réconcilier": "After their argument, the sisters make up with a big hug.",
+  "accueillir": "The neighbours welcome the new family with a homemade pie.",
+  "rejoindre": "Lina joins her friends who are waiting for her beside the lake.",
+  "s'installer": "After the move, Léa settles comfortably into her new armchair.",
+  "s'éloigner": "The boy moves away from the water's edge as the wave approaches.",
+  "s'abriter": "During the downpour, the cyclists take shelter under the roof of a barn.",
+  "se précipiter": "Zoé rushes to the door to welcome her grandmother.",
+  "s'appuyer": "The tired hiker leans on his walking stick at the summit.",
+  "se pencher": "Lina bends down to pick up her key that fell under the table.",
+  "supporter": "Paul finds it hard to put up with the noise of his sister's drum.",
+  "soulever": "We lift the sofa to find the dog's ball.",
+  "renverser": "The cat knocks over the bowl of milk with its tail.",
+  "rattraper": "Léa catches up with her brother by running along the canal.",
+  "récupérer": "At the airport, Emma collects her suitcase from the conveyor belt.",
+  "répartir": "The father distributes the pizza slices among his children.",
+  "trier": "We sort the rubbish by separating paper from bottles.",
+  "se débarrasser": "I get rid of this broken chair at the recycling centre.",
+  "améliorer": "Lina improves her drawing by adding brighter colours.",
+  "déborder": "The bathtub overflows because the tap was left running.",
+  "réduire": "I reduce my water consumption by turning off the tap while brushing my teeth.",
+  "gérer": "Maya manages her budget by dividing her coins among several jars.",
+  "interrompre": "The cat interrupts my reading by jumping onto my book.",
+  "reporter": "She postpones the picnic because of the rain.",
+  "remplacer": "Paul replaces his bicycle's damaged wheel with a new one.",
+  "s'entraider": "The neighbours help each other assemble a large wardrobe in the living room.",
+  "se renseigner": "The traveller asks the guide for information about the trails.",
+  "déçu": "Léa is disappointed: her ice cream has just fallen on the ground.",
+  "enthousiaste": "Paul is excited about planting his first vegetable garden.",
+  "rigoureux": "This meticulous seamstress checks every seam before finishing the jacket.",
+  "réticent": "He remains reluctant to taste this soup, even though it is delicious.",
+  "maladroit": "This clumsy waiter drops the oranges from his tray.",
+  "distrait": "My absent-minded brother pours juice into his bowl of cereal.",
+  "désordonné": "His messy desk disappears under papers and socks.",
+  "inattendu": "An unexpected visitor awaits us: a hedgehog is sleeping in our basket.",
+  "défectueux": "This faulty kettle lets water leak through a crack.",
+  "disponible": "This chair is free: you can sit next to me.",
+  "efficace": "This effective brush removes all the mud from my boots.",
+  "pénible": "The climb is arduous with this big bag on my back.",
+  "encombrant": "This bulky armchair almost completely blocks the living-room doorway.",
+  "coûteux": "This costly repair forces me to empty almost all the money from my piggy bank.",
+  "inutile": "This colander is useless for carrying water to the garden.",
+  "perplexe": "He remains puzzled by a shoe filled with small pebbles.",
+  "persévérant": "This persevering student rebuilds her tower every time it collapses.",
+  "généreux": "My generous neighbour shares all his strawberries with the children.",
+  "autonome": "This independent child packs his schoolbag all by himself before school.",
+  "usé": "My worn-out slippers let my toes poke through large holes.",
 };
 // 易混词名单：意思、用法容易弄混的词放一组（拼写不一定像）。困难模式下优先拿同组的词当干扰项，答完显示这组的辨析。
 // 一个词可以在几组里；组里的词都必须在词表（VOCAB）里。
@@ -24571,6 +25200,474 @@ function renderCafe(preserve=false){
  if(preserve){if(focus)document.getElementById(focus)?.focus({preventScroll:true});scrollTo(0,y);}
 }
 
+// Approved adult character identities; runtime art is separate from concept artwork.
+const PET_CHARACTERS = [
+  { id: 'ninon', name: 'Ninon', age: 27, color: '#376cb6', desc: '热情成熟，陪你从容走好每一步。' },
+  { id: 'lison', name: 'Lison', age: 24, color: '#b94754', desc: '聪明狡黠，把善意藏在小小的反问里。' },
+  { id: 'pia', name: 'Pia', age: 21, color: '#788498', desc: '嘴硬心软，夸奖你的时候有一点害羞。' }
+];
+const PET_ACCESSORIES = [
+  { id: 'pet-bookmark', name: '书签胸针', frame: 0 },
+  { id: 'pet-hairpin', name: '书页发夹', frame: 1 },
+  { id: 'pet-cape', name: '金边披肩', frame: 2 }
+];
+const PET_STATES = ['idle', 'happy', 'sad', 'sleep', 'tap'];
+const PET_STATE_NAMES = ['待机', '开心', '关心', '休息', '互动'];
+const PET_LEVEL_NAMES = ['初识', '熟悉', '默契', '伙伴', '老搭档'];
+// French is always spoken verbatim. Chinese/English translations are explicit,
+// not inferred from the interface translator or generated online.
+const PET_LINES = {
+  ninon: [
+    ['tap', 0, 'Prends ton temps, on va y arriver ensemble.', '慢慢来，我们一起弄明白。', "Take your time. We'll work it out together."],
+    ['tap', 1, 'Chaque petit pas compte. Je vois tes progrès.', '每一小步都算数。我看到了你的进步。', 'Every little step counts. I can see your progress.'],
+    ['tap', 2, 'Tu peux essayer sans avoir peur de te tromper.', '放心试试，答错也没关系。', 'You can try without being afraid of making mistakes.'],
+    ['tap', 3, 'On a trouvé notre rythme, tu ne trouves pas ?', '我们找到自己的节奏了，你觉得呢？', "We've found our rhythm, don't you think?"],
+    ['tap', 4, 'Quel chemin parcouru ! Et si on continuait tranquillement ?', '已经走了好远！我们继续慢慢来吧。', 'Look how far we have come! Shall we keep going at our own pace?'],
+    ['happy', 0, 'Bravo ! Tu as bien compris.', '真棒！你理解了。', 'Well done! You understood it.'],
+    ['sad', 0, 'Ce n\'est pas grave. Reprenons ce point ensemble.', '没关系，我们一起再看看这一点。', "It's all right. Let's go over this together."],
+    ['streak', 0, 'Quelle belle série ! Garde ton rythme.', '连对得真漂亮！保持自己的节奏。', 'What a lovely streak! Keep your own pace.'],
+    ['plan', 0, 'Ton programme est terminé. Tu peux être fier de toi.', '今天的计划完成了，你可以为自己骄傲。', 'Your plan is complete. You can be proud of yourself.'],
+    ['welcome', 0, 'Quel plaisir de te revoir ! On reprend doucement ?', '很高兴又见到你！我们慢慢继续吧？', "It's lovely to see you again! Shall we ease back into it?"]
+  ],
+  lison: [
+    ['tap', 0, 'Et si on regardait ce petit détail ensemble ?', '要不要一起看看这个小细节？', 'Shall we look at this little detail together?'],
+    ['tap', 1, 'Tu as remarqué cet indice ? Je savais que tu le trouverais.', '发现这个线索了吗？我就知道你能找到。', 'Did you spot that clue? I knew you would find it.'],
+    ['tap', 2, 'Je te laisse deviner… mais je reste là pour t\'aider.', '先让你猜猜……不过我会在这里帮你。', "I'll let you guess, but I'm here to help."],
+    ['tap', 3, 'On fait une bonne équipe. Étonnant, non ?', '我们搭档得不错。是不是有点意外？', "We make a good team. Surprising, isn't it?"],
+    ['tap', 4, 'Même mes petits pièges ne te font plus peur.', '连我的小谜题都难不倒你了。', "Even my little puzzles don't scare you anymore."],
+    ['happy', 0, 'Bien joué. Rien ne t\'échappe aujourd\'hui !', '做得漂亮。今天什么都逃不过你的眼睛！', 'Well played. Nothing gets past you today!'],
+    ['sad', 0, 'Cette question cachait un piège. Regardons-le ensemble.', '这题藏了个陷阱。我们一起看清它。', "This question hid a trap. Let's look at it together."],
+    ['streak', 0, 'Encore juste ? Tu commences à me surprendre.', '又答对了？你开始让我惊讶了。', 'Correct again? You are starting to surprise me.'],
+    ['plan', 0, 'Tout est fait. Je t\'accorde une pause bien méritée.', '全部完成了。准你休息一下，当然是你应得的。', 'All done. I grant you a well-earned break.'],
+    ['welcome', 0, 'Te revoilà ! J\'ai gardé ta place, évidemment.', '你回来啦！当然给你留着位置。', 'There you are! I saved your place, of course.']
+  ],
+  pia: [
+    ['tap', 0, 'Je peux te donner un indice… si tu veux.', '给你个提示也不是不行……你要的话。', 'I can give you a hint, if you want.'],
+    ['tap', 1, 'Tu progresses. Enfin, je dis ça comme ça.', '你有进步。嗯，我就是随口一说。', "You're making progress. Well, I'm just saying."],
+    ['tap', 2, 'Cette phrase m\'a fait penser à toi. C\'est tout.', '这句话让我想到你了。仅此而已。', 'This sentence reminded me of you. That is all.'],
+    ['tap', 3, 'Je préfère réviser avec toi. Ne me fais pas répéter.', '我更喜欢和你一起复习。别让我再说一遍。', "I prefer reviewing with you. Don't make me say it again."],
+    ['tap', 4, 'On continue ensemble, d\'accord ? Je me suis habituée.', '以后也一起学，好吗？我已经习惯了。', "We'll keep learning together, okay? I've got used to it."],
+    ['happy', 0, 'Pas mal ! Bon, c\'était même très bien.', '还不错！好吧，其实答得很棒。', 'Not bad! All right, it was actually very good.'],
+    ['sad', 0, 'Une erreur, ce n\'est rien. Je peux t\'aider à revoir.', '错一次不算什么。我可以陪你再看一遍。', 'One mistake is nothing. I can help you review it.'],
+    ['streak', 0, 'Encore une bonne réponse ! Tu peux sourire, tu sais.', '又答对了一题！你可以开心一下的。', "Another correct answer! You're allowed to smile, you know."],
+    ['plan', 0, 'Tu as fini ! Je suis contente… pour toi, bien sûr.', '你做完了！我很开心……当然是为你。', "You finished! I'm happy… for you, of course."],
+    ['welcome', 0, 'Tu es de retour. Bon… ça me fait plaisir.', '你回来了。嗯……见到你很高兴。', "You're back. Well… I'm glad to see you."]
+  ]
+};
+// ---------- 学习伙伴：配置、学习里程碑和已有金币账本 ----------
+const PET_PRICES = { pet: 800, "pet-bookmark": 150, "pet-hairpin": 300, "pet-cape": 500 };
+const PET_TIERS = [0, 30, 100, 300, 600];
+let petPending = null, petWriteTimer = 0, petAffinityCache = null, petKnownQuestions = null, petSessionConfig = null;
+const petScope = () => typeof SYNC_ON !== "undefined" && !SYNC_ON ? "claude" : typeof syncAuth === "function" && syncAuth()?.uid ? "user:" + syncAuth().uid : "guest";
+const petLocalKey = scope => "fq-pet:" + scope;
+const petFingerprint = d => JSON.stringify(Object.keys(d).sort().map(k => [k, d[k]]));
+const petTime = at => typeof at === "string" && /^\d{4}-\d{2}-\d{2}T.*(?:Z|[+-]\d{2}:\d{2})$/.test(at) && Number.isFinite(Date.parse(at)) ? Date.parse(at) : null;
+const petCompare = (a, b) => (petTime(a.at) || 0) - (petTime(b.at) || 0) || (petFingerprint(a) < petFingerprint(b) ? -1 : petFingerprint(a) > petFingerprint(b) ? 1 : 0);
+const petOwned = () => typeof gameLedger === "function" && gameLedger().owned.has("pet");
+function petCleanConfig(x, scope) {
+  if (!x || x.scope !== scope || x.version !== 1 || petTime(x.at) === null) return null;
+  return { kind: "pet", version: 1, scope, character: ["ninon", "lison", "pia"].includes(x.character) ? x.character : "ninon",
+    outfit: x.outfit !== "pet" && Object.hasOwn(PET_PRICES, x.outfit) ? x.outfit : "", enabled: x.enabled !== false,
+    feedback: x.feedback !== false, animation: x.animation !== false, at: x.at };
+}
+function petLocal(scope = petScope()) {
+  if (scope === "claude") return null; // Claude 的数据库已经按账号隔离，不用无身份的浏览器缓存覆盖它。
+  try { return petCleanConfig(JSON.parse(localStorage.getItem(petLocalKey(scope)) || "null"), scope); } catch (e) { return null; }
+}
+function petRemote(scope = petScope()) {
+  let best = null;
+  if (typeof gameRaw !== "undefined") gameRaw.forEach(g => {
+    const x = g?.kind === "pet" ? petCleanConfig(g, scope) : null;
+    if (x && (!best || petCompare(x, best) > 0)) best = x;
+  });
+  return best;
+}
+function petConfig() {
+  const scope = petScope(), loc = petLocal(scope), rem = petRemote(scope);
+  const candidates = [loc, rem, petSessionConfig?.scope === scope ? petSessionConfig : null].filter(Boolean);
+  const x = candidates.sort(petCompare).pop();
+  const cfg = x || { kind: "pet", version: 1, scope, enabled: true, feedback: true, animation: true, character: "ninon", outfit: "", at: "" };
+  const outfit = cfg.outfit && typeof gameLoaded !== "undefined" && gameLoaded && gameLedger().owned.has(cfg.outfit) ? cfg.outfit : "";
+  return { ...cfg, outfit };
+}
+function petSet(patch) {
+  if (!petOwned()) return "locked";
+  if (!patch || typeof patch !== "object") return "unavailable";
+  const x = petConfig();
+  if (Object.hasOwn(patch, "character") && !["ninon", "lison", "pia"].includes(patch.character)) return "unavailable";
+  if (Object.hasOwn(patch, "outfit") && patch.outfit !== "" && (patch.outfit === "pet" || !Object.hasOwn(PET_PRICES, patch.outfit) || !gameLedger().owned.has(patch.outfit))) return "locked";
+  ["character", "outfit"].forEach(k => { if (Object.hasOwn(patch, k)) x[k] = patch[k]; });
+  ["enabled", "feedback", "animation"].forEach(k => { if (typeof patch[k] === "boolean") x[k] = patch[k]; });
+  x.at = new Date(Math.max(Date.now(), (petTime(x.at) || 0) + 1)).toISOString();
+  petSessionConfig = x;
+  if (x.scope !== "claude") { try { localStorage.setItem(petLocalKey(x.scope), JSON.stringify(x)); } catch (e) {} }
+  petPending = x;
+  clearTimeout(petWriteTimer);
+  // Claude 没有本机配置副本，立即记入其数据库；公开网页的连续点击合并成一条。
+  if (x.scope === "claude") petFlush(); else petWriteTimer = setTimeout(petFlush, 600);
+  if (typeof petRefresh === "function") petRefresh();
+  return null;
+}
+function petFlush() {
+  clearTimeout(petWriteTimer); petWriteTimer = 0;
+  const x = petPending; petPending = null;
+  if (!x || x.scope !== petScope() || x.scope === "guest" || typeof gameAdd !== "function") return;
+  const remote = petRemote(x.scope);
+  if (!remote || petCompare(x, remote) > 0) gameAdd(x);
+}
+function petBuy(id) {
+  if (!Object.hasOwn(PET_PRICES, id) || typeof gameLoaded === "undefined" || !gameLoaded || typeof dbRef === "undefined" || !dbRef) return "unavailable";
+  const led = gameLedger();
+  if (led.owned.has(id)) return null;
+  if (typeof gameOwned !== "function" || !gameOwned() || typeof gameOn !== "function" || !gameOn() || (id !== "pet" && !led.owned.has("pet"))) return "locked";
+  if (led.coins < PET_PRICES[id]) return "funds";
+  gameAdd({ kind: "buy", item: id, price: PET_PRICES[id], at: new Date().toISOString() });
+  if (typeof planRefresh === "function") planRefresh();
+  if (typeof petRefresh === "function") petRefresh();
+  return null;
+}
+
+// 纯函数：不修改答案或金币；只承认能映射到实际题库/词库的学习项。
+// 与学习进度共用记忆间隔。历史峰值不回退，答错后再刷回旧等级没有额外奖励。
+function petComputeAffinity(answers, vocab, knownQuestions, knownWords, now = Date.now()) {
+  const seen = new Set(), events = [], memories = new Map(), words = new Set(), byDay = {};
+  const collect = (list, kind) => (Array.isArray(list) ? list : []).forEach(d => {
+    if (!d || typeof d !== "object") return;
+    const t = petTime(d.at), id = kind === "vocab" ? d.word : d.qid, right = kind === "vocab" ? d.ok : d.isCorrect;
+    if (t === null || t > now || typeof right !== "boolean" || !(kind === "vocab" ? knownWords : knownQuestions).has(id)) return;
+    const key = kind + ":" + petFingerprint(d);
+    if (seen.has(key)) return;
+    seen.add(key); events.push({ d, kind, t, key });
+  });
+  collect(answers, "ans"); collect(vocab, "vocab");
+  events.sort((a, b) => a.t - b.t || (a.key < b.key ? -1 : a.key > b.key ? 1 : 0));
+  let points = 0;
+  for (const { d, kind, t } of events) {
+    let delta = 0;
+    if (kind === "vocab") {
+      if (d.ok && !words.has(d.word)) { words.add(d.word); delta = 1; }
+    } else {
+      const m = memories.get(d.qid) || { lv: 0, last: 0, peak: 0 };
+      if (d.isCorrect) {
+        if (!m.lv) { m.lv = 1; m.last = t; }
+        else if (t >= m.last + MEM_DAYS[Math.min(m.lv, MEM_MAX)] * DAY_MS * MEM_EARLY) { m.lv = Math.min(MEM_MAX, m.lv + 1); m.last = t; }
+        delta = Math.max(0, m.lv - m.peak); m.peak = Math.max(m.peak, m.lv);
+      } else { m.lv = Math.max(0, m.lv - 2); m.last = t; }
+      memories.set(d.qid, m);
+    }
+    const day = new Date(t).toISOString().slice(0, 10), gain = Math.min(delta, 20 - (byDay[day] || 0), 1000 - points);
+    if (gain > 0) { byDay[day] = (byDay[day] || 0) + gain; points += gain; }
+  }
+  const today = new Date(now).toISOString().slice(0, 10), reset = Date.parse(today + "T00:00:00.000Z") + DAY_MS;
+  return { points, max: 1000, today: byDay[today] || 0, dailyCap: 20, level: PET_TIERS.filter(n => points >= n).length - 1, nextReset: new Date(reset).toISOString() };
+}
+function petQuestionIds() {
+  if (!petKnownQuestions) {
+    petKnownQuestions = new Set(typeof BY_ID !== "undefined" ? BY_ID.keys() : []);
+    if (typeof CJ_VERBS !== "undefined") CJ_VERBS.forEach(v => Object.keys(v.t || {}).forEach(t => petKnownQuestions.add("cj:" + v.v + ":" + t)));
+  }
+  return petKnownQuestions;
+}
+function petAffinity() {
+  const a = typeof ansRaw !== "undefined" && ansRaw || [], v = typeof vocRaw !== "undefined" && vocRaw || [];
+  const day = new Date().toISOString().slice(0, 10), scope = petScope();
+  if (!petAffinityCache || petAffinityCache.a !== a || petAffinityCache.v !== v || petAffinityCache.an !== a.length || petAffinityCache.vn !== v.length || petAffinityCache.day !== day || petAffinityCache.scope !== scope) {
+    const value = petComputeAffinity(a, v, petQuestionIds(), new Set(typeof V_BY_ID !== "undefined" ? V_BY_ID.keys() : []));
+    petAffinityCache = { a, v, an: a.length, vn: v.length, day, scope, value };
+  }
+  return { ...petAffinityCache.value };
+}
+function petOnAnswer(d, kind, info) {
+  petAffinityCache = null;
+  if (typeof petReact === "function") petReact(d, kind, info);
+}
+function petOnDataReady() {
+  petAffinityCache = null;
+  const scope = petScope(), loc = petLocal(scope), rem = petRemote(scope);
+  if (loc && scope !== "guest" && (!rem || petCompare(loc, rem) > 0)) { petPending = loc; petFlush(); }
+  if (typeof petRefresh === "function") petRefresh();
+  if (typeof petRefreshPage === "function") petRefreshPage();
+}
+function petOnAccountChange() {
+  clearTimeout(petWriteTimer); petWriteTimer = 0; petPending = null; petAffinityCache = null; petSessionConfig = null;
+  if (typeof petResetRuntime === "function") petResetRuntime();
+  if (typeof petRefresh === "function") petRefresh();
+  if (typeof petRefreshPage === "function") petRefreshPage();
+}
+addEventListener("pagehide", petFlush);
+document.addEventListener("visibilitychange", () => { if (document.visibilityState === "hidden") petFlush(); });
+// Learning companion: no answer rewards or ownership state are written here.
+// Deploy skins beside the assembled page; never fetch anonymous private GitHub URLs.
+const PET_ASSET_BASE = 'skins/mascot/pet/';
+const petText = (s, values = {}) => Object.entries(values).reduce((t, [k, v]) => t.split('${' + k + '}').join(v), tr(s));
+const petButton = (text, action, id, cls = 'btn ghost') => { const b = el('button', cls, tr(text)); b.type = 'button'; if (id) b.id = id; b.addEventListener('click', action); return b; };
+let petRuntime = { started: false, open: false, state: 'idle', line: null, language: UI_LANG === 'zh' ? 'zh' : 'en', trial: null, preview: false, previewCharacter: 'ninon', pendingPlan: false, lastFeedback: 0, touched: Date.now(), drag: null, dragged: false, scope: null, pendingWelcome: false };
+let petStateTimer = 0, petFrameRequest = 0;
+const petMobile = () => matchMedia('(max-width: 600px)').matches;
+const petQuestionActive = () => !!stage.querySelector('.q-card, .v-card, .cj-card, .sp-boss, .sp-mini, .sp-pair, .sp-build');
+function petBlocked() {
+  const a = document.activeElement;
+  return document.documentElement.classList.contains('qf') || view === 'exam' || document.hidden ||
+    !!document.querySelector('dialog[open], .pc-overlay, [aria-modal="true"]') ||
+    !!(a && (a.matches('textarea, select, input:not([type=checkbox]):not([type=radio]):not([type=button]):not([type=submit]):not([type=range])') || a.isContentEditable)) ||
+    !!(window.visualViewport && window.visualViewport.height < innerHeight * .72);
+}
+function petImage(character, state = 'idle', outfit = '') {
+  const c = PET_CHARACTERS.find(x => x.id === character) || PET_CHARACTERS[0];
+  const sprite = el('span', 'pet-sprite'); sprite.setAttribute('aria-hidden', 'true'); sprite.dataset.character = c.id;
+  sprite.style.backgroundImage = `url("${PET_ASSET_BASE}${c.id}.webp")`;
+  sprite.style.setProperty('--pet-row', String(Math.max(0, PET_STATES.indexOf(state))));
+  sprite.dataset.state = state;
+  const it = PET_ACCESSORIES.find(x => x.id === outfit);
+  if (it) { const accessory = el('span', 'pet-accessory'); accessory.style.backgroundImage = `url("${PET_ASSET_BASE}accessories.webp")`; accessory.style.backgroundPosition = `${it.frame * 50}% 0`; sprite.append(accessory); }
+  const cfg = petConfig(); sprite.classList.toggle('pet-static', !cfg.animation || document.hidden);
+  return sprite;
+}
+function petPositionRead() {
+  try { const p = JSON.parse(localStorage.getItem('fq-pet-position') || 'null'); if (p && Number.isFinite(p.y) && ['left', 'right'].includes(p.side)) return { side: p.side, y: Math.max(0, Math.min(1, p.y)) }; } catch (e) {}
+  return { side: 'right', y: 1 };
+}
+function petPositionWrite(p) { try { localStorage.setItem('fq-pet-position', JSON.stringify(p)); } catch (e) {} }
+function petPlace() {
+  const w = $('petWidget'); if (!w || petMobile()) return;
+  const p = petPositionRead(), height = 132, margin = 12, maxY = Math.max(margin, innerHeight - height - margin);
+  w.style.left = p.side === 'left' ? 'max(12px, env(safe-area-inset-left, 0px))' : 'auto';
+  w.style.right = p.side === 'right' ? 'max(12px, env(safe-area-inset-right, 0px))' : 'auto';
+  const top = Math.round(margin + p.y * (maxY - margin));
+  w.style.top = top + 'px'; w.dataset.side = p.side;
+  w.dataset.bubble = top >= 330 ? 'above' : 'below';
+  const bubble = $('petBubble'); if (bubble) bubble.style.maxHeight = Math.max(110, (top >= 330 ? top - 20 : innerHeight - top - height - 20)) + 'px';
+}
+function petTouchesContent() {
+  const a = $('petAvatar'); if (!a || petMobile()) return false;
+  const r = a.getBoundingClientRect();
+  return [...document.querySelectorAll('#stage > section.card, #stage .opt, #spHud, #tourHud, .sp-hud, .tour-hud, .ex-bar')].some(n => {
+    const b = n.getBoundingClientRect(); return b.width && b.height && r.right > b.left - 8 && r.left < b.right + 8 && r.bottom > b.top - 8 && r.top < b.bottom + 8;
+  });
+}
+function petScheduleLayout() { if (!petFrameRequest) petFrameRequest = requestAnimationFrame(() => { petFrameRequest = 0; petRefresh(); }); }
+function petResetRuntime() {
+  clearTimeout(petStateTimer);
+  Object.assign(petRuntime, { open: false, state: 'idle', line: null, trial: null, preview: false, pendingPlan: false, lastFeedback: 0, scope: null, drag: null, pendingWelcome: false });
+  $('petBubble')?.remove(); $('petPreview')?.replaceChildren();
+}
+function petCloseBubble(focus = false) {
+  petRuntime.open = false; petRuntime.line = null; $('petBubble')?.remove();
+  if (focus) ($('petLauncher')?.hidden ? $('petAvatar') : $('petLauncher'))?.focus();
+  petRefresh();
+}
+function petOnLeave() { petRuntime.trial = null; petRuntime.preview = false; petRuntime.open = false; petRuntime.line = null; $('petBubble')?.remove(); petScheduleLayout(); }
+function petSetState(state, ms = 2600) {
+  clearTimeout(petStateTimer); petRuntime.state = state; petRefresh();
+  if (state !== 'idle' && state !== 'sleep') petStateTimer = setTimeout(() => { petRuntime.state = 'idle'; petRefresh(); }, ms);
+}
+function petLine(kind = 'tap') {
+  const cfg = petConfig(), level = petAffinity().level;
+  const lines = PET_LINES[cfg.character].filter(x => x[0] === kind && x[1] <= level);
+  const x = lines[Math.floor(Math.random() * lines.length)] || PET_LINES[cfg.character][0];
+  return { fr: x[2], zh: x[3], en: x[4], word: '' };
+}
+function petRecentLine() {
+  if (typeof vocRaw === 'undefined' || typeof V_BY_ID === 'undefined' || typeof V_PICEX === 'undefined') return null;
+  const recent = [...vocRaw].filter(d => d && Number.isFinite(Date.parse(d.at))).sort((a, b) => Date.parse(b.at) - Date.parse(a.at));
+  const seen = new Set();
+  for (const d of recent) {
+    if (seen.has(d.word)) continue; seen.add(d.word);
+    const w = V_BY_ID.get(d.word); if (!w) continue;
+    const e = V_PICEX[w.fr], en = typeof V_PICEX_EN !== 'undefined' && V_PICEX_EN[w.fr];
+    if (e && typeof e[0] === 'string' && e[1] && en) return { word: w.fr, fr: e[0].replace(/\[([^\]]+)\]/g, '$1'), zh: e[1], en };
+    if (seen.size >= 20) break;
+  }
+  return null;
+}
+function petShowLine(kind = 'tap', manual = false) {
+  if (petBlocked() || petQuestionActive() || !petOwned() || !petConfig().enabled) return;
+  petRuntime.touched = Date.now(); petRuntime.open = true;
+  if (manual && petConfig().feedback && petRuntime.pendingPlan) { kind = 'plan'; petRuntime.pendingPlan = false; }
+  else if (manual && petConfig().feedback && petRuntime.pendingWelcome) { kind = 'welcome'; petRuntime.pendingWelcome = false; }
+  petRuntime.line = kind === 'tap' && Math.random() < .65 ? petRecentLine() || petLine(kind) : petLine(kind);
+  petSetState(kind === 'sad' ? 'sad' : kind === 'tap' ? 'tap' : 'happy');
+  petRenderBubble(); petRefresh();
+  if (manual && $('petBubble')) $('petBubble').setAttribute('data-manual', 'true');
+}
+function petRenderBubble() {
+  const w = $('petWidget'); if (!w || !petRuntime.line) return;
+  $('petBubble')?.remove();
+  const line = petRuntime.line, b = el('section', 'pet-bubble'); b.id = 'petBubble'; b.setAttribute('aria-label', tr('伙伴的话'));
+  const head = el('div', 'pet-bubble-head'); head.append(el('b', null, petConfig().character[0].toUpperCase() + petConfig().character.slice(1)), petButton('收起对话', () => petCloseBubble(true), 'petClose'));
+  b.append(head);
+  if (line.word) b.append(el('span', 'tag', line.word));
+  const words = el('div', 'pet-words'); words.dataset.noi18n = '1'; words.setAttribute('aria-live', 'polite'); words.setAttribute('aria-atomic', 'true');
+  const fr = el('p', 'pet-french', line.fr); fr.lang = 'fr';
+  const translation = el('p', 'sub', line[petRuntime.language]); translation.lang = petRuntime.language === 'zh' ? 'zh-CN' : 'en';
+  words.append(fr, translation); b.append(words);
+  const actions = el('div', 'pet-actions');
+  const audio = petButton('朗读', () => {
+    if (!tts || tts.speaking) { status.textContent = tr(tts ? '正在朗读题目，请稍后再试。' : '这个浏览器不支持朗读。'); return; }
+    speak(line.fr, .85, audio);
+  }, 'petSpeak', 'btn ghost play');
+  const voiceAvailable = !!(tts && (frVoice || pickVoice()));
+  audio.setAttribute('aria-pressed', 'false'); audio.disabled = !voiceAvailable;
+  actions.append(audio, petButton(petRuntime.language === 'zh' ? 'English' : '中文', () => { petRuntime.language = petRuntime.language === 'zh' ? 'en' : 'zh'; petRenderBubble(); }, 'petTranslate'), petButton('伙伴面板', () => { petCloseBubble(); goBoard('pet'); }, 'petHome'));
+  const status = el('p', 'sub'); status.id = 'petAudioStatus'; status.setAttribute('role', 'status'); if (!tts) status.textContent = tr('这个浏览器不支持朗读。'); else if (!voiceAvailable) status.textContent = tr('这台设备上没找到法语朗读声音，可以在系统设置里添加法语语音。');
+  b.append(actions, status); w.prepend(b);
+}
+function petReact(d, kind, info = {}) {
+  petRuntime.touched = Date.now();
+  if (!petOwned() || !petConfig().enabled || !petConfig().feedback) return;
+  if (info.planCompleted) petRuntime.pendingPlan = true;
+  const ok = kind === 'vocab' ? d.ok : d.isCorrect;
+  if (petBlocked() || petQuestionActive()) {
+    // Keep a brief expression without queuing any speech over the next question.
+    petSetState(ok ? 'happy' : 'sad', [5, 10, 20].includes(info.run) ? 4500 : 2600); return;
+  }
+  if (Date.now() - petRuntime.lastFeedback < 18000) return;
+  petRuntime.lastFeedback = Date.now();
+  const completed = !!info.planCompleted;
+  petRuntime.pendingPlan = false; // Clear before rendering: refresh must not queue a second celebration.
+  petShowLine(completed ? 'plan' : ok ? [5, 10, 20].includes(info.run) ? 'streak' : 'happy' : 'sad');
+}
+function petRefresh() {
+  if (!petRuntime.started) return;
+  const cfg = petConfig(), widget = $('petWidget'), launcher = $('petLauncher');
+  const enabled = petOwned() && cfg.enabled && gameOn(), blocked = petBlocked();
+  const mobile = petMobile(); widget.classList.toggle('pet-mobile', mobile);
+  if (petQuestionActive() && petRuntime.open) { petRuntime.open = false; petRuntime.line = null; $('petBubble')?.remove(); }
+  document.querySelectorAll('.pet-sprite').forEach(n => n.classList.toggle('pet-static', !cfg.animation || document.hidden));
+  if (enabled && petRuntime.scope !== cfg.scope) {
+    petRuntime.scope = cfg.scope;
+    try { const key = 'fq-pet-visit:' + (cfg.scope || 'local'), previous = Number(localStorage.getItem(key)); petRuntime.pendingWelcome = previous > 0 && Date.now() - previous > 3 * 86400000; localStorage.setItem(key, String(Date.now())); } catch (e) {}
+  }
+  if (mobile && widget.parentElement !== document.querySelector('.wrap')) document.querySelector('header').after(widget);
+  else if (!mobile && widget.parentElement !== document.body) document.body.append(widget);
+  if (!enabled || blocked) { widget.hidden = true; launcher.hidden = true; widget.querySelectorAll('.pet-sprite').forEach(n => n.classList.add('pet-paused')); return; }
+  const avatar = $('petAvatar'); const wanted = [cfg.character, petRuntime.state, cfg.outfit, cfg.animation].join(':');
+  if (avatar.dataset.render !== wanted) { avatar.replaceChildren(petImage(cfg.character, petRuntime.state, cfg.outfit)); avatar.dataset.render = wanted; }
+  widget.querySelectorAll('.pet-sprite').forEach(n => n.classList.remove('pet-paused'));
+  petPlace(); widget.hidden = false;
+  const collision = !mobile && !petRuntime.drag && petTouchesContent();
+  widget.hidden = mobile ? !petRuntime.open : collision;
+  launcher.hidden = !mobile && !collision;
+  launcher.textContent = cfg.character[0].toUpperCase(); launcher.title = tr('打开学习伙伴'); launcher.setAttribute('aria-label', tr('打开学习伙伴')); launcher.setAttribute('aria-expanded', String(!widget.hidden && petRuntime.open));
+  if (collision && petRuntime.open) { petRuntime.open = false; $('petBubble')?.remove(); }
+  avatar.setAttribute('aria-expanded', String(petRuntime.open)); avatar.setAttribute('aria-controls', 'petBubble'); launcher.setAttribute('aria-controls', 'petBubble');
+  if (petRuntime.pendingPlan && !blocked && !petQuestionActive() && !mobile && !collision && cfg.feedback) { petRuntime.pendingPlan = false; setTimeout(() => petShowLine('plan'), 0); }
+  else if (petRuntime.pendingWelcome && !petQuestionActive() && !mobile && !collision && cfg.feedback) { petRuntime.pendingWelcome = false; setTimeout(() => petShowLine('welcome'), 0); }
+}
+function petDragStart(e) {
+  if (petMobile() || e.button !== 0 || petBlocked()) return;
+  const a = $('petAvatar'), r = $('petWidget').getBoundingClientRect();
+  petRuntime.drag = { x: e.clientX, y: e.clientY, top: r.top, moved: false };
+  a.setPointerCapture?.(e.pointerId);
+}
+function petDragMove(e) {
+  const d = petRuntime.drag; if (!d) return;
+  if (Math.hypot(e.clientX - d.x, e.clientY - d.y) < 6 && !d.moved) return;
+  d.moved = true; petRuntime.dragged = true; petRuntime.open = false; $('petBubble')?.remove();
+  const maxY = Math.max(12, innerHeight - 144), y = Math.max(12, Math.min(maxY, d.top + e.clientY - d.y));
+  petPositionWrite({ side: e.clientX < innerWidth / 2 ? 'left' : 'right', y: maxY === 12 ? 0 : (y - 12) / (maxY - 12) }); petPlace();
+}
+function petDragEnd() { petRuntime.drag = null; petRefresh(); }
+function petInit() {
+  if (petRuntime.started) return; petRuntime.started = true;
+  const launcher = petButton('打开学习伙伴', () => {
+    if (petRuntime.open) { petCloseBubble(); return; }
+    if (!petMobile()) { goBoard('pet'); return; }
+    petShowLine('tap', true);
+  }, 'petLauncher', 'pet-launcher'); launcher.hidden = true; document.querySelector('header').append(launcher);
+  const widget = el('aside', 'pet-widget'); widget.id = 'petWidget'; widget.hidden = true; widget.setAttribute('aria-label', tr('学习伙伴'));
+  const avatar = petButton('和伙伴说句话', () => { if (petRuntime.dragged) { petRuntime.dragged = false; return; } petShowLine('tap', true); }, 'petAvatar', 'pet-avatar'); avatar.setAttribute('aria-label', tr('和伙伴说句话'));
+  avatar.addEventListener('pointerdown', petDragStart); avatar.addEventListener('pointermove', petDragMove); avatar.addEventListener('pointerup', petDragEnd); avatar.addEventListener('pointercancel', () => { petRuntime.dragged = false; petDragEnd(); });
+  widget.append(avatar); document.body.append(widget);
+  [widget, launcher].forEach(n => n.addEventListener('keydown', e => { e.stopPropagation(); if (e.key === 'Escape') { e.preventDefault(); petCloseBubble(true); } }));
+  ['resize', 'scroll', 'focusin', 'focusout'].forEach(type => window.addEventListener(type, petScheduleLayout, { passive: true }));
+  window.visualViewport?.addEventListener('resize', petScheduleLayout);
+  document.addEventListener('visibilitychange', petScheduleLayout);
+  if (tts) tts.addEventListener?.('voiceschanged', () => { if ($('petBubble')) petRenderBubble(); });
+  new MutationObserver(petScheduleLayout).observe(document.documentElement, { attributes: true, attributeFilter: ['class'] });
+  new MutationObserver(ms => { if (ms.some(m => m.type === 'attributes' || [...m.addedNodes, ...m.removedNodes].some(n => n.nodeType === 1 && !n.closest?.('#petWidget, #petPage, #petLauncher')))) petScheduleLayout(); }).observe(document.body, { childList: true, subtree: true, attributes: true, attributeFilter: ['open', 'aria-modal'] });
+  document.addEventListener('pointerdown', () => { petRuntime.touched = Date.now(); if (petRuntime.state === 'sleep') petSetState('idle'); }, { passive: true });
+  setInterval(() => { if (!document.hidden && Date.now() - petRuntime.touched > 90000 && petRuntime.state === 'idle') petSetState('sleep'); }, 30000);
+  petRefresh();
+}
+function petPurchaseButton(id, done) {
+  const price = PET_PRICES[id], own = gameLedger().owned.has(id);
+  const button = petButton(own ? '已拥有' : petText('购买 · ${price} 金币', { price }), () => {
+    if (button.dataset.confirm !== 'yes') { button.dataset.confirm = 'yes'; button.textContent = petText('确认花 ${price} 金币', { price }); return; }
+    const error = petBuy(id); const messages = { locked: '请先解锁学习伙伴。', funds: '金币不够。', unavailable: '记录尚未就绪，请稍后再试。' };
+    if (error) { button.textContent = tr(messages[error] || messages.unavailable); button.dataset.confirm = ''; return; }
+    done(); petRefresh();
+  }, 'pet-buy-' + id);
+  button.disabled = own || !gameLoaded || gameLedger().coins < price || (id !== 'pet' && !petOwned()); return button;
+}
+function petSettings(wrap) {
+  const s = setSection(wrap, tr('学习伙伴'), tr('只陪伴，不催促；关闭不会影响亲密度。')), cfg = petConfig(), own = petOwned();
+  const changes = (key, value) => { petSet({ [key]: value }); if (key === 'enabled' && !value) petRuntime.preview = false; petRenderPreview(); petRefresh(); };
+  s.append(setCheckRow('petEnabled', tr('显示学习伙伴'), cfg.enabled && own, v => changes('enabled', v)), setCheckRow('petFeedback', tr('自动文字反馈'), cfg.feedback, v => changes('feedback', v)), setCheckRow('petAnimation', tr('角色动画'), cfg.animation, v => changes('animation', v)));
+  if (!own) { s.querySelectorAll('input').forEach(n => n.disabled = true); s.append(el('p', 'sub', tr('在游戏里的“学习伙伴”查看预览和解锁。'))); }
+  const positions = [['right-bottom', '右下角'], ['left-bottom', '左下角'], ['right-top', '右上角'], ['left-top', '左上角']];
+  const pos = petPositionRead();
+  s.append(setSelectRow('petCorner', tr('停靠位置'), positions.map(([k, t]) => [k, tr(t)]), pos.side + (pos.y < .5 ? '-top' : '-bottom'), v => { petPositionWrite({ side: v.startsWith('left') ? 'left' : 'right', y: v.endsWith('top') ? 0 : 1 }); petRefresh(); }), petButton('重置位置', () => { petPositionWrite({ side: 'right', y: 1 }); petRefresh(); const select = $('petCorner'); if (select) select.value = 'right-bottom'; }, 'petResetPosition'));
+  return s;
+}
+function petRenderPreview() {
+  const p = $('petPreview'); if (!p) return; p.replaceChildren();
+  const cfg = petConfig(), character = petOwned() ? cfg.character : petRuntime.previewCharacter;
+  if ((!petOwned() || !cfg.enabled) && !petRuntime.preview) { p.append(el('p', 'sub', tr('选择一位伙伴，看看她的表情。'))); return; }
+  p.append(petImage(character, p.dataset.state || 'idle', petRuntime.trial ?? cfg.outfit));
+  const note = $('petTrialNote'); if (note) note.hidden = !petRuntime.trial;
+}
+function petAccessoryCards(container, shop = false) {
+  const cfg = petConfig(), grid = el('div', 'pet-accessories');
+  PET_ACCESSORIES.forEach(it => {
+    const own = gameLedger().owned.has(it.id), card = el('article', 'pet-accessory-card');
+    card.append(el('h4', null, tr(it.name)), el('p', 'sub', petText('${price} 金币 · 纯外观', { price: PET_PRICES[it.id] })));
+    if (shop) card.append(petButton('去伙伴面板试穿', () => { goBoard('pet'); petRuntime.trial = it.id; petRuntime.preview = true; petRenderPreview(); }, 'pet-shop-try-' + it.id));
+    else card.append(petButton(own ? cfg.outfit === it.id ? '已佩戴' : '佩戴' : '试穿', () => {
+      if (own && petOwned()) { petRuntime.trial = null; petSet({ outfit: it.id }); renderPet(); }
+      else { petRuntime.trial = it.id; petRuntime.preview = true; petRenderPreview(); $('petTrialNote').hidden = false; }
+    }, 'pet-try-' + it.id));
+    if (!own) card.append(petPurchaseButton(it.id, () => { petRuntime.trial = null; shop ? renderShop() : renderPet(); }));
+    grid.append(card);
+  }); container.append(grid);
+}
+function petShop() {
+  const card = el('section', 'card pet-shop'); card.id = 'petShop'; card.append(el('h3', null, tr('伙伴配饰')), el('p', 'sub', tr('永久拥有，三人共用；只改变外观，不增加学习收益。')));
+  if (!petOwned()) card.append(petPurchaseButton('pet', renderShop), petButton('查看学习伙伴', () => goBoard('pet'), 'petShopOpen'));
+  else petAccessoryCards(card, true);
+  return card;
+}
+function renderPet() {
+  stage.replaceChildren(); const own = petOwned(), cfg = petConfig(), affinity = petAffinity();
+  const root = el('section', 'card pet-page'); root.id = 'petPage';
+  root.addEventListener('keydown', e => e.stopPropagation());
+  const title = el('div', 'pet-page-title'); title.append(el('div', 'pet-eyebrow', 'LES COMPAGNES'), el('h2', null, tr('学习伙伴')), el('p', 'sub', tr('认真学习，也有人陪你慢慢来。'))); root.append(title);
+  const chars = el('div', 'pet-characters'); chars.setAttribute('role', 'group'); chars.setAttribute('aria-label', tr('选择伙伴'));
+  PET_CHARACTERS.forEach(c => {
+    const selected = c.id === (own ? cfg.character : petRuntime.previewCharacter);
+    const button = petButton(c.name, () => { petRuntime.trial = null; if (own) petSet({ character: c.id }); else petRuntime.previewCharacter = c.id; renderPet(); }, 'pet-character-' + c.id, 'pet-character');
+    button.style.setProperty('--pet-color', c.color); button.setAttribute('aria-pressed', String(selected));
+    button.append(el('span', 'pet-age', petText('${age} 岁', { age: c.age })), el('span', 'sub', tr(c.desc))); chars.append(button);
+  }); root.append(chars);
+  const hero = el('div', 'pet-hero'), preview = el('div', 'pet-preview'); preview.id = 'petPreview'; hero.append(preview);
+  const info = el('div', 'pet-info'); hero.append(info);
+  if (!own) info.append(el('p', null, tr('800 金币一次解锁三位伙伴；切换免费。')), petButton('查看动作预览', () => { petRuntime.preview = true; petRenderPreview(); }, 'pet-preview-start'), petPurchaseButton('pet', () => { petRuntime.preview = false; renderPet(); }));
+  else {
+    if (!cfg.enabled) info.append(petButton('查看动作预览', () => { petRuntime.preview = true; petRenderPreview(); }, 'pet-preview-start'));
+    info.append(el('h3', null, tr(PET_LEVEL_NAMES[affinity.level])), el('p', 'pet-affinity', petText('亲密度 ${points} / ${max}', { points: affinity.points, max: affinity.max })));
+    const bar = el('progress'); bar.max = affinity.max; bar.value = affinity.points; bar.setAttribute('aria-label', tr('学习亲密度')); info.append(bar);
+    info.append(el('p', 'sub', petText('今日 ${today} / ${cap} 点', { today: affinity.today, cap: affinity.dailyCap })), el('p', 'sub', petText('下次额度重置：${time}', { time: new Date(affinity.nextReset).toLocaleString(UI_LANG === 'zh' ? 'zh-CN' : UI_LANG) })), el('p', 'sub', tr('只有真实学习进步增加亲密度；点击、换装和离线不加分，也不扣分。')));
+  }
+  const actions = el('div', 'pet-actions'); PET_STATES.forEach((state, i) => actions.append(petButton(PET_STATE_NAMES[i], () => { petRuntime.preview = true; preview.dataset.state = state; petRenderPreview(); }, 'pet-state-' + state))); info.append(actions);
+  const note = el('div', 'pet-trial-note'); note.id = 'petTrialNote'; note.hidden = !petRuntime.trial;
+  note.append(el('p', null, tr('正在试穿；离开面板后恢复已购装扮。')), petButton('结束试穿', () => { petRuntime.trial = null; note.hidden = true; petRenderPreview(); }, 'petTrialEnd')); info.append(note); root.append(hero);
+  if (own) root.append(petButton('基础装扮', () => { petRuntime.trial = null; petSet({ outfit: '' }); renderPet(); }, 'pet-outfit-none'));
+  const accessories = el('section'); accessories.append(el('h3', null, tr('伙伴配饰'))); petAccessoryCards(accessories); root.append(accessories);
+  petSettings(root); stage.append(root); petRenderPreview(); petRefresh();
+}
+
+// Called only for account/data changes, not on every answer or layout update.
+function petRefreshPage() { if (view === 'pet') { const y = scrollY; renderPet(); window.scrollTo(0, y); } }
 // ---------- 设置：集中管理各模块的练习设置（都记在本机浏览器里） ----------
 function renderSettings() {
   stage.innerHTML = "";
@@ -24593,6 +25690,7 @@ function renderSettings() {
   if (!(setOwned("lang-en") && setOwned("lang-fr") && setOwned("font-times") && setOwned("font-kreon"))) lg.append(el("p", "sub", "英文、法语界面和字体要先在“商店 · 设置”里用金币解锁。"));
 
   setGameSection(wrap);
+  petSettings(wrap);
 
   setQuizSection(wrap);
   qlSection(wrap);   // 难度等级
@@ -24626,6 +25724,8 @@ function renderSettings() {
 
 // 所有模块载入后：打开页面先到“做题”的板块选择页
 goHome("practice");
+
+petInit();
 </script>
 
 

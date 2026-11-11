@@ -1,0 +1,55 @@
+{
+  "frame": [
+    128,
+    160
+  ],
+  "columns": 4,
+  "rows": [
+    "idle",
+    "happy",
+    "sad",
+    "sleep",
+    "tap"
+  ],
+  "characters": {
+    "lison": {
+      "file": "lison.webp",
+      "size": [
+        512,
+        800
+      ],
+      "bytes": 134856
+    },
+    "ninon": {
+      "file": "ninon.webp",
+      "size": [
+        512,
+        800
+      ],
+      "bytes": 95612
+    },
+    "pia": {
+      "file": "pia.webp",
+      "size": [
+        512,
+        800
+      ],
+      "bytes": 110006
+    }
+  },
+  "maxRuntimeBytes": 409600,
+  "accessories": {
+    "file": "accessories.webp",
+    "size": [
+      384,
+      160
+    ],
+    "bytes": 2112,
+    "columns": [
+      "pet-bookmark",
+      "pet-hairpin",
+      "pet-cape"
+    ]
+  },
+  "runtimeBytes": 342586
+}
