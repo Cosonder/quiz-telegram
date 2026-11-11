@@ -488,3 +488,71 @@
 | pousser | pousser.jpg |
 | tirer | tirer.jpg |
 | glisser | glisser.jpg |
+
+
+## 新增 60 词（verbadj60）
+
+这批图由 ChatGPT 按每个词的例句生成（原图在 Cosonder/quiz 的 `picgen/inbox/verbadj60/`），裁成 3:2、缩到 720×480。画风多样，每张的画风记在 `tools/verbadj60/new-words.json` 的 `style`。
+
+| 单词 | 文件 |
+|---|---|
+| se rendre compte | se-rendre-compte.jpg |
+| s'en sortir | s-en-sortir.jpg |
+| se débrouiller | se-debrouiller.jpg |
+| s'adapter | s-adapter.jpg |
+| se méfier | se-mefier.jpg |
+| compter sur | compter-sur.jpg |
+| renoncer | renoncer.jpg |
+| oser | oser.jpg |
+| hésiter | hesiter.jpg |
+| convaincre | convaincre.jpg |
+| insister | insister.jpg |
+| rassurer | rassurer.jpg |
+| encourager | encourager.jpg |
+| se confier | se-confier.jpg |
+| se réconcilier | se-reconcilier.jpg |
+| accueillir | accueillir.jpg |
+| rejoindre | rejoindre.jpg |
+| s'installer | s-installer.jpg |
+| s'éloigner | s-eloigner.jpg |
+| s'abriter | s-abriter.jpg |
+| se précipiter | se-precipiter.jpg |
+| s'appuyer | s-appuyer.jpg |
+| se pencher | se-pencher.jpg |
+| supporter | supporter.jpg |
+| soulever | soulever.jpg |
+| renverser | renverser.jpg |
+| rattraper | rattraper.jpg |
+| récupérer | recuperer.jpg |
+| répartir | repartir.jpg |
+| trier | trier.jpg |
+| se débarrasser | se-debarrasser.jpg |
+| améliorer | ameliorer.jpg |
+| déborder | deborder.jpg |
+| réduire | reduire.jpg |
+| gérer | gerer.jpg |
+| interrompre | interrompre.jpg |
+| reporter | reporter.jpg |
+| remplacer | remplacer.jpg |
+| s'entraider | s-entraider.jpg |
+| se renseigner | se-renseigner.jpg |
+| déçu | decu.jpg |
+| enthousiaste | enthousiaste.jpg |
+| rigoureux | rigoureux.jpg |
+| réticent | reticent.jpg |
+| maladroit | maladroit.jpg |
+| distrait | distrait.jpg |
+| désordonné | desordonne.jpg |
+| inattendu | inattendu.jpg |
+| défectueux | defectueux.jpg |
+| disponible | disponible.jpg |
+| efficace | efficace.jpg |
+| pénible | penible.jpg |
+| encombrant | encombrant.jpg |
+| coûteux | couteux.jpg |
+| inutile | inutile.jpg |
+| perplexe | perplexe.jpg |
+| persévérant | perseverant.jpg |
+| généreux | genereux.jpg |
+| autonome | autonome.jpg |
+| usé | use.jpg |

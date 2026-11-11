@@ -4481,6 +4481,7 @@ const LANG_DICT = {
 "停止并删除": "Arrêter et supprimer",
 "单词配图平时看到哪张加载哪张。下载配图包（${d.images} 张，约 ${d.mb} MB）后，断网也能看图。": "Les images des mots se chargent au fur et à mesure. Téléchargez le pack d'images (${d.images} images, environ ${d.mb} Mo) pour les voir hors ligne.",
 "下载配图包": "Télécharger le pack d'images",
-"公开网站不再在打开时自动下载全部单词配图（约 16 MB）：平时看到哪张加载哪张，打开更快。需要断网看图的话，在“背单词”页点“下载配图包”；也可以随时删除。以前已经存好图片的设备会保留。": "Le site public ne télécharge plus toutes les images des mots (environ 16 Mo) à l'ouverture : elles se chargent au fur et à mesure, et le site s'ouvre plus vite. Pour les voir hors ligne, touchez « Télécharger le pack d'images » sur la page Vocabulaire ; vous pouvez le supprimer à tout moment. Les appareils qui avaient déjà enregistré les images les gardent."
+"公开网站不再在打开时自动下载全部单词配图（约 16 MB）：平时看到哪张加载哪张，打开更快。需要断网看图的话，在“背单词”页点“下载配图包”；也可以随时删除。以前已经存好图片的设备会保留。": "Le site public ne télécharge plus toutes les images des mots (environ 16 Mo) à l'ouverture : elles se chargent au fur et à mesure, et le site s'ouvre plus vite. Pour les voir hors ligne, touchez « Télécharger le pack d'images » sur la page Vocabulaire ; vous pouvez le supprimer à tout moment. Les appareils qui avaient déjà enregistré les images les gardent.",
+"背单词新增 60 个常用动词和形容词（比如 se rendre compte、se débrouiller、compter sur、déçu、efficace），每个动词都带最常用的搭配，配图由 ChatGPT 按例句画成，画风更多样；单词闯关多了第 47–52 关。": "Vocabulaire : 60 nouveaux verbes et adjectifs courants (par ex. se rendre compte, se débrouiller, compter sur, déçu, efficace). Chaque verbe est donné avec sa construction la plus courante, et les images, dessinées par ChatGPT d'après les phrases d'exemple, sont de styles plus variés. Nouveaux niveaux 47 à 52."
 };
 
