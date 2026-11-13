@@ -14760,7 +14760,7 @@ GPA2.forEach(u => {
     LEVEL_OF[id] = u.lv; TAGS_OF[id] = q.tags; KP_OF[id] = "gb" + u.unit;
   });
 });
-const LANG_FILES = {"en": "lang-en.js?v=058da5fb57", "fr": "lang-fr.js?v=499a15e35c"};
+const LANG_FILES = {"en": "lang-en.js?v=4123570ed6", "fr": "lang-fr.js?v=c493b8a0e3"};
 (() => { let l = null; try { l = localStorage.getItem("fq-lang"); } catch (e) {}
   if (Object.hasOwn(LANG_FILES, l)) document.write('<script src="' + LANG_FILES[l] + '"><\/script>'); })();
 </script>
@@ -17499,6 +17499,9 @@ function setGoalSection(wrap) {
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 // 版本号格式 1.x.y：平时只动 x、y；最前面的 1 未经用户同意不能改成 2。
 const CHANGELOG = [
+  { v: "1.8.2", d: "2026-11-13", p: "fr", items: [
+    "背单词（普通难度）的错误选项改成先从这一组正在考的词里挑（组里不够才用其他词）：四个选项都是刚学过的词，不能靠“只有这个眼熟”猜出答案。困难模式不变，还是挑易混词和形近词。",
+    "单词闯关的星星改成看整关做一遍错了几题：最多错 1 题三颗星，错 2–3 题两颗星，错 4–5 题一颗星，错 6 题以上没有星星；整关做完就能进入下一关。每关记最好的一次；以前已经拿到的星星都保留。"] },
   { v: "1.8.1", d: "2026-11-13", items: [
     "商店的补签卡换成了「时光沙漏」（1000 金币）：用了之后 15 分钟内做的题，全部算进昨天的做题日历，昨天的经验和连续天数也跟着算——回到过去把昨天的题补上。已有的补签卡还能照常使用。"] },
   { v: "1.8.0", d: "2026-11-13", p: "fr", items: [
@@ -22015,6 +22018,15 @@ function vLoad() {
     });
     m.forEach(s => { if (s[7] === undefined && s[6] !== undefined) s[7] = s[6]; });   // 以前做过的“看词选图”算作初见题做过
     vStats = m;
+    // 改规则以前（V_STAR_CUTOFF 之前）的掌握情况：用来保留旧规则下已经拿到的星星
+    const old = new Map();
+    snap.docs.map(d => d.data()).filter(d => String(d.at) < V_STAR_CUTOFF).sort((a, b) => String(a.at).localeCompare(String(b.at))).forEach(d => {
+      if (!V_BY_ID.has(d.word)) return;
+      if (!old.has(d.word)) old.set(d.word, {});
+      old.get(d.word)[d.type] = !!d.ok;
+    });
+    old.forEach(s => { if (s[7] === undefined && s[6] !== undefined) s[7] = s[6]; });
+    vStatsOld = old;
   }).catch(() => { vStats = new Map(); }).finally(() => { vLoading = null; if (view === "vocab") { vToc(); if (!vSess) vList(); } });
   return vLoading;
 }
@@ -22080,16 +22092,48 @@ const vTitle = () => vTheme === "all" ? "全部单词（打乱）" : vTheme === 
 const V_PASS = 7;
 const vById = new Map(V_WORDS.map(w => [w.id, w]));
 const vLevelWords = k => (V_LEVELS[k] || []).map(id => vById.get(id)).filter(Boolean);
+// 星星（2026-11 起）：一关整组做完（每个词的每种题型都做一遍）才计星，按这一次错了几题：
+// 最多错 1 题三颗星，错 2–3 题两颗，错 4–5 题一颗，错 6 题以上没有星星；整关做完一遍（不论几颗星）就算通关、解锁下一关。
+// 每关记最好的一次（game 集合的 "vstar" 记录，跟着账号同步）。
+// 改规则以前按“掌握几个词”拿到的星星保留下来（只看 V_STAR_CUTOFF 之前的记录，换设备也一样），两者取高的，重做不会掉星。
+const V_STAR_CUTOFF = "2026-11-13T14:45:00Z";
+const vStarsByWrong = n => n <= 1 ? 3 : n <= 3 ? 2 : n <= 5 ? 1 : 0;
+let vStatsOld = null, vStarCache = null;
+function vStarBest() {
+  if (typeof gameRaw === "undefined") return new Map();
+  if (vStarCache && vStarCache.raw === gameRaw && vStarCache.n === gameRaw.length) return vStarCache.m;
+  const m = new Map();
+  gameRaw.forEach(g => { if (g.kind === "vstar" && Number.isInteger(g.lv) && Number.isFinite(g.wrong)) {
+    const b = m.get(g.lv); if (!b || g.wrong < b.wrong) m.set(g.lv, { wrong: g.wrong, stars: vStarsByWrong(g.wrong) }); } });
+  vStarCache = { raw: gameRaw, n: gameRaw.length, m };
+  return m;
+}
 function vLevels() {
   let open = true;
+  const best = vStarBest();
   return V_LEVELS.map((_, k) => {
     const ws = vLevelWords(k), done = vStats ? ws.filter(w => vState(w) === "done").length : 0;
     const tried = vStats ? ws.filter(w => vState(w) !== "new").length : 0;
-    const stars = done >= ws.length ? 3 : done >= V_PASS + 2 ? 2 : done >= V_PASS ? 1 : 0;
-    const x = { k, ws, done, tried, stars, open };
-    open = open && stars > 0;
+    const oldDone = vStatsOld ? ws.filter(w => { const s = vStatsOld.get(w.id); return s && vTypes(w).every(t => s[t] === true); }).length : 0;
+    const legacy = oldDone >= ws.length ? 3 : oldDone >= V_PASS + 2 ? 2 : oldDone >= V_PASS ? 1 : 0;
+    const run = best.get(k);
+    const stars = Math.max(legacy, run ? run.stars : 0);
+    const x = { k, ws, done, tried, stars, open, best: run ? run.wrong : null, clear: stars > 0 || !!run };
+    open = open && x.clear;   // 整关做完一遍（0 颗星也算）或以前已经拿到星星，就解锁下一关
     return x;
   });
+}
+// 一关整组做完：记下这一次错了几题（只练部分词的不算）
+function vStarRecord(S) {
+  if (!(S.lv >= 0) || typeof gameAdd !== "function") return null;
+  const ws = vLevelWords(S.lv), ids = new Set(S.words.map(w => w.id));
+  if (ws.length !== ids.size || !ws.every(w => ids.has(w.id))) return null;
+  const want = ws.reduce((a, w) => a + vTypes(w).filter(t => V_T.includes(t)).length, 0);
+  const done = Object.keys(S.res).length;
+  if (done < want) return null;
+  const wrong = Object.values(S.res).filter(r => !r.ok).length;
+  gameAdd({ kind: "vstar", lv: S.lv, wrong, n: done, at: new Date().toISOString() });
+  return { wrong, stars: vStarsByWrong(wrong) };
 }
 // 像素数字（5×7 点阵，颜色跟着文字走）
 const PX_DIGITS = ["01110100011001110101110011000101110", "00100011000010000100001000010001110", "01110100010000100010001000100011111",
@@ -22109,18 +22153,18 @@ function vLevelMap() {
   vUnbindKeys();
   stage.innerHTML = "";
   const card = el("section", "card");
-  const lv = vLevels(), cleared = lv.filter(x => x.stars).length;
+  const lv = vLevels(), cleared = lv.filter(x => x.clear).length;
   const tags = el("div", "tagrow");
   tags.append(el("span", "tag", "背单词 · 闯关"), el("span", "tag plain", `已通关 ${vStats ? cleared : "…"} / ${lv.length}`));
-  card.append(tags, el("p", "sub", `每关 10 个词，来自不同主题。一关里掌握 ${V_PASS} 个词（这个词每种题型最近一次都答对）就算通关，解锁下一关；掌握 ${V_PASS + 2} 个两颗星，全部掌握三颗星。`));
+  card.append(tags, el("p", "sub", "每关 10 个词，来自不同主题。整关做完一遍（每个词的每种题型各一题）就算通关、解锁下一关，并按错题数计星：最多错 1 题三颗星，错 2–3 题两颗星，错 4–5 题一颗星，错 6 题以上没有星星。每关记最好的一次。"));
   const grid = el("div", "v-levels");
-  const next = lv.find(x => x.open && !x.stars);
+  const next = lv.find(x => x.open && !x.clear);
   lv.forEach(x => {
-    const b = el("button", "v-lv" + (x.stars ? " clear" : "") + (x === next ? " next" : "") + (x.open ? "" : " locked"));
+    const b = el("button", "v-lv" + (x.clear ? " clear" : "") + (x === next ? " next" : "") + (x.open ? "" : " locked"));
     b.type = "button"; b.id = "vLv" + (x.k + 1);
     b.disabled = !x.open || !vStats;
     const sv = x.open && vLvSaved(x.k);
-    b.append(pxNum(x.k + 1), x.open ? vStars(x.stars) : el("i", "px-lock"), el("span", "n", x.open ? `${x.done}/${x.ws.length}` : "未解锁"));
+    b.append(pxNum(x.k + 1), x.open ? vStars(x.stars) : el("i", "px-lock"), el("span", "n", !x.open ? "未解锁" : x.best !== null ? `最少错 ${x.best} 题` : `${x.done}/${x.ws.length}`));
     if (sv) { b.classList.add("saved"); b.title = `上次做到第 ${sv.i + 1} / ${sv.qs.length} 题，点开接着做`; b.append(el("span", "v-lv-saved", `▶ ${sv.i}/${sv.qs.length}`)); }
     b.addEventListener("click", () => { vTheme = "lv:" + x.k; vSess = null; vToc(); vStart(x.ws); });
     grid.append(b);
@@ -22384,13 +22428,23 @@ function vLvResume(k) {
   return true;
 }
 const vKind = w => vIsNoun(w) ? "n" : ["v", "adj"].includes(w.pos) ? w.pos : "x";
+// 干扰项的候选顺序（普通难度）：先从这一组正在考的词里挑（同一类词优先，再是组里其他词），组里不够才用全部单词。
+// 这样四个选项都是刚学过、看着眼熟的词，不能靠“只有这个眼熟”猜出答案。
+// 困难模式和以前一样：先挑全部单词里的易混词、形近词，再从全部单词里随机挑（noHard：这一题型以前困难模式也不挑易混词）。
+function vCandidates(w, ok = () => true, noHard = false) {
+  const same = x => vKind(x) === vKind(w);
+  if (vSet.hard) {
+    const all = V_WORDS.filter(x => x.id !== w.id && ok(x)), sameAll = all.filter(same);
+    return (noHard ? [] : vHardPool(w).filter(ok)).concat(vShuffle(sameAll.length >= 3 ? sameAll : all));
+  }
+  const S = vSess, group = (S && S.words || []).filter(x => x && x.id !== w.id && ok(x));
+  const inGroup = new Set(group.map(x => x.id));
+  const rest = V_WORDS.filter(x => x.id !== w.id && !inGroup.has(x.id) && ok(x));
+  return vShuffle(group.filter(same)).concat(vShuffle(group.filter(x => !same(x))), vShuffle(rest.filter(same)), vShuffle(rest.filter(x => !same(x))));
+}
 function vDistract(w, field) {
-  // 干扰项从全部单词里挑同一类（名词/动词/形容词）的词，不再限于同一主题；困难模式先挑易混词，再挑形近词
-  const same = V_WORDS.filter(x => x.id !== w.id && vKind(x) === vKind(w));
-  const pool = same.length >= 3 ? same : V_WORDS.filter(x => x.id !== w.id);
   const seen = new Set([field(w)]);
-  const near = vSet.hard ? vHardPool(w) : [];
-  return near.concat(vShuffle(pool)).filter(x => !seen.has(field(x)) && seen.add(field(x))).slice(0, 3);
+  return vCandidates(w).filter(x => !seen.has(field(x)) && seen.add(field(x))).slice(0, 3);
 }
 // 困难模式的干扰项候选：先是易混词名单里同组的词（打乱），再是最像的 6 个形近词（打乱）
 const vByFr = new Map(V_WORDS.map(x => [x.fr, x]));
@@ -22595,9 +22649,8 @@ function vQuestion() {
       if (tts) row.append(vSpeakBtn(w, "▶ 读例句", pe.full));
       head.append(sent, row);
       const seen = new Set([vPic(w)]);
-      const near = vSet.hard ? vHardPool(w).filter(x => vPic(x)) : [];
-      const pool = near.concat(vShuffle(V_WORDS.filter(x => x.id !== w.id && vPic(x))));
-      const dis = pool.filter(x => !seen.has(vPic(x)) && seen.add(vPic(x))).slice(0, 3);
+      const dis = (vSet.hard ? vHardPool(w).filter(x => vPic(x)).concat(vShuffle(V_WORDS.filter(x => x.id !== w.id && vPic(x)))) : vCandidates(w, x => !!vPic(x)))
+        .filter(x => !seen.has(vPic(x)) && seen.add(vPic(x))).slice(0, 3);   // 普通难度：图也先从这一组的词里挑；困难模式和以前一样
       const list = vShuffle([w, ...dis]);
       const grid = el("div", "v-pics v-pics7");
       const capOf = x => `${V_POS_ABBR[x.pos] || ""} ${typeof UI_LANG !== "undefined" && UI_LANG !== "zh" ? x.en : V_ZH[x.fr] || x.en}`;   // 图下方：词性缩写 + 意思（中文界面写中文，英文界面写英文），不写法语
@@ -22624,8 +22677,8 @@ function vQuestion() {
       // 看词选图：四张图里选出这个词
       head.append(el("span", "v-big", vLabel(w)), el("span", "listen-note", V_POS[w.pos] + " · 选出对应的图"));
       const seen = new Set([V_IMG[w.fr]]);
-      const pool = vShuffle(V_WORDS.filter(x => x.id !== w.id && V_IMG[x.fr]));
-      const dis = pool.filter(x => !seen.has(V_IMG[x.fr]) && seen.add(V_IMG[x.fr])).slice(0, 3);
+      const dis = (vSet.hard ? vShuffle(V_WORDS.filter(x => x.id !== w.id && V_IMG[x.fr])) : vCandidates(w, x => !!V_IMG[x.fr]))
+        .filter(x => !seen.has(V_IMG[x.fr]) && seen.add(V_IMG[x.fr])).slice(0, 3);
       const list = vShuffle([w, ...dis]);
       const grid = el("div", "v-pics");
       const bs = list.map((x, k) => {
@@ -22775,6 +22828,7 @@ function vResult() {
   if (S.tour && typeof tourHook === "function" && tourHook("vocab")) return;
   if (S.spire && typeof spireHook === "function" && spireHook()) return;
   if (S.lv >= 0) vLvClear(S.lv);   // 这一关做完了：清掉存档，下次从头来
+  const runStar = vStarRecord(S);
   const total = S.qs.length, right = Object.values(S.res).filter(r => r.ok).length;
   stage.innerHTML = "";
   const card = el("section", "card");
@@ -22783,10 +22837,13 @@ function vResult() {
   if ((S.maxCombo || 0) >= 2) card.append(el("p", "v-maxcombo", `本组最高连对：combo ${S.maxCombo}`));
   const lvs = S.lv >= 0 ? vLevels() : null, lx = lvs && lvs[S.lv];
   if (lx) {
-    const msg = el("p", "v-lvres" + (lx.stars ? " clear" : ""));
-    const hd = el("b", null, lx.stars ? `第 ${S.lv + 1} 关通关！ ` : `第 ${S.lv + 1} 关还没通关`); if (lx.stars) hd.append(vStars(lx.stars));
-    msg.append(hd,
-      document.createTextNode(lx.stars ? (lx.stars < 3 ? ` 已掌握 ${lx.done}/10，全部掌握可得三颗星。` : " 这关的词全部掌握了。") : ` 已掌握 ${lx.done}/10，掌握 ${V_PASS} 个就能通关。没掌握的词再练一次吧。`));
+    const msg = el("p", "v-lvres" + (lx.clear ? " clear" : ""));
+    const hd = el("b", null, lx.clear ? `第 ${S.lv + 1} 关通关！ ` : `第 ${S.lv + 1} 关还没通关`); if (lx.clear) hd.append(vStars(lx.stars));
+    const why = !runStar ? " 这次只练了部分词，不计星；整关做完一遍才计星。"
+      : runStar.stars === 3 ? ` 这次错了 ${runStar.wrong} 题，三颗星！`
+      : runStar.stars ? ` 这次错了 ${runStar.wrong} 题，得 ${runStar.stars} 颗星（最多错 1 题三颗星）。`
+      : ` 这次错了 ${runStar.wrong} 题，没有拿到星星（错题不超过 5 道才有星），下一关照样解锁。`;
+    msg.append(hd, document.createTextNode(why));
     card.append(msg);
   }
   card.append(el("p", "sub", "每个词后面的标记依次是：" + V_T.map(t => V_TYPES[t - 1]).join("、") + "；“–”表示这个词没有该题型。"));
@@ -22810,12 +22867,12 @@ function vResult() {
   if (lx) {
     const left = S.words.filter(w => vState(w) !== "done");
     if (left.length && left.length < S.words.length) {
-      const weak = el("button", lx.stars ? "btn ghost" : "btn", `只练没掌握的 ${left.length} 个`); weak.type = "button"; weak.id = "vLvWeak";
+      const weak = el("button", lx.clear ? "btn ghost" : "btn", `只练没掌握的 ${left.length} 个`); weak.type = "button"; weak.id = "vLvWeak";
       weak.addEventListener("click", () => vBegin(left));
       actions.append(weak);
     }
     const nx = lvs[S.lv + 1];
-    if (lx.stars && nx) {
+    if (lx.clear && nx) {
       const more = el("button", "btn", `下一关：第 ${S.lv + 2} 关`); more.type = "button"; more.id = "vMore";
       more.addEventListener("click", () => { vTheme = "lv:" + (S.lv + 1); vToc(); vStart(nx.ws); });
       actions.append(more);
