@@ -4581,6 +4581,25 @@ const LANG_DICT = {
 "还没有上传做题日历（TA 更新到新版本、打开一次好友页后就会出现）。": "No calendar uploaded yet (it appears once they update and open the Friends page).",
 "做题日历 · 最近半年 ${total} 题 · ${days} 天": "Practice calendar · last 6 months: ${total} questions · ${days} days",
 "最近半年做题日历：共 ${total} 题，${days} 天": "Practice calendar for the last 6 months: ${total} questions over ${days} days",
-"好友页的橱窗里多了每个人最近半年的做题日历，颜色跟着 TA 换上的主题皮肤；自己的橱窗里也能看到别人眼中的样子。": "The showcase on the Friends page now shows each person's practice calendar for the last six months, in the colours of the skin they use; your own showcase shows how others see yours."
+"好友页的橱窗里多了每个人最近半年的做题日历，颜色跟着 TA 换上的主题皮肤；自己的橱窗里也能看到别人眼中的样子。": "The showcase on the Friends page now shows each person's practice calendar for the last six months, in the colours of the skin they use; your own showcase shows how others see yours.",
+"时光沙漏": "Hourglass of Time",
+"回到过去：用了之后 ${REWIND_MIN} 分钟内做的题，全部算进昨天的做题日历（昨天的经验和连续天数也跟着算）。最多存 2 个。": "Back to the past: for ${REWIND_MIN} minutes after you use it, every question you answer counts towards yesterday's practice calendar (and yesterday's XP and streak). Hold up to 2.",
+"已停售（换成了时光沙漏）。昨天没达到每日目标时，用它补上昨天的打卡，保住连续天数。": "No longer sold (replaced by the Hourglass of Time). If you missed yesterday's daily goal, use it to fill in yesterday and keep your streak.",
+"${m} 月 ${d} 日": "${m}/${d}",
+"已经回到过去了，等这一次结束再用": "You're already back in the past. Wait until this one ends.",
+"每天 3 个任务，按你最近每天的做题量定难度，奖励 ${COIN_TIERS.join(\" / \")} 金币；三个都完成得一个宝箱，打开随机得到 30–150 金币、连对护盾、双倍经验药水或时光沙漏（道具已存满就换成金币）；做完今日计划给 ${COIN_PLAN}。任务完成时自动发奖励。": "Each day, 3 missions adapted to your recent practice give ${COIN_TIERS.join(\" / \")} coins. Complete all three for a chest with 30–150 coins, a combo shield, a double XP potion or an Hourglass of Time at random (if that item is full, you get coins instead). Finishing today's plan gives ${COIN_PLAN}. Rewards are paid automatically.",
+"时光沙漏只能回到“昨天”：用了之后 ${REWIND_MIN} 分钟内做的题都算进昨天（日历、经验和连续天数），一次只能用一个。经验药水一次只能喝一瓶，生效 ${POTION_MIN} 分钟；金币药水另算，可以和经验药水同时喝，${POTION_MIN} 分钟内答对得到的金币翻倍（任务奖励和宝箱不翻倍）。": "The Hourglass of Time only goes back to yesterday: for ${REWIND_MIN} minutes after you use it, your questions count for yesterday (calendar, XP and streak), one at a time. Only one XP potion can be active at a time, for ${POTION_MIN} minutes; the coin potion is separate and can be used alongside it, doubling coins from correct answers for ${POTION_MIN} minutes (not mission rewards or chests).",
+"连对护盾、时光沙漏、经验药水、金币药水${own ? ` · 拥有 ${own} 件` : \"\"}": "Combo shield, Hourglass of Time, XP potions, coin potion${own ? ` · 拥有 ${own} 件` : \"\"}",
+"回到过去": "Back to the past",
+"昨天": "yesterday",
+"接下来 ${REWIND_MIN} 分钟做的题都算进${ra ? rewindDayText(ra.day) : \"昨天\"}": "For the next ${REWIND_MIN} minutes, your questions count for ${ra ? rewindDayText(ra.day) : \"昨天\"}",
+"回到过去！": "Back to the past!",
+"回到过去中：做的题算进 ${rewindDayText(ra.day)} · 还剩 ": "Back in the past: questions count for ${rewindDayText(ra.day)} · time left ",
+" · 回到过去中（算进${rewindDayText(ra.day)}）": " · back in the past (counting for ${rewindDayText(ra.day)})",
+"昨天没达到目标。今天拿到 ${2 * xpGoal} 经验（2 倍目标），或用商店里的时光沙漏回到昨天把题补上，就能保住之前连续的 ${st.patch} 天。": "You missed yesterday's goal. Earn ${2 * xpGoal} XP today (2× the goal), or use an Hourglass of Time from the shop to go back and make up yesterday, to keep your ${st.patch}-day streak.",
+"连续打卡：当天经验达到每日目标算打卡。某天没达标，第二天达到 2 倍目标就能补签那一天（不能连着两天都缺），也可以用商店里的时光沙漏回到昨天，把昨天的题补上。做完今日计划奖励 30 金币。": "Streak: a day counts when you reach the daily XP goal. If you miss a day, reaching 2× the goal the next day makes up for it (but not two missed days in a row), or you can use an Hourglass of Time from the shop to go back to yesterday and do yesterday's questions. Finishing today's plan gives 30 coins.",
+"打开后：答对得金币、连对 combo 计数、每日任务、商店和道具（经验药水、时光沙漏）。关掉后这些都不显示；答对得的金币照常在后台积累，已有的金币和道具会保留，重新打开还在。经验、等级、今日计划和闯关不受影响。这个开关跟着账号同步。": "When on: coins for correct answers, combo counting, daily missions, the shop and items (XP potions, Hourglass of Time). When off, none of these are shown; coins from correct answers still build up in the background, and your coins and items are kept for when you turn it back on. XP, levels, today's plan and word levels are not affected. This setting syncs with your account.",
+"商店的补签卡换成了「时光沙漏」（1000 金币）：用了之后 15 分钟内做的题，全部算进昨天的做题日历，昨天的经验和连续天数也跟着算——回到过去把昨天的题补上。已有的补签卡还能照常使用。": "The shop's make-up card is replaced by the Hourglass of Time (1,000 coins): for 15 minutes after using it, every question you answer counts towards yesterday's calendar, XP and streak — go back and make up yesterday. Make-up cards you already own still work.",
+"连对护盾、时光沙漏、经验药水、金币药水": "Combo shield, Hourglass of Time, XP potions, coin potion"
 };
 

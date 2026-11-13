@@ -683,6 +683,12 @@ button.quest.go:hover, button.quest.go:focus-visible { border-color: var(--accen
 .quest.done .t { color: var(--muted); text-decoration: line-through; }
 .quest-bonus, .shop-note { margin: 0; font-size: .82rem; color: var(--muted); }
 .potion-on { margin: 0; padding: 6px 10px; border-radius: 8px; background: var(--good-soft); color: var(--good); font-weight: 600; font-size: .88rem; }
+/* 时光沙漏生效中：紫色提示条，带沙漏图标 */
+.potion-on.rewind-on { display: flex; align-items: center; gap: 6px; background: #efe8fb; color: #563a92; margin-top: 6px; }
+.potion-on.rewind-on .shop-ico { width: 18px; height: 18px; flex: none; }
+.potion-on.rewind-on .shop-ico svg { width: 100%; height: 100%; display: block; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .potion-on.rewind-on { background: #2c2347; color: #cdb8ff; } }
+:root[data-theme="dark"] .potion-on.rewind-on { background: #2c2347; color: #cdb8ff; }
 .potion-on b { font-variant-numeric: tabular-nums; }
 .shop-h { margin: 6px 0 0; font-size: 1rem; }
 .shop { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; }
@@ -14754,7 +14760,7 @@ GPA2.forEach(u => {
     LEVEL_OF[id] = u.lv; TAGS_OF[id] = q.tags; KP_OF[id] = "gb" + u.unit;
   });
 });
-const LANG_FILES = {"en": "lang-en.js?v=0ef0ea63dd", "fr": "lang-fr.js?v=cd6d39fac8"};
+const LANG_FILES = {"en": "lang-en.js?v=058da5fb57", "fr": "lang-fr.js?v=499a15e35c"};
 (() => { let l = null; try { l = localStorage.getItem("fq-lang"); } catch (e) {}
   if (Object.hasOwn(LANG_FILES, l)) document.write('<script src="' + LANG_FILES[l] + '"><\/script>'); })();
 </script>
@@ -15215,7 +15221,7 @@ const dayKey = d => `${d.getFullYear()}-${String(d.getMonth() + 1).padStart(2, "
 const heatLevel = n => HEAT_STEPS.filter(s => n >= s).length;
 function heatCard(raw) {
   const counts = new Map();
-  raw.forEach(d => { const t = new Date(d.at); if (!isNaN(t)) { const k = dayKey(t); counts.set(k, (counts.get(k) || 0) + 1); } });
+  raw.forEach(d => { const t = new Date(d.at); if (!isNaN(t)) { const k = typeof recDay === "function" ? recDay(+t) : dayKey(t); counts.set(k, (counts.get(k) || 0) + 1); } });
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const start = new Date(today); start.setDate(start.getDate() - 7 * 52 - (today.getDay() + 6) % 7);   // 52 周前的周一
   const card = el("section", "card heat-card");
@@ -15299,10 +15305,10 @@ const memOf = id => (progEnsure() ? prog.mem.get(id) : null) || { lv: 0, last: 0
 
 // 按时间顺序记一条记录，返回这一条带来的经验和记忆变化
 function progStep(st, d, kind) {
-  const t = Date.parse(d.at) || Date.now(), day = dayKey(new Date(t));
+  const t = Date.parse(d.at) || Date.now(), day = typeof recDay === "function" ? recDay(t) : dayKey(new Date(t));   // 时光沙漏生效时算进昨天
   let xp = 0, up = 0, down = -1, daily = false, learned = false;
   const s = st.stat[day] || (st.stat[day] = { n: 0, right: 0, run: 0, maxRun: 0, up: 0, learned: 0, cj: 0, voc: 0, vocRight: 0, xp: 0 });
-  if (day !== st.lastDay) { st.lastDay = day; st.days++; xp += XP_DAILY; daily = true; }
+  if (!st.seen.has(day)) { st.seen.add(day); st.lastDay = day; st.days++; xp += XP_DAILY; daily = true; }
   const right = kind === "vocab" ? !!d.ok : !!d.isCorrect;
   const coin = typeof coinStep === "function" && (kind === "vocab" || d.qid) ? coinStep(st, kind === "vocab" ? "voc" : d.round === "cj" ? "conj" : "quiz", right, t) : { coins: 0, run: 0 };
   s.coins = (s.coins || 0) + coin.coins;
@@ -15336,7 +15342,7 @@ function progStep(st, d, kind) {
 function progEnsure() {
   if (prog) return true;
   if (!ansRaw) return false;
-  const st = { mem: new Map(), xp: 0, today: 0, lastDay: "", days: 0, byDay: {}, stat: {}, coins: 0, runs: {} };
+  const st = { mem: new Map(), xp: 0, today: 0, lastDay: "", days: 0, byDay: {}, stat: {}, coins: 0, runs: {}, seen: new Set() };
   const ev = ansRaw.map(d => [d, "ans"]).concat(vocRaw.map(d => [d, "vocab"]));
   ev.sort((a, b) => String(a[0].at).localeCompare(String(b[0].at))).forEach(([d, k]) => progStep(st, d, k));
   prog = st;
@@ -15513,13 +15519,15 @@ function progressCard() {
 const PLAN_REVIEW_MAX = 30, PLAN_NEW = 10, PLAN_WEAK = 5, PLAN_CONJ = 10;
 const GOAL_OPTS = [50, 100, 150, 250, 400];
 let xpGoal = (() => { try { const v = Number(localStorage.getItem("fq-goal")); return GOAL_OPTS.includes(v) ? v : 150; } catch (e) { return 150; } })();
+// 一条答题记录算哪一天（时光沙漏生效时算进昨天）
+const recDayOf = d => typeof recDay === "function" ? recDay(Date.parse(d.at)) : dayKey(new Date(d.at));
 const dayOffset = (day, k) => { const [y, m, d] = day.split("-").map(Number); return dayKey(new Date(y, m - 1, d + k)); };
 const hasConj = () => typeof renderConj === "function";
 function answeredToday() {
   const t = dayKey(new Date());
-  return new Set((ansRaw || []).filter(d => d.at && dayKey(new Date(d.at)) === t).map(d => d.qid));
+  return new Set((ansRaw || []).filter(d => d.at && recDayOf(d) === t).map(d => d.qid));
 }
-const conjToday = () => { const t = dayKey(new Date()); return (ansRaw || []).filter(d => d.round === "cj" && d.at && dayKey(new Date(d.at)) === t).length; };
+const conjToday = () => { const t = dayKey(new Date()); return (ansRaw || []).filter(d => d.round === "cj" && d.at && recDayOf(d) === t).length; };
 
 // 最近 60 天里答错比例最高的标签（至少答过 5 次）
 function weakestTag() {
@@ -15652,7 +15660,8 @@ function planTocItem(id = "planToc") {
   const pa = gm ? potionActive() : null;
   const coins = gm ? ` · ${gameLedger().coins} 金币` : "";
   const ca = gm && typeof coinPotionActive === "function" ? coinPotionActive() : null;
-  box.append(el("b", null, (s.d === s.n ? "今日计划 · 已完成" : "今日计划") + (pa ? ` · ${pa.mult} 倍经验中` : "") + (ca ? ` · 金币 ×${ca.mult} 中` : "")), el("span", "n", `${s.d}/${s.n} 题 · 今日 ${st.today}/${xpGoal} 经验 · 连续 ${st.n} 天${coins}`), bar);
+  const ra = gm && typeof rewindActive === "function" ? rewindActive() : null;
+  box.append(el("b", null, (s.d === s.n ? "今日计划 · 已完成" : "今日计划") + (pa ? ` · ${pa.mult} 倍经验中` : "") + (ca ? ` · 金币 ×${ca.mult} 中` : "") + (ra ? ` · 回到过去中（算进${rewindDayText(ra.day)}）` : "")), el("span", "n", `${s.d}/${s.n} 题 · 今日 ${st.today}/${xpGoal} 经验 · 连续 ${st.n} 天${coins}`), bar);
   box.addEventListener("click", () => {
     const left = s.parts.find(x => x.d < x.n);
     planGo(left ? (left.k === "conj" ? "plan:conj" : "plan:") : "plan:");
@@ -15713,15 +15722,15 @@ function planCard() {
   lab.append(sel);
   goal.append(el("span", null, `今日经验 ${st.today} / ${xpGoal}` + (st.met ? " · 已打卡" : "")), gb, lab);
   card.append(goal);
-  if (st.patch) card.append(el("p", "plan-patch", `昨天没达到目标。今天拿到 ${2 * xpGoal} 经验（2 倍目标），或在下面的商店用一张补签卡，就能补上昨天，保住之前连续的 ${st.patch} 天。`));
+  if (st.patch) card.append(el("p", "plan-patch", `昨天没达到目标。今天拿到 ${2 * xpGoal} 经验（2 倍目标），或用商店里的时光沙漏回到昨天把题补上，就能保住之前连续的 ${st.patch} 天。`));
   const rule = el("details", "xp-rule");
   rule.append(el("summary", null, "今日计划怎么配"),
     elParts("p", [`每天第一次打开时生成，当天不变：到期该复习的题（最多 ${PLAN_REVIEW_MAX} 道，最该复习的在前）、从最近做的那一轮接着往下的 ${PLAN_NEW} 道新题、最近 60 天答错比例最高的标签里 ${PLAN_WEAK} 道题`, hasConj() ? `，再加 ${PLAN_CONJ} 道动词变位。` : "。", "今天答过一次就算完成。"]),
-    el("p", null, "连续打卡：当天经验达到每日目标算打卡。某天没达标，第二天达到 2 倍目标就能补签那一天（不能连着两天都缺），也可以用商店里的补签卡补昨天。做完今日计划奖励 30 金币。"));
+    el("p", null, "连续打卡：当天经验达到每日目标算打卡。某天没达标，第二天达到 2 倍目标就能补签那一天（不能连着两天都缺），也可以用商店里的时光沙漏回到昨天，把昨天的题补上。做完今日计划奖励 30 金币。"));
   card.append(rule);
   return card;
 }
-// ---------- 每日任务、金币和商店（多邻国式）：每天 3 个任务，完成得金币；金币买补签卡和双倍 / 三倍经验药水 ----------
+// ---------- 每日任务、金币和商店（多邻国式）：每天 3 个任务，完成得金币；金币买时光沙漏和双倍 / 三倍经验药水 ----------
 // 金币的获得、购买、使用都记成记录（game 集合），和答题记录一样跟着账号同步；余额和库存都由记录算出。
 // 同一个奖励（某天的某个任务）只算一次，两台设备同时领取也不会重复。
 const COIN_TIERS = [10, 15, 20];      // 三个任务：简单 / 中等 / 困难
@@ -15768,7 +15777,7 @@ function shieldTry(d, kind) {
 // 宝箱：每天三个任务全部完成得一个（记成 chest 记录），打开时随机给奖励，奖励在打开那一刻记下来
 const CHEST_LOOT = [
   [30, { coins: 30 }], [25, { coins: 50 }], [15, { coins: 80 }], [5, { coins: 150 }],
-  [12, { item: "shield" }], [8, { item: "x2" }], [5, { item: "patch" }],
+  [12, { item: "shield" }], [8, { item: "x2" }], [3, { item: "rewind" }],
 ];
 const lootText = l => l.coins ? `${l.coins} 金币` : SHOP.find(s => s.id === l.item).name;
 function chestOpen() {
@@ -15793,12 +15802,15 @@ const PX = {
   chest2: "<svg viewBox=\"0 0 20 16\" shape-rendering=\"crispEdges\" aria-hidden=\"true\"><rect x=\"2\" y=\"0\" width=\"16\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"1\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"1\" width=\"16\" height=\"1\" fill=\"#4a2a14\"/><rect x=\"18\" y=\"1\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"2\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"2\" width=\"1\" height=\"1\" fill=\"#4a2a14\"/><rect x=\"3\" y=\"2\" width=\"14\" height=\"1\" fill=\"#6b3c1c\"/><rect x=\"17\" y=\"2\" width=\"1\" height=\"1\" fill=\"#4a2a14\"/><rect x=\"18\" y=\"2\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"3\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"3\" width=\"1\" height=\"1\" fill=\"#4a2a14\"/><rect x=\"3\" y=\"3\" width=\"2\" height=\"1\" fill=\"#6b3c1c\"/><rect x=\"5\" y=\"3\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"6\" y=\"3\" width=\"8\" height=\"1\" fill=\"#6b3c1c\"/><rect x=\"14\" y=\"3\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"15\" y=\"3\" width=\"2\" height=\"1\" fill=\"#6b3c1c\"/><rect x=\"17\" y=\"3\" width=\"1\" height=\"1\" fill=\"#4a2a14\"/><rect x=\"18\" y=\"3\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"4\" width=\"18\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"5\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"5\" width=\"2\" height=\"1\" fill=\"#fff08a\"/><rect x=\"4\" y=\"5\" width=\"1\" height=\"1\" fill=\"#ffffff\"/><rect x=\"5\" y=\"5\" width=\"5\" height=\"1\" fill=\"#fff08a\"/><rect x=\"10\" y=\"5\" width=\"1\" height=\"1\" fill=\"#ffffff\"/><rect x=\"11\" y=\"5\" width=\"4\" height=\"1\" fill=\"#fff08a\"/><rect x=\"15\" y=\"5\" width=\"1\" height=\"1\" fill=\"#ffffff\"/><rect x=\"16\" y=\"5\" width=\"2\" height=\"1\" fill=\"#fff08a\"/><rect x=\"18\" y=\"5\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"6\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"6\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"3\" y=\"6\" width=\"1\" height=\"1\" fill=\"#ffffff\"/><rect x=\"4\" y=\"6\" width=\"3\" height=\"1\" fill=\"#fff08a\"/><rect x=\"7\" y=\"6\" width=\"1\" height=\"1\" fill=\"#ffffff\"/><rect x=\"8\" y=\"6\" width=\"5\" height=\"1\" fill=\"#fff08a\"/><rect x=\"13\" y=\"6\" width=\"1\" height=\"1\" fill=\"#ffffff\"/><rect x=\"14\" y=\"6\" width=\"4\" height=\"1\" fill=\"#fff08a\"/><rect x=\"18\" y=\"6\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"7\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"7\" width=\"16\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"18\" y=\"7\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"8\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"8\" width=\"3\" height=\"1\" fill=\"#d0904e\"/><rect x=\"5\" y=\"8\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"6\" y=\"8\" width=\"2\" height=\"1\" fill=\"#d0904e\"/><rect x=\"8\" y=\"8\" width=\"4\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"12\" y=\"8\" width=\"2\" height=\"1\" fill=\"#d0904e\"/><rect x=\"14\" y=\"8\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"15\" y=\"8\" width=\"3\" height=\"1\" fill=\"#d0904e\"/><rect x=\"18\" y=\"8\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"9\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"9\" width=\"3\" height=\"1\" fill=\"#a86532\"/><rect x=\"5\" y=\"9\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"6\" y=\"9\" width=\"2\" height=\"1\" fill=\"#a86532\"/><rect x=\"8\" y=\"9\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"9\" y=\"9\" width=\"2\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"11\" y=\"9\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"12\" y=\"9\" width=\"2\" height=\"1\" fill=\"#a86532\"/><rect x=\"14\" y=\"9\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"15\" y=\"9\" width=\"3\" height=\"1\" fill=\"#a86532\"/><rect x=\"18\" y=\"9\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"10\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"10\" width=\"3\" height=\"1\" fill=\"#a86532\"/><rect x=\"5\" y=\"10\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"6\" y=\"10\" width=\"2\" height=\"1\" fill=\"#a86532\"/><rect x=\"8\" y=\"10\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"9\" y=\"10\" width=\"1\" height=\"1\" fill=\"#c98a00\"/><rect x=\"10\" y=\"10\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"11\" y=\"10\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"12\" y=\"10\" width=\"2\" height=\"1\" fill=\"#a86532\"/><rect x=\"14\" y=\"10\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"15\" y=\"10\" width=\"3\" height=\"1\" fill=\"#a86532\"/><rect x=\"18\" y=\"10\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"11\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"11\" width=\"3\" height=\"1\" fill=\"#a86532\"/><rect x=\"5\" y=\"11\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"6\" y=\"11\" width=\"2\" height=\"1\" fill=\"#a86532\"/><rect x=\"8\" y=\"11\" width=\"4\" height=\"1\" fill=\"#c98a00\"/><rect x=\"12\" y=\"11\" width=\"2\" height=\"1\" fill=\"#a86532\"/><rect x=\"14\" y=\"11\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"15\" y=\"11\" width=\"3\" height=\"1\" fill=\"#a86532\"/><rect x=\"18\" y=\"11\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"12\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"12\" width=\"3\" height=\"1\" fill=\"#7a4520\"/><rect x=\"5\" y=\"12\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"6\" y=\"12\" width=\"8\" height=\"1\" fill=\"#7a4520\"/><rect x=\"14\" y=\"12\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"15\" y=\"12\" width=\"3\" height=\"1\" fill=\"#7a4520\"/><rect x=\"18\" y=\"12\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"13\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"13\" width=\"3\" height=\"1\" fill=\"#7a4520\"/><rect x=\"5\" y=\"13\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"6\" y=\"13\" width=\"8\" height=\"1\" fill=\"#7a4520\"/><rect x=\"14\" y=\"13\" width=\"1\" height=\"1\" fill=\"#ffd23a\"/><rect x=\"15\" y=\"13\" width=\"3\" height=\"1\" fill=\"#7a4520\"/><rect x=\"18\" y=\"13\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"1\" y=\"14\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"14\" width=\"16\" height=\"1\" fill=\"#c98a00\"/><rect x=\"18\" y=\"14\" width=\"1\" height=\"1\" fill=\"#2b1a10\"/><rect x=\"2\" y=\"15\" width=\"16\" height=\"1\" fill=\"#2b1a10\"/></svg>",
   rays: "<svg viewBox=\"0 0 20 5\" shape-rendering=\"crispEdges\" aria-hidden=\"true\"><rect x=\"8\" y=\"0\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"11\" y=\"0\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"3\" y=\"1\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"8\" y=\"1\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"11\" y=\"1\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"16\" y=\"1\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"4\" y=\"2\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"8\" y=\"2\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"11\" y=\"2\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"15\" y=\"2\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"5\" y=\"3\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"16\" y=\"3\" width=\"1\" height=\"1\" fill=\"#fff08a\"/><rect x=\"0\" y=\"4\" width=\"2\" height=\"1\" fill=\"#fff08a\"/><rect x=\"18\" y=\"4\" width=\"2\" height=\"1\" fill=\"#fff08a\"/></svg>",
 };
+PX.rewind = "<svg viewBox=\"0 0 16 16\" shape-rendering=\"crispEdges\" aria-hidden=\"true\"><rect x=\"6\" y=\"0\" width=\"4\" height=\"1\" fill=\"#3a2810\"/><rect x=\"5\" y=\"1\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"10\" y=\"1\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"6\" y=\"2\" width=\"4\" height=\"1\" fill=\"#3a2810\"/><rect x=\"2\" y=\"3\" width=\"12\" height=\"1\" fill=\"#3a2810\"/><rect x=\"2\" y=\"4\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"3\" y=\"4\" width=\"10\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"13\" y=\"4\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"2\" y=\"5\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"3\" y=\"5\" width=\"10\" height=\"1\" fill=\"#a8721c\"/><rect x=\"13\" y=\"5\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"3\" y=\"6\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"4\" y=\"6\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"5\" y=\"6\" width=\"6\" height=\"1\" fill=\"#cfeaff\"/><rect x=\"11\" y=\"6\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"12\" y=\"6\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"3\" y=\"7\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"4\" y=\"7\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"5\" y=\"7\" width=\"6\" height=\"1\" fill=\"#f3d98b\"/><rect x=\"11\" y=\"7\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"12\" y=\"7\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"3\" y=\"8\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"5\" y=\"8\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"6\" y=\"8\" width=\"4\" height=\"1\" fill=\"#f3d98b\"/><rect x=\"10\" y=\"8\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"12\" y=\"8\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"3\" y=\"9\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"6\" y=\"9\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"7\" y=\"9\" width=\"2\" height=\"1\" fill=\"#f3d98b\"/><rect x=\"9\" y=\"9\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"12\" y=\"9\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"3\" y=\"10\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"7\" y=\"10\" width=\"2\" height=\"1\" fill=\"#f3d98b\"/><rect x=\"12\" y=\"10\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"3\" y=\"11\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"6\" y=\"11\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"7\" y=\"11\" width=\"1\" height=\"1\" fill=\"#cfeaff\"/><rect x=\"8\" y=\"11\" width=\"1\" height=\"1\" fill=\"#f3d98b\"/><rect x=\"9\" y=\"11\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"12\" y=\"11\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"3\" y=\"12\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"5\" y=\"12\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"6\" y=\"12\" width=\"2\" height=\"1\" fill=\"#cfeaff\"/><rect x=\"8\" y=\"12\" width=\"1\" height=\"1\" fill=\"#f3d98b\"/><rect x=\"9\" y=\"12\" width=\"1\" height=\"1\" fill=\"#cfeaff\"/><rect x=\"10\" y=\"12\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"12\" y=\"12\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"3\" y=\"13\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"4\" y=\"13\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"5\" y=\"13\" width=\"6\" height=\"1\" fill=\"#f3d98b\"/><rect x=\"11\" y=\"13\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"12\" y=\"13\" width=\"1\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"2\" y=\"14\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"3\" y=\"14\" width=\"10\" height=\"1\" fill=\"#e3a72f\"/><rect x=\"13\" y=\"14\" width=\"1\" height=\"1\" fill=\"#3a2810\"/><rect x=\"2\" y=\"15\" width=\"12\" height=\"1\" fill=\"#3a2810\"/></svg>";   // 时光沙漏
 PX.c2 = PX.x2.replace(/#9b4dff/g, "#f5b800").replace(/#d7aaff/g, "#ffe58a").replace(/#5e22c0/g, "#b07800");   // 金币药水：经验药水的瓶子换成金色
 const SHOP_ICONS = PX;
 function shopIcon(id, cls) { const i = el("span", cls || "shop-ico"); i.innerHTML = SHOP_ICONS[id] || ""; i.setAttribute("aria-hidden", "true"); return i; }
+const REWIND_MIN = 15;   // 时光沙漏：回到昨天的时长（分钟）
 const SHOP = [
   { id: "shield", name: "连对护盾", price: 80, max: 3, auto: true, desc: `连对 ${SHIELD_MIN} 题以上时答错一次，自动用掉一个护盾，combo 不断。最多存 3 个。` },
-  { id: "patch", name: "补签卡", price: 300, max: 2, desc: "昨天没达到每日目标时，用它补上昨天的打卡，保住连续天数。最多存 2 张。" },
+  { id: "rewind", name: "时光沙漏", price: 1000, max: 2, desc: `回到过去：用了之后 ${REWIND_MIN} 分钟内做的题，全部算进昨天的做题日历（昨天的经验和连续天数也跟着算）。最多存 2 个。` },
+  { id: "patch", name: "补签卡", price: 300, max: 2, retired: true, desc: "已停售（换成了时光沙漏）。昨天没达到每日目标时，用它补上昨天的打卡，保住连续天数。" },
   { id: "x2", name: "双倍经验药水", price: 200, mult: 2, desc: `喝下后 ${POTION_MIN} 分钟内，答题得到的经验 ×2。` },
   { id: "x3", name: "三倍经验药水", price: 400, mult: 3, desc: `喝下后 ${POTION_MIN} 分钟内，答题得到的经验 ×3。` },
   { id: "c2", name: "金币药水", price: 150, coin: 2, desc: `喝下后 ${POTION_MIN} 分钟内，答对得到的金币 ×2。可以和经验药水同时生效。` },
@@ -15817,8 +15829,8 @@ const QUESTS = [
 
 let gameRaw = [];   // game 集合的全部记录
 let gameLoaded = false;   // 已经读到过 game 记录
-let potionCache = null, modeCache = null;
-function gameReset(docs) { gameRaw = docs || []; gameLoaded = true; potionCache = null; coinPotCache = null; modeCache = null; shieldCache = null; prog = null; gameApplyMode(); if (typeof spOnGameLoad === "function") spOnGameLoad(); if (typeof setGate === "function") setGate(); if (typeof navSync === "function") navSync(); }
+let potionCache = null, modeCache = null, rewindCache = null;
+function gameReset(docs) { gameRaw = docs || []; gameLoaded = true; potionCache = null; rewindCache = null; coinPotCache = null; modeCache = null; shieldCache = null; prog = null; gameApplyMode(); if (typeof spOnGameLoad === "function") spOnGameLoad(); if (typeof setGate === "function") setGate(); if (typeof navSync === "function") navSync(); }
 
 // ---------- 游戏模式（设置里开关）：金币、combo、每日任务、商店和道具，以及以后新加的游戏玩法，都只在打开时出现 ----------
 // 开关记成 game 记录（kind: "mode"），跟着账号同步；关掉期间答对不得金币。没有记录时默认打开。
@@ -15861,6 +15873,23 @@ function coinPotionActive(now = Date.now()) {
   const w = coinWindows().filter(([a, b]) => now >= a && now < b).sort((x, y) => y[2] - x[2])[0];
   return w ? { mult: w[2], left: w[1] - now } : null;
 }
+// 时光沙漏：每次使用记一条 use 记录（day 是要回到的那一天，at 到 until 是生效时间）。
+// 生效期间做的题，算进 day 那一天：做题日历、当天经验、连续天数都按它算；记录本身的时间不改。
+function rewindWindows() {
+  if (!rewindCache) rewindCache = gameRaw.filter(g => g.kind === "use" && g.item === "rewind" && g.day && g.until)
+    .map(g => [Date.parse(g.at), Date.parse(g.until), g.day]).filter(w => w[0] < w[1]);
+  return rewindCache;
+}
+function rewindActive(now = Date.now()) {
+  const w = rewindWindows().find(([a, b]) => now >= a && now < b);
+  return w ? { day: w[2], left: w[1] - now } : null;
+}
+// 一条记录（时间 t，毫秒）算在哪一天
+function recDay(t) {
+  for (const [a, b, day] of rewindWindows()) if (t >= a && t < b) return day;
+  return dayKey(new Date(t));
+}
+const rewindDayText = day => { const [, m, d] = day.split("-").map(Number); return `${m} 月 ${d} 日`; };
 function gameMult(t) { let m = 1; for (const [a, b, k] of potionWindows()) if (t >= a && t < b) m = Math.max(m, k); return m; }
 function potionActive(now = Date.now()) {
   const w = potionWindows().filter(([a, b]) => now >= a && now < b).sort((x, y) => y[2] - x[2])[0];
@@ -15868,7 +15897,7 @@ function potionActive(now = Date.now()) {
 }
 // 余额、库存、已经领过的奖励、用补签卡补上的日子
 function gameLedger() {
-  const earned = new Set(), inv = { shield: 0, patch: 0, x2: 0, x3: 0, c2: 0 }, patched = new Set(), got = [], opened = new Set(), owned = new Set(), cards = new Set(), unlocked = new Set();
+  const earned = new Set(), inv = { shield: 0, patch: 0, rewind: 0, x2: 0, x3: 0, c2: 0 }, patched = new Set(), got = [], opened = new Set(), owned = new Set(), cards = new Set(), unlocked = new Set();
   let coins = progEnsure() ? prog.coins || 0 : 0;   // 答对得的金币（由答题记录算出）
   [...gameRaw].sort((a, b) => String(a.at).localeCompare(String(b.at))).forEach(g => {
     if (g.kind === "earn") { if (earned.has(g.key)) return; earned.add(g.key); coins += g.coins || 0; }
@@ -15888,7 +15917,7 @@ function gameLedger() {
 }
 const patchedDays = () => gameLedger().patched;
 function gameAdd(doc) {
-  gameRaw.push(doc); potionCache = null; coinPotCache = null; shieldCache = null;
+  gameRaw.push(doc); potionCache = null; rewindCache = null; coinPotCache = null; shieldCache = null;
   if (dbRef) dbRef.collection("game").add(doc).catch(() => {});
 }
 
@@ -15979,7 +16008,11 @@ function patchTarget() {
 function gameUse(id) {
   const led = gameLedger(), now = Date.now();
   if (!led.inv[id]) return "还没有这件道具";
-  if (id === "patch") {
+  if (id === "rewind") {
+    if (rewindActive(now)) return "已经回到过去了，等这一次结束再用";
+    const day = dayOffset(dayKey(new Date(now)), -1);
+    gameAdd({ kind: "use", item: "rewind", day, at: new Date(now).toISOString(), until: new Date(now + REWIND_MIN * 60e3).toISOString() });
+  } else if (id === "patch") {
     const y = patchTarget();
     if (!y) return "昨天已经算打卡了，不用补签";
     gameAdd({ kind: "use", item: "patch", day: y, at: new Date(now).toISOString() });
@@ -16022,6 +16055,8 @@ function gameCard() {
   card.append(head);
   const pa = potionActive();
   if (pa) { const b = el("p", "potion-on"); b.append(document.createTextNode(`${pa.mult} 倍经验生效中 · 还剩 `), el("b", "potion-left", mmss(pa.left))); card.append(b); }
+  const ra = rewindActive();
+  if (ra) card.append(rewindBanner(ra));
   const ca = coinPotionActive();
   if (ca) { const b = el("p", "potion-on coin-on"); b.append(document.createTextNode(`金币 ×${ca.mult} 生效中 · 还剩 `), el("b", "potion-left-c", mmss(ca.left))); card.append(b); }
   const list = el("div", "quest-list");
@@ -16042,8 +16077,8 @@ function gameCard() {
   const rule = el("details", "xp-rule");
   rule.append(el("summary", null, "任务和金币怎么算"),
     el("p", null, `每答对一题 +1 金币，连对越多给得越多：combo 5 起每题 2 个，10 起 3 个，20 起 4 个，30 起 5 个。答错、或隔 10 分钟以上没答，连对重新算；答题、变位、背单词分开算。`),
-    el("p", null, `每天 3 个任务，按你最近每天的做题量定难度，奖励 ${COIN_TIERS.join(" / ")} 金币；三个都完成得一个宝箱，打开随机得到 30–150 金币、连对护盾、双倍经验药水或补签卡（道具已存满就换成金币）；做完今日计划给 ${COIN_PLAN}。任务完成时自动发奖励。`),
-    el("p", null, `补签卡只能补“昨天”：昨天没达到每日目标、今天还来得及补的时候可以用。经验药水一次只能喝一瓶，生效 ${POTION_MIN} 分钟；金币药水另算，可以和经验药水同时喝，${POTION_MIN} 分钟内答对得到的金币翻倍（任务奖励和宝箱不翻倍）。`));
+    el("p", null, `每天 3 个任务，按你最近每天的做题量定难度，奖励 ${COIN_TIERS.join(" / ")} 金币；三个都完成得一个宝箱，打开随机得到 30–150 金币、连对护盾、双倍经验药水或时光沙漏（道具已存满就换成金币）；做完今日计划给 ${COIN_PLAN}。任务完成时自动发奖励。`),
+    el("p", null, `时光沙漏只能回到“昨天”：用了之后 ${REWIND_MIN} 分钟内做的题都算进昨天（日历、经验和连续天数），一次只能用一个。经验药水一次只能喝一瓶，生效 ${POTION_MIN} 分钟；金币药水另算，可以和经验药水同时喝，${POTION_MIN} 分钟内答对得到的金币翻倍（任务奖励和宝箱不翻倍）。`));
   card.append(rule);
   return card;
 }
@@ -16090,13 +16125,14 @@ function chestBox(n) {
 // 商店的三块：道具、外观、（法语页）设置
 function gameShopParts(card, led) {
   const own = Object.values(led.inv).reduce((a, b) => a + b, 0);
-  const shopSec = foldSec("shop", "商店 · 道具", `连对护盾、补签卡、经验药水、金币药水${own ? ` · 拥有 ${own} 件` : ""}`);
+  const shopSec = foldSec("shop", "商店 · 道具", `连对护盾、时光沙漏、经验药水、金币药水${own ? ` · 拥有 ${own} 件` : ""}`);
   card.append(shopSec);
   const shop = el("div", "shop");
   const note = el("p", "shop-note", "");
   const pt = patchTarget();
   SHOP.forEach(it => {
     const own = led.inv[it.id];
+    if (it.retired && !own) return;   // 停售的道具：手里还有才显示（只能用，不能买）
     const box = el("div", "shop-item");
     const top = el("div", "shop-top");
     const nm = el("span", "shop-name"); nm.append(shopIcon(it.id), el("b", null, it.name));
@@ -16105,6 +16141,7 @@ function gameShopParts(card, led) {
     const acts = el("div", "shop-acts");
     const buy = el("button", "btn ghost", "购买"); buy.type = "button"; buy.id = "buy-" + it.id;
     buy.disabled = led.coins < it.price || (it.max && own >= it.max);
+    if (it.retired) { buy.hidden = true; }
     let sure = false;
     buy.addEventListener("click", () => {
       if (!sure) { sure = true; buy.textContent = `确认花 ${it.price} 金币`; return; }
@@ -16114,11 +16151,12 @@ function gameShopParts(card, led) {
       shopRedraw();
     });
     if (it.auto) { acts.append(buy, el("span", "shop-auto", "答错时自动生效")); box.append(acts); shop.append(box); return; }
-    const use = el("button", "btn", it.id === "patch" ? "补签昨天" : "喝下"); use.type = "button"; use.id = "use-" + it.id;
-    use.disabled = !own || (it.id === "patch" ? !pt : it.coin ? !!coinPotionActive() : !!potionActive());
+    const use = el("button", "btn", it.id === "patch" ? "补签昨天" : it.id === "rewind" ? "回到过去" : "喝下"); use.type = "button"; use.id = "use-" + it.id;
+    use.disabled = !own || (it.id === "patch" ? !pt : it.id === "rewind" ? !!rewindActive() : it.coin ? !!coinPotionActive() : !!potionActive());
     use.addEventListener("click", () => {
       const err = gameUse(it.id);
       if (err) { note.textContent = err; return; }
+      if (it.id === "rewind") { const ra = rewindActive(); xpToast(`接下来 ${REWIND_MIN} 分钟做的题都算进${ra ? rewindDayText(ra.day) : "昨天"}`, "回到过去！"); shopRedraw(); if (typeof planRefresh === "function") planRefresh(); return; }
       xpToast(it.id === "patch" ? "已用补签卡补上昨天的打卡" : it.coin ? `答对得到的金币 ×${it.coin}，${POTION_MIN} 分钟内有效` : `${it.mult} 倍经验，${POTION_MIN} 分钟内有效`, it.id === "patch" ? "补签成功！" : "药水生效！");
       shopRedraw();
       if (typeof planRefresh === "function") planRefresh();
@@ -16134,6 +16172,20 @@ function gameShopParts(card, led) {
   if (typeof setShop === "function") card.append(setShop(note));   // 法语页：界面语言和字体
   card.append(note);
 }
+// 回到过去的提示条（每日任务卡、商店页用）
+function rewindBanner(ra) {
+  const b = el("p", "potion-on rewind-on");
+  const t = el("span"); t.append(document.createTextNode(`回到过去中：做的题算进 ${rewindDayText(ra.day)} · 还剩 `), el("b", "rewind-left", mmss(ra.left)));
+  b.append(shopIcon("rewind", "shop-ico rewind-ico"), t);
+  return b;
+}
+setInterval(() => {
+  const els = document.querySelectorAll(".rewind-left");
+  if (!els.length) return;
+  const ra = rewindActive();
+  els.forEach(e => { e.textContent = ra ? mmss(ra.left) : "0:00"; });
+  if (!ra) { prog = null; if (view === "book" || view === "shop") shopRedraw(); if (typeof planRefresh === "function") planRefresh(); }
+}, 1000);
 // 药水倒计时
 setInterval(() => {
   const els = document.querySelectorAll(".potion-left");
@@ -17432,7 +17484,7 @@ function setQuizSection(wrap) {
 }
 // 游戏模式：金币、combo、每日任务、商店和道具
 function setGameSection(wrap) {
-  const g = setSection(wrap, "游戏模式", "打开后：答对得金币、连对 combo 计数、每日任务、商店和道具（经验药水、补签卡）。关掉后这些都不显示；答对得的金币照常在后台积累，已有的金币和道具会保留，重新打开还在。经验、等级、今日计划和闯关不受影响。这个开关跟着账号同步。");
+  const g = setSection(wrap, "游戏模式", "打开后：答对得金币、连对 combo 计数、每日任务、商店和道具（经验药水、时光沙漏）。关掉后这些都不显示；答对得的金币照常在后台积累，已有的金币和道具会保留，重新打开还在。经验、等级、今日计划和闯关不受影响。这个开关跟着账号同步。");
   const row = setCheckRow("setGame", "打开游戏模式", gameOn(), v => gameSetMode(v));
   g.append(row);
   if (typeof gameOwned === "function" && !gameOwned()) { row.querySelector("input").disabled = true; g.append(el("p", "sub", "游戏模式要先在“商店”里购买（完成一次今日计划后商店开放）。")); }   // 法语页
@@ -17447,6 +17499,8 @@ function setGoalSection(wrap) {
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 // 版本号格式 1.x.y：平时只动 x、y；最前面的 1 未经用户同意不能改成 2。
 const CHANGELOG = [
+  { v: "1.8.1", d: "2026-11-13", items: [
+    "商店的补签卡换成了「时光沙漏」（1000 金币）：用了之后 15 分钟内做的题，全部算进昨天的做题日历，昨天的经验和连续天数也跟着算——回到过去把昨天的题补上。已有的补签卡还能照常使用。"] },
   { v: "1.8.0", d: "2026-11-13", p: "fr", items: [
     "好友页的橱窗里多了每个人最近半年的做题日历，颜色跟着 TA 换上的主题皮肤；自己的橱窗里也能看到别人眼中的样子。"] },
   { v: "1.7.9", d: "2026-11-11", p: "fr", items: [
@@ -18772,6 +18826,8 @@ function renderShop() {
   }
   // 4. 完整商店
   const st = questStatus(), pa = potionActive(), ca = coinPotionActive();
+  const ra = typeof rewindActive === "function" ? rewindActive() : null;
+  if (ra) card.append(rewindBanner(ra));
   if (pa) { const b = el("p", "potion-on"); b.append(document.createTextNode(`${pa.mult} 倍经验生效中 · 还剩 `), el("b", "potion-left", mmss(pa.left))); card.append(b); }
   if (ca) { const b = el("p", "potion-on coin-on"); b.append(document.createTextNode(`金币 ×${ca.mult} 生效中 · 还剩 `), el("b", "potion-left-c", mmss(ca.left))); card.append(b); }
   gameShopParts(card, st ? st.led : led);
@@ -18912,7 +18968,7 @@ async function socCal() {
   let docs = [];
   try { docs = (await dbRef.collection("answers").get()).docs.map(d => d.data()); } catch (e) { return null; }
   const counts = new Map();
-  docs.forEach(d => { const t = new Date(d.at); if (!isNaN(t)) { const k = dayKey(t); counts.set(k, (counts.get(k) || 0) + 1); } });
+  docs.forEach(d => { const t = new Date(d.at); if (!isNaN(t)) { const k = typeof recDay === "function" ? recDay(+t) : dayKey(t); counts.set(k, (counts.get(k) || 0) + 1); } });
   const today = new Date(); today.setHours(0, 0, 0, 0);
   const start = new Date(today); start.setDate(start.getDate() - 7 * (SOC_WEEKS - 1) - (today.getDay() + 6) % 7);
   const n = [];

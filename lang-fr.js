@@ -4581,6 +4581,25 @@ const LANG_DICT = {
 "还没有上传做题日历（TA 更新到新版本、打开一次好友页后就会出现）。": "Pas encore de calendrier (il apparaîtra quand cette personne aura mis à jour le site et ouvert la page Amis).",
 "做题日历 · 最近半年 ${total} 题 · ${days} 天": "Calendrier · 6 derniers mois : ${total} questions · ${days} jours",
 "最近半年做题日历：共 ${total} 题，${days} 天": "Calendrier des 6 derniers mois : ${total} questions sur ${days} jours",
-"好友页的橱窗里多了每个人最近半年的做题日历，颜色跟着 TA 换上的主题皮肤；自己的橱窗里也能看到别人眼中的样子。": "La vitrine de la page Amis affiche maintenant le calendrier de chacun sur les six derniers mois, aux couleurs de son thème ; votre propre vitrine montre ce que voient les autres."
+"好友页的橱窗里多了每个人最近半年的做题日历，颜色跟着 TA 换上的主题皮肤；自己的橱窗里也能看到别人眼中的样子。": "La vitrine de la page Amis affiche maintenant le calendrier de chacun sur les six derniers mois, aux couleurs de son thème ; votre propre vitrine montre ce que voient les autres.",
+"时光沙漏": "Sablier du temps",
+"回到过去：用了之后 ${REWIND_MIN} 分钟内做的题，全部算进昨天的做题日历（昨天的经验和连续天数也跟着算）。最多存 2 个。": "Retour vers le passé : pendant ${REWIND_MIN} minutes après l'avoir utilisé, chaque question compte pour le calendrier d'hier (ainsi que l'XP et la série d'hier). 2 au maximum en réserve.",
+"已停售（换成了时光沙漏）。昨天没达到每日目标时，用它补上昨天的打卡，保住连续天数。": "N'est plus vendue (remplacée par le Sablier du temps). Si vous avez manqué l'objectif d'hier, utilisez-la pour valider hier et garder votre série.",
+"${m} 月 ${d} 日": "${d}/${m}",
+"已经回到过去了，等这一次结束再用": "Vous êtes déjà dans le passé. Attendez la fin de celui-ci.",
+"每天 3 个任务，按你最近每天的做题量定难度，奖励 ${COIN_TIERS.join(\" / \")} 金币；三个都完成得一个宝箱，打开随机得到 30–150 金币、连对护盾、双倍经验药水或时光沙漏（道具已存满就换成金币）；做完今日计划给 ${COIN_PLAN}。任务完成时自动发奖励。": "Chaque jour, 3 missions adaptées à votre pratique récente rapportent ${COIN_TIERS.join(\" / \")} pièces. Terminez-les toutes pour un coffre contenant au hasard 30 à 150 pièces, un bouclier de combo, une potion d'XP ×2 ou un Sablier du temps (si l'objet est déjà plein, vous recevez des pièces). Terminer le plan du jour rapporte ${COIN_PLAN}. Les récompenses sont versées automatiquement.",
+"时光沙漏只能回到“昨天”：用了之后 ${REWIND_MIN} 分钟内做的题都算进昨天（日历、经验和连续天数），一次只能用一个。经验药水一次只能喝一瓶，生效 ${POTION_MIN} 分钟；金币药水另算，可以和经验药水同时喝，${POTION_MIN} 分钟内答对得到的金币翻倍（任务奖励和宝箱不翻倍）。": "Le Sablier du temps ne ramène qu'à hier : pendant ${REWIND_MIN} minutes après l'avoir utilisé, vos questions comptent pour hier (calendrier, XP et série), un seul à la fois. Une seule potion d'XP peut être active à la fois, pendant ${POTION_MIN} minutes ; la potion de pièces est à part et peut s'utiliser en même temps : elle double les pièces des bonnes réponses pendant ${POTION_MIN} minutes (pas les récompenses de missions ni les coffres).",
+"连对护盾、时光沙漏、经验药水、金币药水${own ? ` · 拥有 ${own} 件` : \"\"}": "Bouclier de combo, Sablier du temps, potions d'XP, potion de pièces${own ? ` · 拥有 ${own} 件` : \"\"}",
+"回到过去": "Retour vers le passé",
+"昨天": "hier",
+"接下来 ${REWIND_MIN} 分钟做的题都算进${ra ? rewindDayText(ra.day) : \"昨天\"}": "Pendant ${REWIND_MIN} minutes, vos questions comptent pour le ${ra ? rewindDayText(ra.day) : \"昨天\"}",
+"回到过去！": "Retour vers le passé !",
+"回到过去中：做的题算进 ${rewindDayText(ra.day)} · 还剩 ": "Dans le passé : les questions comptent pour le ${rewindDayText(ra.day)} · reste ",
+" · 回到过去中（算进${rewindDayText(ra.day)}）": " · dans le passé (pour le ${rewindDayText(ra.day)})",
+"昨天没达到目标。今天拿到 ${2 * xpGoal} 经验（2 倍目标），或用商店里的时光沙漏回到昨天把题补上，就能保住之前连续的 ${st.patch} 天。": "Objectif d'hier manqué. Gagnez ${2 * xpGoal} XP aujourd'hui (2 × l'objectif), ou utilisez un Sablier du temps de la boutique pour revenir à hier et rattraper vos questions, afin de garder votre série de ${st.patch} jours.",
+"连续打卡：当天经验达到每日目标算打卡。某天没达标，第二天达到 2 倍目标就能补签那一天（不能连着两天都缺），也可以用商店里的时光沙漏回到昨天，把昨天的题补上。做完今日计划奖励 30 金币。": "Série : une journée compte quand vous atteignez l'objectif d'XP. Si vous manquez un jour, atteindre 2 × l'objectif le lendemain le rattrape (mais pas deux jours manqués de suite), ou utilisez un Sablier du temps de la boutique pour revenir à hier et faire les questions d'hier. Terminer le plan du jour rapporte 30 pièces.",
+"打开后：答对得金币、连对 combo 计数、每日任务、商店和道具（经验药水、时光沙漏）。关掉后这些都不显示；答对得的金币照常在后台积累，已有的金币和道具会保留，重新打开还在。经验、等级、今日计划和闯关不受影响。这个开关跟着账号同步。": "Activé : pièces pour les bonnes réponses, combos, missions du jour, boutique et objets (potions d'XP, Sablier du temps). Désactivé : rien de tout cela n'est affiché ; les pièces des bonnes réponses continuent de s'accumuler, et vos pièces et objets sont conservés pour la prochaine activation. L'XP, les niveaux, le plan du jour et le parcours de vocabulaire ne changent pas. Ce réglage est synchronisé avec votre compte.",
+"商店的补签卡换成了「时光沙漏」（1000 金币）：用了之后 15 分钟内做的题，全部算进昨天的做题日历，昨天的经验和连续天数也跟着算——回到过去把昨天的题补上。已有的补签卡还能照常使用。": "La carte de rattrapage est remplacée par le Sablier du temps (1 000 pièces) : pendant 15 minutes après l'avoir utilisé, chaque question compte pour le calendrier, l'XP et la série d'hier — revenez dans le passé pour rattraper hier. Les cartes de rattrapage déjà possédées fonctionnent toujours.",
+"连对护盾、时光沙漏、经验药水、金币药水": "Bouclier de combo, Sablier du temps, potions d'XP, potion de pièces"
 };
 
