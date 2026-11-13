@@ -4577,6 +4577,10 @@ const LANG_DICT = {
 "单词配图平时看到哪张加载哪张。下载配图包（${d.images} 张，约 ${d.mb} MB）后，断网也能看图。": "Word pictures load one by one as you see them. Download the picture pack (${d.images} pictures, about ${d.mb} MB) to see them offline.",
 "下载配图包": "Download picture pack",
 "公开网站不再在打开时自动下载全部单词配图（约 16 MB）：平时看到哪张加载哪张，打开更快。需要断网看图的话，在“背单词”页点“下载配图包”；也可以随时删除。以前已经存好图片的设备会保留。": "The public site no longer downloads all word pictures (about 16 MB) when it opens: pictures load as you see them, so the site opens faster. To see pictures offline, tap \"Download picture pack\" on the Vocabulary page; you can delete it any time. Devices that already stored the pictures keep them.",
-"背单词新增 60 个常用动词和形容词（比如 se rendre compte、se débrouiller、compter sur、déçu、efficace），每个动词都带最常用的搭配，配图由 ChatGPT 按例句画成，画风更多样；单词闯关多了第 47–52 关。": "Vocabulary: 60 new common verbs and adjectives (e.g. se rendre compte, se débrouiller, compter sur, déçu, efficace). Every verb comes with its most common construction, and the pictures, drawn by ChatGPT from the example sentences, use a wider range of styles. Word levels 47–52 are new."
+"背单词新增 60 个常用动词和形容词（比如 se rendre compte、se débrouiller、compter sur、déçu、efficace），每个动词都带最常用的搭配，配图由 ChatGPT 按例句画成，画风更多样；单词闯关多了第 47–52 关。": "Vocabulary: 60 new common verbs and adjectives (e.g. se rendre compte, se débrouiller, compter sur, déçu, efficace). Every verb comes with its most common construction, and the pictures, drawn by ChatGPT from the example sentences, use a wider range of styles. Word levels 47–52 are new.",
+"还没有上传做题日历（TA 更新到新版本、打开一次好友页后就会出现）。": "No calendar uploaded yet (it appears once they update and open the Friends page).",
+"做题日历 · 最近半年 ${total} 题 · ${days} 天": "Practice calendar · last 6 months: ${total} questions · ${days} days",
+"最近半年做题日历：共 ${total} 题，${days} 天": "Practice calendar for the last 6 months: ${total} questions over ${days} days",
+"好友页的橱窗里多了每个人最近半年的做题日历，颜色跟着 TA 换上的主题皮肤；自己的橱窗里也能看到别人眼中的样子。": "The showcase on the Friends page now shows each person's practice calendar for the last six months, in the colours of the skin they use; your own showcase shows how others see yours."
 };
 

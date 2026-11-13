@@ -1108,6 +1108,15 @@ html[data-font="times"] body { font-size: 17px; }
 .soc-h4 { margin: 14px 0 6px; font-size: .95rem; }
 .soc-shelf { display: grid; grid-template-columns: repeat(6, 1fr); gap: 8px; padding: 10px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); }
 .soc-shelf.small { grid-template-columns: repeat(auto-fill, minmax(84px, 1fr)); margin: 0 0 8px; }
+/* 橱窗里的做题日历：最近半年；配色默认同“学习进度”的日历，换了主题皮肤的同学用 TA 皮肤的配色（JS 里写成行内 --h0…--h4） */
+.soc-heat { --h0: #e3e7ee; --h1: #7cc493; --h2: #46a368; --h3: #23824a; --h4: #145a33; margin: 0 0 8px; padding: 10px 12px; border-radius: 10px; background: var(--bg); border: 1px solid var(--line); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .soc-heat { --h0: #262e3b; --h1: #155c33; --h2: #1f8346; --h3: #3bb06a; --h4: #7bd99e; } }
+:root[data-theme="dark"] .soc-heat { --h0: #262e3b; --h1: #155c33; --h2: #1f8346; --h3: #3bb06a; --h4: #7bd99e; }
+.soc-heat-head { font-size: .82rem; color: var(--muted); margin-bottom: 6px; font-variant-numeric: tabular-nums; }
+.soc-heat .soc-heat-grid { grid-template-rows: repeat(7, 10px); grid-auto-columns: 10px; gap: 2px; }
+.soc-heat .soc-heat-grid i { width: 10px; height: 10px; cursor: default; }
+.soc-heat .sub { margin: 0; font-size: .82rem; }
+.soc-shelf > .sub, .soc-pick > .sub { grid-column: 1 / -1; margin: 0; }   /* “橱窗还是空的”这类说明占满一整行，不要挤在第一格里 */
 .soc-slot, .soc-card { display: flex; flex-direction: column; align-items: center; gap: 3px; padding: 4px; border: 1px solid var(--line); border-radius: 8px; background: var(--card); color: var(--fg); font: inherit; min-width: 0; }
 .soc-slot.empty { border-style: dashed; background: none; min-height: 64px; }
 .soc-slot .pc-art, .soc-card .pc-art { width: 100%; aspect-ratio: 3 / 2; overflow: hidden; border-radius: 4px; }
@@ -14745,7 +14754,7 @@ GPA2.forEach(u => {
     LEVEL_OF[id] = u.lv; TAGS_OF[id] = q.tags; KP_OF[id] = "gb" + u.unit;
   });
 });
-const LANG_FILES = {"en": "lang-en.js?v=b35f07cdeb", "fr": "lang-fr.js?v=a6818f22e2"};
+const LANG_FILES = {"en": "lang-en.js?v=0ef0ea63dd", "fr": "lang-fr.js?v=cd6d39fac8"};
 (() => { let l = null; try { l = localStorage.getItem("fq-lang"); } catch (e) {}
   if (Object.hasOwn(LANG_FILES, l)) document.write('<script src="' + LANG_FILES[l] + '"><\/script>'); })();
 </script>
@@ -17438,6 +17447,8 @@ function setGoalSection(wrap) {
 // p：哪个页面的更新（fr 法语页 / st 随机分析页 / 不写表示两个页面都有）。新版本加在最前面。
 // 版本号格式 1.x.y：平时只动 x、y；最前面的 1 未经用户同意不能改成 2。
 const CHANGELOG = [
+  { v: "1.8.0", d: "2026-11-13", p: "fr", items: [
+    "好友页的橱窗里多了每个人最近半年的做题日历，颜色跟着 TA 换上的主题皮肤；自己的橱窗里也能看到别人眼中的样子。"] },
   { v: "1.7.9", d: "2026-11-11", p: "fr", items: [
     "游戏新增「学习伙伴」：800 金币解锁 Ninon、Lison 和 Pia，可切换、试穿配饰、听法语例句；亲密度来自学习进步。支持拖动、关闭与减少动画，做题时自动避让，角色设置跟账号同步。"] },
   { v: "1.7.8", d: "2026-11-10", p: "fr", items: [
@@ -18842,8 +18853,13 @@ function featShop(note) {
 // 每个登录用户上传一行公开资料：昵称、等级、经验、金币、明信片数、橱窗里摆的明信片（最多 6 张）。不上传邮箱。
 // 自己的设置（昵称、是否隐藏、橱窗）：本机存一份（fq-social），同时记成 game 集合里的 "social" 记录跟着账号同步，
 // 两边按修改时间 at 取新的那份——换设备登录后昵称和橱窗都还在。资料（含数字）在同步完成、打开好友页、改设置时上传到排行榜。
+// 橱窗里还有每个人最近半年的做题日历（cal：从哪天开始 + 每天题数），颜色用 TA 当时换上的主题皮肤（skin）。
+// 这两列是后加的（schema.sql 末尾的 alter table）；数据库还没加列时自动退回不带日历的旧格式。
 const SOC_SHOW = 6;
 let socSort = "xp", socRows = null, socErr = "", socOpen = null, socPushT = 0, socRecT = 0;
+let socNoCal = false;   // 数据库里还没有 cal / skin 两列
+const SOC_WEEKS = 26;   // 橱窗里的日历显示最近 26 周
+const socColErr = e => e && e.status === 400 && /column/i.test(e.message || "") && /\b(cal|skin)\b/.test(e.message || "");
 function socRemote() {
   if (typeof gameRaw === "undefined") return null;
   let best = null;
@@ -18891,21 +18907,92 @@ function socStats() {
   const cards = [...led.cards].filter(id => albumCardOf(id));
   return { level: xpLevel(xp).lv, xp, coins: Math.max(0, led.coins), cards: cards.length, owned: new Set(cards) };
 }
+// 我的做题日历（和“学习进度”里的做题日历同一个算法，只取最近 SOC_WEEKS 周）：{ s: 起始那周的周一, n: [每天题数…] }
+async function socCal() {
+  let docs = [];
+  try { docs = (await dbRef.collection("answers").get()).docs.map(d => d.data()); } catch (e) { return null; }
+  const counts = new Map();
+  docs.forEach(d => { const t = new Date(d.at); if (!isNaN(t)) { const k = dayKey(t); counts.set(k, (counts.get(k) || 0) + 1); } });
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  const start = new Date(today); start.setDate(start.getDate() - 7 * (SOC_WEEKS - 1) - (today.getDay() + 6) % 7);
+  const n = [];
+  for (const d = new Date(start); d <= today; d.setDate(d.getDate() + 1)) n.push(Math.min(9999, counts.get(dayKey(d)) || 0));
+  return { s: dayKey(start), n };
+}
+// 现在换上的主题皮肤（游戏模式关着或没换就是默认配色）；试穿的不算
+function socSkin() {
+  try { return typeof gameOn === "function" && gameOn() && typeof cosEquipped === "function" ? cosEquipped().skin || null : null; } catch (e) { return null; }
+}
 async function socPush() {
   if (!SYNC_ON || !syncAuth() || !navigator.onLine) return;
   const me = socMe(), s = socStats();
   const showcase = me.showcase.filter(id => s.owned.has(id)).slice(0, SOC_SHOW);
   const a = syncAuth();
-  await syncFetch("/rest/v1/profiles?on_conflict=user_id", {
-    method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" },
-    body: JSON.stringify({ user_id: a.uid, nick: me.nick.slice(0, 16), level: s.level, xp: s.xp, coins: s.coins, cards: s.cards, showcase, hidden: !!me.hidden, updated_at: new Date().toISOString() }),
-  });
+  const row = { user_id: a.uid, nick: me.nick.slice(0, 16), level: s.level, xp: s.xp, coins: s.coins, cards: s.cards, showcase, hidden: !!me.hidden, updated_at: new Date().toISOString() };
+  const send = body => syncFetch("/rest/v1/profiles?on_conflict=user_id", { method: "POST", headers: { Prefer: "resolution=merge-duplicates,return=minimal" }, body: JSON.stringify(body) });
+  if (!socNoCal) {
+    const cal = await socCal();
+    try { await send(Object.assign({}, row, { skin: socSkin() }, cal ? { cal } : {})); return; }
+    catch (e) { if (!socColErr(e)) throw e; socNoCal = true; }
+  }
+  await send(row);
 }
 // 同步完成后顺手更新一次（攒一下，免得连续触发）
 function socPushSoon() { clearTimeout(socPushT); socPushT = setTimeout(() => socPush().catch(() => {}), 2000); }
 async function socLoad() {
   const order = { xp: "xp.desc", coins: "coins.desc", cards: "cards.desc" }[socSort];
-  socRows = await syncFetch(`/rest/v1/profiles?select=user_id,nick,level,xp,coins,cards,showcase,hidden&order=${order},updated_at.asc&limit=100`);
+  const q = cols => syncFetch(`/rest/v1/profiles?select=user_id,nick,level,xp,coins,cards,showcase,hidden${cols}&order=${order},updated_at.asc&limit=100`);
+  if (!socNoCal) { try { socRows = await q(",cal,skin"); return; } catch (e) { if (!socColErr(e)) throw e; socNoCal = true; } }
+  socRows = await q("");
+}
+// 某个皮肤的做题日历配色：直接从页面的样式表里找 “[data-skin="…"] .heat-card” 那条规则的 --h0…--h4，
+// 以后加了新皮肤也不用在这里登记。找不到（默认配色或没有这个皮肤）就用 .soc-heat 自己的默认配色。
+const socPalCache = new Map();
+function socPalette(skin) {
+  if (!skin) return null;
+  if (socPalCache.has(skin)) return socPalCache.get(skin);
+  let pal = null;
+  const want = `[data-skin="${skin}"]`;
+  const scan = rules => { for (const r of rules) {
+    if (pal) return;
+    if (r.cssRules && !r.selectorText) { try { scan(r.cssRules); } catch (e) {} continue; }
+    if (r.selectorText && r.selectorText.includes(want) && r.selectorText.includes(".heat-card")) {
+      const v = [0, 1, 2, 3, 4].map(i => r.style.getPropertyValue("--h" + i).trim());
+      if (v.every(Boolean)) pal = v;
+    }
+  } };
+  for (const sh of document.styleSheets) { try { scan(sh.cssRules); } catch (e) {} if (pal) break; }
+  socPalCache.set(skin, pal);
+  return pal;
+}
+// 橱窗里的小日历：最近半年，每列一周（周一在上）
+function socHeat(cal, skin) {
+  const box = el("div", "soc-heat");
+  const pal = socPalette(skin);
+  if (pal) pal.forEach((c, i) => box.style.setProperty("--h" + i, c));
+  if (!cal || typeof cal.s !== "string" || !Array.isArray(cal.n)) { box.append(el("p", "sub", "还没有上传做题日历（TA 更新到新版本、打开一次好友页后就会出现）。")); return box; }
+  const start = new Date(cal.s + "T00:00");
+  if (isNaN(start)) return box;
+  const today = new Date(); today.setHours(0, 0, 0, 0);
+  // 只显示最近 SOC_WEEKS 周：对方很久没打开时，日历往后补空白，不把旧数据当成最近的
+  const from = new Date(today); from.setDate(from.getDate() - 7 * (SOC_WEEKS - 1) - (today.getDay() + 6) % 7);
+  let total = 0, days = 0;
+  const grid = el("div", "heat-grid soc-heat-grid");
+  const fmt = dt => `${dt.getMonth() + 1}/${dt.getDate()}`;
+  for (const d = new Date(from); d <= today || d.getDay() !== 1; d.setDate(d.getDate() + 1)) {
+    const cell = el("i");
+    if (d > today) { cell.className = "future"; grid.append(cell); continue; }
+    const k = Math.round((d - start) / 864e5), n = k >= 0 && k < cal.n.length ? Math.max(0, Number(cal.n[k]) || 0) : 0;
+    if (n) { cell.className = "l" + heatLevel(n); total += n; days++; }
+    cell.title = `${fmt(d)}：${n ? n + " 题" : "没有做题"}`;
+    grid.append(cell);
+  }
+  grid.setAttribute("role", "img");
+  grid.setAttribute("aria-label", `最近半年做题日历：共 ${total} 题，${days} 天`);
+  const scroll = el("div", "heat-scroll"); scroll.append(grid);
+  box.append(el("div", "soc-heat-head", `做题日历 · 最近半年 ${total} 题 · ${days} 天`), scroll);
+  requestAnimationFrame(() => { scroll.scrollLeft = scroll.scrollWidth; });
+  return box;
 }
 
 function renderFriends() {
@@ -18972,7 +19059,9 @@ function socMyCard() {
     });
   };
   draw();
-  card.append(shelf, pick);
+  const myHeat = el("div"); myHeat.id = "socMyHeat";
+  socCal().then(cal => { myHeat.textContent = ""; myHeat.append(socHeat(cal, socSkin())); }).catch(() => {});
+  card.append(myHeat, shelf, pick);
   return card;
 }
 function socBoardCard() {
@@ -18998,13 +19087,16 @@ function socDrawBoard() {
   socRows.forEach((r, i) => {
     const row = el("button", "soc-r" + (r.user_id === me ? " me" : "") + (socOpen === r.user_id ? " open" : "")); row.type = "button";
     const rank = el("span", "soc-rank", i < 3 ? ["🥇", "🥈", "🥉"][i] : String(i + 1));
-    const name = el("span", "soc-name", r.nick + (r.user_id === me ? "（我）" : "") + (r.hidden ? " · 已隐藏" : ""));
+    // 昵称是用户自己起的，不翻译（“（我）”“已隐藏”放在单独的 span 里照常翻译）
+    const name = el("span", "soc-name"), nk = el("span", null, r.nick); nk.dataset.noi18n = "";
+    name.append(nk); if (r.user_id === me) name.append(el("span", null, "（我）")); if (r.hidden) name.append(el("span", null, " · 已隐藏"));
     const nums = el("span", "soc-nums");
     nums.append(el("b", socSort === "xp" ? "hl" : null, `Lv ${r.level}`), el("span", socSort === "coins" ? "hl" : null, `${r.coins} 金币`), el("span", socSort === "cards" ? "hl" : null, `${r.cards} 张`));
     row.append(rank, name, nums);
     row.addEventListener("click", () => { socOpen = socOpen === r.user_id ? null : r.user_id; socDrawBoard(); });
     list.append(row);
     if (socOpen === r.user_id) {
+      if (!socNoCal) list.append(socHeat(r.cal, r.skin));
       const sh = el("div", "soc-shelf small");
       const ids = (r.showcase || []).filter(id => albumCardOf(id));
       if (!ids.length) sh.append(el("p", "sub", "橱窗还是空的。"));
@@ -23630,7 +23722,7 @@ function spShop() {
       () => { r.gold -= pprice(id); r.shop.potSold.push(k); spGetPotion(id); spSave(); draw(); }, r.shop.potSold.includes(k) || r.gold < pprice(id) || full]));
     ch.push([`补 1 颗心 · ${heal} 金币`, `现在 ${r.hp} / ${r.max}`, () => { r.gold -= heal; spHeal(1); draw(); }, r.gold < heal || r.hp >= r.max]);
     ch.push(["离开", "", spDone]);
-    const card = spRoom("商人 · Le Marchand", "shop", `你有 ${r.gold} 金币。`, ch);
+    const card = spRoom("商人 · Le Marchand", "shop", `你有 ${r.gold} 金币。`, ch, "skins/spire/ev-shop.webp");
     card.querySelectorAll(".sp-choice").forEach((b, k) => { const n = r.shop.items.length; if (k < n) b.prepend(spIcon("relic", r.shop.items[k])); else if (k < n + r.shop.pots.length) b.prepend(spIcon("potion", r.shop.pots[k - n])); });
   };
   spSave(); draw();
