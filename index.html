@@ -25349,10 +25349,10 @@ function renderCafe(preserve=false){
 }
 
 // Approved adult character identities; runtime art is separate from concept artwork.
-const PET_CHARACTERS = [
-  { id: 'ninon', name: 'Ninon', age: 27, color: '#376cb6', desc: '热情成熟，陪你从容走好每一步。' },
-  { id: 'lison', name: 'Lison', age: 24, color: '#b94754', desc: '聪明狡黠，把善意藏在小小的反问里。' },
-  { id: 'pia', name: 'Pia', age: 21, color: '#788498', desc: '嘴硬心软，夸奖你的时候有一点害羞。' }
+const PET_CHARACTERS = [   // 展示顺序按裙子颜色：蓝、白、红；年龄不在页面上显示
+  { id: 'ninon', name: 'Ninon', color: '#376cb6', desc: '热情成熟，陪你从容走好每一步。' },
+  { id: 'pia', name: 'Pia', color: '#788498', desc: '嘴硬心软，夸奖你的时候有一点害羞。' },
+  { id: 'lison', name: 'Lison', color: '#b94754', desc: '聪明狡黠，把善意藏在小小的反问里。' }
 ];
 const PET_ACCESSORIES = [
   { id: 'pet-bookmark', name: '书签胸针', frame: 0 },
@@ -25795,7 +25795,7 @@ function renderPet() {
     const selected = c.id === (own ? cfg.character : petRuntime.previewCharacter);
     const button = petButton(c.name, () => { petRuntime.trial = null; if (own) petSet({ character: c.id }); else petRuntime.previewCharacter = c.id; renderPet(); }, 'pet-character-' + c.id, 'pet-character');
     button.style.setProperty('--pet-color', c.color); button.setAttribute('aria-pressed', String(selected));
-    button.append(el('span', 'pet-age', petText('${age} 岁', { age: c.age })), el('span', 'sub', tr(c.desc))); chars.append(button);
+    button.append(el('span', 'sub', tr(c.desc))); chars.append(button);
   }); root.append(chars);
   const hero = el('div', 'pet-hero'), preview = el('div', 'pet-preview'); preview.id = 'petPreview'; hero.append(preview);
   const info = el('div', 'pet-info'); hero.append(info);
